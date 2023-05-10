@@ -1,0 +1,19 @@
+GET https://qaphr998two-ep.prismhr.com:443/wave1/apis/ep/clients/544/life-event-codes HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+tracestate: 1963815@nr=0-1-2203161-1386029388-4ae01c8123439267----1681396634162
+traceparent: 00-24108d1adbc8c32ede595a8077a3146c-4ae01c8123439267-01
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+newrelic: eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6IjRhZTAxYzgxMjM0MzkyNjciLCJ0ciI6IjI0MTA4ZDFhZGJjOGMzMmVkZTU5NWE4MDc3YTMxNDZjIiwidGkiOjE2ODEzOTY2MzQxNjIsInRrIjoiMTk2MzgxNSJ9fQ==
+Accept: application/json, text/plain, */*
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: ESSauthToken=sXyLS4gvStpFbFRulybKLFSmiu4u1heiC8t31500; peoId=qaphr998two; accountId=qaphr998two; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMnBlcmZ0ZXN0MjExMDAyIiwiZnVsbE5hbWUiOiJKaW0gSiBBYnJzd2FhYWFmYWFhYyIsInR5cGUiOiJFIiwicGVvSWQiOiJxYXBocjk5OHR3byIsImNsaWVudElkIjoiODEyIiwiaWF0IjoxNjgxMzA5Njc1fQ.od28-7l2DHolHvy1pfGPiVmYHjYwvHfnJdAiinv5T28AnHgKCaiRp_PLKHZihrA0CxjxC89WzLH3NNMLbmtUEBrpDaLO_vjoIoYLYsiOxSpdwA3V7TRfnyOod5e8sTC1KcJHyzcCRns8yMERE9wJF6QqVGOshqS6IINw8iWlR2CJuplxBfSyA2PfqfSHuckIgOSUUghIIMnXSbiob0EdY_VrlGOGu2VevSdmPNLn4HRp7AzJqtibSSeEQ5XLqvbqqrXOB93RBuKhPG2s4YBTAdp5U8N1y8PfPstZFE4tsRY_pVejYM5NQND6P_ZthPKTPsq8iQYiDYy1cHtdvrCsBrzHgq5mfjJdqWmgIp9JEtCd4NNU-3hgjPOuHZ9xOvIPPbfrJbkMVUDUofNbE3kuXhxedlEBCTR_jDRaRQQxyBZjLZPMZg4DmxmnQPDcm_gT6E1ZYME7qIe8JmqS7TbpcbfwwnOIapbX76VigiHWKhUVi1W5qmBA44PiGQp1nlB8RV2CqKiAuQcRV7-sHehGha08GGBEsbXBuzPUVUJHO3T0E3Yp61xPrAvlI3jjoYupT8vZ6CoBqvU-33T_By90KQjs--2ni2pQvJMZAkDd75TYOWkVjgp8DzbgGP1W6JA8BixqZDK6QttTZXufXRc8eTIHIHqc4KDI_QhQ-zXX6eg; sails.sid=s%3AwqrgyTOCb4hOJvDyd7ci4ZtccGhtq1Hn.tKWatrhQLH9ZtbXfIQXQqp0Ig%2FKLRyhMkY3o4NxFDrM
+

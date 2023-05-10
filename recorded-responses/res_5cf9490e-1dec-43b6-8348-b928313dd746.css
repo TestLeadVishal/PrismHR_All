@@ -1,0 +1,16 @@
+.ngdialog.ngdialog-plan-compare .ngdialog-content {
+    padding:20px 0 0 0;
+    width: 80%;
+}
+
+.ngdialog.ngdialog-plan-compare .ngdialog-close {
+    top: -5px
+}
+
+
+@media screen and (max-width: 768px){
+    .ngdialog.ngdialog-plan-compare .ngdialog-content {
+        width:100%
+    }
+
+}

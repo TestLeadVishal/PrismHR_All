@@ -1,0 +1,20 @@
+POST https://bam.nr-data.net:443/events/1/a6100e7bce?a=1319471832&v=1216.487a282&to=Z1RWbUBZXUMEWkxdVl4edWpiF1dSC1xMGlhDQUw%3D&rst=3351&ck=1&ref=https://qaphr998.prismhr.com/qaphr998/ HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 574
+sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+content-type: text/plain
+Accept: */*
+Origin: https://qaphr998.prismhr.com
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=d7232d19e6bd9355
+
+bel.7;1,4,,28j,1ve,10,'initialPageLoad,'https://qaphr998.prismhr.com/qaphr998/,1,1,,,,19,!!'2c499b4c-3b02-4356-9f06-cbce39190ae5,'1,1i2,1k3;2,,1hf,1a,nh,1a,'POST,5k,'qaphr998.prismhr.com:443,'/qaphr998/,39g,6ee,,'7,'e0525953103d4bb9,'6e41b08ac8ee069d2c1b87c6ec208b44,l8i96omq;2,,1g0,mr,8,2,'GET,5k,'ka-p.fontawesome.com:443,'/releases/v5.15.4/css/pro-v4-shims.min.css,,38i,1,'4,!!!;2,,1g1,mw,5,1,a,5k,b,'/releases/v5.15.4/css/pro-v4-font-face.min.css,,20b,1,'5,!!!;2,,1fz,q6,2e,h,a,5k,b,'/releases/v5.15.4/css/pro.min.css,,15te,1,'3,!!!;b,!!!!ua,,,,!,1,1l,1y,-p,j2,,1,f3,1,1

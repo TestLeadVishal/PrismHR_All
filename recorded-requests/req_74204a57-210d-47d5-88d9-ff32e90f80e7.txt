@@ -1,0 +1,20 @@
+POST https://bam.nr-data.net:443/events/1/a6100e7bce?a=1386029388&sa=1&v=1216.487a282&t=Unnamed%20Transaction&rst=41898&ck=1&ref=https://qaphr998two-ep.prismhr.com/&ptid=c52c86c3-0001-bc27-14ea-01869f36ea94 HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 1445
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-platform: "Windows"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+content-type: text/plain
+Accept: */*
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=7588e8a1a665ded1
+
+bel.7;1,6,vvd,gd,25,v,'click,'https://qaphr998two-ep.prismhr.com/,'https://qaphr998two-ep.prismhr.com/#/ess/address,'https://qaphr998two-ep.prismhr.com/#/ess/home,,1,!!!!'2523ec17-4ccf-42b5-a528-441a9f7ac326,'24,!!;2,1,7,u,9,f,'GET,5k,'qaphr998two-ep.prismhr.com:443,'/wave1/apis/ep/session,,id,,'25,'608c99f427df39b1,'e1696b4a154391f8271056cfc9ef3e08,leq8at3l;2,,14,2f,3,4,6,5k,7,'/wave1/apis/ep/messages/,,2,,'31,'5b5ffbd3a5dcacf1,'ee2e9c5c90db68096a5812afa3239b77,leq8at4j;2,1,e,18,3,5,6,5k,7,8,,id,,'28,'495036f126c82bad,'aa2168a82224a1ec0ee1f82039fd33da,leq8at3s;2,,1n,em,4,5,6,5k,7,'/wave1/apis/ep/payroll/history/2023,,mv,,'32,'0e1925213030d9c4,'1015cfe77bccc800e5fe1ec63eed6580,leq8at51;2,1,g,1l,3,3,6,5k,7,8,,id,,'29,'e3d6faabd097ec94,'f9490dc557f54f23d88f5fe3b2ec3810,leq8at3u;2,,23,3o,3,7,6,5k,7,'/wave1/apis/ep/clients/544/employees/P13654/pto/types,,2,,'33,'5ee39c3fb3b0f575,'241413ccc64e7918a8f80d707f7f14c4,leq8at5h;2,,c,63,4,5,6,5k,7,'/wave1/apis/ep/clients/544/events,,2,,'27,'92f3afd7ecb7d27e,'1556ae22fe7788abef276fe7dd64b8d6,leq8at3q;2,1,a,6b,2,2,6,b8,7,'/wave1/apis/ep/clients/544/life-event,,1q,,'26,'ce1c14507dbd2695,'49170aa1ad3ecee69f83ac35532c3043,leq8at3o;2,,6m,61,6,8,6,5k,7,'/wave1/apis/ep/clients/544/life-event-codes,,nh,,'34,'55c1d6b45b224b1f,'817c0c34667f8a82ca96c02c239491e2,leq8ata0;2,,i,6j,3,4,6,5k,7,'/wave1/apis/ep/benefits/544/summary/,,7o,,'30,'fbaf5531ad769165,'3cdf7e65cd0b10b9afb73d3f715ea9dc,leq8at3w;

@@ -1,0 +1,22 @@
+POST https://qaphr998two-ep.prismhr.com:443/wave1/apis/obbe/i9stamp HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+Content-Length: 771
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Accept: application/json
+sec-ch-ua-platform: "Windows"
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/obbe/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: ESSauthToken=sXyLS4gvStpFbFRulybKLFSmiu4u1heiC8t31500; peoId=qaphr998two; accountId=qaphr998two; sails.sid=s%3ACzCRnYXqAYTAb67FvihhwvYcFprIl8PZ.65jcCDORUuhUB95x7wOKVaamz5ApKKsWwDBXnKzg2hc; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMnBlcmZ0ZXN0MjExMDAyIiwiZnVsbE5hbWUiOiJKaW0gSiBBYnJzd2FhYWFmYWFhYyIsInR5cGUiOiJFIiwicGVvSWQiOiJxYXBocjk5OHR3byIsImNsaWVudElkIjoiODEyIiwiaWF0IjoxNjgxMzA5Njc1fQ.od28-7l2DHolHvy1pfGPiVmYHjYwvHfnJdAiinv5T28AnHgKCaiRp_PLKHZihrA0CxjxC89WzLH3NNMLbmtUEBrpDaLO_vjoIoYLYsiOxSpdwA3V7TRfnyOod5e8sTC1KcJHyzcCRns8yMERE9wJF6QqVGOshqS6IINw8iWlR2CJuplxBfSyA2PfqfSHuckIgOSUUghIIMnXSbiob0EdY_VrlGOGu2VevSdmPNLn4HRp7AzJqtibSSeEQ5XLqvbqqrXOB93RBuKhPG2s4YBTAdp5U8N1y8PfPstZFE4tsRY_pVejYM5NQND6P_ZthPKTPsq8iQYiDYy1cHtdvrCsBrzHgq5mfjJdqWmgIp9JEtCd4NNU-3hgjPOuHZ9xOvIPPbfrJbkMVUDUofNbE3kuXhxedlEBCTR_jDRaRQQxyBZjLZPMZg4DmxmnQPDcm_gT6E1ZYME7qIe8JmqS7TbpcbfwwnOIapbX76VigiHWKhUVi1W5qmBA44PiGQp1nlB8RV2CqKiAuQcRV7-sHehGha08GGBEsbXBuzPUVUJHO3T0E3Yp61xPrAvlI3jjoYupT8vZ6CoBqvU-33T_By90KQjs--2ni2pQvJMZAkDd75TYOWkVjgp8DzbgGP1W6JA8BixqZDK6QttTZXufXRc8eTIHIHqc4KDI_QhQ-zXX6eg
+
+{"i9LastName":"Abrswaaaafaaac","i9FirstName":"jim","i9MiddleInitial":"j","i9OtherLastName":"N/A","i9Address":"100 Harvard Dr","i9AptNumber":"N/A","i9City":"Dalton","i9State":"GA","i9Zip":"30720","i9BirthDate":"1973-07-05","i9SSN":"812-21-1002","i9Email":"g@bo.com","i9Phone":"(555) 555-5555","i9CitizenStatus":"Z01","i9AlienRegNo":"","i9AlienTypeNo":"","i9AlienExpDate":"N/A","i9FormI94No":"","i9ForeignPassportNo":"","i9CountryIssuance":"","i9EmployeeSignature":"","i9PreparerUsed":"N","i9NumberOfPreparers":"","i9PrismVersion":"","i9DocumentToProvide":"","i9EmployeeSignDate":"2023-04-12","i9MgrDenyReason":"","i9ApprovalId":"","i9FileUUID":[],"i9UseSupportingDocs":"N","i9SupportingDocs":{"code":[],"uuid":[]},"approvalPolicy":"","account":"qaphr998two","peoId":"phr"}

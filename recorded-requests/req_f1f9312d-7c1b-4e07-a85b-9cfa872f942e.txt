@@ -1,0 +1,22 @@
+POST https://qaphr998two-ep.prismhr.com:443/wave1/apis/ep/login HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+Content-Length: 116
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+tracestate: 1963815@nr=0-1-2203161-1386029388-16e667e303ef001b----1675784279394
+traceparent: 00-1d973ab5835b2f3c3f124d22c2ca8f67-16e667e303ef001b-01
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+newrelic: eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6IjE2ZTY2N2UzMDNlZjAwMWIiLCJ0ciI6IjFkOTczYWI1ODM1YjJmM2MzZjEyNGQyMmMyY2E4ZjY3IiwidGkiOjE2NzU3ODQyNzkzOTQsInRrIjoiMTk2MzgxNSJ9fQ==
+Content-Type: application/json
+Accept: application/json, text/plain, */*
+sec-ch-ua-platform: "Windows"
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+
+{"username":"812perftest211012","password":"Password01","peoId":"qaphr998two","timezoneOffset":-360,"language":"en"}

@@ -1,0 +1,20 @@
+POST https://qaphr998two.prismhr.com:443/qaphr998twov6/dbweb.asp?dbcgm=1&ajx=yes HTTP/1.1
+Host: qaphr998two.prismhr.com
+Connection: keep-alive
+Content-Length: 788
+sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-platform: "Windows"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+Content-Type: application/x-javascript;
+Accept: */*
+Origin: https://qaphr998two.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two.prismhr.com/qaphr998twov6/dbweb.asp?dbcgm=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: IDBrowser=183c17c9a265416181b9e2dc8f9f3ae93746f7d59fee195b8d055dfd77674cb2+mdG1Q661AS46U1IiUi2P4es+74QEbSKe0bcfTaZ4Jc=; ASPSESSIONIDCQABBTQT=ODNDGPPDCDLCJEHBFGBPLIKG; DesignBAIS=machine=KAWXLIBYIGQPWGBQKBSPWVMNSQVYWBPGTBKEZDVVHXRGBJW&pooler=862&ver=40
+
+<ajaxTOBA><field name="text33v1" value=""/><field name="select40v1" value="1"/><field name="select41v1" value="1"/><field name="select53v1" value=""/><field name="select54v1" value="1"/><field name="text59v1" value=""/><field name="text72v1" value=""/><field name="datepickstext73v1" value=""/><field name="textarea78v1" value=""/><field name="ScreenRoot" value="HRPY.WORK_LOGIN"/><eventSource>button32v1</eventSource><eventType>click</eventType><clickPos>0,0,INPUT,button32v1</clickPos><keyCodes>||||</keyCodes><dimensions>1536|718|1536|718</dimensions><W3CRoot>HRPY.WORK_DASH</W3CRoot><clientClock>10:21:00</clientClock><clientDate>25.10.2022</clientDate><dbsuiID>1765246804631</dbsuiID><bac>172.16.160.105|UNIDATA|S:\DAVISON\ACCOUNTS\QAPHR998TWO\HRPY.DBRUN.QAPHR998TWO</bac></ajaxTOBA>

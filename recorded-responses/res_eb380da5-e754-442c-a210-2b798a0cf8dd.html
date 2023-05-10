@@ -1,0 +1,43 @@
+<div id='headerTop' class="row-fluid">
+    <div class="card panel-noborder rounded-0">
+        <div class="card-header header-panel phr-card-header-bg">
+            <h4 class="float-left mr-3">{{ $ctrl.form | formDisplayNameFilter }}</h4>
+            <button class="btn btn-link" ng-show="$ctrl.isCompleted" ng-click="$ctrl.edit()" 
+            type="button">{{ 'edit' | translation : 'employeeInfo' }}</button>
+            <br class="d-block d-sm-none" />
+        </div>
+    </div>
+</div>
+
+<section class="onboarding-form-main-content">
+    <form action="" class="form" name="eeoForm" novalidate>
+        <div class="row">
+            <div class="col-12">
+                <div btf-markdown="$ctrl.instructions"></div>
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="raceAndEthnicity">{{ 'inputLabel' | translation : 'EEO' }}</label>
+                    <select ng-disabled="$ctrl.isCompleted" id="raceAndEthnicity" name="raceAndEthnicity"
+                            class="form-control" required ng-model="$ctrl.employeeData.ethnicCode" require
+                            ng-disabled="$ctrl.isCompleted">
+                        <option value="">{{ 'selectText' | translation: 'EEO' }}</option>
+                        <option ng-repeat="race in $ctrl.eeoOptions" value="{{race.id}}">{{race.label}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="onboarding-form-buttons bottom-button-panel center-submit-button-mobile">
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="$ctrl.isFormProcessing || eeoForm.$invalid || 
+            eeoForm.raceAndEthnicity.$error.required" type="button">{{ $ctrl.nextButtonText }}</button>
+        </div>
+    </div>
+</section>

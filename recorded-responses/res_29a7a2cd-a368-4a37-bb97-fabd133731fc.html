@@ -1,0 +1,178 @@
+<div class="prebuilt-container">
+  <!----------------Form Header--------------->
+  <div id='headerTop'>
+    <div class="card-group">
+      <div class="card panel-noborder rounded-0">
+        <div class="panel-heading header-panel">
+          <div class="card-header text-left text-black bg-white mobile-view phr-card-header-height">
+            <h4 id="title">{{ctrl.offerHeader}}</h4>
+            <h4 class="d-sm-block" tooltip="{{ctrl.runningTotalTooltipText}}" id="runningtotal">
+              <span class="font-weight-normal small">{{ctrl.runningTotalText}}</span>
+              <span class="text-phr-green">{{ctrl.currentRunningTotal | currency}}</span>
+            </h4>
+          </div>
+        </div>
+        <div>
+          <div class="card-body">
+            <div class="markdown-field" btf-markdown="ctrl.header"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------------------------->
+
+  <!-------------Effective Date ----------->
+  <!--<div>-->
+  <!--<span id="employeeEffectiveDate" ng-show="ctrl.employeeEffectiveDate" class="pull-left">Effective Date: {{ctrl.employeeEffectiveDate | date : 'MM/dd/yyyy'}}</span>-->
+  <!--</div>-->
+  <!--------------------------------------->
+  <!--<br><br>-->
+  <!---------------Dependents-------------->
+  <div class="card-group" id="accordion">
+    <div class="card ml-3 mr-3 border-left-0 border-right-0 border-top-0">
+      <div class="panel-heading bg-phr-header" style="cursor: pointer" data-toggle="collapse" data-parent="#accordion"
+           data-target="#collapse1">
+        <h5 class="card-header border-bottom-0 text-black panel-heading-padding">
+          <span>{{ 'enrolleesHeader' | translation: 'prebuilt' }}</span>
+          <i class="fas fa-caret-down float-right phr-caret-darkgrey"></i>
+        </h5>
+      </div>
+      <div id="collapse1" class="collapse show">
+        <div class="card-body">
+
+
+          <div class="table-responsive" style="border: none">
+            <table class="table borderless">
+              <thead>
+              <tr>
+                <th>{{ 'enrolleesTableH1' | translation: 'prebuilt' }}</th>
+                <th>{{ 'enrolleesTableH2' | translation: 'prebuilt' }}</th>
+                <th>{{ 'enrolleesTableH3' | translation: 'prebuilt' }}</th>
+                <th class="w-25" ng-if="ctrl.offerType === 'MED' ">{{ 'enrolleesTableH4' | translation: 'prebuilt' }}</th>
+                <!--<th ng-if="ctrl.offerType === 'MED' && ctrl.waived === false">Waive Reason</th>-->
+              </tr>
+              </thead>
+              <tbody>
+              <!--<div id="depTableDiv">-->
+              <tr ng-repeat="person in ctrl.dependents track by person.id">
+                <td>{{person.name}}</td>
+                <td>
+                  <p ng-if="person.relationship === 'Myself'">{{ 'myself' | translation: 'prebuilt' }}</p>
+                  <p ng-if="person.relationship !== 'Myself'">{{person.relationship}}</p>
+                </td>
+                <td>
+                  <!--<div class="col-xs-12">-->
+                  <div class="switch">
+                    <input type="checkbox" id="{{person.id}}" class="cmn-toggle cmn-toggle-round"
+                           ng-click="ctrl.checkSpouseIsWaived(person)"
+                           ng-model="person.enrolled" ng-true-value="'Y'" ng-false-value="'N'"
+                           ng-change="ctrl.refreshPlans()"
+                           ng-disabled="ctrl.disablePlanToggle || person.relationship === 'Myself' || ctrl.waived === true || !(person.enableSlider === true)">
+                    <label for="{{person.id}}"></label>
+                  </div>
+                  <!--</div>-->
+                </td>
+                <td class="" ng-show="ctrl.waived === false" ng-if="ctrl.offerType === 'MED' ">
+                  <span id="spouseWaiveDiv"
+                      ng-if="person.spouse == 'Y' && person.enrolled=='N'">
+                    <select name="spouseWaiveReason" id="spouseWaiveReason"
+                        ng-model="ctrl.spouseWaiveReason"
+                        ng-change="ctrl.spouseWaiveReasonSelected()">
+                      <option value="" disabled>{{ctrl.waiveSelectReasonText}}</option>
+                      <option ng-repeat="option in ctrl.medicalWaiveReasons" value="{{option}}">{{option}}</option>
+                    </select>
+					<br/>
+                  </span>
+                    <span ng-if="person.spouse == 'Y' && person.enrolled !=='N'">
+                      <i class="fas fa-minus" aria-hidden="true"></i>
+                    </span>
+                </td>
+                <td class="" ng-if="ctrl.offerType != 'MED'">
+                  <span></span>
+
+                </td>
+              </tr>
+              <!--</div>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <!----------------------------------------->
+
+  <!-----------------Plan tiles----------------->
+  <!--can create a directive for each tile ------>
+
+  <div class="row">
+    <div class="plans">
+      <ul class="plans-area list-inline" ng-hide="ctrl.showNoPlans">
+        <li ng-repeat="plan in ctrl.allPlans | orderBy: ['payeeName','name']" class="col-12 col-sm-10 col-md-10 col-lg-6 col-xl-4 list-inline-item tile-padding" style="margin-right:-5px;">
+          <phr-tile [plandata]="plan" tile-disabled="{{ctrl.waived}}" [dependentsdata]="ctrl.dependents"></phr-tile>
+        </li>
+      </ul>
+    </div>
+    <div class="no-plans ml-1" ng-show="ctrl.showNoPlans  && !ctrl.waived">
+      <span>{{ctrl.noPlansText}}</span>
+    </div>
+  </div>
+  <!-------------------------------------------->
+  <br>
+  <!--------------------Compare button----------->
+  <div class="row compare-row ml-3" ng-hide="ctrl.allPlans.length < 1">
+    <button class="btn" ng-click="ctrl.comparePlans()"
+            ng-class="{'btn btn-primary': ctrl.plansForCompare.length>=1, 'btn': ctrl.plansForCompare.length<1}"
+            ng-disabled="ctrl.plansForCompare.length<1">
+      {{ 'compareText' | translation: 'prebuilt' }} {{ctrl.plansForCompare.length}}/{{ctrl.allPlans.length > 3 ? 3 : ctrl.allPlans.length}}
+    </button>
+  </div>
+  <!--------------------------------------------->
+  <br>
+  <!------------------Waive------------------->
+  <div class="card-group" ng-show="ctrl.waiveAllowed">
+    <div class="card waive-panel panel-noborder">
+      <div class="panel-heading bg-phr-header ml-3 mr-3">
+        <h5 class="card-header border-bottom-0 text-black panel-heading-padding">
+          <span>{{ 'waiveBenefitsText' | translation: 'prebuilt' }}</span>
+        </h5>
+      </div>
+      <br>
+      <div class="card-body waive-panel-body" style="padding: 0 0 0 10px;">
+        <div class="row align-items-center ml-1">
+          &nbsp;<input type="checkbox" class="waiveBigCheckbox" ng-model="ctrl.waived"
+                       ng-change="ctrl.waiveElection()"/>
+          <b>&nbsp; {{ctrl.waiveText}}</b>
+        </div>
+        <br>
+        <div>
+          <div id="medWaiveDiv" ng-if="ctrl.offerType === 'MED' && ctrl.waived == true">
+            <span class="pr-1">{{ctrl.testReason}}</span>
+            <span class="pr-1">{{ctrl.waiveReasonsLabelText}}:</span>
+            <select class="waive-select" name="medWaiveReason" id="medWaiveReason"
+                          ng-model="ctrl.waivedReason"
+                          ng-change="ctrl.updateDataModel()">
+              <option value="" disabled>{{ctrl.waiveSelectReasonText}}</option>
+              <option ng-repeat="option in ctrl.medicalWaiveReasons" value="{{option}}">{{option}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!------------------------------------------>
+
+  <!----------------Form Footer--------------->
+  <div class="card-group footer-panel">
+    <div class="card panel-primary panel-noborder">
+      <div class="card-body">
+        <div btf-markdown="ctrl.footer"></div>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------->
+</div>

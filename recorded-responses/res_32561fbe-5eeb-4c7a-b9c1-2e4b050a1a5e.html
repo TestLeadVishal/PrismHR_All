@@ -1,0 +1,58 @@
+<phr-framework newtitle="{{bec.clientName}}" subtitle="{{bec.frameworkSubtitle}}" userfullname="{{bec.userfullname}}" proxyusername="{{bec.proxyusername}}" icon-file="{{bec.clientIconUrl}}"
+               show-steps="true" stepindex="{{bec.currentIndex + 1}}" completedsteps="{{bec.stepCompletedCount}}" totalsteps="{{bec.stepCount}}" avatar="{{bec.avatar}}" firstname="{{bec.firstname}}">
+</phr-framework>
+
+
+<div class="row-fluid">
+    <div class="col-12 col-md-4 col-lg-3 menu-container phr-menu-mobile-fullscreen" ng-show="menuVisible">
+        <phr-menu>
+            <div class="logout d-flex align-items-center" ng-show = "bec.showGoToEP">
+                <i class="fas fa-home phr-menu-fa-lg mr-2" aria-hidden="true"></i>
+                <a ng-click="bec.goToEP()" class="phr-menu-home-padding-left">{{bec.gotoEPText}}</a>
+            </div>
+            <div class="flow-title font-weight-bold">
+                {{bec.currentflow}}
+                <i class="fas fa-times mobile-only ml-auto float-right mr-3 phr-menu-close-font-size" aria-hidden="true" ng-click="bec.closeMenu()"></i>
+            </div>
+            <div ng-repeat="menuItem in bec.menuItems">
+                <phr-menu-item ng-if="menuItem.formId" [item]="menuItem" label="{{menuItem.name}}" [selectable]="menuItem.selectableItem" status="{{menuItem.itemStatus}}" isBE="true" index="{{menuItem.wftIndex}}"></phr-menu-item>
+                <phr-menu-group ng-if="menuItem.value" label="{{menuItem.name}}" isopen="menuItem.isOpen" category-status="{{menuItem.categoryStatus}}" status="{{menuItem.itemStatus}}">
+                   
+                    <phr-menu-item ng-repeat="subitem in menuItem.value" label="{{subitem.name}}"
+                                   [item]="subitem" [selectable]="subitem.selectableItem" status="{{subitem.itemStatus}}" isBE="true" issub="true" isopen="{{menuItem.isOpen}}" index="{{subitem.wftIndex}}"></phr-menu-item>
+                </phr-menu-group>
+            </div>
+        </phr-menu>
+    </div>
+
+    <div class="col-12 no-padding" ng-class="{'col-6 col-md-12': menuVisible, 'ng-hide': showOverlay()}">
+        <div class="enrollment-dashboard">
+            <div class="plans-view">
+                <ui-view><p>{{ 'loadingText' | translation: 'benefitEnrollment' }} </p></ui-view>
+            </div>
+        </div>
+    </div>
+
+    <div class="navFooter col-12" ng-class="{'ng-hide': showOverlay()}">
+        <section class="onboarding-form-buttons bottom-button-panel in-be">
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-outline-primary mr-2 btn-first" id="btn-back " ng-show="bec.currentIndex !== 0 "
+                    ng-click="bec.displayPrebuilt('back')" ng-disabled="bec.navigationService.navigationBlock"><i class="fas fa-chevron-left mr-2" aria-hidden="true"></i>{{ bec.backText }}</button>
+                    <button class="btn btn-primary btn-right" id="btn-next" ng-click="bec.displayPrebuilt('next')" ng-class="bec.currentIndex === 0 ? 'only-button' : ''"
+                    ng-hide="(bec.isSummary || bec.isConfirm)" ng-disabled="bec.navigationService.navigationBlock">{{ bec.nextText + ''}}<i class="fas fa-chevron-right ml-2" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary btn-right" id="btn-submit" ng-click="bec.displayPrebuilt('submit')"
+                            ng-disabled="bec.disableFinishButton" ng-show="bec.isSummary">{{ bec.submitText }}</button>
+                    <button class="btn btn-primary btn-right animate-show" id="btn-confirm" ng-click="bec.displayPrebuilt('complete')"
+                        ng-disabled="bec.disableFinishButton || bec.submitting || !bec.confirmSignature" ng-show="bec.isConfirm">{{ bec.completeText }}<span id="confirm-tip">{{ bec.completeDirection }}</span></button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="menu-overlay" class="menu-overlay" ng-show="showOverlay()">
+
+    </div>
+
+</div>
+

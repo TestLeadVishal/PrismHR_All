@@ -1,0 +1,86 @@
+.phr-modal-dialog .modal-dialog .modal-content {
+    border-radius: 7px !important;
+}
+
+.phr-modal-dialog .modal-dialog .view-container{
+    padding: 0;
+    margin: 20px;
+    color: #757575;
+}
+
+.phr-archive-modal-dialog .modal-dialog .view-container {
+    padding: 0;
+    margin: 20px;
+    color: #212529;
+}
+
+.phr-modal-dialog .modal-dialog i.fa{
+    color: #008aad;
+}
+
+.phr-modal-dialog .modal-dialog .modal-header,
+.phr-archive-modal-dialog .modal-dialog .modal-header {
+    padding: 0 0 15px 0;
+    border-bottom: 0;
+    color: #333;
+}
+
+.phr-modal-dialog .modal-dialog .modal-header h4,
+.phr-archive-modal-dialog .modal-dialog .modal-header h4 {
+    margin-bottom: 0;
+}
+
+.phr-modal-dialog .modal-dialog .modal-body ul {
+    margin-bottom: 0;
+    padding-inline-start: 15px;
+}
+
+.phr-modal-dialog .modal-dialog .modal-body,
+.phr-archive-modal-dialog .modal-dialog .modal-body {
+    padding-top: 0;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+.phr-archive-modal-dialog .ui-grid-cell,
+.phr-archive-modal-dialog .ui-grid-header {
+    font-size: 12px;
+}
+
+.phr-modal-dialog .modal-dialog label {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.phr-modal-dialog .modal-dialog .modal-body i {
+    font-size: 13px;
+}
+
+.phr-modal-dialog .modal-dialog .modal-body .row,
+.phr-archive-modal-dialog .modal-dialog .modal-body .row {
+    margin-left: 0;
+}
+
+.phr-modal-dialog .modal-dialog .modal-footer,
+.phr--archive-modal-dialog .modal-dialog .modal-footer {
+    border-top: 0;
+    padding: 0;
+}
+
+.phr-modal-dialog.form-dialog .modal-dialog .modal-footer {
+    justify-content: flex-start;
+}
+
+.phr-modal-dialog .modal-dialog .modal-footer>:not(:last-child) {
+    margin-right: 0;
+}
+
+.phr-modal-dialog .modal-dialog .modal-footer>:not(:first-child) {
+    margin-left: 20px;
+}
+
+.phr-archive-modal-dialog .modal-dialog {
+    min-width: 800px;
+    max-width: 900px;
+}
+

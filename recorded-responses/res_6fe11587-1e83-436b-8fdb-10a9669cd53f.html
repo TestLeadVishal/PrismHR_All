@@ -1,0 +1,47 @@
+<div>
+  <phr-framework
+      newtitle="{{$ctrl.appConfiguration.clientName}}" subtitle=""
+      userfullname="{{$ctrl.appConfiguration.fullName || $ctrl.appConfiguration.username}}"
+      proxyusername="{{$ctrl.appConfiguration.proxyusername}}"
+      icon-file="{{$ctrl.appConfiguration.clientIconUrl}}"
+      show-steps="false"
+      stepindex="{{$ctrl.currentIndex + 1}}" totalsteps="{{$ctrl.totalsteps}}" completedsteps="{{$ctrl.completedsteps}}"
+       avatar="{{$ctrl.avatar}}" firstname="{{$ctrl.firstname}}">
+  </phr-framework>
+
+
+  <div class="col-12 col-md-4 col-lg-3 menu-container phr-menu-mobile-fullscreen" ng-show="$ctrl.menuVisible">
+     
+   
+    <phr-menu>
+      <div class="flow-title font-weight-bold align-items-center d-flex">
+        {{$ctrl.currentflow}}
+        <i class="fas fa-times mobile-only ml-auto float-right mr-3 phr-menu-close-font-size" aria-hidden="true" ng-click="$ctrl.closeMenu()"></i>
+    </div>
+      <div ng-repeat="menuItem in $ctrl.menu">
+        <phr-menu-item id="{{menuItem.offerType}}" ng-if="menuItem.formId" [item]="menuItem" [label]="menuItem.name"
+                       [selectable]="menuItem.selectableItem" status="{{menuItem.itemStatus}}" index="{{menuItem.wftIndex}}"></phr-menu-item>
+        <phr-menu-group ng-if="menuItem.value" label="{{menuItem.name}}">
+          <phr-menu-item ng-repeat="subitem in menuItem.value" [label]="subitem.name"
+                         [item]="subitem" [selectable]="subitem.selectableItem"
+                         [status]="subitem.itemStatus"></phr-menu-item>
+                         {{subitem.itemStatus}}
+        </phr-menu-group>
+      </div>
+    </phr-menu>
+    
+  </div>
+
+  <div class="container-fluid">
+    <div class="xs-no-padding no-padding"
+         ng-class="{'col-6 col-md-8 col-lg-9 menu-content': $ctrl.menuVisible, 'ng-hide': $ctrl.showOverlay()}">
+    <!--<p>View Temporary</p>-->
+      <ui-view>THE UI VIEW HAS NOT LOADED YET</ui-view>
+    </div>
+  </div>
+
+
+  <div id="menu-overlay" class="menu-overlay" ng-show="$ctrl.showOverlay()">
+
+  </div>
+</div

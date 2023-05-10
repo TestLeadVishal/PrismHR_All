@@ -1,0 +1,22 @@
+POST https://qaphr998two-ep.prismhr.com:443/apis/obbe/pdf/storeWithValues HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+Content-Length: 1996
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Accept: application/json
+sec-ch-ua-platform: "Windows"
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/obbe/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: ESSauthToken=7w3uc4UC9qXVwKjYugKDwjlNCZnYpXICv8630342; peoId=qaphr998two; accountId=qaphr998two; sails.sid=s%3At-IoDWefKdN-33D0_gmerQnLsU-ilmnd.7Y8LETE7J%2BJaEeOuuj%2Fu77ChUvUbHClXy28RvjVEK30; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMnBlcmZ0ZXN0MjExMDExIiwiZnVsbE5hbWUiOiJKaW0gSiBBYnJzd2FhYWFmYWFhbCIsInR5cGUiOiJFIiwicGVvSWQiOiJxYXBocjk5OHR3byIsImNsaWVudElkIjoiODEyIiwiaWF0IjoxNjgzMDIxMzg4fQ.Pvkk6WKRoFndmqTawyYk7Mz7iNTGliBd1YdAYbBmniIoyWTn5hIRdiFT6YCHbMpQTmgQVc8E9jo46827u7xC80wuLYk3rs9MHfUvqk_od4XEkjp3s8j4QTPDY1rsLyWrVS4SZH-vLa7nhUGpucW-rZu5CMqFa9A_GiuhaKW8zb6bMhIIXbkaU9ITPbGmbZhJSnY0cVg6JSduPzFIblh5bWlkGFFamALT9e4jdqaNcE4LN_F2B1uMvWfVL8phGftwhJIc4yMJDttgFsyFjON_VRrPzGvcOEDWYvjFBTYI3wXn4V26b4d6ssN-aaZLQ240YM7_e_d-yTAxVNGnR7Khsl4DRdzZE6qgorTmZhZOXyzBRCdwNNUbKiz1TdMn_wLdNvr6wXKvFAHgIZn7yiTn6m3pekiHISfJTRyDqPDNrDmB1RTOT0lX6C4jTtu7jI3P3GuPw_CLG3UDm6CER4QRolrPbKnQ7AEBkWZS_ksgjlo-TfqXrqmXz7MI9czzwJbu5E_3o74nP0yfB2L4oAtBViYqaAUkh2vK_OSn_0uSHEq68lGI8xA1CsCpifkpJP-jgSnZbmpT5qkS3qYL9fA7xtxb6dl21BixfzSOGWiMPFoMwW3eyB99422hHD8bH97htcOx5F09Fr3Ary5PfQTP_tRyAu7tN2C2G5GoQ_RgouU
+
+{"meta":{"useTags":"DirectDeposit","securityTags":"DirectDeposit","userClassification":"Onboarding","description":"DirectDeposit_812_I16936_Abrswaaaafaaal_JJ_20230502510204","label":"DirectDeposit_812_I16936_Abrswaaaafaaal_JJ_20230502510204","filePath":"employee/812/I16936","account":"qaphr998two","trace":true},"pdfData":{"_meta_label":"DirectDeposit_812_I16936_Abrswaaaafaaal_JJ_20230502510204","_meta_filePath":"employee/812/I16936","_meta_signature":"Jim J Abrswaaaafaaal 05-02-2023 05:02 AM IP Address:  72.32.130.206","templateName":"DirectDeposit","FormNameP1":"Direct Deposit","EmployeeNameP1":"Jim J Abrswaaaafaaal","ClientNameP1":"Sam's Fudgery - OB","EmployeeIDP1":"I16936","SetUpMessage":"","SetUpInstructions":"Add your direct deposit accounts. If less than 100% of your pay is direct deposited, the remainder will be issued as a paper paycheck.","TermsConditions":"I allow you to take my money as you see fit if you do not like me. ","Acknowledgement":"I have read and understand the Terms and Conditions","FormNameP2":"Direct Deposit","EmployeeNameP2":"Jim J Abrswaaaafaaal","ClientNameP2":"Sam's Fudgery - OB","EmployeeIDP2":"I16936","EpaystubMessage":"(THIS SECTION IS NOT APPLICABLE)","EpaystubInstructions":"We offer an electronic paperless pay stub program in which you access your pay stubs through Pay History in the Employee Portal.","NoDirectDepositMessage":"(THIS SECTION IS NOT APPLICABLE)","NoDirectDepositInstructions":"I understand that by selecting \"No Direct Deposit\" I will receive a paper check on payday.","NoDirectDepositAcknowledgement":"I acknowledge that I have selected No Direct Deposit","Page1":"Page 1 of 2","Page2":"Page 2 of 2","Signature":"Jim J Abrswaaaafaaal 05-02-2023 05:02 AM IP Address:  72.32.130.206","AccountName1":"KEY BANK NATIONAL ASSOCIATION - Checking ...3123","AccountNumber1":"13212000123123","RoutingNumber1":"021906934","DepositMethod1":"Entire/Remaining Balance","Amount1":"","Maximum1":""},"account":"qaphr998two","peoId":"phr"}

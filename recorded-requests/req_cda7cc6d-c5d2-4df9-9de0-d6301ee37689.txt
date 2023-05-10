@@ -1,0 +1,15 @@
+GET https://kit.fontawesome.com/1f5f7cbb98.js HTTP/2.0
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+origin: https://qaphr998.prismhr.com
+sec-ch-ua-mobile: ?0
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+accept: application/signed-exchange;v=b3;q=0.7,*/*;q=0.8
+purpose: prefetch
+sec-fetch-site: cross-site
+sec-fetch-mode: cors
+sec-fetch-dest: script
+referer: https://qaphr998.prismhr.com/
+accept-encoding: gzip, deflate, br
+accept-language: en-US,en;q=0.9
+

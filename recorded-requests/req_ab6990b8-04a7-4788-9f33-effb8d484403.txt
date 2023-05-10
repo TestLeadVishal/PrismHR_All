@@ -1,0 +1,20 @@
+POST https://bam.nr-data.net:443/events/1/a6100e7bce?a=1319471832&v=1216.487a282&to=Z1RWbUBZXUMEWkxdVl4edWpiF1dSC1xMGlhDQUw%3D&rst=12898&ck=1&ref=https://qaphr998.prismhr.com/qaphr998/ HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 381
+sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+content-type: text/plain
+Accept: */*
+Origin: https://qaphr998.prismhr.com
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=d7232d19e6bd9355
+
+bel.6;e,'fp,1i2,1;6,'cls,0.;e,'fcp,1k3,1;6,1,0.044270833333333336;e,'load,1vc,1;6,1,0.044270833333333336;e,'fi,63f,6;5,'type,'pointerdown;5,'net-etype,'4g;6,'net-rtt,50.;6,'net-dlink,10.;6,'fid,2.;6,1,0.044270833333333336;e,'lcp,1lp,8;6,'size,11136.;5,'eid;5,7,8;6,9,50.;6,a,10.;5,'elUrl,'https://qaphr998.prismhr.com/qaphr998/images/logo.png;5,'elTag,'IMG;6,1,0.044270833333333336

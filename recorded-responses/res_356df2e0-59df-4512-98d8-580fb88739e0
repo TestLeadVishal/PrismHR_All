@@ -1,0 +1,14 @@
+/**
+ * Created by nick on 7/30/15.
+ */
+
+(function () {
+    'use strict';
+
+    angular.module('prismESS', [
+        'obbe',
+        'widgets'
+    ]);
+
+
+}());

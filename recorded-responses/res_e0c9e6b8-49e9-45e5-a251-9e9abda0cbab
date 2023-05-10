@@ -1,0 +1,6587 @@
+//*************************************************************************************************
+//*
+//* Copyright (C) DesignBais Pty Ltd - All Rights Reserved
+//* Unauthorized copying of this file, via any medium is strictly prohibited
+//* Proprietary and confidential
+//* Written by Bulent Can <bulent@bais.com.au>, June 2018
+//*
+//*************************************************************************************************
+
+//================================================
+//Globals
+//================================================
+var dbhbMode = 1;
+
+var dbhb = 1;
+var lastFocusID;
+var lastEvSrc = '';
+var lastEvType = '';
+var lastCallMode = '';
+var isBlocked = false;
+var isNavigating = false;
+var isMailToNavigating = false;
+var lastKey = '|||';
+var pageWidth = 0;
+var pageHeight = 0;
+var viewportWidth = 0;
+var viewportHeight = 0;
+var screenWidth = 0;
+var screenHeight = 0;
+var scrollPosTop = 0;
+var dbTimer;
+var dbTimeout;
+var dumTimer;
+var htmlContent = '';
+var htmlKey = '';
+var htmlResult = '';
+var rtfContent = '';
+var rtfKey = '';
+var rtfResult = '';
+var uploadedFile;
+var dbkey;
+var uploadError = '';
+var isUnloadSent = false;
+var isiPad = navigator.userAgent.match(/iPad/i) != null;
+var mouseCoords = '';
+var lastMenu = "";
+var objdbTimerTest;
+var myMSEC = 1;
+var xtime = 0;
+var hitCount = 0;
+var totalTime = 0;
+var maxTime = 0;
+var dbResponseTime = 0;
+var totalDBResponseTime = 0;
+var avDBResponseTime = 0;
+var maxDBResponseTime = 0;
+var isThisDocReady = false;
+var webReturn = "";
+var bAsynch = true;
+var iErrorDisplayMode = 1;
+var functionToDisable = '';
+var myDelay = 5;
+var elapsedTime = 0;
+var elapsedTime1 = 0;
+var dbDelta = 0;
+var childWindowTitle = '';
+var mylasttop = 0;
+var ajaxAsync = true;
+var isRD = false;
+var rdNavigating = false;
+var lastMVCell = '';
+var spinnerDelay = 0;
+var loaderTimer;
+
+var canvasSelectStartX = '';
+var canvasSelectstartY = '';
+
+(function () {
+    // There's nothing to do for older browsers ;)
+    if (!window.addEventListener)
+        return;
+    var blockPopstateEvent = document.readyState != "complete";
+    window.addEventListener("load", function () {
+        // The timeout ensures that popstate-events will be unblocked right
+        // after the load event occured, but not in the same event-loop cycle.
+        setTimeout(function () { blockPopstateEvent = false; }, 0);
+    }, false);
+    window.addEventListener("popstate", function (evt) {
+        if (blockPopstateEvent && document.readyState == "complete") {
+            evt.preventDefault();
+            evt.stopImmediatePropagation();
+        }
+    }, false);
+})();
+
+function isMobile() {
+    var check = false;
+    (function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true; })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+};
+
+if (!isIE()) {//(/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)) {
+    window.onpageshow = function (evt) {
+        if (evt.persisted) {
+            location.reload();
+        }
+    };
+}
+
+
+
+$(document).unbind('keyup').bind('keyup', function (event) {
+
+    var eobj = getEvent(event);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    if (evElm.tagName.toLowerCase() != "body" && evElm.outerHTML.indexOf('sendKeys') > -1) {
+        return true;
+    };
+
+    setTimeout(function () { lastKey = '|||' }, 350);
+});
+
+$(document).unbind('keydown').bind('keydown', function (event) {
+
+    //if there is a pop up alert dialog then LEFT/RIGHT arrows should move the focus between buttons YES/NO/CANCEL etc.
+    if ($("#popup_container").is(":visible") && (event.keyCode == 37 || event.keyCode == 39)) {
+        if (event.keyCode == 39) {//right arrow
+            if ($(document.activeElement).next().length > 0) {
+                $(document.activeElement).next().focus();
+            }
+        } else {//left arrow
+            if ($(document.activeElement).prev().length > 0) {
+                $(document.activeElement).prev().focus();
+            }
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+
+    //if there is a pop up alert dialog then TAB should cycle focus between buttons YES/NO/CANCEL etc.
+    if ($("#popup_container").is(":visible") && (event.keyCode == 9)) {  //9 = tab key 13=enter key etc.
+        var direct = 1;
+        if (event.shiftKey) {
+            direct = -1;
+        }
+
+        var tabables = $("*[tabindex != '-1']:visible");
+        var index = tabables.index(event.target);
+
+        if (tabables.eq(index + direct).parents("#popup_panel").length < 1) {
+            event.preventDefault();
+            event.stopPropagation();
+            var totbut = $("#popup_panel").find("input[type=button]").length;
+            var focbut = 0;
+            if (event.shiftKey) {
+                focbut = totbut - 1;
+            }
+            $("#popup_panel").find("input[type=button]").eq(focbut).focus();
+            return false;
+        }
+    }
+
+
+    if (isBlocked) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+
+
+    hideDBHelp();
+
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' &&
+             (
+                d.type.toUpperCase() === 'TEXT' ||
+                d.type.toUpperCase() === 'PASSWORD' ||
+                d.type.toUpperCase() === 'FILE' ||
+                d.type.toUpperCase() === 'EMAIL' ||
+                d.type.toUpperCase() === 'MONTH' ||
+                d.type.toUpperCase() === 'NUMBER' ||
+                d.type.toUpperCase() === 'DATE' ||
+                d.type.toUpperCase() === 'TIME' ||
+                d.type.toUpperCase() === 'DATETIME-LOCAL' ||
+                d.type.toUpperCase() === 'TEL' ||
+                d.type.toUpperCase() === 'SEARCH' ||
+                d.type.toUpperCase() === 'URL'
+            )
+             )
+            || d.isContentEditable // DF mod for HTML edit
+            || d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
+
+
+    if (event.keyCode === 112) {
+        doPrevent = true;
+        getHelp(event);
+    }
+
+
+    if (doPrevent) {
+        event.preventDefault();
+    }
+
+
+    //if (cancelShiftTabOnFirstElm(event)) {
+    //    stopEvent(event);
+    //    if ($(event.target).attr("onchange").length > 0) {
+    //        if ($(event.target).attr("lastVal") != $(event.target).val()) {                
+    //            console.log($(event.target).attr("lastVal") +' -- '  + $(event.target).val());
+    //            genericEventCall(event.target.id, "change");
+    //            $(event.target).attr("lastVal", $(event.target).val())
+    //        }
+    //    }        
+    //    return true;
+    //}
+
+    dbkeydown(event);
+
+
+
+});
+
+
+
+
+//================================================
+//Store last key pressed AND Raise event on ENTER key for textbox, checkbox, radio and combo
+//================================================
+function dbkeydown(event) {
+    //hideDBHelp();
+
+    lastKey = event.which + '|' + event.shiftKey + '|' + event.ctrlKey + '|' + event.altKey;
+
+    if (lastEvSrc.length == 0 || event.which == 13 || event.which == 33 || event.which == 34) {
+        var eobj = getEvent(event);
+        var ev = eobj[0];
+        var evElm = eobj[1];
+        lastEvType = ev.type;
+        lastEvSrc = evElm.id;
+
+        //RD out (only accept ENTER/UP/DOWN keys on RD text input (text, phone, date etc) and buttons
+        try {
+
+            $myref = $(document.getElementById(lastEvSrc));
+
+            if ($myref.attr("subtype") != undefined) {
+                if (!($myref.attr("subtype") == "input" || $myref.attr("subtype") == "button")) {
+                    //if ($myref.attr("subtype") != "button") {
+                    return true;
+                }
+                //rd enter key on text input field having enterkey attribute triggers full page validation and continues down for generic submit
+
+                if ($myref.attr("subtype") == "input") {
+                    if ($myref.attr("enterkey") == "true") {
+                        if (!validateFullPage()) {
+                            return true;
+                        }
+                        $myref.blur();
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+            }
+        } catch (excp) {
+
+        }
+    }
+
+
+
+
+    if (event.which == 13 || event.which == 33 || event.which == 34) {
+        var t = "";
+
+        try {
+            t = evElm.getAttribute('type').toLowerCase();
+        } catch (excp) {
+            t = evElm.tagName.toLowerCase();
+        }
+
+
+        if (
+            t == 'text'
+            || t == 'checkbox'
+            || t == 'radio'
+            || t == 'select-one'
+            || t == 'select-multiple'
+            || t == 'select'
+            || t == "hidden"
+            || t == "password"
+            || t == "email"
+            || t == "month"
+            || t == "number"
+            || t == "date"
+            || t == "time"
+            || t == "datetime-local"
+            || t == "tel"
+            || t == "search"
+            || t == "url"
+            ) {
+
+            //if the input field with auto submit on ENTER is disabled then don't submit on ENTER key
+            $("input:disabled[dbEnter='true']").each(function () {
+                if (parseInt($(this).attr("tabindex")) > 0) {
+                    evElm.blur();  //triggers the change event if there is one
+                    return false;
+
+                }
+            });
+
+            //if the submit button is disabled then don't submit on ENTER key
+            $("button:disabled[dbEnter='true']").each(function () {
+                if (parseInt($(this).attr("tabindex")) > 0) {
+                    evElm.blur();  //triggers the change event if there is one
+                    return false;
+                }
+            });
+
+
+            //if ENTER key pressed AND the element has onchange event AND the change event is not dbUpper if there was a change then don't fire this.  The change event will be fired.
+            if (evElm.hasAttribute("onchange") && unescape(evElm.getAttribute("lastVal")) != evElm.value && (evElm.getAttribute("onchange").indexOf("dbUpper") < 0 || evElm.getAttribute("onchange").indexOf("vs(event)") > -1)) {
+
+                var myattr = evElm.getAttribute("onchange");
+                if (trim(myattr.toLowerCase()).substring(0, 14) == "validateentry(") {
+
+
+                    var ishitServer = myattr.split(",")[5];
+
+                    if (ishitServer != "true") {
+
+                        //no hit
+                        var myret = eval('(function() { return ' + myattr + '}())');
+                        if (!myret) {
+
+                            stopEvent(event); //no hit - not validated
+                            return false;
+                        } else {
+
+                            //no hit -  validated
+                            //keydown
+                        }
+                    } else {
+
+                        //hit
+                        //blur to call change
+                        stopEvent(event);
+                        evElm.blur();  //triggers the change event
+                        return false;
+                    }
+                } else {
+
+                    //any event other than validateentry : blur to call change
+                    stopEvent(event);
+                    evElm.blur();  //triggers the change event
+                    return false;
+                }
+
+            }
+
+            if (evElm.hasAttribute("onchange") && evElm.getAttribute("onchange").indexOf("dbUpper") > -1) {
+                dbUpper(lastEvSrc)
+            }
+
+            stopEvent(event);
+            genericEventCall(lastEvSrc, lastEvType);
+            return false;
+        }
+    }
+}
+//});
+
+
+
+
+//================================================
+//Disable tabbing on base form if there is a modal form
+//Disable tabbing on a-href tags (e.g. top menu)
+//CALLED AFTER EVERY HIT
+//================================================
+
+function setTabIndexes() {
+    //not needed after V7.2  -DATCOMP zIndex settings are OK. Also zIndex was removed in jQuery UI 1.10.
+    return true;
+
+}
+
+
+
+function centerForm(bState) {
+    //This will be done in DATACOMP
+    //if ($('#dbformlayer2').html() != "") {
+    //    return true;
+    //}
+
+    if (bState) {
+        var baselayerWidth;
+        var baselayerHeight;
+
+
+
+        baselayerWidth = $('#db1formlayer').children(":first").width() + parseInt($('#dbmenuside1').width());
+        baselayerHeight = $('#db1formlayer').children(":first").height();
+        $('#dbmasterdiv1').css('height', baselayerHeight);
+        $('#dbmasterdiv1').css('min-height', baselayerHeight);
+        $('#dbmasterdiv1').css('width', baselayerWidth);
+        $('#dbmasterdiv1').css('min-width', baselayerWidth);
+        $('#dbmasterdiv1').css("margin-left", "auto");
+        $('#dbmasterdiv1').css("margin-right", "auto");
+        $('#dbmasterdiv1').css("position", "relative");
+    } else {
+        $('#dbmasterdiv1').css('height', '100%');
+        $('#dbmasterdiv1').css('width', '100%');
+        $('#dbmasterdiv1').css("position", "absolute");
+    }
+
+
+    ////////
+}
+
+//================================================
+//Add focus to all text fields when the document is ready
+//================================================
+function attachFocusEvents() {
+
+    $(':text,:checkbox,:radio,select,textarea,input[type=password],input[type=email],input[type=month],input[type=number],input[type=date],input[type=time],input[type=datetime-local],input[type=tel],input[type=search],input[type=url]').focus(function (e) {
+        lastFocusID = this.id;
+        storeValue($(this)[0]);
+        isMvd(e);
+    });
+
+    $('a').focus(function (e) {
+        lastFocusID = "";
+        isMvd(e);
+    });
+
+    $(':button,button').focus(function (e) {
+        lastFocusID = "";
+        isMvd(e);
+    });
+
+
+    if (!isRD) {
+        if (!$(':focus').attr('onkeydown')) {
+            $(':focus').select();
+        }
+    }
+
+    $("input").each(function () {
+        if ($(this)[0].hasAttribute("dbreadonly")) {
+            $(this).on("focus", function () {
+                $(this).removeAttr("readonly");
+            })
+
+            $(this).on("blur", function () {
+                $(this).attr("readonly", "true");
+            })
+        }
+    });
+
+    //$(':button,button').click(function () {
+    //    $(':button,button').attr("disabled", true);
+    //});
+
+    //$('*').unbind('focus').bind('focus', function (event) {
+    //    
+    //});
+
+
+}
+
+
+
+
+
+
+//FOR IE only:  Enforce HTTP GET on tab duplication OR on back button from other url
+if (isIE()) {
+    window.addEventListener("pageshow", function (event) {
+        var historyTraversal = event.persisted ||
+                               (typeof window.performance != undefined &&
+                                    window.performance.navigation.type === 2);
+        if (historyTraversal) {
+            window.location.reload();
+        } else {
+            if ($(".dbcomps").length == 0) {//only in non-RD otherwise in RD mode IE requires two back button clicks 
+                history.pushState(null, null, location.href);
+            }
+
+        }
+    });
+}
+
+
+$(document).ready(function () {
+
+    $("body").append('<div id="v8loadingoverlay" class="dbaisloader"><div class="dbaisloadertext"></div><div class="dbajxloaderv8"></div></div>');
+
+    $("body").append('<input type="hidden" id="dbreportElement">');
+
+    //monkeypatch for draggable jumping problem
+
+    if ($(".dbcomps").length > 0) {
+        isRD = true;
+    }
+
+    if (isRD) {
+        iErrorDisplayMode = 2;
+    }
+
+
+    // backup original handler
+    var _mouseStart = $.ui.draggable.prototype._mouseStart;
+
+    $.ui.draggable.prototype._mouseStart = function (event) {
+
+        //remove the transform
+        var transform = this.element.css('transform');
+        this.element.css('transform', '');
+
+        // call original handler
+        var result = _mouseStart.call(this, event);
+
+        //restore the transform
+        this.element.css('transform', transform);
+
+        return result;
+    };
+
+
+    var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+
+    if (isOnIOS) {
+
+        window.addEventListener("pagehide", function (event) {
+
+            unloadingSpinner();
+
+            if (rdNavigating) {
+                rdNavigating = false;
+                return null;
+            }
+
+            isNavigating = false;
+
+            var myloc = window.location.pathname.toLowerCase();
+            var path = "";
+            if (myloc.indexOf("dbrdesigner") > -1 || myloc.indexOf("rdpreview") > -1) {
+                return null;
+            }
+
+
+            var myac = ""
+            var retac = getParameterByName("ac");
+            if (retac != null && retac != undefined && retac.length > 0) {
+                myac = "?ac=" + getParameterByName("ac")
+            }
+
+            try {
+                navigator.sendBeacon('webservice.ashx' + myac, '<data><designbaisState>' + sessionStorage.getItem('designbaisState') + '</designbaisState><dbWebService><dbaisUnload>user</dbaisUnload></dbWebService></data>');
+
+            } catch (excp) {
+
+            }
+
+
+        });
+
+
+    } else {
+
+        window.onbeforeunload = function (e) {
+
+            if (isMailToNavigating) {
+                isMailToNavigating = false;
+                isNavigating = false;
+                return undefined;
+            }
+
+            unloadingSpinner();
+
+            if (rdNavigating) {
+                rdNavigating = false;
+                return undefined;
+            }
+
+            var myloc = window.location.pathname.toLowerCase();
+            var path = "";
+            if (myloc.indexOf("dbrdesigner") > -1 || myloc.indexOf("rdpreview") > -1) {
+                return undefined;
+            }
+
+
+
+            isNavigating = true;
+
+
+            var myac = ""
+            var retac = getParameterByName("ac");
+            if (retac != null && retac != undefined && retac.length > 0) {
+                myac = "?ac=" + getParameterByName("ac")
+            }
+
+            try {
+                if (isIE()) {
+                    $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        url: "webservice.ashx" + myac,
+                        data: '<data><designbaisState>' + sessionStorage.getItem('designbaisState') + '</designbaisState><dbWebService><dbaisUnload>user</dbaisUnload></dbWebService></data>',
+                        success: function () { },
+                        async: false
+                    });
+                } else {
+                    navigator.sendBeacon('webservice.ashx' + myac, '<data><designbaisState>' + sessionStorage.getItem('designbaisState') + '</designbaisState><dbWebService><dbaisUnload>user</dbaisUnload></dbWebService></data>');
+                }
+
+            } catch (excp) {
+
+            }
+
+
+
+
+        };
+
+    }
+
+
+
+    addProgressPanel();
+
+    if (isRD) {
+        showRDLoading();
+    }
+
+
+
+});
+
+
+
+
+function unloadingSpinner() {
+    $("#mycover").show();
+    $("#v8loadingoverlay").css("position", "fixed");
+    positionCenter("v8loadingoverlay");
+
+    setTimeout(function () {
+        unloadingSpinnerHide();
+    }, 2000);
+}
+
+function unloadingSpinnerHide() {
+    $("#mycover").hide();
+    $("#v8loadingoverlay").hide();
+}
+
+//================================================
+//prepareDraggables
+//================================================
+function prepareDraggables(bStopLogTime) {
+
+    getDimensions();
+
+    $("div[id^='dbformlayer']>:first-child").each(function () {
+
+        $(this).draggable({
+            containment: [0, 0, viewportWidth, viewportHeight],
+            scroll: false,
+            //handle: '.dbaisModalTitle',
+            handle: "[dbdraggable]",
+            create: function () {
+                //when pop is created; center it then 
+                $(this).center();
+                //$(this).find('.dbaisModalTitle').css('cursor', 'move');
+                $(this).find('[dbdraggable]').css('cursor', 'move');
+            }
+        });
+
+
+
+    });
+
+    //$("div[id*='dbdroppp']").each(function () {
+    //    $(this).droppable({ drop: handleDropEvent });
+    //});
+
+    //$("div[id*='dbdraggg']").each(function () {
+    //    $(this).draggable({ containment: [0, 0, viewportWidth, viewportHeight], cancel: 'div[class="nodrags"],input,textarea,button,select,option', cursor: 'move', revert: true });
+    //    $(this).draggable({ start: handleDragStartEvent });
+    //});
+
+
+    adjustSideMenuHeight();
+
+    if (!bStopLogTime) {
+        try {
+            setTabIndexes();
+        } catch (excp) {
+            console.log(excp);
+        }
+
+    }
+
+    topMenuActive();
+
+
+
+    setHTMLEditorContent();
+
+
+    preventBodyScroll();
+
+    try {
+        Highcharts.setOptions({
+            credits: { enabled: false },
+            exporting: {
+                chartOptions: {
+                    chart: {
+                        events: {
+                            load: function () {
+                                isMailToNavigating = true;
+
+                                unloadingSpinner();
+
+                            }
+                        }
+                    },
+                }
+            }
+        });
+    } catch (excp) {
+
+    }
+
+    //datepicker don't show on focus if showdbon attribute exists
+    //try {
+
+    //    $("input[showdbon]").datepicker("option", "showOn", "none");
+
+    //    $("input[showdbon]").datepicker("option", "onClose", function () {
+    //        setTimeout(function () { $("input[showdbon]").datepicker("option", "showOn", "none") }, 1);
+    //    });
+
+
+    //} catch (excp) {
+
+    //}
+
+
+
+
+    //PERFORMANCE LOG
+    if (!bStopLogTime) {
+        var deltaAll = parseInt(performance.now() - elapsedTime);
+        sss('Elapsed:' + dbDelta + '\\' + deltaAll + '.... %' + Math.round(100 * dbDelta / deltaAll) + '.....' + (deltaAll - dbDelta));
+    }
+
+
+    getDimensions();
+
+    setAsterixes();
+
+    return true;
+}
+
+
+function setAsterixes() {
+
+    if (isRD) {
+        return true;
+    }
+
+    $(".dbrequired").remove();
+
+    $("input[dbMandatory]").each(function () {
+
+        //$(this).css("background-color", "white");
+        //$(this).css("border-color", "#bbbbbb");
+
+        var myid = $(this).attr('id') + "div";
+
+        var mytagname = $(this).prop("tagName").toLowerCase();
+
+        if (mytagname.indexOf('select') < 0) {
+
+            //$("body").append("<div class='dbrequired' id='" + myid + "'>*</div>")
+            $(this).parent().append("<div class='dbrequired' id='" + myid + "'>*</div>")
+            $("#" + myid)[0].style.left = (-9 + parseInt($(this)[0].style.left) + parseInt($(this).outerWidth())) + "px";
+            $("#" + myid)[0].style.top = $(this)[0].style.top;
+            $("#" + myid)[0].style.paddingTop = "3px";
+            $("#" + myid)[0].style.zIndex = $(this)[0].style.zIndex; // + 1;
+            $("#" + myid)[0].style.position = "absolute";
+            $("#" + myid)[0].style.color = "red";
+
+            if ($(this).val() != "") {
+               // $("#" + myid)[0].style.display = "none" <<db8>>
+            } else {
+                $("#" + myid)[0].style.display = $(this)[0].style.display;
+            }
+
+            $(this).on("focus", function () {
+                var myid1 = $(this).attr('id') + "div";
+                $("#" + myid1)[0].style.display = "none"
+            });
+
+            $(this).on('blur', function () {
+                var myid2 = $(this).attr('id') + "div";
+                if ($(this).val() == "") {
+                    $("#" + myid)[0].style.display = $(this)[0].style.display;
+                }
+            });
+
+        }
+
+    });
+}
+
+function setHTMLEditorContent() {
+    setTimeout(function () {
+        $('iframe').each(function () {
+            var myTextAreaName = $(this).attr('dbSource');
+            if (myTextAreaName) {
+                var $oTextAr = $('textarea[name="' + myTextAreaName + '"]')
+                $(this).contents().find('html').html($oTextAr.val());
+                $oTextAr.attr('xsscheck', 'off')
+            }
+        });
+    }, 400);
+}
+
+//================================================
+//Window size
+//================================================
+function getDimensions() {
+    pageWidth = $(window.document).width();
+    pageHeight = $(document).height();
+    viewportWidth = $(window).width();
+    viewportHeight = $(window).height();
+    screenWidth = screen.availWidth;
+    screenHeight = screen.availHeight;
+    scrollPosTop = $(window).scrollTop();
+    scrollPosLeft = $(window).scrollTop();
+}
+
+
+//================================================
+//Center element
+//================================================
+jQuery.fn.center = function () {
+    this.css("position", "absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+    return this;
+}
+
+
+function positionObject(obj, myB) {
+
+    var myTopPos = "center";
+
+    if ($(window).height() < $(myB).height()) {
+        myTopPos = (($(window).height() - $(obj).height()) / 2) - 30;
+        if (myTopPos < 60) {
+            myTopPos = 60;
+        }
+        myTopPos = "top+" + myTopPos;
+    }
+
+    try {
+        $(obj).position({
+            my: "center center",
+            at: "center " + myTopPos,
+            of: $(myB),
+            collision: "fit"
+        })
+    } catch (excp) {
+
+    }
+}
+
+
+//================================================
+//Window Onload
+//================================================
+//moved into $ready()
+//window.onload = function () {
+//    buildAjax();
+//    noEventCall();
+
+//}
+
+//================================================
+//Document ready
+//================================================
+
+$(document).ready(function () {
+
+    setStore();
+    getDimensions();
+    attachFocusEvents();
+
+    $(document).click(function (e) {
+
+
+        hidePredict();
+
+        hideDBHelp();
+
+        if ($(e.target).closest("[dbmenuicon]").length < 1) {
+            $("[dbmenubox]").hide();
+        }
+        if (e.target.hasAttribute("href")) {
+            if ($(e.target).attr("href").indexOf("mailto:") > -1) {
+                isMailToNavigating = true;
+            }
+        }
+
+        //outside a modal form click shoud return focus back to modal form.  Othewise it's possible to tab through elements on the base form.
+
+        try {
+            //clicked element z-index
+            var clickedZindex = $(e.target).css("z-index");
+
+            //Find current modal form's z-index
+            var formlayerID;
+            var visibleLayerZindex = -10000
+            $("div[id^='dbmasterdiv'] > [id^='dbformlayer'], div[id^='dbmasterdiv'] > [id^='db1formlayer']").each(function () {
+                if ($(this).parent().css('display') == 'block') {
+                    visibleLayerZindex = $(this).css("z-index");
+                    formlayerID = $(this).attr('id');
+                }
+            });
+
+            //different layer?
+            if (parseInt(clickedZindex) < parseInt(visibleLayerZindex)) {
+
+                stopEvent(e);
+
+                //focus last active element if possible
+                if (lastFocusID != undefined && lastFocusID != "" && lastFocusID != null) {
+                    $("#" + lastFocusID).focus();
+                    return true;
+                }
+
+                //otherwise focus on first input field on the top layer (modal)                               
+                movetofirst(null, formlayerID);
+            }
+        } catch (excp) {
+
+        }
+
+    });
+
+
+    isThisDocReady = true;
+
+    //any parent window framing this (e.g. editor)   
+    try {
+        parent.window.checkReady()
+    } catch (excp) {
+    }
+
+
+
+    if ($("#modalWin").length < 1) {
+        $(document.body).append("<div style='display:none;padding:0px;overflow:hidden' id='modalWin'></div>")
+        if ($("#mycover").length < 1) {
+            $(document.body).append("<div style='display:none;z-index:99999990;background-color:#ffffff;position:fixed;height:10000px;width:10000px;opacity:0.3;top:0px;left:0px;' id='mycover'></div>")
+        }
+        $(document.body).append("<div style='display:none;z-index:99999991;background-color:#ffffff;position:fixed;height:10000px;width:10000px;opacity:0.5;top:0px;left:0px;' id='myModalcover'></div>")
+        //$(document.body).append("<div style='font-size:12pt;display:none;z-index:99999999;background-color:#ffffff;position:absolute;width:560px;opacity:1.0;border-style:solid;border-width:1px;border-radius:5px;text-align:center;color:#000;padding:30px;' id='winMessage'>Transaction is in progress.  Please wait...<div style='cursor:pointer;padding-top:20px;' id='divForceExtClose' onclick='externalCompleteExec()'>If the process takes too long then please <span style='text-decoration:underline;color:#fff;'>click here to continue</span></div></div></div>")
+        $(document.body).append("<div style='top:0px;left:0px;font-size:12pt;display:none;z-index:99999992;background-color:#ffffff;position:absolute;width:300px;opacity:1.0;border-style:solid;border-width:1px;border-radius:5px;text-align:center;color:#000;padding:30px;' id='winMessage'><div style='cursor:pointer;padding-top:3px;text-decoration:underline;' id='divForceExtClose' onclick='externalCompleteExec()'>Click here to continue..</div></div></div>")
+
+
+        $(document.body).append("<div id='dbStatus' style='display:none'>...</div>")
+        $(document.body).append("<div id='dbToolTip'></div>")
+
+
+    }
+
+    //select option width adjustment
+    limitOptionWidth();
+
+    buildAjax();
+
+    noEventCall();
+
+});
+
+
+function geoInitialize() {
+
+    if (location.protocol == 'https:') {
+        var center = new google.maps.LatLng(mypos.coords.latitude, mypos.coords.longitude);
+        var circle = new google.maps.Circle({
+            center: center,
+            radius: 100
+        });
+    };
+
+
+    var acInputs = $("input[geoloc]");
+
+    for (var i = 0; i < acInputs.length; i++) {
+
+        var geoElm = acInputs[i];
+
+        try {//unbind first    
+            google.maps.event.clearInstanceListeners(geoElm);
+        } catch (exp) {
+
+        }
+
+        var options = {
+            types: ['geocode']
+        };
+
+        if (geoElm.hasAttribute("countryFilter")) {
+
+            var cfil = $(geoElm).attr("countryFilter");
+            var cfil = cfil.replace(/country:/gi, "");
+            var vfil = cfil.split("|");
+
+            var options = {
+                types: ['geocode'],  // or '(cities)' if that's what you want?                    
+                componentRestrictions: { 'country': vfil }
+            };
+
+        }
+
+        autocomplete = new google.maps.places.Autocomplete(geoElm, options);
+        autocomplete.inputId = geoElm.id;
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+            var $a = $("#" + $(this)[0].inputId); //the address input field
+
+            var place = this.getPlace();
+            var addresspairs = [];
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                var val = place.address_components[i].long_name;
+                addresspairs.push(addressType + "|^|" + val);
+            }
+
+            addresspairs.push("formatted_address|^|" + place.formatted_address);
+
+            var adStr = addresspairs.join("|#|");
+
+            $a.attr("address", adStr);
+
+            genericEventCall(geoElm.id, 'change');
+        });
+
+    }
+
+
+}
+
+
+
+function setAddress(addressID, addressValue) {
+
+    try {
+        if (addressValue == "") {
+            $("#" + addressID).attr("lastval", "");
+            $("#" + addressID).attr("v", "");
+            $("#" + addressID).attr("address", "");
+            $("#" + addressID).val("");
+            return true;
+        }
+
+        var vadd = addressValue.split("|#|")
+        var formAddress = (vadd[vadd.length - 1]).split("|^|")[1];
+        var formAddressEscaped = escape(formAddress);
+        $("#" + addressID).attr("lastval", formAddress);
+        $("#" + addressID).attr("v", formAddressEscaped);
+        $("#" + addressID).attr("address", addressValue);
+        $("#" + addressID).val(formAddress);
+    } catch (excp) {
+
+    }
+
+
+
+}
+//================================================
+//isDocReady
+//================================================
+function isDocReady() {
+    return isThisDocReady;
+}
+
+
+//================================================
+//setStore
+//================================================
+function setStore() {
+    var mystate = $('meta[name=designbaisState]').attr("content");
+    sessionStorage.setItem("designbaisState", mystate);
+}
+
+
+//================================================
+//setCaptchaKey
+//================================================
+function setCaptchaKey(inImgID) {
+    var inKey = randomString(6);
+
+    var myloc = window.location.pathname.toLowerCase();
+    var path = "";
+    if (myloc.indexOf("dbrdesigner") > -1 || myloc.indexOf("rdpreview") > -1) {
+        path = "../";
+    }
+
+    sessionStorage.setItem("captchaKey", inKey);
+    var src = path + "captcha.ashx?key=" + inKey;
+    $("#" + inImgID).attr("src", src);
+    setTimeout(function () { captchaLoaded = false; }, 2000);
+}
+
+
+//================================================
+//captchaLoaded;
+//================================================
+var captchaLoaded;
+function setCaptchaKeyLoad(inImgID) {
+    if (!captchaLoaded) {
+        captchaLoaded = true;
+        setCaptchaKey(inImgID)
+    }
+}
+
+//================================================
+//randomString
+//================================================
+function randomString(string_length) {
+    var chars = "023456789ABCDEFGHJKLMNOPQRSTUVWXYZ"; //"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    //var string_length = 12;
+    var randomstring = '';
+    for (var i = 0; i < string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum, rnum + 1);
+    }
+    return randomstring;
+
+}
+
+
+
+//RESIZE THROTTLE
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
+
+//================================================
+//Get dimensions on resize
+//================================================
+var dbResizeFn = debounce(function () {
+    prepareDraggables(true);
+    if (document.body.hasAttribute("dbResize")) {
+        if (document.body.getAttribute("dbResize") == "1") {
+            genericEventCall("window", "resize");
+        }
+    }
+
+}, 350);
+
+
+
+$(window).on('resize', dbResizeFn);
+$(window).on('resize', function () { adjustSideMenuHeight() });   //quick
+
+function dbSetResizable() {
+    $('[dbaisformdes]').not($("#dbdraglist")).each(function () {
+        var elid = $(this).attr('id');
+        var el = document.getElementById(elid);
+        el.removeAttribute('onclick');
+
+        var elbx = dbGetBoxSizing(el);
+
+        $(this).resizable({
+            distance: 2,
+            //grid: [10,10],
+            //handles: "s,e",
+            create: function (event, ui) {
+                var widget = $(this).resizable("widget");
+                widget.css("padding", "0px");
+                widget.css("z-index", "1");
+                widget.css("outline", "1px solid #004c97");
+                $('.ui-icon-gripsmall-diagonal-se').remove();
+                // Keep border-box elements sized to outline
+                if (elbx.bxsize == "border-box") {
+                    el.style.width = widget.css("width");
+                    el.style.height = widget.css("height");
+                };
+                // Keep MV Header height as auto
+                if (elid.substring(0, 4) == "mvC_") {
+                    el.style.height = "auto";
+                };
+            },
+            start: function (event, ui) {
+                var widget = $(this).resizable("widget");
+                widget.css("z-index", "1000");
+            },
+            resize: function (event, ui) {
+                var tgid = $(event.target).attr("id");
+
+                if (event.target.children[0].id.length) {
+                    var elid = event.target.children[0].id;
+                } else {
+                    var elid = tgid;
+                };
+                // Want the MV border dimensions
+                if (elid.substring(0, 4) == "mvC_") {
+                    elid = tgid;
+                };
+                var el = document.getElementById(elid);
+                // Keep border-box elements sized to outline
+                var elbx = dbGetBoxSizing(el);
+                if (elbx.bxsize == "border-box") {
+                    el.style.width = ui.size.width + 'px';
+                    el.style.height = ui.size.height + 'px';
+                };
+            },
+            stop: function (event, ui) {
+                var tgid = $(event.target).attr("id");
+
+                if (event.target.children[0].id.length) {
+                    var elid = event.target.children[0].id;
+                } else {
+                    var elid = tgid;
+                };
+                // Want the MV border dimensions
+                if (elid.substring(0, 4) == "mvC_") {
+                    elid = tgid;
+                };
+                var el = document.getElementById(elid);
+                // Keep border-box elements sized to outline
+                var elbx = dbGetBoxSizing(el);
+                if (elbx.bxsize == "border-box") {
+                    el.style.width = ui.size.width + 'px';
+                    el.style.height = ui.size.height + 'px';
+                };
+
+                var es = elid + "|" + parseFloat(el.style.width) + "|" + parseFloat(el.style.height);
+                es += "|" + ui.size.width + "|" + ui.size.height
+
+                genericEventCall(es, "resize");
+            }
+        });
+    });
+}
+
+function dbGetBoxSizing(el) {
+    if (document.defaultView.getComputedStyle) {
+        var cs = window.getComputedStyle(el, null);
+        var paddingX = parseFloat(cs.getPropertyValue('padding-left')) + parseFloat(cs.getPropertyValue('padding-right'));
+        var paddingY = parseFloat(cs.getPropertyValue('padding-top')) + parseFloat(cs.getPropertyValue('padding-bottom'));
+        var borderX = parseFloat(cs.getPropertyValue('border-left-width')) + parseFloat(cs.getPropertyValue('border-right-width'));
+        var borderY = parseFloat(cs.getPropertyValue('border-top-width')) + parseFloat(cs.getPropertyValue('border-bottom-width'));
+        var bxsize = cs.getPropertyValue('box-sizing');
+    } else {
+        var paddingX = parseFloat(el.style.paddingLeft) + parseFloat(el.style.paddingRight);
+        var paddingX = parseFloat(el.style.paddingTop) + parseFloat(el.style.paddingBottom);
+        var borderX = parseFloat(el.style.borderLeftWidth) + parseFloat(el.style.borderRightWidth);
+        var borderY = parseFloat(el.style.borderTopWidth) + parseFloat(el.style.borderBottomWidth);
+        var bxsize = el.style.boxSizing;
+    };
+    return {
+        paddingX: paddingX,
+        paddingY: paddingY,
+        borderX: borderX,
+        borderY: borderY,
+        bxsize: bxsize,
+    };
+}
+
+function dbDelResizable() {
+    $('[dbaisformdes]').not($("#dbdraglist")).each(function () {
+        $(this).resizable('destroy');
+        $(this).css("outline", "");
+        var elid = $(this).attr('id');
+        var el = document.getElementById(elid);
+        el.setAttribute('onclick', 'vs(event);');
+
+        var elbx = dbGetBoxSizing(el);
+
+        if (elbx.bxsize != "border-box") {
+            // Element width and height minus padding and border
+            var wd = parseFloat(el.style.width);
+            var ht = parseFloat(el.style.height);
+            el.style.width = wd - elbx.paddingX - elbx.borderX + "px";
+            el.style.height = ht - elbx.paddingY - elbx.borderY + "px";
+        };
+    });
+}
+
+function dbSetDraggable() {
+    $('#dbdraglist').draggable({
+        distance: 10,
+        grid: [10, 10],
+        stop: function (event, ui) {
+            var es = event.target.children[0].id + "|" + ui.position.top + "|" + ui.position.left
+            genericEventCall(es, "dbdrag");
+        }
+    });
+}
+
+function dbSelectableCanvas() {
+    $('#canvas').selectable({
+        delay: 150,
+        distance: 10,
+        start: function (event, ui) {
+            // Capture starting position in variables declared at top of script
+            canvasSelectStartX = event.pageX;
+            canvasSelectStartY = event.pageY;
+        },
+        stop: function (event, ui) {
+            // Capture stopping position and send to data component
+            var wtop = event.pageY;
+            var wleft = event.pageX;
+            var es = "canvas|" + canvasSelectStartX + "|" + canvasSelectStartY + "|" + wleft + "|" + wtop;
+            genericEventCall(es, "lasso");
+        }
+    });
+}
+
+
+//================================================
+//Adjust Side Menu Height
+//================================================
+function adjustSideMenuHeight() {
+
+    try {
+        //height
+        $('#dbmenuside1').css("height", $.getDocHeight() + 'px');
+        //background
+        $("#sidemenuBack").css("height", $.getDocHeight() + 'px');
+        $("#sidemenuBack").css("width", ($('#dbmenuside1').width() + 'px'));
+        $("#sidemenuBack").css("background-color", $('#dbmenuside1').css("background-color"));
+    } catch (excp) {
+    }
+
+}
+
+$.getDocHeight = function () {
+    var statusBarHeight = 40;
+    //$('#dbmenuside1')
+    var $menuTable = $("#dbmenuside1").find('table:first');
+    return Math.max(
+
+
+        parseInt(statusBarHeight + $menuTable.height()) + parseInt($menuTable.css("margin-top")), $(window).height()
+        //parseInt(statusBarHeight + $('.dbaissmMenu').height()) + parseInt($('.dbaissmMenu').css("margin-top")),  $(window).height()
+    );
+};
+
+
+//================================================
+//synchronizeScroll
+//================================================
+function synchronizeScroll(tbod, thed) {
+    document.getElementById(thed).scrollLeft = document.getElementById(tbod).scrollLeft;
+
+}
+
+
+//================================================
+//synchronizeScrollOnLoad
+//================================================
+function synchronizeScrollOnLoad(bSqueeze) {
+
+
+    //document.getElementById('headDiv').style.width = document.getElementById('detailDiv').clientWidth + 'px';
+
+
+
+
+
+    syncReports(bSqueeze);
+    syncGrids(bSqueeze);
+
+
+}
+
+
+function syncReports(bSqueeze) {
+
+    var compName = ""
+    $("div[id^='divX_']").each(function () {
+
+        var compName = this.id.split('_')[1];
+        var compPrefixH = '';
+        var compPrefixB = '';
+
+        compPrefixH = "divX_";
+        compPrefixB = "divY_";
+
+        var xDiv = document.getElementById(compPrefixH + compName);
+        var yDiv = document.getElementById(compPrefixB + compName);
+        var myxT = xDiv.children[0];
+        var myyT = yDiv.children[0];
+        var rlen = myxT.rows[0].cells.length;
+        var rowcount = myyT.rows.length;
+
+        $(xDiv).css("height", "auto")
+        $(xDiv).css("overflow", "hidden")
+
+        if ($(myxT).find("tr").length > 0 && $(myyT).find("tr").length > 0) {
+            if ($(myxT).find("tr").eq(0).find("td").length == $(myyT).find("tr").eq(0).find("td").length) {
+
+                $("#" + myyT.id).eq(0).find("td").each(function () {
+                    if (!$(this)[0].style.minWidth) {
+                        var ff = parseInt($(this)[0].style.width) + "px";
+                        $(this)[0].style.minWidth = ff;
+                        $(this)[0].style.maxWidth = ff;
+                    }
+
+                });
+
+
+                $("#" + myxT.id).eq(0).find("td").each(function () {
+                    if (!$(this)[0].style.minWidth) {
+                        if ($("#" + myyT.id + " tr").length > 0) {
+                            $(this)[0].style.minWidth = $("#" + myyT.id + " tr").find("td").eq($(this).index())[0].style.minWidth;
+                            $(this)[0].style.maxWidth = $("#" + myyT.id + " tr").find("td").eq($(this).index())[0].style.maxWidth;
+                        }
+                    }
+                });
+
+            }
+        }
+
+
+        yDiv.style.height = (xDiv.parentNode.offsetHeight - xDiv.offsetHeight) + "px";
+
+        xDiv.scrollLeft = yDiv.scrollLeft;
+
+        if (xDiv.offsetHeight < 3) {
+            $(xDiv).css("height", "0px")
+        }
+    });
+
+    return true;
+}
+
+
+function preventBodyScroll() {
+
+    return true;
+
+    //prevents body scroll when mouesewheelin on a scrollable div (onform reports or mvgrid)
+
+    $("div[id^='mvD_']").unbind('mousewheel DOMMouseScroll').bind('mousewheel DOMMouseScroll', function (e) {
+        var e0 = e.originalEvent,
+            delta = e0.wheelDelta || -e0.detail;
+        this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+        e.preventDefault();
+    });
+
+
+    $("div[id^='divY_']").unbind('mousewheel DOMMouseScroll').bind('mousewheel DOMMouseScroll', function (e) {
+        var e0 = e.originalEvent,
+            delta = e0.wheelDelta || -e0.detail;
+        this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+        e.preventDefault();
+    });
+
+}
+
+
+function syncGrids(bSqueeze) {
+
+    //return true;
+
+    $("div[id^='mvC_']").css("overflow", "hidden");   //DATCOMP TO DO
+    $("div[id^='mvC_'] td").css("box-sizing", "border-box");
+    $("div[id^='mvD_'] td").css("box-sizing", "border-box");
+
+    //$("div[id^='mvD_'] td textarea").each(function () {
+    //    var myw = parseInt($(this).css('width'));
+    //    if (parseInt($(this).width())+7 > parseInt($(this).parent().width())) {
+    //        $(this).css('width', (myw-7)+'px');
+    //    }
+
+    //});
+
+
+
+
+
+
+    var compName = ""
+    $("div[id^='mvC_']").each(function () {
+
+        var compName = this.id.split('_')[1];
+        var compPrefixH = '';
+        var compPrefixB = '';
+
+        compPrefixH = "mvC_";
+        compPrefixB = "mvD_";
+
+
+        var xDiv = document.getElementById(compPrefixH + compName);
+        var yDiv = document.getElementById(compPrefixB + compName);
+        var myxT = xDiv.children[0];
+        var myyT = yDiv.children[0];
+        var rlen = myxT.rows[0].cells.length;
+        var rowcount = myyT.rows.length;
+
+        myyT.style.marginTop = '-1px'; //avoid 2px border (myxT_bottom + myyT_top) 
+
+
+        myyT.style.width = ""
+        myxT.style.width = ""
+
+        myxT.rows[0].cells[rlen - 1].style.borderRightStyle = "solid";
+
+        myxT.rows[0].cells[rlen - 1].style.borderRightColor = myxT.rows[0].cells[rlen - 1].style.borderColor;
+
+        if (myyT.rows.length > 0) {
+            for (var i = 0; i < rowcount ; i++) {
+                for (var j = 0; j < rlen ; j++) {
+                    myyT.rows[i].cells[j].style.maxWidth = myyT.rows[i].cells[j].style.width;
+                    myyT.rows[i].cells[j].style.minWidth = myyT.rows[i].cells[j].style.width;
+                    if (j < 2) {
+                        myyT.rows[i].cells[j].style.borderBottomStyle = "solid";
+                    }
+
+                }
+            }
+        }
+
+
+        if (myyT.rows.length > 0) {
+            for (var j = 0; j < rlen ; j++) {
+                myxT.rows[0].cells[j].style.maxWidth = myyT.rows[0].cells[j].offsetWidth + "px";
+                myxT.rows[0].cells[j].style.minWidth = myyT.rows[0].cells[j].offsetWidth + "px";
+            }
+        }
+
+        yDiv.style.height = (xDiv.parentNode.clientHeight - xDiv.offsetHeight) + "px";
+        //myxT.style.width = (myyT.offsetWidth) + "px";
+
+        xDiv.style.width = (yDiv.clientWidth) + "px";
+
+        xDiv.scrollLeft = yDiv.scrollLeft;
+    });
+
+
+}
+
+
+
+//================================================
+//handleDragStartEvent
+//================================================
+function handleDragStartEvent(event, ui) {
+    $(this).draggable('option', 'revert', true);
+}
+
+//================================================
+//handleDropEvent
+//================================================
+function handleDropEvent(event, ui) {
+    var thisDropBox = $(this).attr('id');
+    ui.draggable.position({ of: $(this), my: 'left top', at: 'left top' });
+    ui.draggable.draggable('option', 'revert', false);
+
+    //Are there any 'other' items in in this box
+    var cnt = 0;
+    $("div[id*='dbdraggg']").each(function () {
+        if ($(this).attr('initParent') == thisDropBox) {
+            cnt = cnt + 1;
+        }
+    });
+
+    if (cnt > 0) {
+        ui.draggable.draggable('option', 'revert', true);
+        return;
+    }
+
+    $(ui.draggable).attr('initParent', thisDropBox);
+}
+
+
+
+//================================================
+//Notify backend on window unload
+//================================================
+function notifyExit() {
+
+    return true;
+
+    //return in debug mode
+    if (document.location.href.indexOf("myDebug.htm") > 0) {
+        return true;
+    }
+
+    if (isUnloadSent) {
+        return true;
+    }
+
+    isUnloadSent = true;
+
+    genericEventCall('body', 'unload');
+}
+
+
+//================================================
+//Enable/Disable a Link Button
+//================================================
+function enableLink(linkID, bEnable) {
+    if (bEnable) {
+        $("#" + linkID).css("opacity", "1.0");
+        $("#" + linkID).css("pointer-events", "auto");
+    } else {
+        $("#" + linkID).css("opacity", "0.5");
+        $("#" + linkID).css("pointer-events", "none");
+    }
+}
+
+//================================================
+//Disable Form Submit
+//================================================
+function disableFormSubmit() {
+    //NOT USED
+    $('form').submit(function () {
+        genericEventCall(lastEvSrc, lastEvType);
+        return false;
+    });
+}
+
+
+//================================================
+//Coordinates 
+//================================================
+function getMouse(e, bDontSend) {
+
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+    var evElmTag = $(evElm).get(0).tagName;
+
+    var myid = evElm.id;
+
+    if (!evElm.hasAttribute("id")) {
+        var $clpar = $(evElm).closest("[id]");
+        myid = $clpar.attr("id");
+        lastEvSrc = myid;
+        lastEvType = ev.type;
+        evElmTag = $clpar[0].tagName;
+    } else {
+        lastEvSrc = evElm.id;
+        lastEvType = ev.type;
+        myid = evElm.id;
+    }
+
+    if (bDontSend) {
+        if (myid.indexOf("popup_") > -1) {//repeat ok-cancel prompt bottons must not register mouseCoords
+            return mouseCoords; //existing
+        }
+    }
+
+
+    var $myref = getPosRef(lastEvSrc)
+
+    var centredTop = 0;
+    var centredLeft = 0;
+
+    if ($myref.length > 0) {
+        centredTop = e.pageY - $myref.offset().top;
+        centredLeft = e.pageX - $myref.offset().left;
+    }
+
+
+
+    mouseCoords = e.pageX + ',' + e.pageY + ',' + evElmTag + ',' + myid + ',' + centredLeft + ',' + centredTop;
+
+
+    if (bDontSend) {
+        return mouseCoords;
+    }
+
+    try {
+        genericEventCall(lastEvSrc, lastEvType);
+    } catch (excp) {
+
+    }
+    return false;
+}
+
+function getMouseOfElement(elm) {
+
+    if (elm.indexOf("popup_") > -1) {//repeat ok-cancel prompt bottons must not register mouseCoords
+        return mouseCoords; //existing
+    }
+
+    if (elm == "canvas") {//repeat ok-cancel prompt bottons must not register mouseCoords
+        return mouseCoords; //existing
+    }
+
+
+
+    var $elm = document.getElementById(elm); // $("#" + elm.replace(".", "\\.").replace("|", "\\|"));
+
+    if ($elm == null) {
+        return mouseCoords; //last coords
+    }
+
+    var evElmTag = $elm.tagName;
+
+    var mytop = $($elm).offset().top - $(window).scrollTop();
+    var myleft = $($elm).offset().left - $(window).scrollLeft();
+
+
+    var $myref = getPosRef(lastEvSrc);
+
+    var centredTop = 0;
+    var centredLeft = 0;
+
+    if ($myref.length > 0) {
+        centredTop = mytop - $myref.offset().top;
+        centredLeft = myleft - $myref.offset().left;
+    }
+
+    mouseCoords = myleft + ',' + mytop + ',' + evElmTag + ',' + $elm.id + ',' + centredLeft + ',' + centredTop;
+
+
+    return mouseCoords;
+
+}
+
+
+
+function getPosRef(lastEvSrc) {
+
+
+    var $myref = "";
+
+
+    try {
+        if (!isRD) {
+            //CLASSIC MODE position detection failed
+            $myref = $(document.getElementById(lastEvSrc)).closest(".ui-draggable");
+            if ($myref.length < 1) {
+                $myref = $("#dbmasterdiv1")
+            }
+        }
+
+        if ($myref.length < 1) {//RD or CLASSIC MODE position detection failed
+            $myref = $(document.getElementById(lastEvSrc));
+        }
+
+    } catch (excp) {
+        $myref = "";
+    }
+
+    return $myref;
+
+}
+
+
+
+//================================================
+//popupShow
+//================================================
+function popupShow(startsWith) {
+    //reserved (fired after dsplaying the popup)
+}
+
+//================================================
+//popupHide
+//================================================
+function popupHide(startsWith) {
+    //reserved (fired after hiding the popup)
+}
+
+
+//================================================
+//NOT NEEDED AFTER FF V7
+//firefoxHREFClick (firefox has problems with onclick event on A tags.  This fixes it)
+//================================================
+//function firefoxHREFClick() {
+//try {
+//    HTMLElement.prototype.click = function () {
+//        var evt = this.ownerDocument.createEvent('MouseEvents');
+//        evt.initMouseEvent('click', true, true, this.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+//        this.dispatchEvent(evt);
+//    }
+//} catch (excpt) {
+
+//}
+//}
+
+
+
+
+
+//================================================
+//Ajax object
+//================================================
+var request;
+var disabledArray = new Array();
+
+function buildAjax() {
+    if (typeof XMLHttpRequest == undefined)
+        XMLHttpRequest = function () {
+            try { return new ActiveXObject("Msxml2.XMLHTTP.6.0") } catch (e) { }
+            try { return new ActiveXObject("Msxml2.XMLHTTP.3.0") } catch (e) { }
+            try { return new ActiveXObject("Msxml2.XMLHTTP") } catch (e) { }
+            try { return new ActiveXObject("Microsoft.XMLHTTP") } catch (e) { }
+            throw new Error("This browser does not support XMLHttpRequest or XMLHTTP.")
+        };
+    request = new XMLHttpRequest();
+}
+
+
+//================================================
+//Console log if supported
+//================================================
+function sss(inLog) {
+    try {
+        console.log(inLog);
+    } catch (excp) {
+
+    }
+}
+
+//================================================
+//validateAndSubmit (vs)
+//================================================
+function vs(e, msecDelay) {
+
+    getMouse(e, true);
+
+    try {
+        if ($(e.target).parents('[id^=body_span]').length > 0) {
+            var t = e.target.type;
+            if (
+            t == 'text'
+            || t == 'button'
+            || t == 'checkbox'
+            || t == 'radio'
+            || t == 'select-one'
+            || t == 'select-multiple'
+            || t == 'select'
+            || t == "hidden"
+            || t == "password"
+            || t == "email"
+            || t == "month"
+            || t == "number"
+            || t == "date"
+            || t == "time"
+            || t == "datetime-local"
+            || t == "tel"
+            || t == "search"
+            || t == "url"
+            ) {
+                getRepElement(e);
+                return true;
+            }
+        }
+    } catch (excp) {
+
+    }
+
+    if (msecDelay) {
+        setTimeout(function () { execForm(e) }, msecDelay);
+    } else {
+        execForm(e);
+    }
+
+}
+
+//================================================
+//validateAndSubmitSingle
+//================================================
+function vsSingle(e) {
+
+    getMouse(e, true);
+
+    try {
+        if ($(e.target).parents('[id^=body_span]').length > 0) {
+            var t = e.target.type;
+            if (
+            t == 'text'
+            || t == 'button'
+            || t == 'checkbox'
+            || t == 'radio'
+            || t == 'select-one'
+            || t == 'select-multiple'
+            || t == 'select'
+            || t == "hidden"
+            || t == "password"
+            || t == "email"
+            || t == "month"
+            || t == "number"
+            || t == "date"
+            || t == "time"
+            || t == "datetime-local"
+            || t == "tel"
+            || t == "search"
+            || t == "url"
+            ) {
+                getRepElement(e);
+                return true;
+            }
+        }
+    } catch (excp) {
+
+    }
+
+    execForm(e, true);
+    return true;
+}
+
+
+//================================================
+//validateAndSubmit (vs)  - Synonym
+//================================================
+function validateAndSubmit(e, msecDelay) {
+    vs(e, msecDelay);
+    return true;
+}
+
+//================================================
+//validateAndSubmitSingle
+//================================================
+function validateAndSubmitSingle(e) {
+    vsSingle(e);
+    return true;
+}
+
+//================================================
+//send form
+//================================================
+function execForm(e, bSingle) {
+
+
+    if (isNavigating == true) {
+        return false;
+    }
+
+    if (isBlocked == true) {
+        return false;
+    }
+
+    //Event Source & Type
+    var evtSrc = '';
+    var evtType = '';
+    var oEvSrc;
+
+
+    //select2 prevent mousedown events
+    var sel2len = 0
+    try {
+        sel2len = $(window.event.target).closest("*[class^='select2-']").length
+    } catch (excp) {
+        sel2len = 0
+    }
+    if (sel2len == undefined) {
+        sel2len = 0;
+    }
+
+
+    if (window.event && sel2len < 1) {
+        var e = window.event;
+        oEvSrc = e.srcElement;
+        evtSrc = e.srcElement.id;
+    } else {
+        if (e != 'NOSOURCE') {
+            evtSrc = '';
+            try {
+                oEvSrc = e.target;
+                evtSrc = e.target.id;
+            } catch (excp) {
+
+            }
+        }
+    }
+
+
+
+    if (evtSrc != '' && (typeof evtSrc != "undefined")) {
+        evtType = e.type;
+    } else {
+
+        //is this a hicharts click?
+        if ($(oEvSrc).parents('div[data-highcharts-chart]').length > 0) {
+            //fire the top DB div click (container for hichart)
+            $(oEvSrc).parents('div[data-highcharts-chart]')[0].click();
+            //and return
+            return true;
+        }//
+
+
+        if (e !== undefined) {
+
+            evtType = e.type;
+        }
+
+        //an element with no id... If it's a click event then try firing the parent's click
+        if (evtType == "click") {
+            evtSrc = e.currentTarget;
+        }
+
+        //an event with no elm id..not a click event..not a highchart event..
+        evtSrc = lastEvSrc;
+        evtType = lastEvType;
+
+    }
+
+
+    //focus event on predictive text should not fire if no text
+    if (evtType == 'focus' || evtType == 'focusin') {
+        if ($(oEvSrc).attr('onkeydown') == 'sendKeys(event);') {
+            if ($(oEvSrc).val() == '') {
+                return true;
+            }
+        }
+    }
+
+
+
+    var formXML = ''; //formToXML(evtSrc, evtType, bSingle);
+
+    //positionCenter();
+
+
+
+
+    if (beforeHit(evtSrc, evtType)) {	//beforeHit can return false to cancel the event  
+        //setTimeout(function () { execFormExec(formXML, evtSrc, evtType, '', '', bSingle) }, myDelay);    // show spinner delay  
+
+        if (isRD && (evtType == "blur" || evtType == "focusout")) {
+            evtType = "change"
+        }
+
+        execFormExec(formXML, evtSrc, evtType, '', '', bSingle);
+    }
+
+    return true;
+}
+
+
+//================================================
+//getField
+//================================================
+function getField(e, fieldToGetID) {
+
+    if (isBlocked == true) {
+        return false;
+    }
+
+
+    //Event Source & Type
+    var evtSrc = '';
+    var evtType = '';
+
+    if (window.event) {
+        var e = window.event;
+        evtSrc = e.srcElement.id;
+    } else {
+        if (e != 'NOSOURCE') {
+            evtSrc = e.target.id;
+        }
+    }
+
+    if (evtSrc != '') {
+        evtType = e.type;
+    } else {
+        evtSrc = lastEvSrc;
+        evtType = lastEvType;
+    }
+
+    var fieldXML = fieldToXML(evtSrc, evtType, fieldToGetID);
+    //positionCenter();
+
+    if (beforeHit(evtSrc, evtType)) {	//beforeHit can return false to cancel the event   	
+        //setTimeout(function () { execFormExec(fieldXML, evtSrc, evtType, '', '', true, fieldToGetID) }, myDelay);    // show spinner delay    
+        execFormExec(fieldXML, evtSrc, evtType, '', '', true, fieldToGetID);
+    }
+    return true;
+}
+
+
+//================================================
+//Field to XML
+//================================================
+
+function fieldToXML(evtSrc, evtType, fieldToGetID) {
+    var elm = document.getElementById(fieldToGetID);
+    var sXML = getElmVal(elm);
+
+    elm = document.getElementById("ScreenRoot");
+    var sXMLScreenRoot = getElmVal(elm);
+
+    return sXML + sXMLScreenRoot;
+}
+
+
+
+//================================================
+//Form to XML
+//================================================
+function formToXML(evtSrc, evtType, bSingle) {
+
+    var sXML = '';
+    var elm;
+
+    if (bSingle) {
+        elm = document.getElementById(evtSrc);
+        sXML = getElmVal(elm);
+
+        elm = document.getElementById("ScreenRoot");
+        var sXMLScreenRoot = getElmVal(elm);
+
+        return sXML + sXMLScreenRoot;
+    }
+
+    var myForm = document.forms[0];
+
+    for (var i = 0; i < myForm.elements.length; i++) {
+        elm = myForm.elements[i];
+        if (!elm.disabled || (elm.id == evtSrc)) {
+            sXML = sXML + getElmVal(elm);
+        }
+    }
+
+
+    if (isRD) {//RD modal form elements
+        try {
+            var $myModals = $("div[id^='dbModal-']").each(function () {
+                $(this).find(':input').each(function () {
+
+                    var elm = $(this)[0];
+
+                    if (!elm.disabled || (elm.id == evtSrc)) {
+                        sXML = sXML + getElmVal(elm);
+                    }
+
+                });
+            });
+        } catch (excp) {
+
+        }
+    }
+
+    var mytagn = ""
+
+    try {
+        if ($("#" + evtSrc).length) {
+            mytagn = $("#" + evtSrc)[0].tagName.toLowerCase();
+        }
+    } catch (excp) {
+        mytagn = ""
+    }
+
+
+    if (mytagn == "div" || mytagn == "span" || mytagn == "p" || mytagn == "td") {
+
+        try {
+            var mvParentTable = $("#" + evtSrc).closest("table[id^='mvdetail'");
+
+            if (mvParentTable.length > 0) {
+                var tdText = $("#" + evtSrc).contents().filter(function () {
+                    return this.nodeType == 3; //Node.TEXT_NODE;
+                })[0].nodeValue; //.tdText();
+
+                tdText = xml_encode(tdText.trim());
+
+                sXML = sXML + '<field name=' + '"' + evtSrc + '"' + ' value=' + '"' + tdText + '"/>';
+            }
+        } catch (excp) {
+
+        }
+
+    }
+
+
+    return sXML;
+}
+
+
+//================================================
+//Get element value...
+//================================================
+function getElmVal(elm) {
+
+    try {
+
+        if (elm.id == "editor") {
+            return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + '"' + '/>';
+        }
+
+
+        if (elm.type == "select-one") {//Combo
+            if (elm.selectedIndex > -1) {
+                if (elm.options[elm.selectedIndex]) {
+                    var opt = elm.options[elm.selectedIndex];
+                    return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode(opt.value) + '"/>';
+                }
+            }
+
+        } else if (elm.type == "select-multiple") {//lookup            
+            return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode($(elm).val().join("|^#|")) + '"/>';
+
+        } else if ($(elm).attr("lookupvalue") != undefined) {//lookup            
+            return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode($(elm).attr("lookupvalue")) + '"/>';
+
+        } else if (elm.type == "radio") {//Radio
+            if (elm.checked) {
+                return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode(elm.value) + '"/>';
+            }
+
+
+        } else if (elm.type == "checkbox") {//Checkbox
+            return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + elm.checked + '"/>';
+
+        } else if (elm.type == "button") {//Button
+            return '';
+
+        } else if (elm.hasAttribute("geoloc")) {//Address
+
+            return '<field name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode(getDBAddress(elm.id)) + '"/>';
+
+        } else {//text //textarea //hidden //password //number //date //time //datetime-local //month //email //url
+            var myxss = elm.getAttribute('xsscheck') //$oTextAr.attr('xsscheck','off')
+            var xssatt = '';
+
+            if (myxss == 'off') {
+                xssatt = ' xss="off" '
+            }
+
+            var elmVal = elm.value;
+            if (elm.type == 'textarea') {
+                elmVal = elmVal.split("\r\n").join('~DBREAK13~');
+                elmVal = elmVal.split("\n\n").join('~DBREAK13~~DBREAK13~');
+                elmVal = elmVal.split("\n").join('~DBREAK13~');
+            }
+
+            if ($(elm).attr("designer") == 'true') {
+                return "";
+            }
+
+            if ($(elm).attr("address")) {
+                elmVal = $(elm).attr("address");
+            }
+
+            //if date field but date fields are not supported (IE or safariMAC) then.  Note that "date" type fields only used in RD in DesignBAIS
+            //i.e. RD ONLY where we get rdDateMask
+            if (($(elm).attr("type") == "date") && ($('[type="date"]').prop('type') != 'date')) {
+                try {
+                    if ($(elm).val() != "") {
+                        var momentDate = moment($(elm).val(), rdDateMask);
+                        var sMoment = momentDate.format("YYYY-MM-DD");
+                        elmVal = sMoment;
+                    } else {
+                        elmVal = "";
+                    }
+                } catch (exp) {
+                    elmVal = ""
+                }
+            }
+
+
+
+            if (elm.hasAttribute("eway")) {
+                try {
+                    elmVal = eCrypt.encryptValue(elmVal, ewayKey)
+                } catch (inexcp) {
+
+                }
+            }
+
+            return '<field ' + xssatt + ' name=' + '"' + elm.id + '"' + ' value=' + '"' + xml_encode(elmVal) + '"/>';
+
+        }
+
+
+
+    } catch (excp) {
+        console.log(excp.toString());
+    }
+
+    return '';
+}
+
+function getDBAddress(elm) {
+
+    var $a = $("#" + elm); //the address input field
+    var myAdr = $a.attr("address");
+
+    return myAdr;
+
+}
+
+//================================================
+//Get element selected value
+//================================================
+function getElmSelectedVal(elm) {
+    //Text and TextArea and hidden
+    if (elm.type == "text"
+        || elm.type == "textarea"
+        || elm.type == "hidden"
+        || elm.type == "password"
+        || elm.type == "email"
+        || elm.type == "month"
+        || elm.type == "number"
+        || elm.type == "date"
+        || elm.type == "time"
+        || elm.type == "datetime-local"
+        || elm.type == "tel"
+        || elm.type == "search"
+        || elm.type == "url"
+
+        ) {
+        var elmVal = elm.value;
+        if (elm.type == 'textarea') {
+            //elmVal = elmVal.replace(/[\n\r]/g, '~DBREAK13~');
+            elmVal = elmVal.split("\n\r").join('~DBREAK13~');
+            elmVal = elmVal.split("\n\n").join('~DBREAK13~');
+        }
+        return xml_encode(elmVal);
+    }
+
+    //Combo
+    if (elm.type == "select-one") {
+
+        if (elm.selectedIndex > -1) {
+            var opt = elm.options[elm.selectedIndex];
+            return opt.value;
+        } else {
+            return 0;
+        }
+    }
+
+    if (elm.type == "select-multiple") {
+        return $(elm).val().join("|^#|");
+    }
+
+
+    //Radio
+    if (elm.type == "radio") {
+        if (elm.checked) {
+            return 1;
+        } else {
+            return '';
+        }
+
+    }
+
+    //CheckBox
+    if (elm.type == "checkbox") {
+        if (elm.checked) {
+            return 1;
+        } else {
+            return '';
+        }
+    }
+
+    return '';
+}
+
+
+//================================================
+//Call BA on load
+//================================================
+function noEventCall() {
+
+    isBlocked = false;
+
+
+    var evtSrc = 'bodyID';
+    var evtType = 'onload';
+
+    var formXML = '';
+    //positionCenter();
+
+
+    if (beforeHit(evtSrc, evtType)) {	//beforeHit can return false to cancel the event           
+        setTimeout(function () { execFormExec(formXML, evtSrc, evtType, '', '', false); }, 10);
+    }
+
+    return true;
+}
+
+
+//================================================
+//Call BA Generic
+//================================================
+function genericEventCall(evtSrc, evtType, bSingle, callMode) {
+
+    //setTimeout(function () {
+    //    rdCallBack.resolve('[{"label":"Item1","value":"i1"},{"label":"Item2","value":"i2"}]');
+    //}, 3000);
+    //return true;
+
+    if (evtType == "click" || evtType == "dbtopmenuz") {
+        getMouseOfElement(evtSrc);
+    }
+
+
+
+    if (evtType.indexOf("DIALOGRESPONSE_") > -1 && evtSrc == "UPLOADCOMPLETE") {
+        evtSrc = "DIALOG"
+    }
+
+
+    if (isBlocked == true) {
+        return false;
+    }
+
+    //positionCenter();
+
+    var formXML = ''; //formToXML(evtSrc, evtType, bSingle);
+
+    if (callMode != undefined) {
+        if (beforeHit(evtSrc, evtType)) {	//beforeHit can return false to cancel the event   	
+            execFormExec(formXML, evtSrc, evtType, '', callMode, bSingle);
+        }
+
+    } else {
+        if (beforeHit(evtSrc, evtType)) {	//beforeHit can return false to cancel the event   	
+            execFormExec(formXML, evtSrc, evtType, '', '', bSingle);
+        }
+
+    }
+    return true;
+}
+
+function doTest() {
+    genericEventCall("none", "none", "", "");
+    return true;
+}
+
+
+//================================================
+//Send xml and execute return
+//================================================
+
+var dopostqueue = $({});
+
+function execFormExec(formXML, evtSrc, evtType, extraNode, callMode, bSingle, fieldID) {
+
+    //This queue ensures that events are ORDERED and executed one by one in FIFO mode.
+    //Without the queue asynch events execute out of ORDER. 
+    //If this is a blocking hit then don't allow the next hit in the queue (the next event is lost e.g. onchange on a text field and then click on a button, the click event will be lost , the user will think that she has clicked the button )
+
+    dopostqueue.queue(function () {
+
+        var myformXML;
+
+        getCKData(); //transfer data from ckeditors to original textareas
+
+        if (fieldID != undefined && fieldID.length > 0) {
+            myformXML = fieldToXML(evtSrc, evtType, fieldID);
+        } else {
+            myformXML = formToXML(evtSrc, evtType, bSingle);
+        }
+
+        elapsedTime = performance.now()
+
+        //var screenRoot = "";
+        //if (document.getElementById("ScreenRoot")) {
+        //    screenRoot = document.getElementById("ScreenRoot").value;
+        //}
+
+
+        var $elm = $(document.getElementById(evtSrc));
+        if ($elm.attr("address")) {
+            if (evtType == "dblclick") {
+                evtType = "change"
+            }
+        }
+
+
+        if ($elm.attr("subtype") && $elm.attr("subtype") == "lookup") {
+            if (evtType == "autocompletechange") {
+                evtType = "change"
+            }
+        }
+
+
+        if (typeof extraNode == "undefined") {
+            extraNode = '';
+        }
+
+
+
+        //Pack XML	
+        myformXML = '<AJAX>' + myformXML;			// xml start
+        myformXML = myformXML + '<eventSource>' + xml_encode(evtSrc) + '</eventSource>' + '<eventType>' + xml_encode(evtType) + '</eventType>';	//Add event details
+        if (evtType == "click" || evtType == "contextmenu" || evtType == "dbtopmenuz") {
+            myformXML = myformXML + '<clickPos>' + xml_encode(mouseCoords) + '</clickPos>';		//Mouse click coordinates
+        }
+        myformXML = myformXML + '<keyCodes>' + xml_encode(lastKey + '|' + lastFocusID) + '</keyCodes>';		//Add the last pressed key code        
+        myformXML = myformXML + '<dimensions>' + pageWidth + '|' + pageHeight + '|' + viewportWidth + '|' + viewportHeight + '</dimensions>';		//Add page and viewPort dimensions
+        myformXML = myformXML + '<designbaisState>' + sessionStorage.getItem("designbaisState") + '</designbaisState>';
+        myformXML = myformXML + '<req>' + Math.random() + '</req>';
+        myformXML = myformXML + '<tabStore>' + sessionStorage.getItem("tabStore") + '</tabStore>';
+        myformXML = myformXML + '<captchaKey>' + sessionStorage.getItem("captchaKey") + '</captchaKey>';
+        myformXML = myformXML + '<clientClock>' + clock() + '</clientClock>';
+        myformXML = myformXML + '<clientDate>' + clientDate() + '</clientDate>';
+        myformXML = myformXML + '<mobile>' + isMobile() + '</mobile>';
+        myformXML = myformXML + '<lastMVCell>' + lastMVCell + '</lastMVCell>';
+        myformXML = myformXML + '<scrollbarWidth>' + $.position.scrollbarWidth() + '</scrollbarWidth>';
+        //myformXML = myformXML + '<browserDateFormat>' + getShortDateFormat() + '</browserDateFormat>';
+        myformXML = myformXML + extraNode;
+        myformXML = myformXML + '</AJAX>';			// xml end 
+
+        //Reset last key      
+        lastKey = '|||';
+
+        var myUrl = window.location.toString();
+
+        nextURL = myUrl;
+        nextURL = nextURL.replace(/#/, "");
+
+        if (!bAsynch) {
+            return ajaxReturn(nextURL, myformXML, evtSrc, evtType, callMode)
+        } else {
+
+            if (ajaxAsync) {//ASYNC MODE
+                makeAsynchCall(nextURL, myformXML, evtSrc, evtType, callMode)
+            } else {//SYNC MODE
+                positionCenter(evtSrc);
+                setTimeout(function () { makeAsynchCall(nextURL, myformXML, evtSrc, evtType, callMode) }, 1);
+            }
+
+
+        }
+
+        return true;
+
+    }); //dopostqueue end
+
+
+}
+
+
+
+
+//================================================
+//ajaxReturnAsynch
+//================================================
+function ajaxReturnAsynch(baReturn, evtSrc, evtType, callMode) {
+
+    try {
+        if (dopostqueue.queue().length == 0) {
+            //document.getElementById("ajxImageFrame").style.display = "none";
+            //$(".dbajxloaderv8")[0].style.display = "none";
+            hideLoader();
+
+        }
+    } catch (excp) {
+    }
+
+
+    //EDITOR CALL
+    if (callMode != undefined && callMode.length > 0) {
+        if (baReturn.indexOf("<editorData>") > -1) {
+            var vRet = baReturn.split("<editorData>");
+            var baEditorDBState = vRet[0];
+            var baEditorMessage = "<editorData>" + vRet[1];
+        } else {
+            var baEditorDBState = baReturn;
+            var baEditorMessage = "";
+        }
+
+        webReturn = baEditorMessage;
+        if (baEditorDBState.length > 0) {
+            runFunctions(baEditorDBState, evtSrc, evtType);
+        }
+
+
+        freeAjax(false); //free but maintain the hit queue **** freeAjax(false) is used only in this function twice (see below)
+        eval("parent.window." + callMode);
+        return "<screenData><message></message><error></error></screenData>";
+    }
+
+    //NON_EDITOR CALLS
+    var evalReturn = runFunctions(baReturn, evtSrc, evtType);
+
+    try {
+        attachFocusEvents();
+        synchronizeScrollOnLoad();
+        prepareDraggables();
+        prepareCK();
+        harmonyUiFix();
+        prepareReportEvents();
+
+    } catch (excp) {
+
+    }
+
+
+    //ALWAYS FREE
+    freeAjax(false); // * as above
+
+}
+
+//slider=============///
+function setSlider(obj) {
+
+    if (!$("#" + obj.id).length) {
+        return true;
+    }
+
+    var my_range = $("#" + obj.id).data("ionRangeSlider");
+
+
+    if (my_range != undefined) {
+        ///UPDATE START
+        var exobj = JSON.parse($("#" + obj.id).attr("dbrange"));
+
+        var bDestroy = false;
+        for (var prop in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+                if (prop == "id" || prop == "from" || prop == "to") {
+                    exobj[prop] = obj[prop];
+                } else {
+                    bDestroy = true;
+                }
+            }
+        }
+
+        if (exobj.values != undefined) {
+            var origFrom = obj.from
+            origTo = obj.to;
+            var vallen = exobj.values.length;
+            for (var i = 0; i < vallen; i++) {
+                if (exobj.values[i] == origFrom) {
+                    obj.from = i
+                }
+
+                if (exobj.values[i] == origTo) {
+                    obj.to = i
+                }
+            }
+        }
+
+
+        //my_range.options("block", true);
+
+        my_range.update({
+            from: obj.from,
+            to: obj.to
+        });
+
+        return true;
+        ///UPDATE END
+    }
+
+    if (obj.values != undefined) {
+        var origFrom = obj.from
+        origTo = obj.to;
+        var vallen = obj.values.length;
+        for (var i = 0; i < vallen; i++) {
+            if (obj.values[i] == origFrom) {
+                obj.from = i
+            }
+
+            if (obj.values[i] == origTo) {
+                obj.to = i
+            }
+        }
+    }
+
+    $("#" + obj.id).attr("dbrangedone", true);
+    $("#" + obj.id).attr("dbrange", JSON.stringify(obj));
+
+
+    if ($("#rangesliderscr") != undefined && $("#rangesliderscr").attr("loaded") != undefined) {
+        setFirst();
+    } else {
+        addCSS("js/css/ion.rangeSlider.min.css", "rangeslidercss")
+        addScript("js/ion.rangeSlider.min.js", "setFirst()", "rangesliderscr")
+    }
+
+}
+
+function setFirst() {//finds the first candidate and converts 
+    var myOBJ = $("[dbrangedone]").first().attr("dbrange")
+
+    if (myOBJ != undefined) {
+        setRange(JSON.parse(myOBJ));
+    }
+
+}
+
+function setRange(obj) { //{ id: "text13v2", min: 30, max: 200, step=1, event="true" }
+
+
+    if (obj.values !== undefined) {
+        delete obj.min
+        delete obj.max
+        delete obj.step
+
+    }
+
+    var $inporig = $("#" + obj.id)
+
+
+
+    if ($inporig.length < 1) {
+        return false;
+    }
+
+    if ($inporig.css("position") == "absolute") {
+        var orgstyle = $inporig.attr("style");
+
+        var topoffset = -20;
+        if (obj.skin == "big") {
+            topoffset = -30
+        }
+
+        if (obj.topoffset) {
+            topoffset = topoffset + obj.topoffset;
+        }
+
+        var leftoffset = 0;
+
+        if (obj.leftoffset) {
+            leftoffset = leftoffset + obj.leftoffset;
+        }
+
+        $el = $("<div style=\"" + orgstyle + "\"><div>")
+        $el.css("top", (parseInt($inporig.css("top")) + parseInt(topoffset)) + "px");
+        $el.css("left", (parseInt($inporig.css("left")) + parseInt(leftoffset)) + "px");
+        $inporig.css("position", "relative");
+        $inporig.css("top", "0px");
+        $inporig.css("left", "0px");
+        $inporig.parent().append($el);
+        $el.append($inporig);
+    }
+
+
+    if ($inporig[0].hasAttribute("onchange")) {
+        $inporig.prop("onchange", null).off("change");
+    }
+
+    var dbSliderObj = {
+
+
+        dbinit: function (myobj, $or) {
+
+            this.myinput = $or;
+
+            if (!isRD) {
+                this.t1 = parseInt($or.css("top"));
+                this.h1 = parseInt($or.css("height"));
+                this.w1 = parseInt($or.css("width"));
+                this.l1 = parseInt($or.css("left"));
+                this.z1 = $or.css("z-index");
+            }
+
+            for (var prop in myobj) {
+                if (Object.prototype.hasOwnProperty.call(myobj, prop)) {
+                    if (!(prop == "id")) { // || prop == "event")) {                        
+                        this[prop] = myobj[prop];
+                    }
+                }
+            }
+
+            var myinst = $or.ionRangeSlider(this);
+
+        },
+
+        onStart: function (data) {
+
+            var $s = $(data.slider);
+
+            //if (!isRD) {
+            //    var topoffset = -35;
+            //    if (this.skin == "big") {
+            //        topoffset = -45
+            //    }
+
+            //    if (this.topoffset) {
+            //        topoffset = topoffset + this.topoffset;
+            //    }
+
+            //    var leftoffset = 0;
+
+            //    if (this.leftoffset) {
+            //        leftoffset = leftoffset + this.leftoffset;
+            //    }
+
+
+
+            //    $s.css("left", (parseInt(this.l1) + leftoffset).toString() + "px");
+            //    $s.css("width", this.w1 + "px");
+            //    $s.css("top", (parseInt(this.t1) + topoffset + parseInt(this.h1)).toString() + "px");
+            //    $s.css("z-index", this.z1);
+            //    $s.css("position", "absolute");
+            //}
+
+            $s.css("cursor", "pointer");
+            $(".irs-handle").css("cursor", "pointer");
+
+            $(data.input).removeAttr("dbrangedone");
+
+
+            setFirst();
+
+
+        },
+
+        onFinish: function (data) {
+
+            if (this.event) {
+                genericEventCall(data["input"].attr("id"), "change");
+            }
+        }
+
+    }
+
+
+    dbSliderObj.dbinit(obj, $inporig);
+
+
+}
+
+//slider=============end///
+
+
+function harmonyUiFix() {
+    try {
+        var $h = $("ul.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front");
+        if ($h != undefined && $h.length > 0) {
+            var zind = $("input[id^=rapidAddress]").parents().css("z-index");
+            if (zind != undefined && zind.length > 0) {
+                $h.css("z-index", zind)
+            } else {
+                $h.css("z-index", "7000")
+            }
+        }
+    } catch (excp) {
+        console.log(excp.toString());
+    }
+
+}
+
+
+//================================================
+//freeAjax 
+//================================================
+function freeAjax(bClear) {
+
+    clearTimeout(loaderTimer);
+
+    try {
+        hideLoader();
+    } catch (excp) {
+
+    }
+
+    try {
+        setTimeout(function () { $("input[subtype='lookup']").removeClass("db-autocomplete-loading"); }, 800);
+
+    } catch (excp) {
+
+    }
+
+
+    isBlocked = false;
+
+    if (bClear) {
+        dopostqueue.clearQueue();
+    } else {
+        dopostqueue.dequeue();
+    }
+
+
+    try {
+        var objElm = document.getElementById(lastEvSrc);
+
+        //unhide element if dbhb has 2
+        if (dbhb & 2) {
+            //$(objElm).css("display", "block");
+            setTimeout(function () { $(objElm).removeAttr("disabled"); }, 400);
+        }
+
+        //hide element if dbhb has 4
+        if (dbhb & 4) {
+            //$(objElm).css("display", "none");  // do not enable
+        }
+
+
+
+
+        setTimeout(function () {
+            try {
+                $("*[dbElmDisabled]").css('pointer-events', 'auto');
+                $("*[dbElmDisabled]").removeAttr("dbElmDisabled");
+            } catch (excp) {
+
+            }
+        }, 400);
+
+    } catch (excp) {
+
+    }
+
+
+    try {
+        parent.editorUnlock();
+    } catch (excp) {
+    }
+
+
+    var mylasttop = 0;
+    try {
+        var $menuTD = $("#dbmenuside1").find('td');
+        $menuTD.off("click").on("click", function (event) {
+            mylasttop = $(window).scrollTop();
+        });
+    } catch (excp) {
+
+    }
+
+
+    try {
+        setTimeout(function () {
+            if (lastEvSrc.indexOf("dbsidemenu") > -1) {
+                $(window).scrollTop(parseInt(mylasttop));
+            }
+        }, 1);
+    } catch (excp) {
+    }
+
+
+    if (dopostqueue.queue().length > 0) {
+        return true;
+    }
+
+
+
+    try {
+        //remove cover for all dbhb
+        $("#mycover").css("display", "none");
+
+    } catch (excp) {
+
+    }
+
+
+
+
+
+}
+
+
+//================================================
+//makeAsynchCall
+//================================================
+
+function makeAsynchCall(url, data, evtSrc, evtType, callMode) {
+
+
+    if (isBlocked == true) {
+        return false;
+    }
+
+    lastEvSrc = evtSrc;
+    lastEvType = evtType;
+    lastCallMode = callMode;
+
+    //editor lock
+    try { parent.editorLock(); } catch (excp) { }
+
+    try {
+
+        var objElm = document.getElementById(lastEvSrc);
+
+        dbhb = dbhbMode; //set to global
+
+        if (objElm) {
+            if (objElm.hasAttribute("dbhb")) {
+                dbhb = parseInt($(objElm).attr('dbhb'));
+            }
+        }
+
+
+        //dbhb exceptions
+        //if (dbhb == 0) {
+        //    if (evtType == 'blur' || evtType == 'focus' || evtType == 'focusin') {
+        //        dbhb = 1;
+        //    }
+        //}
+
+        //All change events can be made to block. The user will think that she has clicked the button
+        //if (evtType == 'change' || evtType == 'tabAddRowChange') {
+        //    dbhb = 1;
+        //}
+
+        if (dbhb & 1) {
+            isBlocked = true;
+            $("#mycover").css("display", "block");  //this also blocks subsequent clicks but given the presence of isBlocked, it's function is only visual.
+        }
+
+        if (dbhb & 2) {
+            //$(objElm).css("display", "none");
+            $(objElm).attr("disabled", "disabled");
+        }
+
+        if (dbhb & 4) {
+            //$(objElm).css("display", "none");            
+            $(objElm).attr("disabled", "disabled");
+        }
+
+    } catch (excp) {
+        //some error : remove cover
+        dbhb = 1; //default to 1 (blocks)
+        $("#mycover").css("display", "none");
+    }
+
+
+    //Fix IDHIT
+    data = data.replace(/<designbaisState>.+<\/designbaisState>/, "<designbaisState>" + sessionStorage.getItem("designbaisState") + "</designbaisState>");
+
+    elapsedTime1 = performance.now();
+
+
+    positionCenter(evtSrc);
+    var request = $.ajax({
+        url: url,
+        cache: false,
+        type: "post",
+        retryLimit: 2,
+        contentType: "text/xml",
+        async: ajaxAsync,
+        data: data,
+        timeout: 320000,
+
+        beforeSend: function () {
+
+            //console.log('beforeSend:' +  evtSrc + ':' + evtType)
+        },
+
+        success: function (results) {
+
+            dbDelta = parseInt(performance.now() - elapsedTime1);
+
+            if (results.indexOf("dbaisstatuscode") > -1) {
+                results = '';
+            }
+
+
+            if (results.length < 2) {
+                showDBAlert('An error occurred. HTTP Status:(' + XMLHttpRequest.status + ') ' + XMLHttpRequest.statusText);
+                freeAjax(true); //error
+                return true;
+            } else {
+                ajaxReturnAsynch(results, evtSrc, evtType, callMode);
+
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            this.retryLimit--;
+            if (this.retryLimit) { // && XMLHttpRequest.status.toString() == "400") {
+                //try again
+                $.ajax(this);
+                return;
+            }
+
+            freeAjax(true);  //error
+
+            if (lastEvType == "editorCommand") {
+                var myReturnToEditor = "Connection Error"
+                if (XMLHttpRequest.status != "0") {
+                    myReturnToEditor = XMLHttpRequest.statusText
+
+                }
+                webReturn = myReturnToEditor;
+                eval("parent.window." + lastCallMode);
+                return true;
+            } else {
+                showDBAlert('An error occurred. HTTP Status:(' + XMLHttpRequest.status + ') ' + XMLHttpRequest.statusText);
+            }
+        },
+        complete: function () {
+            try {
+
+            } catch (excp) {
+
+            }
+
+            //editor unlock
+            try { parent.editorUnlock(); } catch (excp) { }
+        }
+    });
+
+
+
+
+
+}
+
+
+//================================================
+//Editor
+//================================================
+function editorCall(editorData, callMode) {
+    var formXML = ''; //formToXML("editor", "editorCommand");
+    var sEdData = execFormExec(formXML, "editor", "editorCommand", editorData, callMode, false);
+    return sEdData;
+}
+
+//================================================
+//setWebReturn
+//================================================
+function setWebReturn(inReturn) {
+    webReturn = inReturn;
+}
+
+function doNothing() {
+    return true;
+}
+
+//================================================
+//dbTimerTest
+//================================================
+function dbTimerTest(msec) {
+    hitCount = hitCount + 1;
+    var thisTime = new Date() - xtime;
+    if (hitCount > 1) {
+        if (maxTime < thisTime) {
+            maxTime = thisTime;
+        }
+        totalTime = totalTime + thisTime;
+        var avTime = totalTime / (hitCount - 1);
+        document.title = ' a-' + avTime.toFixed() + ' c-' + thisTime + ' m-' + maxTime + ' da-' + avDBResponseTime + ' dbc-' + dbResponseTime + ' dbm-' + maxDBResponseTime;
+    }
+
+    xtime = new Date();
+    if (lastMenu == "dbsidemenuzDBIGROUPS_D10z5") {
+        objdbTimerTest = window.setTimeout("genericEventCall('dbsidemenuzDBIMENUS_D10z4','click')", msec);
+        lastMenu = "dbsidemenuzDBIMENUS_D10z4"
+    } else {
+        objdbTimerTest = window.setTimeout("genericEventCall('dbsidemenuzDBIGROUPS_D10z5','click')", msec);
+        lastMenu = "dbsidemenuzDBIGROUPS_D10z5"
+    }
+
+}
+
+//================================================
+//setDbResponseTime
+//================================================    
+function setDbResponseTime(lngResponseTime) {
+    dbResponseTime = parseInt(lngResponseTime);
+    if (hitCount > 0) {
+        totalDBResponseTime = totalDBResponseTime + dbResponseTime;
+        avDBResponseTime = parseInt(totalDBResponseTime / hitCount);
+        if (maxDBResponseTime < dbResponseTime) {
+            maxDBResponseTime = dbResponseTime
+        }
+    }
+}
+
+//================================================
+//adjustMVHeight
+//================================================    
+function adjustMVHeight(sContainerName, sHeaderTableName, sScrollingDivName) {
+    try {
+        var p1 = document.getElementById(sContainerName).style.height.replace("px", "");
+        var p2 = document.getElementById(sHeaderTableName).scrollHeight;
+        var p3 = p1 - p2;
+        document.getElementById(sScrollingDivName).style.height = p3 + 'px';
+    } catch (mvExcp) {
+        //
+    }
+}
+
+//================================================
+//showAlert
+//================================================    
+function showAlert(inParams, blockNext) {
+    //If there is change event and a click event is in the queue and if the change event displays an alert then the click event is lost.
+    //a 300msec arbitrary delay attemps to make sure that the next event (click) is not lost despite the alert box (alert is the culprit here).
+    if (blockNext) {
+        //subsequent events are blocked and the message is displayed.  e.g. change text and click submit.  If there is a validation error that the DATACOMP wants to display then block the submit event.
+        freeAjax(true);
+        setTimeout(function () { alert(inParams); }, 1);
+    } else {
+        setTimeout(function () { showAlertExec(inParams) }, 300);   //change + alert + submit are all executed.
+    }
+
+
+}
+
+
+//================================================
+//showAlertExec
+//================================================    
+function showAlertExec(inParams) {
+    alert(inParams);
+}
+
+//================================================
+//reloadUrl
+//================================================    
+function reloadUrl(inParam, unam) {
+
+    //Normal session expiry - 3
+    if (inParam == "1" || inParam == "3" || inParam == "100" || inParam == "101" || inParam == "102" || inParam == "103") {
+
+        var reloadCount = sessionStorage.getItem("reloadCount");
+        if (reloadCount == null) {
+            reloadCount = 0;
+        }
+
+        reloadCount = parseInt(reloadCount);
+
+
+        if (reloadCount < 2) {
+            setTimeout(function () { $("#mycover").css("display", "block"); positionCenter() }, 100);
+            reloadCount++;
+            sessionStorage.setItem("reloadCount", reloadCount);
+            setTimeout(function () { location.reload(); }, 3000);
+        } else {
+            sessionStorage.setItem("reloadCount", 0);
+            showErrorPage("10001");
+        }
+        return true;
+    }
+
+    sessionStorage.setItem("reloadCount", 0);
+
+    //Already running process
+    if (inParam == "5") {
+        alert("You may have an already running process.  Please click to continue");
+        return true;
+    }
+
+    //Others (2,4,5)
+    showErrorPage(inParam, unam);
+    return true;
+}
+
+function dbReload(bWithoutQueryString) {
+
+    setTimeout(function () { $("#mycover").css("display", "block"); }, 1);
+
+    if (bWithoutQueryString) {
+        var url = [location.protocol, '//', location.host, location.pathname].join('');
+        setTimeout(function () { location.href = url; }, 100);
+    } else {
+        setTimeout(function () { location.reload(); }, 100);
+    }
+
+}
+
+
+
+
+
+//================================================
+//showErrorPage
+//================================================    
+function showErrorPage(e, fprefix) {
+
+    freeAjax(true);
+
+    var mylocation = "errors.aspx?dbqsfval=" + fprefix + "&dbqseval=" + e.toString() + "&dbqsuval=";
+
+    location = mylocation + b64EncodeUnicode(location.href);
+
+    return false;
+}
+
+
+//================================================
+//showDBAlert
+//================================================    
+function showDBAlert(inParams) {
+    freeAjax(true);
+    progHide();
+
+    try {
+        //document.getElementById("ajxImageFrame").style.display = "none";
+        //$(".dbajxloaderv8")[0].style.display = "none";
+        hideLoader();
+    } catch (excp) {
+
+    }
+
+    if (isRD) {
+        location.href = "errors.aspx"
+        return true;
+    }
+
+    inParams = inParams + "\nIt may be possible to recover from this error. \nDo you want to repeat your last action?";
+    jDBokcancel(inParams, 'An error occurred.', function (r) { showDBAlertResult(r); });
+
+}
+
+//================================================
+//showDBAlertResult
+//================================================    
+function showDBAlertResult(r) {
+    if (r == 1) {
+        setTimeout(function () { execForm() }, 200);
+        return false;
+    } else {
+
+    }
+}
+
+
+
+
+
+//================================================
+//showDialog; show message box 
+//================================================
+function showDialog(inParams, dbTarget) {
+
+    //inparams  = type;title;message  
+    //type can be: 0-OK,  1-OKCANCEL, 3-YESNOCANCEL, 4-YESNO, 1000-INPUT
+    //delimiter is ;
+    //note that the message can also have ; in it.
+
+    //freeAjax(true);
+    //jAlert0 jDBokcancel jDBconfirm jDByesno jAlert0 jPrompt  jFlash
+
+    //showDialog("1;my title;my message") 0, 1,3,4, 
+
+    //showDialog: 2000,3000 ==>
+
+
+
+    var vPars = String(inParams).split(';');
+    var vParsLen = vPars.length;
+    var i;
+    var messType = vPars[0];
+
+    var messTitle = vPars[1];
+    if (messTitle == '') {
+        messTitle = '..';
+    }
+
+    var messBody = "";
+    for (i = 2; i < vParsLen; i = i + 1) {
+        messBody = messBody + ';' + vPars[i];
+    }
+    messBody = messBody.substring(1);
+
+
+    //PROMPT (webcomp internal)
+    if (messType == 1000) {
+        jPrompt(messBody, 345, messTitle, function (r) { dialogReturn(r); });
+        return true;
+    }
+
+    //Flash  (webcomp internal)
+    if (messType == 3000) {//NOT USED 
+        jFlash(messBody, 1500);
+        return true;
+    }
+
+
+    //OK WITH NO DB HIT  (webcomp internal)
+    if (messType == 2000) {//
+        //alert(messBody);
+        jAlert(messBody, messTitle, function (r) { return true; }, messType, dbTarget);
+        return true;
+    }
+
+
+    //YES-NO
+    if ((messType & 4) == 4) {
+        jDByesno(messBody, messTitle, function (r) { dialogReturn(r); }, messType, dbTarget); //YES-NO
+    } else if ((messType & 3) == 3) {
+        jDBconfirm(messBody, messTitle, function (r) { dialogReturn(r); }, messType, dbTarget); //YES-NO-CANCEL
+    } else if ((messType & 1) == 1) {
+        jDBokcancel(messBody, messTitle, function (r) { dialogReturn(r); }, messType, dbTarget); //OK-CANCEL
+    } else {
+        jAlert(messBody, messTitle, function (r) { dialogReturn(r); }, messType, dbTarget); //OK
+    }
+
+
+
+
+}
+
+//================================================
+//dialogReturn
+//================================================    
+function dialogReturn(userChoice, userVal) {
+
+    var myval = ""
+    if (userVal != undefined) {
+        myval = "_" + userVal;
+    }
+
+    genericEventCall(lastEvSrc, 'DIALOGRESPONSE_' + userChoice + myval);
+}
+
+//================================================
+//Enable all elements 
+//================================================
+function enableElems() {
+    var i;
+    for (i = 0; i < disabledArray.length; i++) {
+        disabledArray[i].disabled = false;
+    }
+    disabledArray.length = 0;
+}
+
+//================================================
+//Disable all elements 
+//================================================
+function disableElems() {
+    disabledArray.length = 0;
+    var objElems = document.getElementsByTagName("*");
+    var i;
+    for (i = 0; i < objElems.length; i++) {
+        if (!objElems[i].disabled) {
+            disabledArray[i] = objElems[i];
+            objElems[i].disabled = true;
+        }
+    }
+}
+
+//================================================
+//renewLoc
+//================================================    
+function renewLoc() {
+    isUnloadSent = true;  //don't send unload event
+    location.reload(true);
+}
+
+
+
+//================================================
+//iErrorDisplayMode
+//================================================
+function setErrorDisplayMode(iErrMode) {
+    iErrorDisplayMode = iErrMode;
+    return true;
+}
+
+
+//================================================
+//eval functions
+//================================================
+function runFunctions(baXML, evtSrc, evtType) {
+
+
+    try {
+        if (baXML.indexOf("reloadUrl") < 0) {
+            sessionStorage.setItem("reloadCount", 0);
+        }
+    } catch (excp) {
+
+    }
+
+    var vCodes = String(baXML).split(";   ");
+    var i = 0;
+    var vCodesLen = vCodes.length;
+    for (i = 0; i < vCodesLen; i = i + 1) {
+
+        try {
+
+            if (vCodes[i].indexOf("prepareDraggables") < 0) {
+                var mystr = vCodes[i].replace(/&#x3;/g, ";   ");
+                eval(mystr);
+            }
+
+        } catch (e) {
+            if (iErrorDisplayMode == 0) {
+                alert(e.description + '\n\nAt line:\n' + vCodes[i]);
+                freeAjax(true); //error
+                return false;
+            } else if (iErrorDisplayMode == 1) {
+                alert(e.description + '\n\nAt line:\n' + vCodes[i]);
+            } else {
+                //continue
+            }
+        }
+
+    }
+
+
+    if (isRD) {
+        //set rd error mode
+        iErrorDisplayMode = 2;
+
+
+        setRDDatePicker();
+
+
+
+        //display design menu items if they exist
+        try {
+            $("#mnuLeft").show();
+            $("#mnuRight").show();
+        } catch (excp) {
+
+        }
+
+    }
+
+
+
+
+    $('input[dbpredict="yes"]').autocomplete({
+        source: function (request, response) {
+
+        },
+        minLength: 3,
+        select: function (event, ui) {
+            //log(ui.item ?
+            //  "Selected: " + ui.item.label :
+            //  "Nothing selected, input was " + this.value);
+        },
+        open: function () {
+            //$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+        },
+        close: function () {
+            //$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+        }
+    });
+
+
+    afterHit(evtSrc, evtType);
+
+    return true;
+}
+
+
+
+
+
+
+//================================================
+//XML Encoding
+//================================================
+function xml_encode(input) {
+    if (input == undefined) {
+        input = '';
+        return input;
+    }
+    input = trim(input.toString());
+
+    var replace_with = '&amp;';
+    input = input.replace(/&/g, replace_with);
+
+    replace_with = '&lt;';
+    input = input.replace(/</g, replace_with);
+
+    replace_with = '&gt;';
+    input = input.replace(/>/g, replace_with);
+
+    replace_with = '&apos;';
+    input = input.replace(/'/g, replace_with);
+
+    replace_with = '&quot;';
+    input = input.replace(/"/g, replace_with);
+
+    return input;
+}
+
+
+//================================================
+//htmlEncode
+//================================================
+function htmlEncode(value) {
+    return $('<div/>').text(value).html();
+}
+
+//================================================
+//htmlDecode
+//================================================
+function htmlDecode(value) {
+    return $('<div/>').html(value).text();
+}
+
+
+
+//================================================
+//Validation Functions
+//================================================
+function storeValue(obj) {
+    if (obj.id.indexOf('datepick') > -1) {
+        if (obj.value.length > 0) {
+            if (isDate(obj.id, true)) {
+                if (obj.value != '\t') {
+                    obj.setAttribute("lastVal", escape(obj.value));
+                }
+            }
+        }
+        return true;
+    }
+
+    if (obj.value != '\t') {
+        obj.setAttribute("lastVal", escape(obj.value));
+    }
+}
+
+
+//================================================
+//validate
+//================================================
+function validate(valType, objid, message) {
+
+    obj = document.getElementById(objid);
+
+    var objval = '';
+
+    try {
+        objval = obj.value;
+    } catch (excp) {
+        return true;
+    }
+
+    if (objval.length == 0) {
+        return true;
+    }
+
+    ///DATES/////////////////////
+    if (valType == 'Date') {
+        if (isDate(objid)) {
+            try {
+                document.getElementById(objid + 'ERR').innerHTML = '';
+            } catch (e) { };
+            return true;
+        } else {
+
+            if (message) {
+                try {
+                    document.getElementById(objid + 'ERR').innerHTML = message;
+                } catch (e) {
+
+
+                    if (obj.getAttribute("lastVal") == escape(null) || obj.getAttribute("lastVal") === null) {
+                        obj.value = '';
+                    } else {
+                        obj.value = unescape(obj.getAttribute("lastVal"));
+                    }
+
+
+                    obj.focus();
+                    obj.select();
+                    alert(message);
+                }
+            }
+            return false;
+
+        }
+    }
+
+    if (!isRD) {
+        try {
+            ///min max
+            if (valType.toLowerCase() == "integer" || valType.toLowerCase() == "numeric") {
+
+                var thisval = obj.value;
+
+                //minval
+                if (obj.getAttribute("min") != undefined) {
+                    if (parseFloat(thisval) < parseFloat(obj.getAttribute("min"))) {
+                        message = "A number equal to or greater than " + obj.getAttribute("min") + " is required."
+                        try {
+                            document.getElementById(objid + 'ERR').innerHTML = message;
+                        } catch (e) {
+                            if (obj.getAttribute("lastVal") == escape(null)) {
+                                obj.value = '';
+                            } else {
+                                obj.value = unescape(obj.getAttribute("lastVal"));
+                            }
+                            obj.focus();
+                            obj.select();
+                            alert(message);
+                        }
+                        return false;
+                    }
+                }
+
+                //maxval
+                if (obj.getAttribute("max") != undefined) {
+                    if (parseFloat(thisval) > parseFloat(obj.getAttribute("max"))) {
+                        message = "A number equal to or less than " + obj.getAttribute("max") + " is required."
+                        try {
+                            document.getElementById(objid + 'ERR').innerHTML = message;
+                        } catch (e) {
+                            if (obj.getAttribute("lastVal") == escape(null)) {
+                                obj.value = '';
+                            } else {
+                                obj.value = unescape(obj.getAttribute("lastVal"));
+                            }
+                            obj.focus();
+                            obj.select();
+                            alert(message);
+                        }
+                        return false;
+                    }
+                }
+            }
+        } catch (excp) {
+
+        }
+
+    }
+
+
+
+    if (valType == "Integer") {
+        valType = "DBInteger"
+    }
+
+
+    ///OTHER VALIDATIONS/////////////////////    
+    if (eval('is' + valType + '(objval)')) {
+        try {
+            document.getElementById(objid + 'ERR').innerHTML = '';
+        } catch (e) {
+            //alert(message);
+        }
+        return true;
+    } else {
+
+        if (valType == "Numeric" && objval.length > 0 && objval.indexOf("$") > -1) {
+            message = "This currency symbol is invalid in numeric fields."
+        }
+
+        if (message) {
+            try {
+                document.getElementById(objid + 'ERR').innerHTML = message;
+            } catch (e) {
+
+
+                if (obj.getAttribute("lastVal") == escape(null)) {
+                    obj.value = '';
+                } else {
+                    obj.value = unescape(obj.getAttribute("lastVal"));
+                }
+
+                obj.focus();
+                obj.select();
+                alert(message);
+
+            }
+        }
+        return false;
+    }
+}
+
+isDBInteger = function (value) {
+
+    value = Number(value);
+    if (typeof value === "number") {
+        if (isFinite(value)) {
+            if (Math.floor(value) === value) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+//================================================
+//setNumeric
+//================================================
+function setNumeric(objid, decimals, message) {
+
+    obj = document.getElementById(objid);
+    var objval = '';
+
+    objval = obj.value;
+
+
+
+    objval = objval.replace(/,/gi, "");
+    objval = objval.replace(/\$/g, '')
+    objval = objval.replace(/\ /g, '')
+
+    if (objval.length == 0) {
+        return true;
+    }
+
+
+    if (eval('is' + 'Numeric' + '(objval)')) {
+        try {
+            document.getElementById(objid + 'ERR').innerHTML = '';
+        } catch (e) {
+            //alert(message);
+        }
+        var num = new Number(objval);
+        var newval = num.toFixed(decimals);
+
+        var p = String(newval).split(".");
+        var k = parseFloat(p[0]);
+
+        /*newval = k.toLocaleString().replace(/[\.,][\d]+$/,'');
+        if (p.length==2){
+            newval = newval +'.'+p[1];
+        }*/
+
+        try {
+            newval = CommaFormatted(newval);
+        } catch (e) {
+            //
+        }
+
+        testval = newval.replace(/,/gi, "");
+
+
+        if (isNaN(testval)) {
+            if (message) {
+                try {
+                    document.getElementById(objid + 'ERR').innerHTML = message;
+                } catch (e) {
+
+
+                    if (obj.getAttribute("lastVal") == escape(null)) {
+                        obj.value = '';
+                    } else {
+                        obj.value = unescape(obj.getAttribute("lastVal"));
+                    }
+                    obj.focus();
+                    obj.select();
+                    alert(message);
+
+                }
+            }
+            return false;
+        }
+
+        if (!validate("Numeric", $(obj).attr("id"), "")) {
+            return false;
+        }
+
+
+        obj.value = newval;
+        return true;
+    } else {
+        if (message) {
+            try {
+                document.getElementById(objid + 'ERR').innerHTML = message;
+            } catch (e) {
+
+
+                if (obj.getAttribute("lastVal") == escape(null)) {
+                    obj.value = '';
+                } else {
+                    obj.value = unescape(obj.getAttribute("lastVal"));
+                }
+                obj.focus();
+                obj.select();
+                alert(message);
+
+            }
+        }
+        return false;
+    }
+}
+
+
+//================================================
+//CommaFormatted
+//================================================
+function CommaFormatted(nStr) {
+    nStr += '';
+    x = nStr.split('.'); x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+
+//================================================
+//isTime
+//================================================
+function isTime(timeStr) {
+    var timePat = /^(\d{1,2}):(\d{2})(:(\d{2}))?(\s?(AM|am|PM|pm))?$/;
+
+    var matchArray = timeStr.match(timePat);
+
+    // 09/21
+    if (matchArray == null) {
+        timePat = /^(\d{1,2}).(\d{2})(.(\d{2}))?(\s?(AM|am|PM|pm))?$/;
+        matchArray = timeStr.match(timePat);
+    }
+    //
+
+    if (matchArray == null) {
+        return false;
+    }
+    hour = matchArray[1];
+    minute = matchArray[2];
+    second = matchArray[4];
+    ampm = matchArray[6];
+
+    if (second == "") { second = null; }
+    if (ampm == "") { ampm = null }
+
+    if (hour < 0 || hour > 23) {
+        return false;
+    }
+    //if (hour <= 12 && ampm == null) {
+    //if (confirm("Please indicate which time format you are using.  OK = Standard Time, CANCEL = Military Time")) {
+    //alert("You must specify AM or PM.");
+    //return false;
+    //   }
+    //}
+    if (hour > 12 && ampm != null) {
+        return false;
+    }
+    if (minute < 0 || minute > 59) {
+        return false;
+    }
+    if (second != null && (second < 0 || second > 59)) {
+        return false;
+    }
+    return true;
+}
+
+
+//================================================
+//isEmail
+//================================================
+function isEmail(str) {
+    var at = "@"
+    var dot = "."
+    var lat = str.indexOf(at)
+    var lstr = str.length
+    var ldot = str.indexOf(dot)
+    if (str.indexOf(at) == -1) {
+        return false
+    }
+
+    if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+        return false
+    }
+
+    if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+        return false
+    }
+
+    if (str.indexOf(at, (lat + 1)) != -1) {
+        return false
+    }
+
+    if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+        return false
+    }
+
+    if (str.indexOf(dot, (lat + 2)) == -1) {
+        return false
+    }
+
+    if (str.indexOf(" ") != -1) {
+        return false
+    }
+
+    return true
+}
+
+//================================================
+//isNumeric
+//================================================
+function isNumeric(strString)
+    //  check for valid numeric strings	
+{
+
+    strString = strString.replace(/,/gi, "");
+
+    var strValidChars = "0123456789.-";
+    var strChar;
+    var blnResult = true;
+
+    if (strString.length == 0) return false;
+
+    //  test strString consists of valid characters listed above
+    for (i = 0; i < strString.length && blnResult == true; i++) {
+        strChar = strString.charAt(i);
+        if (strValidChars.indexOf(strChar) == -1) {
+            blnResult = false;
+        }
+    }
+    return blnResult;
+}
+
+//================================================
+//isInteger
+//================================================
+function isInteger(s) {
+
+    var i;
+    for (i = 0; i < s.length; i++) {
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+
+
+//================================================
+//Grid Functions
+//================================================
+function validateEntry(valType, objid, message, e, decimals, hitServer, mandatory, mandatoryText, bSingle) {
+
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    //Stop Datepicker click event calling ValidateEntry then call onchange???
+    if (evElm.id.length < 1) {
+        stopEvent(e);
+        fireEventOnChange(document.getElementById(objid));
+        return true;
+    }
+    ///////
+
+    //Check if mandatory
+    if (mandatory) {
+        oObj = document.getElementById(objid);
+        if (oObj.value == "") {
+            stopEvent(ev);
+
+            if (oObj.getAttribute("lastVal") == escape(null)) {
+                oObj.value = '';
+            } else {
+                oObj.value = unescape(oObj.getAttribute("lastVal"));
+            }
+
+            oObj.focus();
+            oObj.select();
+            alert(mandatoryText);
+
+            setTimeout(function () { focusOnFailed(objid) }, 1);
+            return false;
+        }
+    }
+
+    //Validate if needed
+    if (valType != '' && valType != 'setNumeric') {
+        if (validate(valType, objid, message) == false) {
+            stopEvent(ev);
+            setTimeout(function () { focusOnFailed(objid) }, 1);
+            return false;
+        }
+    }
+
+    if (valType == 'setNumeric') {
+        if (setNumeric(objid, decimals, message) == false) {
+            stopEvent(ev);
+            setTimeout(function () { focusOnFailed(objid) }, 1);
+            return false;
+        }
+    }
+
+
+    //Submit, because this is a change
+    if (hitServer) {
+        execForm(ev, bSingle);
+    }
+
+    return true;
+}
+
+
+//================================================
+//focusOnFailed
+//================================================
+function focusOnFailed(sObjID) {
+    oObj = document.getElementById(sObjID);
+    try {
+        oObj.value = unescape(oObj.getAttribute("lastVal"));
+
+        if (oObj.getAttribute("lastVal") === null) {
+            oObj.value = '';
+        }
+    } catch (excp) {
+
+    }
+    oObj.focus();
+    oObj.select();
+}
+
+//================================================
+//mvLastCellBlur
+//================================================
+function mvLastCellBlur(valType, objid, message, e, decimals, hitServer, mandatory, mandatoryText) {
+
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    if ($('<div>').append($('#' + objid).clone()).html().indexOf('checkKeyTAB') > 0) {
+        if (getElmSelectedVal(evElm) == "") {
+            return false;
+        }
+    }
+
+    //Change? 	TAB Press?
+    var elmChanged = evElm.getAttribute("changed");
+    var elmTABpressed = evElm.getAttribute("tabPressed");
+
+
+    //Defaults
+    if (elmChanged == null) {
+        evElm.setAttribute("changed", false);
+        elmChanged = false;
+    }
+
+    if (elmTABpressed == null) {
+        evElm.setAttribute("tabPressed", false);
+        elmTABpressed = false;
+    }
+
+    var elmChanged = (elmChanged === 'true');
+    var elmTABpressed = (elmTABpressed === 'true');
+
+
+    //If there is no change and not the last cell then don't fire
+    if (getNextMVfield(evElm, 40) != null && elmChanged == false) {
+        return false;
+    }
+
+
+    //If there is a change and not the last cell then fire change
+    if (getNextMVfield(evElm, 40) != null && elmChanged == true) {
+        elmChanged = true;
+        elmTABpressed = false;
+    }
+
+
+    //Reset source element attributes
+    evElm.setAttribute("tabPressed", false);
+    evElm.setAttribute("changed", false);
+
+    var elmLastVal = unescape(evElm.getAttribute("lastVal"));
+
+    //Check if mandatory
+    if (mandatory) {
+        if (evElm.value == "" && String(elmLastVal).length > 0) {
+            stopEvent(ev);
+            evElm.focus();
+            evElm.select();
+            alert(mandatoryText);
+            setTimeout(function () { focusOnFailed(evElm.id) }, 1);
+            return false;
+        }
+    }
+
+    //Validate if needed
+    if (valType != '' && valType != 'setNumeric') {
+        if (validate(valType, objid, message) == false) {
+            stopEvent(ev);
+            setTimeout(function () { focusOnFailed(objid) }, 1);
+            return false;
+        }
+    }
+
+    if (valType == 'setNumeric') {
+        if (setNumeric(objid, decimals, message) == false) {
+            stopEvent(ev);
+            setTimeout(function () { focusOnFailed(objid) }, 1);
+            return false;
+        }
+    }
+
+
+    //Raise the event
+    if (elmChanged == false && elmTABpressed == false) {
+        return true;
+    }
+
+    if (elmChanged == false && elmTABpressed == true) {
+        genericEventCall(evElm.id, "tabAddRow");
+        return true;
+    }
+
+    if (elmChanged == true && elmTABpressed == false) {
+        genericEventCall(evElm.id, "change");
+        return true;
+    }
+
+
+    if (elmChanged == true && elmTABpressed == true) {
+        genericEventCall(evElm.id, "tabAddRowChange");
+        return true;
+    }
+
+    return true;
+
+}
+
+
+//================================================
+//storeTAB
+//================================================
+function storeTAB(e) {
+
+    var eobj = getEvent(e);
+
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    //doTabs(evElm);
+
+    var myKeyCode = -1;
+
+    try {
+        myKeyCode = e.keyCode;
+    } catch (excp) {
+        myKeyCode = e.which;
+    }
+
+    //UP-DOWN KEYS triggers up down events
+    if (myKeyCode == 38 || myKeyCode == 40) {
+        //mvKey(ev);
+        return false;
+    }
+
+    if (ev.shiftKey != true && myKeyCode == 9) {
+        evElm.setAttribute("tabPressed", true);
+        var nextField = getNextMVfield(evElm, myKeyCode);
+
+        if (nextField == null) {
+            stopEvent(e);
+            evElm.blur();
+        }
+        return false;
+    }
+
+}
+
+//================================================
+//checkKeyTAB
+//================================================
+function checkKeyTAB(e) {
+    hideDBHelp();
+
+    /// blankKey event when the first input cell in a row is tabbed away from without any entry (ie, blank). /////
+    var eobj = getEvent(e);
+
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    //doTabs(evElm);
+
+    var myKeyCode = -1;
+
+    try {
+        myKeyCode = e.keyCode;
+    } catch (excp) {
+        myKeyCode = e.which;
+    }
+
+    //UP-DOWN KEYS triggers up down events
+    if (myKeyCode == 38 || myKeyCode == 40) {
+        //exit if combo
+        if (evElm.type == 'select-one' || evElm.type == 'select-multiple') {
+            return false;
+        }
+
+        //mvKey(ev);
+        return false;
+    }
+
+    if (e.shiftKey) {
+        return false;
+    }
+
+    if (myKeyCode != 9) {
+        return false;
+    }
+
+
+    if (getElmSelectedVal(evElm) == "") {
+
+        evElm.setAttribute("tabPressed", false);
+        evElm.setAttribute("changed", false);
+        stopEvent(e);
+        genericEventCall(evElm.id, "blankKey");
+        return false;
+    }
+
+}
+
+
+//================================================
+//storeChange
+//================================================
+function storeChange(e) {
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    evElm.setAttribute("changed", true);
+    return false;
+}
+
+
+//================================================
+//mvKey
+//================================================
+function mvKey(e) {
+
+    var eobj = getEvent(e);
+
+    var ev = eobj[0];
+    var evElm = eobj[1];
+
+    var myKeyCode = -1;
+
+    try {
+        myKeyCode = e.keyCode;
+    } catch (excp) {
+        myKeyCode = e.which;
+    }
+
+    if (!(myKeyCode == 38 || myKeyCode == 40)) {
+        return false;
+    }
+
+
+    var nextField = getNextMVfield(evElm, myKeyCode);
+
+
+    if (nextField != null) {
+        nextField.focus();
+        try {
+            nextField.select();
+        } catch (excp) {
+        }
+    }
+
+}
+
+//================================================
+//getNextMVfield
+//================================================
+function getNextMVfield(evElm, iKeyCode) {
+
+    var v = evElm.id.split('z');
+    var myRow = v[2];
+    var myCol = v[3];
+
+    if (iKeyCode == 38) {  //40=keyDown, 38=KeyUP
+        v[2] = parseInt(myRow) - 1;
+    } else {
+        v[2] = parseInt(myRow) + 1;
+    }
+
+    var nextID = v.join('z');
+    var nextField;
+
+    try {
+        nextField = document.getElementById(nextID);
+    } catch (excp) {
+        nextField = null;
+    }
+
+    if (nextField != null) {
+        if (nextField.parentNode.parentNode.style.display == 'none') {
+            nextField = null;
+        }
+    }
+    return nextField;
+}
+
+
+
+//================================================
+//Predictive Text
+//================================================
+
+var dbSendKeysFn = debounce(function () {
+    sendKeysExec();
+}, 350);
+
+
+
+function sendKeys(e) {
+
+    var eobj = getEvent(e);
+
+    var ev = eobj[0];
+    var evElm = eobj[1];
+    lastEvType = ev.type;
+    lastEvSrc = evElm.id;
+    lastFocusID = lastEvSrc;
+
+
+    //Exit if TAB pressed (the blur event will catch it)
+    var myKeyCode = -1;
+    try {
+        myKeyCode = e.keyCode;
+    } catch (excp) {
+        myKeyCode = e.which;
+    }
+    if (myKeyCode == 9) {
+        return false;
+    }
+
+    //Exit on space character (because the word is being trimmed somewhere and the space between words are being lost)
+    if (myKeyCode == 32 || myKeyCode == 16 || myKeyCode == 17 || myKeyCode == 18) {
+        return false;
+    }
+
+    dbSendKeysFn();
+
+}
+
+
+//================================================
+//sendKeysExec
+//================================================
+function sendKeysExec() {
+
+
+    var myVal = document.getElementById(lastEvSrc).value;
+
+    if (isBlocked == true) {
+        return false;
+    }
+
+    var fieldXML = fieldToXML(lastEvSrc, lastEvType, lastEvSrc);
+    //positionCenter();
+
+    //work-around?
+    if (lastEvSrc != lastFocusID) {
+        if (lastFocusID != null && (lastFocusID.length > 0)) {
+            lastEvSrc = lastFocusID;
+        } else {
+            lastFocusID = lastEvSrc;
+        }
+    }
+
+    //NOT USED --- setTimeout(function () { execFormExec(fieldXML, lastEvSrc, lastEvType, true) }, 2000);
+    execFormExec(fieldXML, lastEvSrc, lastEvType, true, '', true, lastEvSrc);
+
+
+    return true;
+
+}
+
+//================================================
+//tooltip help
+//==============================================
+window.onhelp = function () {
+    return false;
+}
+
+$(document).unbind('mouseover').bind('mouseover', function (event) {
+
+    var eobj = getEvent(event);
+    var evElm = eobj[1];
+
+    if ($(evElm).attr('help') == 'yes') {
+        getHelp(event);
+    }
+
+});
+
+$(document).unbind('mouseout').bind('mouseout', function (event) {
+
+    if (event.target.id == "dbToolTip") {
+        hideDBHelp();
+    }
+});
+
+
+
+function getHelp(e) {
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+    lastEvType = ev.type;
+    lastEvSrc = evElm.id;
+    if (lastEvSrc.length > 0) {
+        stopEvent(e);
+        genericEventCall(lastEvSrc, 'DBGETHELP', true);
+    }
+}
+
+
+function showDBHelp(sHelp) {
+    if (sHelp.length < 1) {
+        return true;
+    }
+
+    $myref = $(document.getElementById(lastEvSrc));
+
+    var leftPos = $myref[0].getBoundingClientRect().left + $(window)['scrollLeft']();
+    var topPos = $myref[0].getBoundingClientRect().top + $(window)['scrollTop']();
+    $("#dbToolTip").html(sHelp);
+    $("#dbToolTip").css("display", "block");
+    $("#dbToolTip").css("left", leftPos + "px");
+
+    var myBottom = $myref[0].getBoundingClientRect().top + $myref.outerHeight() + 6 + $("#dbToolTip").outerHeight();
+
+    var remainingTop = $myref[0].getBoundingClientRect().top - $("#dbToolTip").outerHeight() - 3;
+    var remainingBottom = $(window).innerHeight() - myBottom - 30;
+
+    if (remainingBottom < 0 && remainingTop > -1) {
+        $("#dbToolTip").css("top", (topPos - 3 - $("#dbToolTip").outerHeight()) + "px");
+    } else {
+        $("#dbToolTip").css("top", topPos + $myref.height() + 6 + "px");
+    }
+
+}
+
+function hideDBHelp() {
+    $("#dbToolTip").css("display", "none");
+}
+
+
+//================================================
+//topMenuActive  - highlights selected top menu item
+//================================================
+function topMenuActive() {
+
+    //hilite active top menu item
+    $("#menu > li").unbind('click').bind('click', function (event) {
+        $("#menu > li").removeClass("activeTop");
+        $(this).addClass("activeTop");
+
+    });
+
+    //hide drop down on click
+    $("#menu li li a").unbind('click').bind('click', function (event) {
+        var $a = $(this).parent().parent();
+        $a.css('display', 'none');
+        setTimeout(function () { $a.css('display', 'block'); }, 100);
+    });
+}
+
+
+//================================================
+//cancelBlur;
+//================================================
+var cancelBlur = false;
+var predictDIV;
+var predictText;
+function predictBlur(e) {
+    var eobj = getEvent(e);
+    var ev = eobj[0];
+    var evElm = eobj[1];
+    lastEvType = ev.type;
+    lastEvSrc = evElm.id;
+
+    if (cancelBlur) {
+        stopEvent(e);
+        cancelBlur = false;
+        return true;
+    }
+
+
+
+
+    predictText = evElm.id;
+    predictDIV = document.getElementById($(evElm).attr('prediv')); //document.getElementById('rdesignbaisdropv1');
+
+    if (!evElm.hasAttribute('fireonblank')) {
+        if (evElm.value.length < 1) {
+            stopEvent(e);
+            cancelBlur = false;
+            hidePredict();
+            return true;
+        }
+    }
+
+    genericEventCall(predictText, "blur", true)
+}
+
+
+//================================================
+//predictDivMouse
+//================================================
+function predictDivMouse(e) {
+    cancelBlur = true;
+    return true;
+}
+
+
+//================================================
+//hidePredict
+//================================================
+function hidePredict() {
+
+    try {
+        if (predictDIV) {
+            if (predictDIV.style.display != "none") {
+                cancelBlur = false;
+                // predictDIV.style.display = "none"; <<db8>>
+            }
+        }
+    } catch (excp) {
+        console.log("err-hidepredict:" + excp.toString());
+    }
+}
+
+
+//================================================
+//HTML Editor Callback
+//================================================
+function htmlComplete() {
+    setTimeout(htmlCompleteExec, 100)
+}
+
+
+//================================================
+//htmlCompleteExec
+//================================================
+function htmlCompleteExec() {
+    $('#myModalcover').css('display', 'none');
+    //htmlContent = htmlContent.replace(/\s+/g, " ");
+    //htmlContent = htmlContent.replace(/;   /g, ";\n");
+    //var vHTMLOk = "htmlCOMPLETE:" + htmlKey + ";" + htmlResult + ";<![CDATA[" + htmlContent + "]]>";
+    var vHTMLOk = "htmlCOMPLETE:" + htmlKey + ";" + htmlResult + ";" + htmlContent;
+    genericEventCall("htmlCOMPLETE", vHTMLOk);
+    htmlContent = "";
+    htmlKey = "";
+    htmlResult = "";
+
+}
+
+//================================================
+//HTML Editor Launch
+//================================================
+function openHTMLEditor(inputParams) {
+    var htmlFeatures = "";
+    //usage: openHTMLEditor(ckKey;ckModal;ckTitle;ckFeatures)
+    var vhtmlParams = String(inputParams).split(';');
+
+    var ckKey = vhtmlParams[0];
+    var ckModal = vhtmlParams[1];
+    childWindowTitle = vhtmlParams[2];
+    var ckFeatures = vhtmlParams[3];
+
+    if (ckModal == 'true') {
+        $('#myModalcover').css('display', 'block');
+    }
+
+    if (ckFeatures == "MAX") {
+        var myTop = screen.height * 0.05; // (screen.height - viewportHeight)/2;
+        var myLeft = screen.width * 0.05; //(screen.width - viewportWidth)/2;
+        var myW = screen.width * 0.9;
+        var myH = screen.height * 0.85;
+        ckFeatures = "toolbar=1,scrollbars=1,location=1,status=1,menubar=1,resizable=1,top=" + myTop + ",left=" + myLeft + ",height=" + myH + ",width=" + myW;
+    } else {
+        ckFeatures == '';
+    }
+
+    rdNavigating = true;
+
+    if (ckFeatures == '') {
+        window.open("htmlEditor.aspx?r=" + Math.random() + "&ckKey=" + ckKey, "_blank");
+    } else {
+        window.open("htmlEditor.aspx?r=" + Math.random() + "&ckKey=" + ckKey, "_blank", ckFeatures);
+    }
+
+}
+
+
+//================================================
+//rtf Editor Callback
+//================================================
+function rtfComplete() {
+    setTimeout(rtfCompleteExec, 100)
+}
+
+
+//================================================
+//rtfCompleteExec
+//================================================
+function rtfCompleteExec() {
+    $('#myModalcover').css('display', 'none');
+    //rtfContent = rtfContent.replace(/\s+/g, " ");
+    //rtfContent = rtfContent.replace(/;   /g, ";\n");
+    //var vrtfOk = "rtfComplete:" + rtfKey + ";" + rtfResult + ";<![CDATA[" + rtfContent + "]]>";
+    var vrtfOk = "rtfComplete:" + rtfKey + ";" + rtfResult + ";" + rtfContent;
+    genericEventCall("rtfComplete", vrtfOk);
+    rtfContent = "";
+    rtfKey = "";
+    rtfResult = "";
+
+}
+
+//================================================
+//rtf Editor Launch
+//================================================
+function openrtfEditor(inputParams) {
+    var rtfFeatures = "";
+    //usage: openrtfEditor(rtfKey;rtfModal;rtfTitle;rtfFeatures)
+    var vrtfParams = String(inputParams).split(';');
+
+    var rtfKey = vrtfParams[0];
+    var rtfModal = vrtfParams[1];
+    childWindowTitle = vrtfParams[2];
+    var rtfFeatures = vrtfParams[3];
+
+    if (rtfModal == 'true') {
+        $('#myModalcover').css('display', 'block');
+    }
+
+    if (rtfFeatures == "MAX") {
+        var myTop = screen.height * 0.05; // (screen.height - viewportHeight)/2;
+        var myLeft = screen.width * 0.05; //(screen.width - viewportWidth)/2;
+        var myW = screen.width * 0.9;
+        var myH = screen.height * 0.85;
+        rtfFeatures = "toolbar=1,scrollbars=1,location=1,status=1,menubar=1,resizable=1,top=" + myTop + ",left=" + myLeft + ",height=" + myH + ",width=" + myW;
+    } else {
+        rtfFeatures == '';
+    }
+
+    rdNavigating = true;
+    if (rtfFeatures == '') {
+        window.open("dbnetrtf/rtfeditor.aspx?r=" + Math.random() + "&rtfKey=" + rtfKey, "_blank");
+    } else {
+        window.open("dbnetrtf/rtfeditor.aspx?r=" + Math.random() + "&rtfKey=" + rtfKey, "_blank", rtfFeatures);
+    }
+
+}
+
+
+//================================================
+//externalCompleteExec
+//================================================
+function externalCompleteExec() {
+    $('#myModalcover').css('display', 'none');
+    $('#winMessage').css('display', 'none');
+
+    genericEventCall("external", "EXTERNALCLOSED");
+}
+
+function resumeExternal() {
+    clearInterval(externalTimer);
+    $('#myModalcover').css('display', 'none');
+}
+
+//================================================
+//external Launch
+//================================================
+function openExternalSite(extUrl) {
+
+    //next line is to be done by datacomp
+    extUrl = extUrl.replace(/&amp;/g, "&");
+
+    $('#myModalcover').css('display', 'block');
+    $('#winMessage').css('box-shadow', '5px 5px 3px #ccc');
+    $('#winMessage').css('color', '#ffffff');
+    $('#winMessage').css('background-color', '#336699');
+    $('#winMessage').css('display', 'block');
+
+    var myB = "#dbBackGround1";
+
+    for (i = 99; i > 0 ; i--) {
+        if ($("#dbBackGround" + i.toString()).is(':visible')) {
+            myB = "#dbBackGround" + i.toString()
+            break;
+        }
+    }
+
+    positionObject($('#winMessage')[0], myB);
+
+    rdNavigating = true;
+
+    window.open(extUrl, "_blank"); //, "full-screen=yes");
+
+}
+
+function paydockComplete(sRes) {
+    $('#myModalcover').css('display', 'none');
+    $('#winMessage').css('display', 'none');
+
+    genericEventCall("paydock", sRes);
+}
+
+function paymentComplete(sRes) {
+    $('#myModalcover').css('display', 'none');
+    $('#winMessage').css('display', 'none');
+
+    genericEventCall("payway", sRes);
+}
+
+
+
+
+
+
+//================================================
+//openInternal: opens an internal page 
+//================================================
+function openInternal(internalPageRelativePath) {
+    //e.g.   openInternal("codeEditor/codeEditor.aspx")    
+
+    var qstring = location.search + location.hash
+
+    if (qstring.length > 0 && internalPageRelativePath.indexOf("?") > -1) {
+        qstring = "&" + qstring.substring(1);
+    }
+
+    rdNavigating = true;
+
+    window.open(internalPageRelativePath + qstring);
+}
+
+//================================================
+//openExternal: opens an external web site (encodes return url).
+//================================================
+function openExternal(extUrl, returnUrl) {
+    //e.g.   extUrl = http://www.domain.com?a=3&b=5&returnurl=   [note that it ends in returnurl=.   returnurl is the variable name required by the ext web site and can be different for each site]
+
+    rdNavigating = true;
+
+    var myUrl = extUrl + encodeURIComponent(returnUrl);
+    window.location.assign(myUrl);
+}
+
+
+//================================================
+//getMyTitle: The child windows opened using window.open
+//gets its title from this.  On setting it, childWindowTitle is cleared
+//================================================
+function getMyTitle() {
+    var s = childWindowTitle;
+    childWindowTitle = '';
+    return s;
+}
+
+
+//================================================
+//File Upload
+//================================================
+function showUpload() {
+
+    //set the inside of the modal window 
+    //var jsFileLocation = $('script[src*=ajxw3c]').attr('src');  // the js file path
+    //jsFileLocation = jsFileLocation.replace('ajxw3c.js', '');   // the js folder path
+    //$("#modalWin").html("<iframe id='uplFrame' name='uplFrame' style='overflow:hidden; width: 580px; height: 400px; border-style: none' src='"+jsFileLocation+"uploader/upload.aspx?r='" + Math.random() + "/>")
+    $("#modalWin").html("<iframe id='uplFrame' name='uplFrame' style='overflow:hidden; width: 580px; height: 400px; border-style: none' src='uploader/upload.aspx?r='" + Math.random() + "/>")
+
+    //open modal window
+    $("#modalWin").dialog(
+        {
+            modal: true,
+            width: 580,
+            height: 406,
+            resizable: false,
+            title: 'File Upload',
+            open: function (event, ui) {
+                $('.ui-dialog').css('z-index', 9000);
+                $('.ui-widget-overlay').css('z-index', 8000);
+                //fix the bloody jq modal close button
+                var $b = $('div[aria-describedby="modalWin"]').find("button");
+                $b.css("background-color", "transparent");
+                $b.css("text-indent", "-9999px");
+
+            },
+            close: function () { UploadComplete(); },
+        }); //.parent('.ui-dialog').css('zIndex', 9999);
+}
+
+
+//================================================
+//UploadComplete
+//================================================
+function UploadComplete() {
+    setTimeout("UploadCompleteExec()", 1);
+}
+
+
+//================================================
+//UploadCompleteExec
+//================================================
+function UploadCompleteExec() {
+
+    if (typeof uploadError == "undefined") {
+        uploadError = '1';
+        uploadedFile = 'Error'
+    }
+
+    if (uploadedFile == undefined || uploadedFile == "undefined" || uploadedFile == "") {//upload cancelled
+        return true;
+    }
+
+    //e.g: "0*1*1|a.gif*b.jpg*c.png"    
+    var vUPLOADOk = uploadError + "|" + uploadedFile;
+    genericEventCall("UPLOADCOMPLETE", xml_encode(vUPLOADOk));
+    uploadedFile = "";
+    uploadError = "";
+}
+
+//================================================
+//closeUploader
+//================================================
+function closeUploader() {
+    $("#modalWin").dialog('close');
+
+}
+
+//================================================
+//Helper Functions
+//================================================
+function getEvent(e) {
+
+    if (window.event) {
+        var e = window.event;
+        evtElm = e.srcElement;
+    } else {
+        evtElm = e.target;
+    }
+    return [e, evtElm];
+}
+
+
+//================================================
+//stopEvent
+//================================================
+function stopEvent(e) {
+    if (!e) var e = window.event;
+
+    try { e.cancelBubble = true; } catch (excp) { };
+
+    try { e.returnValue = false; } catch (excp) { };
+
+    if (e.preventDefault) e.preventDefault();
+
+    if (e.stopPropagation) e.stopPropagation();
+
+    return false;
+}
+
+//================================================
+//fireEventOnChange
+//================================================
+function fireEventOnChange(node) {
+    if (document.createEvent) {
+        var evt = document.createEvent('UIEvents');
+        evt.initEvent('change', true, false);
+        node.dispatchEvent(evt);
+    } else if (document.createEventObject) {
+        node.fireEvent('onchange');
+    } else if (typeof node.onchange == 'function') {
+        node.onchange();
+    }
+}
+
+
+//================================================
+//InStr
+//================================================
+function InStr(str, substr, start) {
+    var oStr = new String(str);
+    return oStr.indexOf(substr, start);
+}
+
+
+//================================================
+//Mid
+//================================================
+function Mid(str, start, len) {
+    if (start < 0 || len < 0) return "";
+    var iEnd, iLen = String(str).length;
+    if (start + len > iLen) {
+        iEnd = iLen;
+    }
+    else {
+        iEnd = start + len;
+    }
+    return String(str).substring(start, iEnd);
+}
+
+
+//================================================
+//isMandatory
+//================================================
+function isMandatory(strString) {
+
+    if (isRD) {
+        return true;
+    }
+
+    if (trim(strString) == '') {
+        return false;
+    } else {
+        return true;
+    }
+
+}
+
+
+//================================================
+//stripCharsInBag
+//================================================
+function stripCharsInBag(s, bag) {
+    var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++) {
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+//================================================
+//daysInFebruary
+//================================================
+function daysInFebruary(year) {
+    // February has 29 days in any year evenly divisible by four,
+    // EXCEPT for centurial years which are not also divisible by 400.
+    return (((year % 4 == 0) && ((!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28);
+}
+
+//================================================
+//DaysArray
+//================================================
+function DaysArray(n) {
+    for (var i = 1; i <= n; i++) {
+        this[i] = 31
+        if (i == 4 || i == 6 || i == 9 || i == 11) { this[i] = 30 }
+        if (i == 2) { this[i] = 29 }
+    }
+    return this
+}
+
+
+//================================================
+//trim
+//================================================
+function trim(fld) {
+    var result = "";
+    var c = 0;
+    for (i = 0; i < fld.length; i++) {
+        if (fld.charAt(i) != " " || c > 0) {
+            result += fld.charAt(i);
+            if (fld.charAt(i) != " ") c = result.length;
+        }
+    }
+    return result.substr(0, c);
+}
+
+
+//================================================
+//dbLower
+//================================================
+function dbLower(sElm) {
+    try {
+        document.getElementById(sElm).value = document.getElementById(sElm).value.toLowerCase();
+    } catch (excpt) {
+        document.getElementById(sElm).innerHTML = document.getElementById(sElm).innerHTML.toLowerCase();
+    }
+    return true;
+}
+
+
+//================================================
+//dbUpper
+//================================================
+function dbUpper(sElm) {
+
+    try {
+        document.getElementById(sElm).value = document.getElementById(sElm).value.toUpperCase();
+    } catch (excpt) {
+        document.getElementById(sElm).innerHTML = document.getElementById(sElm).innerHTML.toUpperCase();
+    }
+    return true;
+}
+
+//================================================
+//checkLength
+//================================================
+function checkLength(obj, maxlimit) {
+    if (obj.value.length > maxlimit) {
+        obj.value = obj.value.substring(0, maxlimit);
+    }
+}
+
+//================================================
+//positionCenter (spinner)
+//================================================
+
+function positionCenter(evntSrc) {
+
+
+    if (evntSrc != "v8loadingoverlay") {
+        if ($("#v8loadingoverlay").attr("loadingtext") != undefined) {
+            return true;
+        };
+    }
+
+    if (spinnerDelay > 0) {
+        loaderTimer = setTimeout(function () { posCentExec(evntSrc) }, spinnerDelay);
+    } else {
+        posCentExec(evntSrc);
+    }
+
+
+}
+
+
+function posCentExec(evntSrc) {
+    try {
+
+        //var obj = $(".dbajxloaderv8")[0]; //document.getElementById("ajxImageFrame");
+        var obj = $(".dbaisloader")[0]; //document.getElementById("ajxImageFrame");
+        //obj.style.width = "90px"
+        //obj.style.height = "90px"
+        //obj.src = "images/ajxgray.gif"
+
+        var myB = "";
+
+        for (i = 99; i > 0 ; i--) {
+            if ($("#dbBackGround" + i.toString()).is(':visible')) {
+                myB = "#dbBackGround" + i.toString()
+                break;
+            }
+        }
+
+        if (myB == "") {
+            myB = window;
+        }
+
+        ///blue/gi, "red" /\|/g
+
+        if (evntSrc != undefined && $("#" + evntSrc.replace(/\|/g, "\\|")).attr("loadingtext") != undefined) {
+            $(".dbaisloadertext").text($("#" + evntSrc.replace(/\|/g, "\\|")).attr("loadingtext"));
+            $(".dbaisloadertext").show();
+        } else {
+            $(".dbaisloadertext").hide();
+        }
+
+        if ($("#dmain").length > 0) {//rd and main
+
+            if ($("#dmain").outerHeight() == 0) {
+                return true;
+            }
+
+            obj.style.display = "block";
+
+            var minW = Math.min($("#dmain").outerWidth(), $(window).width());
+            $(obj).css("left", (parseInt($("#dmain").offset().left) + (minW / 2) - ($(obj).outerWidth() / 2)) + "px");
+
+            var dnv = $("#dnav").outerHeight();
+            if (dnv == undefined) {
+                dnv = 0;
+            }
+
+            var minH = Math.min($("#dmain").outerHeight(), $(window).height());
+            $(obj).css("top", (dnv + (minH / 2 - $(obj).outerHeight() / 2)) + "px");
+
+
+            return true;
+        }
+
+        obj.style.display = "block";
+        positionObject(obj, myB)
+
+        return true;
+    } catch (excp) {
+        return true;
+    }
+}
+
+function showRDLoading() {
+    $(".dbaisloader").position({
+        of: $(window),
+        my: 'center center',
+        at: 'center center'
+    });
+    $(".dbaisloader").show();
+
+}
+
+
+function showSpinner(spinnerText, bOverlayOn) {
+    if (bOverlayOn) {
+        $("#myModalcover").show();
+    }
+    $("#v8loadingoverlay").attr("loadingtext", spinnerText);
+    positionCenter("v8loadingoverlay");
+}
+
+function hideSpinner() {
+    $("#myModalcover").hide();
+    $("#v8loadingoverlay").removeAttr("loadingtext");
+    hideLoader();
+}
+
+function hideLoader() {
+    if ($("#v8loadingoverlay").attr("loadingtext") == undefined) {
+        $(".dbaisloader")[0].style.display = "none";
+    };
+}
+
+//================================================
+//GetWidth
+//================================================
+function GetWidth() {
+    var x = 0;
+    if (self.innerHeight) {
+        x = self.innerWidth;
+    }
+    else if (document.documentElement && document.documentElement.clientHeight) {
+        x = document.documentElement.clientWidth;
+    }
+    else if (document.body) {
+        x = document.body.clientWidth;
+    }
+    return x;
+}
+
+
+//================================================
+//GetHeight
+//================================================
+function GetHeight() {
+    var y = 0;
+    if (self.innerHeight) {
+        y = self.innerHeight;
+    }
+    else if (document.documentElement && document.documentElement.clientHeight) {
+        y = document.documentElement.clientHeight;
+    }
+    else if (document.body) {
+        y = document.body.clientHeight;
+    }
+    return y;
+}
+
+
+//================================================
+//AjxSetClass
+//================================================
+function AjxSetClass(elementID, sClass) {
+    try {
+        document.getElementById(elementID).className = sClass;
+    } catch (excp) {
+
+    }
+}
+
+
+
+function getShortDateFormat() {
+    //NOT USED
+    var ds = "02/03/1987";
+    var d = new Date(ds)
+    var s = d.toLocaleDateString().trim();
+    var mydelim = "";
+
+    if (s.indexOf("/") > -1) {
+        mydelim = "/";
+    } else if (s.indexOf(".") > 0) {
+        mydelim = ".";
+    } else if (s.indexOf("-") > 0) {
+        mydelim = "-";
+    } else if (s.indexOf(" ") > 0) {
+        mydelim = " ";
+    };
+
+    if (mydelim == " ") {
+        s = s.replace("   ", " ");
+        s = s.replace("  ", " ");
+    } else {
+        s = s.replace(" ", "");
+    }
+
+    var s1 = "yyyy";
+    var s2 = "yyyy";
+    var s3 = "yyyy";
+
+    var v = s.split(mydelim);
+    if (v[0] == d.getMonth() + 1) {
+        s1 = "mm"
+    } else if (v[1] == d.getMonth() + 1) {
+        s2 = "mm"
+    } else {
+        s3 = "mm"
+    }
+
+
+    if (v[0] == d.getDate()) {
+        s1 = "dd"
+    } else if (v[1] == d.getDate()) {
+        s2 = "dd"
+    } else {
+        s3 = "dd"
+    }
+
+    sdf = s1 + mydelim + s2 + mydelim + s3;
+
+    return sdf;
+
+}
+//================================================
+//isDate
+//================================================
+function isDate(objid, bPreventChange) {
+    //strDateMask can be set globally
+    var dtStr = document.getElementById(objid).value;
+
+    var d = '';
+    var m = '';
+    var y = '';
+
+    var bFound = false;
+
+    //dformat
+    var dformat = "dmy"
+    var maskDelmiter = "/"
+    try {
+        if (strDateMask.substring(0, 1) == "m") {
+            dformat = "mdy";
+        }
+
+        if (strDateMask.indexOf(" ") > 0) {
+            maskDelmiter = " ";
+        }
+
+        if (strDateMask.indexOf("-") > 0) {
+            maskDelmiter = "-";
+        }
+    } catch (e) { };
+
+
+    var myDate = new Date();
+
+    //exit if null 
+    if (dtStr == null) { return true; }
+    if (dtStr.length == 0) { return true; }
+
+    //trim
+    dtStr = dtStr.replace(/^\s+|\s+$/g, "");
+
+
+    //T or t ?
+    if (dtStr == 'T' || dtStr == 't') {
+        myDate = new Date();
+        bFound = true;
+    }
+
+    //+
+    if (dtStr.indexOf("+") == 0) {
+        var dLen = dtStr.length;
+        var daysToAdd = dtStr.substring(1);
+        if (String(daysToAdd).length == 0) {
+            daysToAdd = "1";
+        }
+        myDate.setDate(myDate.getDate() + parseInt(daysToAdd));
+        bFound = true;
+    }
+
+    //-
+    if (dtStr.indexOf("-") == 0) {
+        var dLen = dtStr.length;
+        var daysToAdd = dtStr.substring(1)
+        if (String(daysToAdd).length == 0) {
+            daysToAdd = "1";
+        }
+        myDate.setDate(myDate.getDate() - parseInt(daysToAdd));
+        bFound = true;
+    }
+
+    //NORMAL DATE
+    //determine limiter
+    if (!bFound) {
+        try {
+            var dtCh = "";
+            if (dtStr.indexOf("/") > -1) { dtCh = "/"; }
+            if (dtStr.indexOf(" ") > -1) { dtCh = " "; }
+            if (dtStr.indexOf(".") > -1) { dtCh = "."; }
+            if (dtStr.length > 3 && dtStr.indexOf("-") > -1) { dtCh = "-"; }
+
+            if (dtCh != '') {
+
+                bFound = true;
+
+                //remove multiple spaces
+                dtStr = dtStr.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
+
+
+                //determine date
+                var vDate = dtStr.split(dtCh);
+                try {
+                    d1 = vDate[0];
+                    m1 = vDate[1];
+                    y1 = vDate[2];
+                    if (dformat == 'mdy') {
+                        d1 = vDate[1];
+                        m1 = vDate[0];
+                    }
+                } catch (e) { };
+
+                if (d1.length > 2) {//Check if May-5 by mistake despite strDateMask d-m-y
+                    var monthCheck = getMonthNumber(d1); //expect May->in...5-->out
+                    if (monthCheck.toString().length < 3) {//found month
+                        d1 = m1;
+                        m1 = monthCheck;
+                    }
+                }
+
+
+                m1 = getMonthNumber(m1);
+
+                if (y1 == '' || y1 == null) { y1 = myDate.getFullYear() };
+                if (d1 == '' || d1 == null) { d1 = myDate.getDate() };
+                if (m1 == '' || m1 == null) { m1 = myDate.getMonth() + 1 };
+
+                if (d1.toString().charAt(0) == "0" && d1.length > 1) d1 = d1.toString().substring(1)
+                if (m1.toString().charAt(0) == "0" && m1.length > 1) m1 = m1.toString().substring(1)
+
+
+                if (parseInt(parseFloat(y1))) {
+                    y1 = parseInt(parseFloat(y1));
+                    if (y1 < 1700) {
+                        if (y1 > 40) {
+                            y1 = 1900 + y1;
+                        } else {
+                            y1 = 2000 + y1;
+                        }
+                    }
+                }
+
+                myDate = new Date(parseInt(parseFloat(y1)), m1 - 1, d1);
+
+                //compare the parsed value to calculated
+                var orig = d1 + '/' + m1 + '/' + y1;
+                var d2 = myDate.getDate();
+                var m2 = myDate.getMonth() + 1;
+                var y2 = myDate.getFullYear();
+                var calculated = d2 + '/' + m2 + '/' + y2;
+
+                if (orig != calculated) {
+                    return false;
+                }
+
+            }
+        } catch (excp) {
+            return false;
+        }
+    } //bFound check
+
+    if (!bFound) {
+        return false;
+    }
+
+    //At this point we've got myDate regardless of the input type
+
+
+    //Get date parts
+    d = myDate.getDate().toString();
+    m = (myDate.getMonth() + 1).toString();
+    y = (myDate.getFullYear()).toString();
+
+    if (d.length == 1) d = "0" + d;
+    if (m.length == 1) m = "0" + m;
+
+
+    //Default format or wrt Mask
+    dtStr = d + '/' + m + '/' + y;
+    if (dformat == 'mdy') {
+        dtStr = m + '/' + d + '/' + y;
+    }
+
+    dtStr = dtStr.replace(/\//g, maskDelmiter);
+
+    if (!bPreventChange) { //CHECK ISDATE ONLY, don't make any change 
+        document.getElementById(objid).value = dtStr;
+    }
+
+    return true;
+}
+
+
+
+//================================================
+//getMonthNumber
+//================================================
+function getMonthNumber(strMonth) {
+
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+
+    if (strMonth.length > 2) {
+        strMonth = strMonth.toLowerCase();
+        strMonth = strMonth.substring(0, 3);
+        for (var i = 0; i < 12; i++) {
+            if (month[i].substring(0, 3).toLowerCase() == strMonth) {
+                return i + 1;
+            }
+        }
+    }
+    return strMonth;
+}
+
+
+//================================================
+//dbTimerStart
+//================================================
+function dbTimerStart(msec) {
+    try {
+        window.clearInterval(dbTimer);
+    } catch (excp) {
+
+    }
+    dbTimer = window.setInterval("genericEventCall('dbTimer','timer')", msec);
+}
+
+//================================================
+//dbTimerKill
+//================================================
+function dbTimerKill() {
+
+    try {
+        window.clearInterval(dbTimer);
+    } catch (excp) {
+
+    }
+
+    try {
+        window.clearTimeout(dbTimer);
+    } catch (excp) {
+
+    }
+
+
+
+}
+
+
+//================================================
+//dbTimeoutStart
+//================================================
+function dbTimeoutStart(msec) {
+    try {
+        clearTimeout(dbTimeout);
+    } catch (excp) {
+
+    }
+    dbTimeout = setTimeout("genericEventCall('dbTimeout','timeout')", msec);
+}
+
+//================================================
+//dbTimerKill
+//================================================
+function dbTimeoutEnd() {
+
+    try {
+        clearTimeout(dbTimeout);
+    } catch (excp) {
+
+    }
+
+
+
+}
+
+
+//================================================
+//AjxMouseOver
+//================================================
+function AjxMouseOver(element, imgsrc) {
+    element.src = imgsrc;
+}
+
+
+//================================================
+//AjxMouseOut
+//================================================
+function AjxMouseOut(element, imgsrc) {
+    element.src = imgsrc;
+}
+
+//================================================
+//clearLastFieldFocused
+//================================================
+function clearLastFieldFocused() {
+    lastFocusID = "";
+}
+
+//================================================
+//addFrame
+//================================================
+function addFrame(dbframeid, dbsrc, dbposition, dbtop, dbleft, dbwidth, dbheight, dbcontainer) {
+    var iframe = document.createElement('iframe');
+    iframe.id = dbframeid;
+    iframe.src = dbsrc;
+    iframe.style.position = dbposition;
+    iframe.style.top = dbtop;
+    iframe.style.left = dbleft;
+    iframe.style.width = dbwidth;
+    iframe.style.height = dbheight;
+    document.getElementById(dbcontainer).appendChild(iframe);
+}
+
+//================================================
+//removeFrame
+//================================================
+function removeFrame(dbframeid) {
+    try {
+        document.getElementById(dbframeid).style.display = 'none';
+        document.getElementById(dbframeid).parentElement.removeChild(document.getElementById(dbframeid));
+    } catch (excp) {
+
+    }
+
+}
+
+//================================================
+//clock
+//================================================
+function clock() {
+    var now = new Date();
+    var outStr = padLeft(now.getHours(), 2) + ':' + padLeft(now.getMinutes(), 2) + ':' + padLeft(now.getSeconds(), 2);
+    return outStr.toString();
+}
+
+
+//================================================
+//clientDate
+//================================================
+function clientDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' + mm }
+    var cliDate = dd + '.' + mm + '.' + yyyy;
+    return cliDate;
+}
+
+//================================================
+//padLeft
+//================================================
+function padLeft(nr, n, str) {
+    return Array(n - String(nr).length + 1).join(str || '0') + nr;
+}
+
+
+//================================================
+//simpleEncode
+//================================================
+function simpleEncode(s) {
+    var m = '';
+    for (var i = 0; i < s.length; i++) {
+        m += s.charAt(i) + '-';
+    }
+    return m;
+}
+
+//================================================
+//b64EncodeUnicode
+//================================================
+function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
+
+//================================================
+//moverTimer;
+//================================================
+var moverTimer;
+function msOver(evt, clsName) {
+    clearTimeout(moverTimer);
+    var oID = evt.currentTarget.id;
+    moverTimer = setTimeout(function () { hitMe(oID) }, 500);
+    $("#" + oID).attr('class', clsName);
+}
+
+
+//================================================
+//msOut
+//================================================
+function msOut(evt, clsName) {
+    clearTimeout(moverTimer);
+    var oID = evt.currentTarget.id;
+    $("#" + oID).attr('class', clsName);
+    if ($("#" + oID).attr('active') == 'true') {
+        $("#" + oID).attr('active', 'false');
+        genericEventCall(oID, 'mousehitout');
+    }
+}
+
+//================================================
+//hitMe
+//================================================
+function hitMe(oID) {
+    $("#" + oID).attr('active', 'true');
+    genericEventCall(oID, 'mousehit');
+}
+
+//================================================
+//hasAttr
+//================================================
+$.fn.hasAttr = function (name) {
+    return this.attr(name) !== undefined;
+};
+
+var ajxBusy = false;
+//================================================
+//beforeHit
+//================================================
+function beforeHit(evtSrc, evtType) {
+
+    if (isBlocked) {
+        return false;
+    }
+
+    ///CUSTOM BEFOREHIT
+    var myScrRoot = "";
+    var myClass = "";
+
+    try {
+        myScrRoot = document.getElementById("ScreenRoot").value;
+    } catch (excp) {
+        myScrRoot = ""
+    }
+
+
+
+    try {
+        myClass = $("#" + evtSrc).attr('class');
+    } catch (excp) {
+        myClass = ""
+    }
+
+
+
+
+    try {
+        //if (evtType == "click") { //disable if click
+
+        //    if (!$("#" + evtSrc)[0].hasAttribute("dbhb")) {
+        //        try {
+        //            $("#" + evtSrc).css('pointer-events', 'none');
+        //            $("#" + evtSrc).attr("dbElmDisabled", true);
+        //        } catch (excp) {
+
+        //        }
+        //    }
+        //}
+
+        if (beforeHitCustom(evtSrc, evtType, myClass, myScrRoot)) {
+            return true;	//continue with server hit
+        } else {
+            return false;   //cancel server hit
+        }
+    } catch (excp) {
+
+    }
+
+    return true;
+}
+
+
+//================================================
+//afterHit
+//================================================
+function afterHit(evtSrc, evtType) {
+
+    ///CUSTOM AFTERHIT	
+    var myScrRoot = "";
+    var myClass = "";
+
+    try {
+        myScrRoot = document.getElementById("ScreenRoot").value;
+    } catch (excp) {
+        myScrRoot = ""
+    }
+
+    try {
+        myClass = $("#" + evtSrc).attr('class');
+    } catch (excp) {
+        myClass = ""
+    }
+
+    try {
+        afterHitCustom(evtSrc, evtType, myClass, myScrRoot);
+    } catch (excp) {
+
+    }
+}
+
+function limitOptionWidth() {
+    $.each($('select[dbsellimit]'), function (key, optionElement) {
+        setOptionWidth($(this).attr('id'));
+    });
+
+
+}
+
+function setOptionWidth(elmSelId) {
+
+    if (!document.getElementById(elmSelId).hasAttribute('dbsellimit')) {
+        return true;
+    }
+
+    $.each($('#' + elmSelId + ' option'), function (key, optionElement) {
+
+        var curText = $(optionElement).text();
+        var fSize = $("#" + elmSelId).css("font-size");
+        var fFamily = $("#" + elmSelId).css("font-family");
+        var fWeight = $("#" + elmSelId).css("font-weight");
+
+
+        $(this).attr('title', curText);
+
+        var selwidth = parseInt($(this).parent().innerWidth());
+        if ($('#' + elmSelId).attr("dbsellimit") != "1") {
+            selwidth = parseInt($('#' + elmSelId).attr("dbsellimit"))
+        }
+
+        var elipsText = getOptionText(curText, selwidth, fSize, fFamily, fWeight);
+
+        $(this).text(elipsText);
+
+    });
+
+    $('#' + elmSelId + ' option').change(function () {
+        $(this).attr('title', ($(this).find('option:eq(' + $(this).get(0).selectedIndex + ')').attr('title')));
+    });
+}
+
+
+
+
+function getOptionText(txt, w, fSize, fName, fWeight) {
+
+    w = w * 0.95;
+
+    if (fWeight === undefined)
+        fWeight = "normal";
+
+    var auxDiv = $("<div>").addClass("auxdiv").css({
+        fontFamily: fName,
+        fontSize: parseInt(fSize) + "px",
+        position: "absolute",
+        height: "auto",
+        marginLeft: "-1000px",
+        marginTop: "-1000px",
+        fontWeight: fWeight,
+        width: "auto"
+    })
+    .appendTo($("body"))
+    .html(txt);
+
+    var ww = (auxDiv.width() + 1);
+    var str = txt;
+
+    if (ww > w) {
+        var i = 1, p = 1, u = txt.length, sol = 0;
+
+        while (p <= u) {
+            i = (p + u) >> 1;
+            str = txt.slice(0, i);
+            auxDiv.html(str);
+            ww = (auxDiv.width() + 1);
+            if (ww <= w) {
+                sol = i;
+                p = i + 1;
+            }
+            else u = i - 1;
+        }
+
+        str = txt.slice(0, sol);
+    }
+
+    $(".auxdiv").remove();
+    auxDiv.remove();
+
+    if (str.length < txt.length) {
+        str = str.substring(0, str.length - 4) + "...";
+
+    }
+
+    return str;
+}
+
+//================================================
+//sortByObjectProperty PROTOTYPE
+//================================================
+//Array.prototype.sortByObjectProperty = function (propName, descending) {
+//    return this.sort(function (a, b) {
+//        if (typeof b[propName] == 'number' && typeof a[propName] == 'number') {
+//            return (descending) ? b[propName] - a[propName] : a[propName] - b[propName];
+//        } else if (typeof b[propName] == 'string' && typeof a[propName] == 'string') {
+//            return (descending) ? b[propName] > a[propName] : a[propName] > b[propName];
+//        } else {
+//            return this;
+//        }
+//    });
+//};
+
+
+
+
+
+//function cancelShiftTabOnFirstElm(e) {
+//    //prevent focus movin to the address bar if SHIFT-TAB is pressed and if the element
+//    //is the first element on the form
+
+//    //This applies to SHIFT-TAB only. Otherwise exit.
+//    if (!(e.shiftKey && e.which == 9)) {
+//        return false;
+//    }
+
+//    var $elm = $(e.target);
+//    //must have tab index
+//    if ($elm.attr("tabindex").length < 1) {
+//        return false;
+//    }
+
+//    var myindex = parseInt($elm.attr("tabindex"))
+
+//    $("*[tabindex]").each(function () {
+//        var thisindex = parseInt($(this).attr("tabindex"))
+//        if (thisindex > 0) {
+//            if (thisindex < myindex) {
+//                //there is an element with a smaller tab index so exit without stopping the event
+//                return false;
+//            }
+//        }        
+//    });
+
+//    return true;
+
+//}
+
+function movetofirst(e, inlayerid) {
+
+    try {
+        stopEvent(e);
+    } catch (excp) {
+
+    }
+
+
+    var lowestTabIndex = 32500;
+    var $elm;
+    //find the first focusable element on this layer and focus (triggered by keydown on the last hidden element of this layer)
+    $('[id="' + inlayerid + '"]').find(':focusable').each(function () {
+        if (parseInt($(this).attr('tabindex')) > -1) {
+            if (parseInt($(this).attr('tabindex')) < lowestTabIndex) {
+                lowestTabIndex = parseInt($(this).attr('tabindex'));
+                $elm = $(this);
+            }
+        }
+    });
+
+    if ($elm.length) {
+        if (!$elm[0].hasAttribute('lastmarker')) {
+            $elm.focus();
+        }
+    }
+}
+
+
+function getParameterByName(name, url) {
+    if (url == undefined) {
+        url = window.location.href;
+    }
+
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+
+function enableTheme(bEnable) {
+    if (!bEnable) {
+        $("link[category]").attr("disabled", "true");
+        $("link[href='jq/jqalerts/jquery.alerts.css']").removeAttr("disabled");
+        $("link[href='css/dbthemes.css']").attr("disabled", "true");
+    } else {
+        $("link[category]").removeAttr("disabled");
+        $("link[href='jq/jqalerts/jquery.alerts.css']").attr("disabled", "true");
+        $("link[href='css/dbthemes.css']").removeAttr("disabled");
+    }
+}
+
+function setCSS(category, cssVirPath) {
+    //category = either theme or group
+    //cssVirPath = href of the css file e.g. css/theme/sunset/theme.css 
+    $("link[category='" + category + "']").attr("disabled", "true");
+
+    if ($("link[href='" + cssVirPath + "']").length > 0) {
+        $("link[href='" + cssVirPath + "']").removeAttr("disabled");
+    } else {
+        $('head').append('<link rel="stylesheet" category="theme" type="text/css" href="' + cssVirPath + '">');
+    }
+
+    return true;
+
+}
+
+
+
+
+function addProgressPanel() {
+    var sprogpanel = '<div class="dbprogpanel" style="display:none"></div>'
+    sprogpanel = sprogpanel + '<div class="dbprogpanelcontainer" style="display:none">'
+    sprogpanel = sprogpanel + '<div class="dbprogwait">Processing...</div>';
+    sprogpanel = sprogpanel + '<div class="dbprogouter">';
+    sprogpanel = sprogpanel + '<div class="dbproginner1">';
+    sprogpanel = sprogpanel + '<div class="dbproginner2"></div></div>';
+    sprogpanel = sprogpanel + '</div>';
+    sprogpanel = sprogpanel + '<div id="progbuttonpanel" class="dbprogbuttonpanel"><input onclick="progUpdate(\'\',100);" class="dbprogbutton" type="button" value="Cancel"></div>';
+    sprogpanel = sprogpanel + '</div>';
+    $("body").append(sprogpanel);
+
+
+
+}
+
+var dbprogTimer;
+
+function progUpdate(infile, progperc, DontblockBackground) {
+
+    window.clearTimeout(dbprogTimer);
+    window.clearTimeout(animtimer);
+
+    if (progperc == 100) {
+        $(".dbprogpanel").hide();
+        $(".dbprogpanelcontainer").hide();
+        return;
+    }
+
+    if (progperc == undefined) {
+        progperc = 10;
+    }
+
+    if (progperc < 10) {
+        progperc = 10;
+    }
+
+    if (DontblockBackground) {
+        $(".dbprogpanel").show();
+    } else {
+        $(".dbprogpanel").hide();
+    }
+
+    $(".dbprogpanelcontainer").show();
+
+
+    $(".dbproginner2").css("width", progperc + "%");
+    $(".dbprogwait").text("Processing..." + progperc + "%");
+
+
+
+
+
+    $.ajax({
+        type: "GET",
+        async: true,
+        cache: false,
+        url: "isready.ashx?r=" + Math.random() + "&p=" + infile,
+        success: function (results) {
+            if (results == "OK") {
+                progressReport("OK", infile);
+
+            } else if (results == "FAILED") {
+                progressReport("FAILED", infile);
+
+            } else {
+                progressReport(results, infile);
+            }
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            progressReport("FAILED", infile);
+
+        }
+    });
+
+
+
+}
+
+
+function progressReport(sOperationStatus, infile) {
+
+    $("#progbuttonpanel").show();
+
+    var isContinueOK = false;
+
+    if (sOperationStatus == "OK") { //OK = success
+        $(".dbprogpanel").hide();
+        $(".dbprogpanelcontainer").hide();
+        
+        //setTimeout(function () { window.open(infile, "_blank"); }, 100); // <<DB8>>
+		setTimeout(function () { window.open(infile, "_blank", "popup"); }, 100);
+    } else if (sOperationStatus == "FAILED") {
+        progperc = 100;
+        $(".dbprogpanel").hide();
+        $(".dbprogpanelcontainer").hide();
+        setTimeout(function () { alert("rateDetailspected error occured in building the pdf file.") }, 100);
+
+    } else if (sOperationStatus == "CONTINUE") { //could not read progress, maintain existing progress
+        dbprogTimer = setTimeout(function () { progUpdate(infile, progperc, true) }, 1000);
+
+    } else {//in progress
+
+        try {
+            progperc = parseInt(100 * (parseInt(sOperationStatus.split("/")[0]) / parseInt(sOperationStatus.split("/")[1])));
+
+            if ($.isNumeric(progperc)) {
+                if (progperc > 99) {
+                    progperc = 99
+                }
+
+                if (progperc != 0 && progperc < 10) {
+                    progperc = 10
+                }
+            }
+
+            isContinueOK = true;
+
+        } catch (excp) {
+
+        }
+
+
+        if (isContinueOK) {//a valid % progperc has been received
+            dbprogTimer = setTimeout(function () { progUpdate(infile, progperc, true) }, 1000);
+        } else {
+            progperc = 100;
+            $(".dbprogpanel").hide();
+            $(".dbprogpanelcontainer").hide();
+            setTimeout(function () { alert("rateDetailspected error occured in building the pdf file.") }, 100);
+        }
+    }
+
+
+}
+
+
+var animtimer;
+var animperc = 1;
+function progShow(intext, inpercent, DontblockBackground) {
+    clearTimeout(dbprogTimer);
+    clearTimeout(animtimer);
+
+    if (inpercent < animperc) {
+        inpercent = animperc
+    } else {
+        animperc = inpercent
+    }
+
+
+    $("#progbuttonpanel").hide();
+
+
+
+    if ($.isNumeric(inpercent)) {
+        if (inpercent > 99) {
+            inpercent = 99
+        }
+
+        if (inpercent != 0 && inpercent < 5) {
+            inpercent = 5
+        }
+    } else {
+        inpercent = 5
+    }
+
+    var dur = 200
+
+    if (inpercent > 70) {
+        dur = 1000
+    }
+
+    if (inpercent > 80) {
+        dur = 2000
+    }
+
+    if (inpercent > 90) {
+        dur = 6000
+    }
+
+
+    if (DontblockBackground) {
+        $(".dbprogpanel").show();
+    } else {
+        $(".dbprogpanel").hide();
+    }
+
+
+
+
+    $(".dbprogpanelcontainer").show();
+    $(".dbproginner2").css("width", inpercent + "%");
+    $(".dbprogwait").text(intext + inpercent + "%");
+
+    animperc = animperc + 1
+    animtimer = setTimeout(function () { progShow(intext, animperc, DontblockBackground) }, dur);
+
+
+
+}
+
+function progHide() {
+    clearTimeout(animtimer);
+    $(".dbprogpanel").hide(); $(".dbprogpanelcontainer").hide();
+    animperc = 1;
+}
+
+
+//ONFORM CKEDITOR
+function prepareCK() {
+
+
+    try {
+        if ($("textarea[onformeditor='0']").length > 0) {
+            loadCK();
+        } else {
+            //NO onformeditor found WILL NOT CALL loadCK
+        }
+
+    } catch (excp) {
+        alert(excp)
+    }
+
+}
+
+function loadCK() {
+
+    if ($("#ckscript").length > 0) {
+        //ALREADY LOADED...will call prepareDBCK
+        prepareDBCK();
+        return true;
+    }
+
+    var mysrc = "ckeditor/ckeditor.js"
+
+    var script = document.createElement('script');
+
+    $(script).attr("id", "ckscript")
+
+    script.onload = function () {
+        //script loaded.  will call prepareDBCK
+        prepareDBCK();
+    };
+    script.src = mysrc;
+
+    document.head.appendChild(script);
+
+
+}
+
+
+function prepareDBCK() {
+
+    $("textarea[onformeditor='0'").each(function () {
+
+        var $ck = $(this);
+
+        var ckid = $ck.attr("id");
+
+        //if (!$ck.is(':visible') && !$("#cke_" + ckid).is(':visible')) {
+        if ($("#cke_" + ckid).length == 0) {
+            enableCKFirst($ck, ckid)
+        } else {
+            CKEDITOR.instances[ckid].setData($ck.val());
+            //if ($ck.is(':visible')) {
+            //    $("#cke_" + ckid).show();
+            //} else {
+            //    $("#cke_" + ckid).hide();
+            //}
+        }
+
+    });
+
+}
+
+
+function enableCKFirst($ck, ckid) {
+
+
+
+    var ckheight = -71 + parseInt($ck.outerHeight());
+    if (ckheight < 49) { //71=top and bottom bars, 49= min typing area
+        ckheight = 49;
+    }
+
+    var ckwidth = parseInt($ck.outerWidth()); //.css("width"))
+    if (ckwidth < 350) { //350 = min width that doesn't cause top buttons to wrap
+        ckwidth = 350;
+    }
+
+
+
+    CKEDITOR.config.entities = false;
+    CKEDITOR.config.height = ckheight;
+    CKEDITOR.config.width = ckwidth;
+    CKEDITOR.config.resize_enabled = false;
+
+    CKEDITOR.config.toolbar = [
+       ['Format', 'FontSize', 'Bold', 'Italic', 'Underline', 'TextColor', 'BGColor']
+    ];
+
+
+    CKEDITOR.config.fontSize_sizes = '6/6pt;7/7pt;8/8pt;9/9pt;10/10pt;11/11pt;12/12pt;13/13pt;14/14pt;15/15pt;16/16pt;17/17pt;18/18pt;19/19pt;20/20pt;22/22pt;24/24pt;28/28pt;32/32pt;36/36pt;42/42pt;48/48pt';
+
+    CKEDITOR.config.font_names = 'Consolas/Consolas, monaco, monospace;' +
+    'Arial/Arial, Helvetica, sans-serif;' +
+    'Calibri/Calibri, sans-serif;' +
+    'Comic Sans MS/Comic Sans MS, cursive;' +
+    'Courier New/Courier New, Courier, monospace;' +
+    'Georgia/Georgia, sans-serif;' +
+    'LetterGothic SWC, LetterGothic, sans-serif;' +
+    'Lucida Sans Unicode/Lucida Sans Unicode, Lucida Grande, sans-serif;' +
+    'Tahoma/Tahoma, Geneva, sans-serif;' +
+    'Times New Roman/Times New Roman, Times, serif;' +
+    'Trebuchet MS/Trebuchet MS, Helvetica, sans-serif;' +
+    'Verdana/Verdana, Geneva, sans-serif';
+
+
+    //the default font is set in this
+
+    var dbCssCode = $ck.attr("dbCssCode")
+
+    CKEDITOR.config.contentsCss = "ckeditor/getckcss.ashx?dbCssCode=" + dbCssCode;
+
+
+    CKEDITOR.replace(ckid, { allowedContent: true });
+
+
+    CKEDITOR.on('instanceReady', function (ev) {
+        $("#cke_" + ckid).css("position", "absolute");
+        $("#cke_" + ckid).css("top", parseInt($ck.css("top")));
+        $("#cke_" + ckid).css("left", parseInt($ck.css("left")));
+        $("#cke_" + ckid).css("z-index", parseInt($ck.css("z-index")) + 1);
+
+        //if ($ck.is(':visible')) {
+        //    $("#cke_" + ckid).show();
+        //} else {
+        //    $("#cke_" + ckid).hide();
+        //}
+
+        setTimeout(function () {
+            if ($("#" + ckid).length == 0) {
+                try {
+                    CKEDITOR.instances[ckid].destroy();
+                } catch (excp) {
+
+                }
+
+            } else {
+                CKEDITOR.instances[ckid].setData($ck.val());
+            }
+        }, 100);
+
+    });
+}
+
+
+
+
+
+function getCKData() {
+    $("textarea[onformeditor]").each(function () {
+        $ck = $(this);
+        var ck_id = $(this).attr("id");
+        if (CKEDITOR.instances[ck_id] != undefined) {
+            $("#" + ck_id).val(CKEDITOR.instances[ck_id].getData());
+        }
+    });
+}
+
+//datepicker on modal form
+function showDatePicker(objId) {
+
+
+    $obj = $("#" + objId);
+
+    $obj.focus();
+
+    setTimeout(function () { $obj.datepicker("hide"); $obj.blur(); }, 10);
+
+    setTimeout(function () { $obj.focus(); }, 100);
+}
+
+
+function isIE() {
+    var ua = window.navigator.userAgent; //Check the userAgent property of the window.navigator object
+    var msie = ua.indexOf('MSIE '); // IE 10 or older
+    var trident = ua.indexOf('Trident/'); //IE 11
+
+    return (msie > 0 || trident > 0);
+}
+
+
+function addCode(code, onloadFunction, id) {
+
+    if ($("#" + id).length > 0) {
+        return false;
+    }
+
+    var script1 = document.createElement('script');
+    script1.text = code;
+    script1.setAttribute("id", id);
+    document.head.appendChild(script1);
+
+    if (onloadFunction != "") {
+        setTimeout(function () { eval(onloadFunction); }, 1);
+    }
+}
+
+
+
+function addScript(source, onloadFunction, id) {
+
+    if ($("#" + id).length > 0) {
+        if ($("#" + id)[0].hasAttribute("loaded") == true) {
+            eval(onloadFunction);
+            return true;
+        } else {
+            addScript(source, onloadFunction, id);
+            return true;
+        }
+    }
+
+    var script1 = document.createElement('script');
+
+    if (onloadFunction != "") {
+        script1.onload = function () { script1.setAttribute("loaded", true); eval(onloadFunction) };
+    } else {
+        script1.onload = function () { script1.setAttribute("loaded", true) };
+    }
+
+    script1.type = "text/javascript";
+    script1.src = source;
+    script1.setAttribute("id", id);
+    document.head.appendChild(script1);
+
+    return false;
+}
+
+function addCSS(source, id) {
+
+    if ($("#" + id).length > 0) {
+        return false;
+    }
+
+    $('head').append('<link id="' + id + '" rel="stylesheet" href="' + source + '" type="text/css" />');
+}
+
+function imageclicked(p, q) {//divID, imgID
+    genericEventCall(p + "|" + q, "click");
+}
+
+
+function getReportElement() {
+    getRepElement(this.event)
+    return true;
+}
+
+function getRepElement(e) {
+    var mykeycode = e.keyCode;
+    if (mykeycode == undefined) {
+        mykeycode = "0"
+    }
+
+    var myval = $(e.target).val();
+
+    if (e.target.type == "checkbox" || e.target.type == "radio") {
+        myval = $(e.target).is(':checked')
+    }
+
+    var myvalattr = "";
+
+    try {
+        myvalattr = $(e.target).attr("value");
+    } catch (excp) {
+
+    }
+
+    if (myvalattr == undefined) {//SELECTBOXES
+        myvalattr = myval;
+    }
+
+    if (e.target.type == "text") {//change the order before sending for text and checkbox
+        var dumval = myval;
+        myval = myvalattr;
+        myvalattr = dumval;
+    }
+
+
+    var srcid = ""
+    if (e.target.id.length < 1) {
+        srcid = e.target.parentElement.id;
+    } else {
+        srcid = e.target.id;
+    }
+
+    $("#dbreportElement").val(srcid + "-|*" + myvalattr + "-|*" + myval);
+    genericEventCall("dbreportElement", e.type + "|" + mykeycode, true)
+
+    return true;
+}
+
+function isMvd(e) {
+    try {
+
+        if ($(e.target).closest("*[id^='mvD_']").length > 0) {
+            //store that id in a global variable named "lastMVCell"
+            lastMVCell = $(e.target).attr("id");
+        }
+
+    } catch (ecp) {
+
+    }
+}
+
+
+
+function dbSelect(inID, bFocus) {
+
+    try {
+        if (document.activeElement.id == inID) {
+            return true;
+        }
+    } catch (excp) {
+
+    }
+    setTimeout(function () {
+        if (bFocus) {
+            document.getElementById(inID).focus();
+        }
+
+        document.getElementById(inID).select();
+
+    }, 1);
+
+}

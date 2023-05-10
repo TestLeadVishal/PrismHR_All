@@ -1,0 +1,18 @@
+<form name="confirmationForm" autocomplete="off" class="confirm-form">
+
+    <label><input type="checkbox" ng-change="conf.acceptTerms()"
+                  ng-model="conf.accepted">&nbsp; <b>{{ conf.confirmText }}</b></input></label>
+    <br>
+    <div id="sig-panel" class="well">
+        <div class="sig-field">
+            <label for="signature"> <b style="padding: 0 10px 0 0" class="sig-label">{{ conf.fullNameText }} : </b></label>
+            <input id="signature" width="30%" name="signature" type="text" ng-model="conf.signature" ng-disabled="!conf.accepted"
+                   ng-change="conf.checkSignature(conf.signature)">
+            <span id="sig-accepted" class="confirm-sig-accepted"><i class="fas fa-lg fa-check"></i>
+                {{ conf.correctText }}</span>
+            <span id="sig-failed" class="confirm-sig-failed"><i class="fas fa-lg fa-times"></i>
+                {{ conf.incorrectText }}</span>
+        </div>
+    </div>
+
+</form>

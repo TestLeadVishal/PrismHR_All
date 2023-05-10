@@ -1,0 +1,10 @@
+/* App Module */
+var employeeimageApp = angular.module('employeeimageApp', ['employeeimageDirectives', 'employeeimageControllers', 'employeeimageServices']);
+
+employeeimageApp.config(['$httpProvider', function($httpProvider) {
+  if (!$httpProvider.defaults.headers.get) {
+    $httpProvider.defaults.headers.get = {};
+  }
+  //disable IE ajax request caching
+  $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+}]);

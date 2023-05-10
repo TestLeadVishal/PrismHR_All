@@ -1,0 +1,18 @@
+GET https://qaphr998-ep.prismhr.com:443/apis/ep/config-templates?attributesMode=employee-portal-without-ul&default=true&peoId=qaphr998 HTTP/1.1
+Host: qaphr998-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+tracestate: 1963815@nr=0-1-2203161-1386029388-710378bedb3f2b27----1683031586973
+traceparent: 00-4cba66c92100efe743e4f2425526bdff-710378bedb3f2b27-01
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+newrelic: eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6IjcxMDM3OGJlZGIzZjJiMjciLCJ0ciI6IjRjYmE2NmM5MjEwMGVmZTc0M2U0ZjI0MjU1MjZiZGZmIiwidGkiOjE2ODMwMzE1ODY5NzMsInRrIjoiMTk2MzgxNSJ9fQ==
+Accept: application/json, text/plain, */*
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+

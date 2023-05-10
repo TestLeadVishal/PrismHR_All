@@ -1,0 +1,106 @@
+<!----------------Form Header--------------->
+<div id='headerTop'></div>
+<div ng-show="smry.summaryData.statusCode <= 0 || (smry.summaryData.statusCode > 0 && smry.summaryData.enrollmentNotChanged !== 'Y') " class="ml-4 mt-3">
+    <div class="text-phr-green text-phr-highlight">
+        Good Work!  Now it's time to review your choices.
+    </div>
+    <div>
+        Click 'Submit' to continue to the last step of the enrollment process.
+    </div>
+</div>
+<div>
+    <div class="card-group mobile-summary-head">
+        <div class="card panel-noborder rounded-0">
+            <div class="panel-heading header-panel">
+                <div class="card-header text-left text-black bg-white mobile-view phr-card-header-height">
+                  <h4 id="title">{{smry.title}}</h4>
+                  <h4 class="d-sm-block" data-toggle="{{smry.dataToggle}}" title="{{smry.runningTotalTooltipText}}" id="runningtotal">
+                    <span class="font-weight-normal small">{{smry.runningTotalText}}</span>
+                    <span class="text-phr-green">{{smry.currentRunningTotal|currency}}</span>
+                  </h4>
+                </div>
+            </div>
+            <div>
+                <div class="card-body" ng-show="smry.header != ''">
+                    <div class="markdown-field" btf-markdown="smry.header"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------------------->
+
+<div class="ml-3 mr-3">
+
+    <enrollment-summary-directive [smry]="smry"></enrollment-summary-directive>
+    <br>
+    <div ng-show="smry.totalCafe">
+        <div class="bg-phr-header text-black summary-section-header">
+            <span class="enrollment-summary section-title">{{ smry.cafeHeader }}</span> <br>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover section-table">
+                <thead>
+                    <tr>
+                        <th class="enrollment-summary table-header">&nbsp;</th>
+                        <th class="enrollment-summary table-header">{{smry.cafeContrib}}</th>
+                        <th class="enrollment-summary table-header amount-col">{{smry.cafeAmountRemaining}}</th>
+                        <th class="enrollment-summary table-header-narrow-col effective-col">{{smry.effectiveDateText}}</th>
+                        <th class="enrollment-summary table-header-narrow-col cost-col">{{smry.cafeCredit}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="enrollment-summary table-data">{{smry.cafeDollars}}</td>
+                        <td class="enrollment-summary table-data">{{smry.totalCafe}}</td>
+                        <td class="enrollment-summary table-data">{{smry.totalCafeLeft}}</td>
+                        <td class="enrollment-summary table-data">{{smry.cafeEffDate}}</td>
+                        <td class="enrollment-summary table-data cost-col">{{smry.totalCafeUsed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div ng-show="smry.summaryData.enrollmentRequiredDocs.length > 0">
+        <span class="enrollment-summary section-title">Required Documents</span> <br>
+        <p style="padding: 0 0 0 10px"><span style="color:red">*</span> All of the documents listed below must be viewed before you may submit your enrollment</p>
+        <table class="table table-responsive section-table">
+          <thead>
+            <tr>
+              <th class="enrollment-summary table-header">Name</th>
+              <th class="enrollment-summary table-header">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="file in smry.summaryData.enrollmentRequiredDocs track by file.uuid">
+              <td ng-click="smry.viewFile(file)" ><a href="">{{file.label}}</a></td>
+              <td>{{file.viewed === true ? "Viewed" : "View Required"}}</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+    <br>
+
+    <div ng-hide="smry.summaryData.totalCostNextYear">
+        <h3 class='benefit-summary total-field'>{{smry.totalCostLabel}} {{ smry.totalCostText }}</h3>
+    </div>
+
+    <div class="dual-year-total" ng-show="smry.summaryData.totalCostNextYear">
+        <h3 class='benefit-summary total-field'>{{ smry.totalCostHeaderText }}</h3>
+          <h4 class='benefit-summary total-field'>{{ smry.thisPeriodText }}: {{smry.totalCostText}}<br>
+              {{ smry.nextPeriodText }}: {{smry.nextPeriodCostText}}</h4>
+    </div>
+
+</div>
+
+<!----------------Form Footer--------------->
+<div class="panel-group footer-panel ml-3" ng-show="smry.footer != ''">
+    <div class="panel panel-primary panel-noborder">
+        <div class="panel-body">
+            <div btf-markdown="smry.footer"></div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------------------->

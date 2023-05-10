@@ -1,0 +1,16 @@
+GET https://qaphr998two.prismhr.com:443/qaphr998two/charts/highcharts-3d.js?v=4468 HTTP/1.1
+Host: qaphr998two.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: https://qaphr998two.prismhr.com/qaphr998two/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: IDBrowser=b1be163d4568427d90425725ff1952ec3746f7d59fee195b8d055dfd77674cb2wpSZsaTCIex/79NB+VgQgysvEnZWm2NErhBzp5AAKzs=; dbnextkey=2b141c739bbe4012830a03d29862fd5d
+

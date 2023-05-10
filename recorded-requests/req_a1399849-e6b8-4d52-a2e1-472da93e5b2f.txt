@@ -1,0 +1,8 @@
+POST https://beacons.gcp.gvt2.com/domainreliability/upload HTTP/2.0
+content-length: 276
+content-type: application/json; charset=utf-8
+user-agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+accept-encoding: gzip, deflate, br
+accept-language: en-US,en;q=0.9
+
+{"entries":[{"failure_data":{"custom_error":"net::ERR_ABORTED"},"network_changed":false,"protocol":"","request_age_ms":69378,"request_elapsed_ms":700,"sample_rate":1.0,"server_ip":"","status":"aborted","url":"https://www.google.com/","was_proxied":false}],"reporter":"chrome"}

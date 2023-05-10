@@ -1,0 +1,78 @@
+#fileUploader {
+  height: 100%;
+  width: 100%;
+}
+
+#employeeIMG {
+  height: 100%;
+}
+
+#employeeIMG.dragOver {
+  border-style:solid;
+  border-color:#428bca;
+  border-width: 2px;
+}
+
+.btn {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+
+#btnDeleteImage {
+  position:absolute;
+  top: -22px;
+  left: 0px;
+  opacity:0.9;
+  -webkit-transition: transform 0.3s linear;
+  -moz-transition: transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
+  -ms-transition: transform 0.3s linear;
+  transition: transform 0.3s linear;
+  transform:translateY(0);
+  -ms-transform:translateY(0); /* IE 9 */
+  -webkit-transform:translateY(0); /* Opera, Chrome, and Safari */
+}
+
+#btnDeleteImage.slide {
+  transform:translateY(22px);
+  -ms-transform:translateY(22px); /* IE 9 */
+  -webkit-transform:translateY(22px); /* Opera, Chrome, and Safari */
+}
+
+#btnAddFiles {
+  overflow: hidden;
+  bottom: -22px;
+  left: 0px;
+  opacity:0.9;
+  -webkit-transition: transform 0.3s linear;
+  -moz-transition: transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
+  -ms-transition: transform 0.3s linear;
+  transition: transform 0.3s linear;
+  transform:translateY(0);
+  -ms-transform:translateY(0); /* IE 9 */
+  -webkit-transform:translateY(0); /* Opera, Chrome, and Safari */
+}
+
+#btnAddFiles.slide {
+  transform:translateY(-22px);
+  -ms-transform:translateY(-22px); /* IE 9 */
+  -webkit-transform:translateY(-22px); /* Opera, Chrome, and Safari */
+}
+
+#btnAddFiles input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 999px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}

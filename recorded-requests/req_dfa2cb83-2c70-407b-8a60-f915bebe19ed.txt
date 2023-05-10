@@ -1,0 +1,20 @@
+POST https://bam.nr-data.net:443/resources/1/a6100e7bce?a=1386029388&sa=1&v=1216.487a282&t=Unnamed%20Transaction&rst=2504&ck=1&ref=https://qaphr998two-ep.prismhr.com/&st=1677708419185 HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 1055
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-platform: "Windows"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+content-type: text/plain
+Accept: */*
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=7588e8a1a665ded1
+
+{"res":[{"n":"navigationStart","s":0,"e":0,"o":"document","t":"timing"},{"n":"fetchStart","s":3,"e":3,"o":"document","t":"timing"},{"n":"domainLookupStart","s":3,"e":3,"o":"document","t":"timing"},{"n":"domainLookupEnd","s":3,"e":3,"o":"document","t":"timing"},{"n":"connectStart","s":3,"e":3,"o":"document","t":"timing"},{"n":"connectEnd","s":3,"e":3,"o":"document","t":"timing"},{"n":"requestStart","s":8,"e":8,"o":"document","t":"timing"},{"n":"responseStart","s":15,"e":15,"o":"document","t":"timing"},{"n":"responseEnd","s":16,"e":16,"o":"document","t":"timing"},{"n":"domLoading","s":68,"e":68,"o":"document","t":"timing"},{"n":"domInteractive","s":112,"e":112,"o":"document","t":"timing"},{"n":"domContentLoadedEventStart","s":774,"e":774,"o":"document","t":"timing"},{"n":"domContentLoadedEventEnd","s":774,"e":774,"o":"document","t":"timing"},{"n":"domComplete","s":1160,"e":1160,"o":"document","t":"timing"},{"n":"loadEventStart","s":1160,"e":1160,"o":"document","t":"timing"},{"n":"loadEventEnd","s":1162,"e":1162,"o":"document","t":"timing"}]}

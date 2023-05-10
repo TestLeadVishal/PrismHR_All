@@ -1,0 +1,86 @@
+angular.module('employeeimageDirectives', [])
+.directive("fileDrop", function ($parse, image) {
+  return {
+    restrict: "A",
+    link: function (scope, element, attrs) {
+      //When file drag is started, add class dragOver to the fileUploader DIV creating an outline
+      var onDragOver = function (e) {
+        e.preventDefault();
+        element.addClass("dragOver");
+      };
+
+      //When file drag is over, remove the dragOver class, removing the outline
+      var onDragEnd = function (e) {
+        e.preventDefault();
+        element.removeClass("dragOver");
+      };
+
+      //Bind dragover events on all elements to the onDragOver function
+      element.bind("dragover", onDragOver);
+
+      //After dragging ends/files are dropped
+      element.bind("dragleave", onDragEnd);
+
+      //When files are dropped on the employeeimage
+      element.bind("drop", function (e) {
+        onDragEnd(e);
+        if (e.originalEvent.dataTransfer.files.length<2) {
+          if (!image.validate(e.originalEvent.dataTransfer.files[0])) {
+            alert('File is not a supported image!');
+            return;
+          }
+          image.upload(e.originalEvent.dataTransfer.files[0], scope.employeeID); //The dropped files
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            scope.imageURL = reader.result;
+            scope.$apply();
+          }
+          reader.readAsDataURL(e.originalEvent.dataTransfer.files[0]);
+        } else {
+          //only one file is allowed to be uploaded at a time
+          alert('Please drop only one image!');
+        }
+      });
+    }
+  };
+})
+.directive("employeeImage", function ($parse) {
+  return {
+    restrict: "A",
+    link: function (scope, element, attrs) {
+      element.bind("load", function() {
+        scope.buttonWidth = $(element).width();
+      });
+    }
+  };
+})
+.directive("fileDialog", function ($parse, image) {
+  return {
+    restrict: "A",
+    link: function (scope, element, attrs) {
+      //Bind to the event that occurs when btnAddFiles is clicked and a file is opened via the file open dialog
+      element.change(function(e){
+        var filelist = e.target.files;
+
+        //Reset the file open dialog so that change function will register again
+        element.replaceWith(element.clone(true));
+
+        if (!image.validate(filelist[0])) {
+          alert('File is not a supported image!');
+          return;
+        }
+
+        //Upload the image
+        image.upload(filelist[0], scope.employeeID);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          scope.imageURL = reader.result;
+          scope.$apply();
+        }
+        reader.readAsDataURL(filelist[0]);
+
+      });
+    }
+  };
+});

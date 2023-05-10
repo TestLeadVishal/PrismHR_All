@@ -1,0 +1,17 @@
+GET https://qaphr998two-ep.prismhr.com:443/7939.0532bf6b0852684e.js HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+Origin: https://qaphr998two-ep.prismhr.com
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: script
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: sails.sid=s%3APAmhwwsd1u5zuRWRrat8Y-x3Jr86veaq.n8nFqI%2BhYXPNfvDDwzTQkoazWej4zHMvV6Ym7vzlH0s
+

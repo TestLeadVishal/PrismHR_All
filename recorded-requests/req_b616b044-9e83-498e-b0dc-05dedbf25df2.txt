@@ -1,0 +1,14 @@
+GET https://ka-p.fontawesome.com/releases/v5.15.4/webfonts/pro-fa-regular-400-5.12.1.woff2 HTTP/2.0
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+origin: https://qaphr998two.prismhr.com
+sec-ch-ua-mobile: ?0
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+accept: */*
+sec-fetch-site: cross-site
+sec-fetch-mode: cors
+sec-fetch-dest: font
+referer: https://qaphr998two.prismhr.com/
+accept-encoding: gzip, deflate, br
+accept-language: en-US,en;q=0.9
+

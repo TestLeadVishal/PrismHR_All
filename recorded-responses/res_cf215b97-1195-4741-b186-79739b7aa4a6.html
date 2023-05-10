@@ -1,0 +1,104 @@
+<div id='headerTop' class="row-fluid">
+    <div class="card panel-noborder rounded-0">
+        <div class="card-header header-panel phr-card-header-bg">
+            <h4 class="float-left mr-3">{{ $ctrl.form | formDisplayNameFilter }}</h4>
+            <button class="btn btn-link" ng-show="$ctrl.isCompleted" ng-click="$ctrl.edit()" type="button">{{ 'edit' | translation : 'employeeInfo' }}</button>
+            <br class="d-block d-sm-none"/>
+        </div>
+    </div>
+</div>
+
+<section class="onboarding-form-main-content">
+    <form action="" class="form" name="veteranForm" novalidate>
+        <div class="row">
+            <div class="col-12">
+                <div btf-markdown="$ctrl.instructions"></div>
+            </div>
+        </div>
+
+        </br>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="veteranStatus">{{ 'inputLabel' | translation : 'veteran' }}</label>
+                    <select id="veteranStatus" name="veteranStatus"
+                            class="form-control" required ng-model="$ctrl.employeeData.veteranStatus" require
+                            ng-disabled="$ctrl.isCompleted"
+                            ng-click="ChangeCheck()">
+                        <option value="">{{ 'selectText' | translation : 'veteran' }}</option>
+                        <option ng-repeat="vet in $ctrl.veteranList" value="{{vet.id}}">{{vet.label}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br ng-show="$ctrl.employeeData.veteranStatus === 'Y' || ($ctrl.isCompleted && $ctrl.veteranStatus === 'Y')">
+
+        <div class="form-group" ng-show="$ctrl.employeeData.veteranStatus === 'Y' || ($ctrl.isCompleted && $ctrl.veteranStatus === 'Y')">
+            <div class="row">
+                <div class="col-12">
+                    <label>{{ 'selectLabel' | translation : 'veteran' }}</label>
+                </div>
+            </div>
+            </br>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="servMedalVet" name="servMedalVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.servMedalVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="servMedalVet">{{ 'veteranOption1' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="vietnamVet" name="vietnamVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.vietnamVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="vietnamVet">{{ 'veteranOption2' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="recentSepVet" name="recentSepVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.recentSepVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="recentSepVet">{{ 'veteranOption3' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="disabledVet" name="disabledVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.disabledVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="disabledVet">{{ 'veteranOption4' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="aDutyBadgeVet" name="aDutyBadgeVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.aDutyBadgeVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="aDutyBadgeVet">{{ 'veteranOption5' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="othProtVet" name="othProtVet" type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="$ctrl.employeeData.othProtVet" ng-disabled="$ctrl.isCompleted"/>
+                        <label class="custom-control-label" for="othProtVet">{{ 'veteranOption6' | translation : 'veteran' }}</label>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="onboarding-form-buttons bottom-button-panel center-submit-button-mobile">
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="$ctrl.isFormProcessing || veteranForm.$invalid || veteranForm.veteranStatus.$error.required" type="button">{{ $ctrl.nextButtonText }}</button>
+        </div>
+    </div>
+</section>

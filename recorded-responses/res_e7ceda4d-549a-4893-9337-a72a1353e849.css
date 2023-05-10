@@ -1,0 +1,1260 @@
+.comparison-table-header {
+    color: #ffffff !important;
+    background-color: #337ab7 !important;
+}
+
+.plan-details-margins {
+    padding-left: 10px;
+    margin-right:10px;
+}
+
+.bondi {
+    color: #008AAD !important;
+}
+
+input.bondi-checkbox {
+    border-style: solid;
+    border-color:#008AAD !important;
+    border-width: 1px;
+}
+
+input.bondi-checkbox:active {
+    border-width: 2px;
+}
+
+input.bondi-checkbox:checked {
+    background-color: #008AAD !important;
+}
+
+.waiveBigCheckbox {
+    top: .8rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: white;
+    color: black;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+ol.pricing, ul.pricing {
+    list-style: none;
+}
+
+ul.plans-area {
+    list-style: none;
+}
+
+ul.plans-area .list-inline-item {
+    display: inline-table;
+    vertical-align: top;
+}
+
+.borderless td, .borderless th, .borderless > tbody > tr > td {
+    border: none;
+    border-top: none;
+
+}
+
+.pricing {
+    width: 90%;
+    max-width: 280px;
+    text-align: center;
+}
+
+.pricing > li {
+    position: relative;
+    margin: 0 auto 2.5em;
+    background-color: #ffffff;
+    border-radius: .3em .3em .25em .25em;
+    box-shadow: 0 2px 8px rgba(2, 4, 5, 0.5);
+}
+
+.pricing > li.empty-box {
+    box-shadow: none;
+}
+
+.pricing > li.empty-box::after {
+    /* placeholder visible when .prebuilt-controller-form is open - in this case same color of the background */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0f222b;
+}
+
+.panel-heading-padding {
+    padding-left: .75rem;
+    padding-right: 1rem;
+}
+
+.pricing-header {
+    padding: .65em;
+    background-color: #337ab7;
+    border-radius: .25em .25em 0 0;
+    color: #ffffff !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pricing-header h2, .pricing-header .price {
+    line-height: 1.2;
+}
+
+.pricing-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.15em;
+}
+
+.pricing-header .price {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.pricing-header .price::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.pricing-header span {
+    font-size: 20px;
+}
+
+.pricing-header span:nth-of-type(2) {
+    color: #c8f0c8;
+}
+
+.pricing-header span:nth-of-type(2)::before {
+    content: '/';
+}
+
+.pricing-features {
+    height: 150px;
+    width: 100%;
+    background-color: #EEEEEE;
+}
+
+.pricing-features {
+    padding: 1.8em 2.5em;
+}
+
+.pricing-features li {
+    line-height: 1.5;
+    margin-bottom: .4em;
+}
+
+.pricing-features li:last-of-type {
+    margin-bottom: 0;
+}
+
+.pricing-features em {
+    position: relative;
+}
+
+.pricing-footer {
+    background-color: #337ab7;
+    border-radius: 0 0 .25em .25em;
+}
+
+.pricing-footer a {
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.empty-box .pricing-footer a {
+    /* scale down to 0 the action button when sign up form is visible */
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
+
+.pricing .plan-selected {
+    background-color: #5cb85c;
+}
+
+.pricing .text-color {
+    color: white !important;
+}
+
+.pricing-features .fa {
+    color: #ff7f00;
+    display: inline-block;
+    font-size: 25px !important;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.plan-tile {
+    padding-top: 15px;
+}
+
+.money {
+    font-size: 16pt !important;
+    text-align: center;
+}
+
+.bigmoney {
+    font-size: 14pt !important;
+}
+
+.reallybigmoney {
+    font-size: 12pt !important;
+}
+
+.mobilecost .bigmoney {
+    font-size: 10pt !important;
+}
+
+.check {
+    font-size: 16pt !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: -15px;
+}
+
+.icons {
+    display: inline-flex;
+    margin-left: -15px;
+}
+
+.select {
+    margin-top: 4px;
+    margin-bottom: -8px;
+}
+
+.sbcDoc {
+    color: #fff !important;
+}
+
+/* --------------------------------
+
+Form
+
+-------------------------------- */
+.prebuilt-controller-form {
+    position: fixed;
+    z-index: 2;
+    background-color: #ffffff;
+    border-radius: .25em;
+    visibility: hidden;
+    -webkit-transition: visibility 0s 0.8s;
+    -moz-transition: visibility 0s 0.8s;
+    transition: visibility 0s 0.8s;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.prebuilt-controller-form::before {
+    /* never visible - this is used in jQuery to check the current MQ */
+    display: none;
+    content: 'mobile';
+}
+
+.prebuilt-controller-form:after {
+    /* gradient visible at the bottom of the form - to indicate it's possible to scroll */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 30px;
+    width: 100%;
+    border-radius: 0 0 .25em .25em;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: -webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0));
+    background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.prebuilt-controller-form .plan-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    text-align: center;
+}
+
+.prebuilt-controller-form .plan-info > * {
+    width: 100%;
+}
+
+.prebuilt-controller-form .pricing-features {
+    position: relative;
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.prebuilt-controller-form .pricing-features::before {
+    /* this is the layer which covers the .pricing-features when the form is open - visible only on desktop */
+    content: '';
+    position: absolute;
+    /* fix a bug while animating - 1px white space visible */
+    top: -5px;
+    left: 0;
+    height: calc(100% + 5px);
+    width: 100%;
+    background-color: #337ab7;
+    z-index: -1;
+    will-change: transform;
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: center top;
+    -moz-transform-origin: center top;
+    -ms-transform-origin: center top;
+    -o-transform-origin: center top;
+    transform-origin: center top;
+    -webkit-transition: -webkit-transform 0.6s 0.2s;
+    -moz-transition: -moz-transform 0.6s 0.2s;
+    transition: transform 0.6s 0.2s;
+}
+
+.prebuilt-controller-form .pricing-footer {
+    display: none;
+}
+
+.prebuilt-controller-form .more-info {
+    position: absolute;
+    z-index: 1;
+    height: 95%;
+    width: 210px;
+    bottom: 0;
+    left: 0;
+    padding: 300px 1.8em 2em;
+    background-color: #f2f2f2;
+    border-radius: .25em 0 0 .25em;
+    /* hidden on mobile */
+    display: none;
+    -webkit-transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+}
+
+.prebuilt-controller-form .more-info h3 {
+    line-height: 2;
+}
+
+.prebuilt-controller-form .more-info p {
+    font-size: 1.6rem;
+    color: #999999;
+    line-height: 1.6;
+}
+
+.prebuilt-controller-form form {
+    padding-top: 90px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.prebuilt-controller-form form.is-scrollable {
+    overflow-y: auto;
+}
+
+.prebuilt-controller-form fieldset {
+    opacity: 0;
+    margin: 1.5em 2em;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    -o-transform: translateY(50px);
+    transform: translateY(50px);
+    -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+    -moz-transition: opacity 0.2s, -moz-transform 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.prebuilt-controller-form h1 {
+    width: 100%;
+    font-size: 2.3rem;
+    line-height: 1.2;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.prebuilt-controller-form input[type="radio"],
+.prebuilt-controller-form label {
+    cursor: pointer;
+}
+
+.prebuilt-controller-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b2b2b2;
+}
+
+.prebuilt-controller-form input[type="radio"] + label {
+    color: #0f222b;
+}
+
+.prebuilt-controller-form input[type="text"],
+.prebuilt-controller-form input[type="email"],
+.prebuilt-controller-form input[type="password"],
+.prebuilt-controller-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    height: 45px;
+    border: 2px solid #e5e5e5;
+    border-radius: 0;
+    background: transparent;
+}
+
+.prebuilt-controller-form input[type="text"]:focus,
+.prebuilt-controller-form input[type="email"]:focus,
+.prebuilt-controller-form input[type="password"]:focus,
+.prebuilt-controller-form select:focus {
+    outline: none;
+    border-color: #337ab7;
+}
+
+.prebuilt-controller-form input[type="text"],
+.prebuilt-controller-form input[type="email"],
+.prebuilt-controller-form input[type="password"] {
+    width: 100%;
+    display: block;
+    margin-top: 6px;
+    padding: 0 16px;
+}
+
+.prebuilt-controller-form select {
+    padding: 0 25px 0 15px;
+    font-size: 1.4rem;
+}
+
+.prebuilt-controller-form select::-ms-expand {
+    /* remove default arrows in IE */
+    display: none;
+}
+
+.prebuilt-controller-form .credit-card b {
+    display: block;
+}
+
+.prebuilt-controller-form .credit-card p {
+    padding-bottom: 0.5em;
+}
+
+.prebuilt-controller-form .credit-card p:last-of-type {
+    width: 100px;
+}
+
+.prebuilt-controller-form .select {
+    display: inline-block;
+    position: relative;
+    margin-top: 6px;
+}
+
+.prebuilt-controller-form .select::after {
+    /* arrow icons */
+    content: '';
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 10px;
+    height: 6px;
+    width: 10px;
+    /* background: url(../img/icon-arrow.svg) no-repeat center center; */
+    pointer-events: none;
+}
+
+.prebuilt-controller-form .close {
+    /* 'X' close icon */
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    /* background: url(../img/icon-close.svg) no-repeat center center; */
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    transition: transform 0.2s;
+    /* image replacement */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    color: transparent;
+}
+
+.prebuilt-controller-form.is-visible {
+    /* form is visible */
+    visibility: visible;
+    -webkit-transition: visibility 0s 0s;
+    -moz-transition: visibility 0s 0s;
+    transition: visibility 0s 0s;
+}
+
+.prebuilt-controller-form.is-visible .pricing-features {
+    /* desktop only */
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.6s 0s, visibility 0s 0.8s;
+    -moz-transition: opacity 0.6s 0s, visibility 0s 0.8s;
+    transition: opacity 0.6s 0s, visibility 0s 0.8s;
+}
+
+.prebuilt-controller-form.is-visible form {
+    -webkit-overflow-scrolling: touch;
+}
+
+.prebuilt-controller-form.is-visible fieldset {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: -webkit-transform 0.3s 0.6s, opacity 0.3s 0.6s;
+    -moz-transition: -moz-transform 0.3s 0.6s, opacity 0.3s 0.6s;
+    transition: transform 0.3s 0.6s, opacity 0.3s 0.6s;
+}
+
+.prebuilt-controller-form.is-visible fieldset:nth-of-type(2) {
+    /* delay second fieldset animation */
+    -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+    -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+    transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+}
+
+.prebuilt-controller-form.is-visible fieldset:nth-of-type(3) {
+    /* delay second fieldset animation */
+    -webkit-transition: -webkit-transform 0.3s 0.8s, opacity 0.3s 0.8s;
+    -moz-transition: -moz-transform 0.3s 0.8s, opacity 0.3s 0.8s;
+    transition: transform 0.3s 0.8s, opacity 0.3s 0.8s;
+}
+
+.prebuilt-controller-form.is-visible .close {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s 0.8s;
+    -moz-transition: -moz-transform 0.3s 0.8s;
+    transition: transform 0.3s 0.8s;
+}
+
+.btn-primary[disabled] {
+    color: #fff;
+}
+
+.btn-success[disabled] {
+    color: #fff;
+}
+
+
+#employeeEffectiveDate{
+    color: green;
+    font-size: 17px;
+    font-weight:bold;
+}
+
+#slideHeader {
+    color: #337ab7;
+    font-weight: bold;
+}
+
+.sliderName {
+    color: #337ab7;
+    font-weight: bold;
+}
+
+span.rz-bubble{
+    opacity: 0!important;
+    /*border-style: groove;*/
+}
+
+.waive-panel {
+    border: none;
+}
+
+.waive-panel-body {
+    margin-left: 10px;
+    padding: 0px 0px 0px 15px;
+}
+
+.waive-select {
+    height: 25px !important;
+    width: 200px;
+}
+
+.plan-btn-group {
+    width: 100%;
+}
+
+.plan-btn-group .btn {
+    width: 50%;
+}
+
+.plans-area {
+    padding-left: 0px;
+}
+.plans {
+    width:100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.no-plans {
+    padding-left: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 16pt;
+    color: #c9302c
+}
+
+.dep-no-plans {
+    margin-top: 15px;
+}
+
+.btn-select-plan {
+    width: 100%;
+}
+
+.summary-confirm-style{
+    padding-right: 0;
+    padding-left: 0;
+    font-size: smaller;
+}
+
+/*
+Kills default blue dot in center of pointer on rzslider
+*/
+.rz-pointer.rz-active:after{
+    background-color: #FFF !important;
+}
+
+/*
+Turns the LIF slider ticks red
+*/
+.rz-tick {
+    background-color: #c9302c !important;
+}
+.rz-bar {
+    height: 8px !important;
+}
+
+span.lifePercentEE {
+    font-weight: normal;
+}
+
+.add-top-margin {
+    margin-top: 1em;
+}
+
+.popover-example .popover {
+    /*position: relative;*/
+    width: 230px;
+    display: block;
+    margin-top: -70px;
+    background: #c9302c;
+    top: 15px;
+}
+
+.popover-example .popover.top> .arrow:after {
+    bottom: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-color: #c9302c;
+    border-bottom-width: 0
+}
+
+.popover-example .popover.bottom>.arrow:after {
+    top: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-width: 0;
+    border-bottom-color: #c9302c
+}
+
+.popover-example .popover.left>.arrow:after {
+    right: 1px;
+    bottom: -10px;
+    content: " ";
+    border-right-width: 0;
+    border-left-color: #c9302c
+}
+
+.popover-example .popover.right>.arrow:after {
+    bottom: -10px;
+    left: 1px;
+    content: " ";
+    border-right-color: #c9302c;
+    border-left-width: 0
+}
+
+.popover-content{
+    padding: 5px 10px;
+}
+
+.popover-content #gi-bubble{
+    font-size: 12px;
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+
+.popover-content #pcoverage-bubble{
+    font-size: 12px;
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+
+.popover-content #pcost-bubble {
+    font-size: 12px;
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+
+.pcp-btn-row {
+  margin: .5em 1em;
+}
+
+.pcp-btn {
+  margin-left: 1em;
+}
+
+.pcpTable {
+    border: 1px solid #b1b0b0;
+}
+
+.pcpTable #pcpHeader {
+    border: 1px solid #b1b0b0;
+    color:white;
+}
+
+.centeredTextHeader{
+    text-align:center;
+}
+
+.pcpTable td{
+    border-top: none !important;
+}
+
+.pcpTable .pcpListStyle {
+    text-align: left;
+    margin: 50px;
+    color: #337ab7;
+}
+
+.pcpTable .tdSpacer {
+    text-align: center;
+    margin: 50px;
+}
+
+.ngdialog.ngdialog-theme-default.dialogwidth700 .ngdialog-content{
+    width : 700px;
+}
+
+.panel-noborder{
+    border: 0!important; /*to overwrite EP them; BE-4416*/
+    box-shadow: none;
+}
+
+.ancillary-list {
+    list-style: none;
+    padding-left: 30px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.ancillary-list > li {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+}
+
+.video-field {
+    margin: 1em;
+}
+
+.spacingLife {
+    padding-bottom:1em;
+}
+
+.border-for-panel {
+    border: 1px solid #A7A7A7;
+}
+
+.life-prebuilt .plan-date {
+    padding: 0 0 .15em 1em;
+}
+
+.disabledbeneficiaries {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.bg-phr-header {
+    background-color: #EDEDED;
+}
+
+.text-phr-green {
+    color: #008AAD !important;
+}
+
+.conf-terms-margin {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.phr-caret-darkgrey {
+    color: #4A4A4A;
+}
+
+.text-phr-highlight {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+.ui-grid .ui-grid-header-cell.ui-grid-filter-no-blank select option:first-child[value=""] {
+    display: none;
+}
+
+/* OEO styles */
+.match-found {
+    background-color: #5cb85c;
+}
+
+.match-text {
+    color: #5cb85c;
+}
+.replacement-found {
+    background-color: #ff7f00;
+}
+
+.replacement-text {
+    color: #ff7f00;
+}
+
+.not-found {
+    background-color: #c9302c;
+}
+
+.not-text {
+    color: #c9302c;
+}
+
+.tile-header {
+    font-size: 18px;
+    padding-left:8px;
+    color:white;
+}
+
+.edit-icon {
+    color: #000;
+}
+
+.fa-pencil-square-o:hover {
+    color:#a7a7a7;
+}
+
+.bottom-message {
+    margin-left: 8px;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.li-item {
+    text-align: left;
+}
+
+.ul-item {
+    margin: 0;
+    padding: 0;
+}
+
+.plan-name-wrap-oe {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.plan-name-wrap-oe:hover {
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+}
+
+.table-padding {
+    padding-bottom:4px;
+}
+
+.table-custom-margin {
+    margin-bottom: 5px;
+}
+
+.OEtile {
+    border: 1px solid #A7A7A7;
+    margin-bottom: 10px;
+}
+
+.OEplan-view-compare {
+    border-bottom: 1px solid #A7A7A7;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    font-size: 12pt;
+    height: 30px;
+    margin: 0;
+    /*position: relative;*/
+}
+
+.OEplan-details-list-group {
+    list-style: none;
+    padding-left: 10px
+}
+
+.OETable th, .OETable td {
+    border-top: none !important;
+}
+
+.OEplan-tile-summary {
+    border: none;
+    height: 100%;
+    border-right: 1px solid #A7A7A7;
+    border-top: 1px solid #A7A7A7;
+}
+
+.OEplan-tile-summary:hover {
+    cursor: pointer;
+}
+
+.OEPlan-name {
+    display: block;
+    padding: 0px 0px 5px 10px;
+    font-size: 11pt;
+}
+
+.OEPlan-message {
+    display: block;
+    padding: 15px 0px 5px 10px;
+    font-size: 11pt;
+}
+
+.OEPlan-payee-name {
+
+    height: 25px;
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    padding: 20px 0px 5px 10px;
+    font-size: 12pt;
+}
+
+.force-wrap {
+    width: 75%;
+}
+
+.oeo-view-custom-message {
+    padding: 5px;
+}
+
+.oeo-view-desc-col {
+    padding: 5px;
+}
+
+.oeo-view-val-col {
+    padding: 5px;
+}
+
+/* media-based overrides */
+
+@media only screen and (min-width: 768px) {
+    .pricing {
+        max-width: 1000px;
+    }
+
+    .pricing > li {
+        margin-bottom: 20px;
+    }
+
+    .pricing > li:last-of-type {
+        margin-right: 0;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .pricing > li {
+        width: 25%;
+        float: left;
+        margin-right: 5%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .pricing-header h2 {
+        font-size: 2.6rem;
+    }
+}
+
+@media screen and (min-width: 768px), print {
+    .prebuilt-controller-form::before {
+        /* never visible - this is used in jQuery to check the current MQ */
+        content: 'desktop';
+    }
+
+    .prebuilt-controller-form .pricing-header {
+        border-radius: .25em 0 0 0;
+    }
+
+    .prebuilt-controller-form .pricing-features {
+        -webkit-transition: padding 0.3s 0.2s;
+        -moz-transition: padding 0.3s 0.2s;
+        transition: padding 0.3s 0.2s;
+    }
+
+    .prebuilt-controller-form .more-info {
+        display: block;
+        opacity: 0;
+    }
+
+    .prebuilt-controller-form form {
+        padding: 0 0 0 210px;
+    }
+
+    .space .p {
+        padding: 50px;
+    }
+
+    .prebuilt-controller-form .half-width {
+        width: 48%;
+        float: left;
+        margin-right: 4%;
+    }
+
+    .prebuilt-controller-form .half-width:nth-of-type(2n) {
+        margin-right: 0;
+    }
+
+    .prebuilt-controller-form input[type="submit"] {
+        float: right;
+    }
+
+    .prebuilt-controller-form .close {
+        /* move close icon outside the form container */
+        top: -40px;
+        right: -5px;
+    }
+
+    .prebuilt-controller-form.is-visible .pricing-features {
+        padding-top: 0;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: padding 0.3s;
+        -moz-transition: padding 0.3s;
+        transition: padding 0.3s;
+
+    }
+
+    .prebuilt-controller-form.is-visible .pricing-features::before {
+        -webkit-transform: scaleY(1);
+        -moz-transform: scaleY(1);
+        -ms-transform: scaleY(1);
+        -o-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transition: -webkit-transform 0.4s 0s;
+        -moz-transition: -moz-transform 0.4s 0s;
+        transition: transform 0.4s 0s;
+    }
+
+    .prebuilt-controller-form.is-visible .more-info {
+        opacity: 1;
+
+    }
+
+    .ancillary-row {
+        padding-left: .75em;
+        padding-bottom: 1em;
+        border-bottom: 4px solid #ddd;
+    }
+}
+
+@media only screen and (min-width: 1024px), print {
+    .prebuilt-controller-form .credit-card p:nth-of-type(2) {
+        width: 25%;
+        margin-right: 4%;
+    }
+
+    .no-csstransitions .prebuilt-controller-form .credit-card p:nth-of-type(2) {
+        width: 48%;
+        margin-right: 0;
+    }
+
+    .prebuilt-controller-form .credit-card p:nth-of-type(3) {
+        width: 19%;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+
+    .mobile-row {
+        margin: 0 !important;
+    }
+
+    .conf-min-width {
+        min-width: 250px;
+    }
+
+    .prebuilt-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .phone-scroll {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .xs-no-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .plans-area {
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+
+    .no-plans {
+        /*padding-left: 30px;*/
+        padding-right: 1.5em;
+    }
+
+    .panel-group .panel-body {
+        padding: 0;
+    }
+
+    .markdown-field {
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+
+    .footer-panel {
+        margin-bottom: 5em;
+    }
+
+    .confirm-form {
+        padding-bottom: 5em;
+    }
+
+    .panel-primary {
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .panel-heading {
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .tile-padding {
+        padding-left:0;
+        padding-right:0;
+    }
+
+    .desktop-titles {
+        display:none;
+    }
+    .desktop-employeeSlider {
+        display:none;
+    }
+    .mobile-employeeSlider {
+        display: inherit;
+    }
+
+    .ancillary-list {
+        margin: .75em 0 .75em 0;
+    }
+
+    .ancillary-list > li {
+        margin-bottom: 10px;
+        border: 1px solid #a7a7a7;
+    }
+
+    .mobilePadding {
+        padding: 6px 5px;
+    }
+
+    .benTabHeaderPadding {
+        padding:8px 0 8px 5px;
+    }
+
+    .overflow-title{
+        width: 85%;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .life-prebuilt .plan-date {
+        padding-right: .5em;
+    }
+
+}
+
+@media screen and (max-width: 435px) {
+
+    .hidden-narrow {
+        display: none !important;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .desktop-titles {
+        display:inherit;
+    }
+    .desktop-employeeSlider {
+        display:inherit;
+    }
+    .mobile-employeeSlider {
+        display:none;
+    }
+}

@@ -1,0 +1,21 @@
+﻿//JQUERY is available
+
+function beforeHitCustom(dbEventSource, dbEventType, dbClass, dbFormName) {
+
+    //Your code
+    //return true to continue with the server hit
+    //return false to cancel the server hit
+
+    return true;
+}
+
+
+
+
+function afterHitCustom(dbEventSource, dbEventType, dbClass, dbFormName) {
+    //Your code
+    //Always return true    
+
+    return true;
+}
+

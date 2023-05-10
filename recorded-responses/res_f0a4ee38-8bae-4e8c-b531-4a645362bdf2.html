@@ -1,0 +1,30 @@
+<div>
+    <div id='headerTop'>
+        <div class = "ml-4 mt-3">
+            <div class="text-phr-green text-phr-highlight">
+                Your enrollment is almost complete!
+            </div>
+            <div>
+                Review the content below, provide an electronic signature and click 'Complete Enrollment' to finalize your enrollment.
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card panel-noborder rounded-0">
+                <div class="panel-heading header-panel bg-primary">
+                    <div class="card-header text-left text-black bg-white">
+                        <h4 id="title">{{conf.offerHeader}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <custom-forms-workflow-directive [fields]="conf.form.fieldList"></custom-forms-workflow-directive>
+    <!-- <custom-forms-workflow-directive fields="conf.form.fieldList"></custom-forms-workflow-directive> -->
+
+</div>
+
+<div class="conf-terms-margin">{{conf.termsSection}}</div>
+<br />
+
+<confirm-directive></confirm-directive>

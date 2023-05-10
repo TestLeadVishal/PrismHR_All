@@ -1,0 +1,99 @@
+<!----------------Form Header--------------->
+<div id='headerTop'>
+    <div class="card-group">
+        <div class="card panel-noborder rounded-0">
+            <div class="panel-heading header-panel bg-primary">
+                <div class="card-header text-left text-black bg-white phr-card-header-height">
+                    <h4>{{depNben.formTitle}}</h4>
+                    <!--<h4 ng-show="depNben.employeeEffectiveDate" class="pull-right">Effective Date:-->
+                                                                                   <!--{{depNben.employeeEffectiveDate}}</h4>-->
+                </div>
+            </div>
+            <div>
+                <div class="card-body">
+                    <div class="markdown-field" btf-markdown="depNben.header"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="card-group" id="accordion">
+    <div class="card ml-3 mr-3 border-left-0 border-right-0 border-top-0">
+      <div class="panel-heading bg-phr-header">
+        <h5 class="card-header border-bottom-0 text-black panel-heading-padding">
+          <span>{{ 'listHeader' | translation: 'dependents' }}</span>
+        </h5>
+      </div>
+      <div id="collapse1" class="collapse show">
+        <div class="card-body">
+
+          <div class="table-responsive" style="border: none">
+            <table class="table borderless table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'tableHeader1' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader2' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader3' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader4' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader5' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader6' | translation: 'dependents' }}</th>
+                    <th>{{ 'tableHeader7' | translation: 'dependents' }}</th>
+                    <!--<th style="text-align: center;"></th>-->
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="depInfo in depNben.dependentsTable ">
+                    <td>{{ depInfo.name }}</td>
+                    <td>{{ depInfo.relationship }}</td>
+                    <td>
+                        <span ng-show="depInfo.age < 1 ">< 1</span>
+                        <span ng-show="depInfo.age >= 1">{{depInfo.age}}</span>
+                    </td>
+                    <td>{{ depInfo.gender }}</td>
+                    <td>{{depInfo.smoker}}</td>
+                    <td>{{depInfo.disabled}}</td>
+                    <td>{{depInfo.fullTimeStudent}}</td>
+
+                    <!--<td style="text-align: center;">-->
+                        <!--<button style="text-decoration: none; background-color: Transparent; border: none;"-->
+                                <!--ng-disabled="depInfo.status === 'P'"-->
+                                <!--ng-click="depNben.updateDependent(depInfo, $index)">-->
+                            <!--<span class="far fa-edit fa-2x" aria-label="Edit" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                    <!--</td>-->
+                </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div ng-if="depNben.hasSpouse" class="ml-3">
+    <br>
+    <span style="padding: 0">* {{ 'spouseSelected' | translation: 'dependents' }}</span>
+    <br>
+</div>
+<br>
+<br>
+<div class="row" style="padding: 15px">
+        <div class="col-4 col-sm-2">
+            <button class="btn btn-primary pr-3 pl-3" ng-click="depNben.addDependent()">{{ 'addDepButtonText' | translation: 'dependents' }}</button>
+        </div>
+</div>
+<br>
+
+<div id="updateMyDeps" ng-if="isDepFormOpen">
+    <update-dependent [dnb]="depNben" [relationship]="relationship"  ></update-dependent>
+</div>
+
+<div class="card-group footer-panel">
+    <div class="card panel-noborder">
+        <div class="card-body">
+            <div btf-markdown="depNben.footer"></div>
+        </div>
+    </div>
+</div>

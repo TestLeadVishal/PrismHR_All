@@ -1,0 +1,16 @@
+GET https://qaphr998two.prismhr.com:443/qaphr998two/designBAISStyle.css?v=4468 HTTP/1.1
+Host: qaphr998two.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: https://qaphr998two.prismhr.com/qaphr998two/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: DesignBAIS=machine=KAWXLIBYIGQPWGBQKBSPWVMNSQVYWBPGTBKEZDQVGXNCXKR&pooler=862&ver=40; IDBrowser=bba213b0696f4d18a52108cabebe53c83746f7d59fee195b8d055dfd77674cb2+7Zk5of3cQu+q5pyjU1l2Q+jTKNWwyEPS+0Os7N7mfo=; dbnextkey=37efd28ab985431cb3f7afbea9cd4643
+

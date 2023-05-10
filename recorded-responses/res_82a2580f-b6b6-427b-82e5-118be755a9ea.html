@@ -1,0 +1,42 @@
+<div id='headerTop' class="row-fluid">
+  <div class="card panel-noborder rounded-0">
+    <div class="card-header header-panel phr-card-header-bg">
+          <h4 class="center d-block d-sm-none mb-0">{{ $ctrl.form | formDisplayNameFilter }}</h4>
+          <h4 class="d-none d-sm-block mb-0">{{ $ctrl.form | formDisplayNameFilter }}</h4>
+    </div>
+  </div>
+</div>
+
+
+<section class="onboarding-form-main-content">
+  <div class="row" ng-show="$ctrl.form.status == 'C'">
+    <div class="col-12 col-sm-10 ">
+      <div btf-markdown="$ctrl.completedMessage.fieldDefault"></div>
+      <button class="btn btn-primary" ng-if="$ctrl.workflow.enableBeAfterSubmit == 'Y'" ng-click="$ctrl.goToBenefitEnrollment()"
+              type="button">{{ 'goToBenefitEnrollment' | translation : 'onboardingSummary' }} <i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="row" ng-show="$ctrl.form.status != 'C'">
+    <div class="col-12 col-sm-10 ">
+      <ul class="list-unstyled">
+        <li ng-repeat="message in $ctrl.messages">
+          <p btf-markdown="message.fieldDefault"></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" ng-show="$ctrl.form.status != 'C'">
+    <div class="col-12">
+      <section class="custom-control custom-checkbox">
+        <input class="custom-control-input" id="acknowledgment" type="checkbox" ng-model="$ctrl.acknowledged"/>
+        <label class="custom-control-label" for="acknowledgment">{{$ctrl.acknowledgment.fieldDefault}}</label>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="onboarding-form-buttons bottom-button-panel center-submit-button-mobile" ng-show="$ctrl.form.status != 'C'">
+  <button class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="!$ctrl.acknowledged || $ctrl.isFormProcessing" type="button">{{ 'submit' | translation : 'controls' }}</button>
+</section>
+
+<if-loading></if-loading>

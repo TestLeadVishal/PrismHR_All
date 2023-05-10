@@ -1,0 +1,137 @@
+
+<div class="confirm-report">
+    <!-- <div class="pull-right print-no-show">
+        <i tooltip="{{ smry.printText }}" ng-click="smry.printWindow()" class="fas fa-print confirm-action" aria-hidden="true"></i>|
+        <i tooltip="{{ smry.toEssText }}" ng-click="smry.backToEss()" class="fas fa-home confirm-action" aria-hidden="true"></i>|
+        <i ng-if="smry.emailCnfRpt !== ''" ng-disabled="smry.sendingMsg" tooltip="{{ smry.emailCnfRpt }}" ng-click="smry.emailRpt()" class="far fa-envelope confirm-action" aria-hidden="true"></i>
+    </div> -->
+    <div class = "container">
+        <div class = "row vertical-divider float-right">
+            <div class="col-xs-4"><i tooltip="{{ smry.toEssText }}" ng-click="smry.backToEss()" class="fas fa-home confirm-action" aria-hidden="true"></i><a ng-click="smry.backToEss()">{{ smry.toEssText }}</a></div>
+            <div class="col-xs-4"><i tooltip="{{ smry.printText }}" ng-click="smry.printWindow()" class="fas fa-print confirm-action" aria-hidden="true"></i><a ng-click="smry.printWindow()">Print</a></div>
+            <div ng-if="smry.emailCnfRpt !== ''" class="col-xs-4"><i  ng-disabled="smry.sendingMsg" tooltip="{{ smry.emailCnfRpt }}" ng-click="smry.emailRpt()" class="far fa-envelope confirm-action" aria-hidden="true"></i><a ng-if="smry.emailCnfRpt !== ''" ng-disabled="smry.sendingMsg" tooltip="{{ smry.emailCnfRpt }}" ng-click="smry.emailRpt()">Email</a></div>
+        </div>
+
+    </div>
+    <div class="print-area" id="pdf-area">
+        <table class="table-confirm-header">
+            <tr class="confirm-title-row">
+                <td class="td-confirm-logo" rowspan="5"><img ng-src="{{ smry.clientIconUrl }}" alt="" class="confirm-logo" onError="this.onerror=null;this.src='assets/images/prismhr.png';"></td>
+                <td class="td-confirm-title" colspan="2"><h4 class="print-title">{{smry.title}}</h4></td>
+            </tr>
+            <tr class="tr-confirm-header-data">
+                <td class="td-confirm-header-data">{{ smry.fullname }}</td>
+                <td class="td-confirm-header-data">{{ smry.confirmNumberText }}</td>
+            </tr>
+            <tr class="tr-confirm-header-data">
+                <td class="td-confirm-header-data">{{ smry.eeStreet }}</td>
+                <td class="td-confirm-header-data">{{ smry.eeIdText }}</td>
+            </tr>
+            <tr class="tr-confirm-header-data">
+                <td class="td-confirm-header-data">{{ smry.eeTown }}, {{ smry.eeStateZip }}</td>
+                <td class="td-confirm-header-data">{{ smry.datePrinted }}</td>
+            </tr>
+            <tr class="tr-confirm-header-data" ng-if="smry.ip">
+                <td class="td-confirm-header-data"></td>
+                <td class="td-confirm-header-data">{{ smry.ip }}</td>
+            </tr>
+        </table>
+
+        <div class="confirm-header" ng-show="smry.header != ''">
+            <div class="panel-group">
+                <div class="panel panel-primary panel-noborder">
+                    <div class="panel-body">
+                        <div class="markdown-field" btf-markdown="smry.header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <enrollment-summary-directive [smry]="smry" [createpdf]="true"></enrollment-summary-directive>
+        <br>
+        <div ng-show="smry.totalCafe">
+            <span class="enrollment-summary section-title">{{ smry.cafeHeader }}</span> <br>
+            <table class="table table-responsive section-table cafe">
+                <thead>
+                <tr>
+                    <th class="enrollment-summary table-header">&nbsp;</th>
+                    <th class="enrollment-summary table-header">{{smry.cafeContrib}}</th>
+                    <th class="enrollment-summary table-header amount-col">{{smry.cafeAmountRemaining}}</th>
+                    <th class="enrollment-summary table-header-narrow-col effective-col">{{smry.effectiveDateText}}</th>
+                    <th class="enrollment-summary table-header-narrow-col cost-col">{{smry.cafeCredit}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="enrollment-summary table-data">{{smry.cafeDollars}}</td>
+                    <td class="enrollment-summary table-data">{{smry.totalCafe}}</td>
+                    <td class="enrollment-summary table-data">{{smry.totalCafeLeft}}</td>
+                    <td class="enrollment-summary table-data">{{smry.cafeEffDate}}</td>
+                    <td class="enrollment-summary table-data cost-col">{{smry.totalCafeUsed}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div ng-show="smry.summaryData.enrollmentRequiredDocs.length > 0">
+            <span class="enrollment-summary section-title">{{ 'docsRequired' | translation: 'summary' }}</span> <br>
+            <!--<p>Your benefits will not become effective until you download and complete these documents.</p>-->
+            <table class="table table-responsive section-table">
+                <thead>
+                <tr>
+                    <th class="enrollment-summary table-header summary-empty-section">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="file in smry.summaryData.enrollmentRequiredDocs track by file.uuid">
+                    <td><a href="{{file.fileLink}}" target="_blank">{{file.label}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <div ng-hide="smry.summaryData.totalCostNextYear">
+            <h3 class='benefit-summary total-field'>{{smry.totalCostLabel}} {{ smry.totalCostText }}</h3>
+        </div>
+
+        <div class="dual-year-total" ng-show="smry.summaryData.totalCostNextYear">
+            <h3 class='benefit-summary total-field'>{{ smry.totalCostHeaderText }}</h3>
+            <h4 class='benefit-summary total-field'>{{ smry.thisPeriodText }}: {{smry.totalCostText}}<br>
+            {{ smry.nextPeriodText }}: {{smry.nextPeriodCostText}}</h4>
+        </div>
+
+<!----------------Form Footer--------------->
+        <div class="panel-group footer-panel" ng-show="smry.footer != ''">
+            <div class="panel panel-primary panel-noborder">
+                <div class="panel-body">
+                    <div btf-markdown="smry.footer"></div>
+                </div>
+            </div>
+        </div>
+
+<!----------------Proxy Info--------------->
+        <div class="panel-group footer-panel" ng-show="smry.proxyText != ''">
+            <div class="panel panel-primary panel-noborder">
+                <div class="panel-body">
+                    <div btf-markdown="smry.proxyText"></div>
+                    <div btf-markdown="smry.proxyExecutorText"></div>
+                    <div btf-markdown="smry.proxyViaText"></div>
+                    <div btf-markdown="smry.proxyDateText"></div>
+                    <div btf-markdown="smry.proxyReasonText"></div>
+                </div>
+            </div>
+        </div>
+
+<!----------------Confirm Contents--------------->
+        <div class="panel panel-primary panel-noborder conf-min-width" ng-show="smry.confirmForm != ''">
+            <div class="panel-heading panel-heading-color">
+                <div class="panel-title">
+                    <h4 class="text-center">{{smry.confirmForm.name}}</h4>
+                </div>
+            </div>
+            <custom-forms-workflow-directive [fields]="smry.confirmForm.fieldList"></custom-forms-workflow-directive>
+            <!-- <custom-forms-workflow-directive fields="smry.confirmForm.fieldList"></custom-forms-workflow-directive> -->
+        </div>
+    </div>
+</div>

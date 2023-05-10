@@ -1,0 +1,47 @@
+angular.module('employeeimageControllers', [])
+.controller('imageUploadController', function ($scope, $server, image) {
+
+  //Execute when the angularjs app loads
+  $scope.init = function () {
+    //Initialize some variables
+    $scope.btnAddFiles = {class : ''};
+
+    //Recieve a window message from DesignBais with the employee id
+    //to load an image
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+    eventer(messageEvent,function(e) {
+      if (e.data == 'deleteImage') {
+        //Delete the image
+        image.delete($scope.employeeID).success(function (response) {
+          $scope.imageURL = "../../img/defaultEmployeeImage.jpg";
+        });
+      } else {
+        //When the window message event happens
+        $scope.employeeID = e.data;
+        $scope.imageURL = "../../cmd/readimage?employee_id=" + $scope.employeeID;
+        $scope.$apply();
+      }
+    },false);
+
+    //Get user info from session
+    $server.initData().success(function (response) {
+      if (response.errors.length == 0) {
+        $scope.employeeID = response.userBean.loginParams.image_id;
+        $scope.imageURL = "../../cmd/readimage?employee_id=" + $scope.employeeID;
+      } else {
+        //invalid session
+      }
+    });
+  };
+
+  $scope.deleteImage = function() {
+    var response = confirm("Are you sure that you want to delete this profile image?");
+    if (response == true) {
+      image.delete($scope.employeeID).success(function (response) {
+        $scope.imageURL = "../../img/defaultEmployeeImage.jpg";
+      });
+    }
+  };
+});

@@ -1,0 +1,20 @@
+POST https://bam.nr-data.net:443/events/1/a6100e7bce?a=1386029388&sa=1&v=1216.487a282&t=Unnamed%20Transaction&rst=48136&ck=1&ref=https://qaphr998two-ep.prismhr.com/&ptid=c52c86c3-0001-bc27-14ea-01869f36ea94 HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 727
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-platform: "Windows"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+content-type: text/plain
+Accept: */*
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=7588e8a1a665ded1
+
+bel.7;1,2,10xp,3t,6,5,'click,'https://qaphr998two-ep.prismhr.com/,'https://qaphr998two-ep.prismhr.com/#/ess/home,'https://qaphr998two-ep.prismhr.com/#/auth/login,,1,!!!!'992ef569-1d76-4eca-93ce-2b85e3b9173c,'36,!!;5,'actionText,'Log Out;2,1,2,i,a,d,'POST,5k,'qaphr998two-ep.prismhr.com:443,'/wave1/apis/ep/logout,2,j,,'37,'afc0f94cd6de1645,'e9703dac4fb27542591ebad7a27db16e,leq8ay5s;2,2,q,i,a,f,'GET,b5,9,'/wave1/apis/ep/session,,c,,'38,'4b9a83eaa82c86ed,'9b22aef99db41186a4b8c18427a0ccbf,leq8ay6g;2,,1b,o,5,9,8,5k,9,a,2,j,,'39,'4b43dc48f83a0f21,'087574b642502bae6656d666336d83a8,leq8ay71;2,,1c,1a,17,15,e,5k,9,'/wave1/apis/ep/clients/544/config-template,,427x,,'40,'74b35247049ec49b,'28546c310704772092395986e954a2e2,leq8ay72;

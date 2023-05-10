@@ -1,0 +1,16 @@
+GET https://qaphr998two-ep.prismhr.com:443/obbe/scripts.8bb40afa39744d50.js HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: https://qaphr998two-ep.prismhr.com/obbe/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: token=undefined; ESSauthToken=veBGdsfEusEalUA2OTMoX9hbvu2wwyi0mQ029208; peoId=qaphr998two; accountId=qaphr998two; sails.sid=s%3AckatnfhNAUN4ycjwTAgTYwHSmdKB7_nb.hEHEUs9zbMb94x4SuLrnkxonUf9qHMUG0j4qhdSdA%2B0
+

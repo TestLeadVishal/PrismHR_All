@@ -1,0 +1,16 @@
+GET https://qaphr998two-ep.prismhr.com:443/obbe/assets/javascripts/angular-ui-grid/ui-grid.min.css HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: https://qaphr998two-ep.prismhr.com/obbe/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: token=undefined; ESSauthToken=2KurELvDveudI2tDWukFeL1PB6FaA3MQy2m29892; peoId=qaphr998two; accountId=qaphr998two; sails.sid=s%3Arv8ppYHaH-zmnu7dgeoP-Zos5mrtEJuu.RUN%2BaV%2FhxLx6tZZ6SbTBKCwuTmcXHdKq9slHOLRv2o0
+

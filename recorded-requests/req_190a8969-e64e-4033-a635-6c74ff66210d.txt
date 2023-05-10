@@ -1,0 +1,23 @@
+POST https://qaphr998two-ep.prismhr.com:443/wave1/apis/ep/clients HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+Content-Length: 18
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+tracestate: 1963815@nr=0-1-2203161-1386029388-d36bb26da4eba9e2----1681274930055
+traceparent: 00-decb8b4b030e4d59be62026aaa20a797-d36bb26da4eba9e2-01
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+newrelic: eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6ImQzNmJiMjZkYTRlYmE5ZTIiLCJ0ciI6ImRlY2I4YjRiMDMwZTRkNTliZTYyMDI2YWFhMjBhNzk3IiwidGkiOjE2ODEyNzQ5MzAwNTUsInRrIjoiMTk2MzgxNSJ9fQ==
+Content-Type: application/json
+Accept: application/json, text/plain, */*
+sec-ch-ua-platform: "Windows"
+Origin: https://qaphr998two-ep.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two-ep.prismhr.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: sails.sid=s%3APAmhwwsd1u5zuRWRrat8Y-x3Jr86veaq.n8nFqI%2BhYXPNfvDDwzTQkoazWej4zHMvV6Ym7vzlH0s
+
+{"clientId":"544"}

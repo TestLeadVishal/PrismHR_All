@@ -1,0 +1,507 @@
+BODY
+{
+    font-family:verdana;
+    font-size:8pt;    
+}
+A.MENUITEMDEFAULT {
+    COLOR: #666677;
+    BACKGROUND-COLOR: red;
+    border-color : silver;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-right-width:0;
+    border-left-width:0;
+    FONT-SIZE: 7pt;
+    border-collapse:collapse;
+    padding:4;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;
+    FONT-FAMILY: Verdana
+}
+
+A.MENUITEMDEFAULT:Active {
+    COLOR:  white;
+    BACKGROUND-COLOR: red;
+    border-color :  silver;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-right-width:0;
+    border-left-width:0;
+    FONT-SIZE: 7pt;
+    border-collapse:collapse;
+    padding:4;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;
+    FONT-FAMILY: Verdana
+}
+.MENUHEADDEFAULT {
+   COLOR:  #CCCCCC;
+    BACKGROUND-COLOR: #CCCCCC;
+    border-color :  silver;
+    FONT-weight: bold;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-right-width:0;
+    border-left-width:0;
+    FONT-SIZE: 0pt;
+    border-collapse:collapse;
+    padding:1;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;
+    FONT-FAMILY: Verdana
+}
+A.MENUITEM {
+    COLOR:  #777788;
+    BACKGROUND-COLOR: white ;
+    border-color : white;
+    border-bottom-color:#DDDDEE;
+    FONT-SIZE: 7pt;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-collapse:collapse;
+    padding:2;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;    
+    FONT-FAMILY: Verdana
+}
+
+A.MENUITEM:Hover {
+    COLOR:  white;
+    BACKGROUND-COLOR:  #888899;
+    border-color : white;
+    border-bottom-color:#DDDDEE;
+    FONT-SIZE: 7pt;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-collapse:collapse;
+    padding:2;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;    
+    FONT-FAMILY: Verdana
+}
+
+A.MENUITEM:Active {
+    COLOR:  white;
+    BACKGROUND-COLOR:  #777788;
+    border-color : white;
+    border-bottom-color:#DDDDEE;
+    FONT-SIZE: 7pt;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-collapse:collapse;
+    padding:2;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;    
+    FONT-FAMILY: Verdana
+}
+
+
+
+.MENUHEAD {
+    COLOR: white;
+    BACKGROUND-COLOR: #777788;
+    border-color : silver;
+    FONT-weight: normal;
+    FONT-SIZE: 7pt;
+    border-style:solid;
+    border-width:1;
+    border-top-width:0;
+    border-collapse:collapse;
+    padding:2;
+    padding-left:4;
+    width:100%;
+    text-decoration:none;
+    FONT-FAMILY: Verdana
+}
+.MENUBODY{
+	background-color:white
+}
+
+
+.mtBody{
+	position:absolute;
+	BACKGROUND-COLOR: #3C5DB0;
+}
+
+
+.mtHead {
+	COLOR: white;
+	BACKGROUND-COLOR: #3C5DB0;
+	border-color :  #777788;
+	position:absolute;
+    FONT-SIZE: 7pt;
+    FONT-weight: normal;
+    border-style:solid;
+    border-left-style:none;    
+    border-width:1;
+    border-top-width:0;
+    border-bottom-width:0;
+    border-collapse:collapse;
+    padding:0;
+    padding-left:4;
+    padding-top:1;
+    width:120px;
+    height:15px;
+    text-decoration:none;
+    overflow:hidden;
+    FONT-FAMILY: Verdana
+}
+
+
+A.mt {
+	COLOR: white;
+    BACKGROUND-COLOR: #AAAABB;
+    border-color :  #777788;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    position:absolute;
+    FONT-SIZE: 7pt;
+    border-collapse:collapse;
+    padding:1;
+    padding-left:4;
+    width:120px;
+    height:15px;
+    text-decoration:none;
+    overflow:hidden;
+    FONT-FAMILY: Verdana
+}
+
+A.mt:Hover {	
+	COLOR:  #777788;
+    BACKGROUND-COLOR: white;
+    border-color :   #777788;
+	position:absolute;
+    FONT-SIZE: 7pt;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:1;
+    border-collapse:collapse;
+    padding:1;
+    padding-left:4;
+    width:120px;
+    height:15px;
+    text-decoration:none;
+    FONT-FAMILY: Verdana
+}
+
+.LabelText {
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana
+}
+
+.SmallText {
+    FONT-SIZE: 7pt;
+    COLOR: #478eab;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:0;    
+    FONT-FAMILY: Verdana
+}
+
+A.SmallLink {
+    FONT-SIZE: 7pt;
+    COLOR: #478eab;
+    FONT-weight: normal;
+    border-style:solid;
+    border-width:0;
+    text-decoration:underline;
+    FONT-FAMILY: Verdana
+}
+
+LABEL
+{
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana
+}
+.SPAN2
+{
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana
+}
+TD5
+{
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana;
+    Vertical-Align:Top
+}
+.darkLabel
+{
+    BORDER-RIGHT: silver 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #EAF3F8 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    PADDING-BOTTOM: 1px;
+    MARGIN: 1px 2px;
+    BORDER-LEFT: #EAF3F8 1px solid;
+    WIDTH: 70px;
+    CURSOR: pointer;
+    COLOR: #EAF3F8;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: silver 1px solid;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 12px;
+    BACKGROUND-COLOR: #3399CC;
+    TEXT-ALIGN: center
+}
+
+.but90
+{
+    PADDING-RIGHT: 2px;
+    PADDING-Top: 1px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 7pt;
+    CURSOR: pointer;
+    COLOR: #005a9d;
+    BORDER-STYLE:none;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 16px;
+    background: url(images/but90.gif) no-repeat;
+    TEXT-ALIGN: center
+}
+
+.but120
+{
+    PADDING-RIGHT: 2px;
+    PADDING-Top: 1px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 7pt;
+    CURSOR: pointer;
+    COLOR: #005a9d;
+    BORDER-STYLE:none;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 16px;
+    background: url(images/but120.gif) no-repeat;
+    TEXT-ALIGN: center
+}
+.but150
+{
+    PADDING-RIGHT: 2px;
+    PADDING-Top: 1px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 7pt;
+    CURSOR: pointer;
+    COLOR: #005a9d;
+    BORDER-STYLE:none;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 16px;
+    background: url(images/but150.gif) no-repeat;
+    TEXT-ALIGN: center
+}
+
+.darkLabel2
+{
+    PADDING-RIGHT: 2px;
+    PADDING-Top: 0px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 7pt;
+    CURSOR: pointer;
+    COLOR: #444444;
+    BORDER-STYLE:none;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 15px;
+    background: url(images/button16_90.jpg) no-repeat;
+    TEXT-ALIGN: center
+}
+
+.smallText
+{
+    FONT-SIZE: 7pt;
+    FONT-FAMILY: Verdana
+}
+.mvFieldStyle
+{
+    font-size:8pt;
+    font-family:Verdana;		
+    border-style:none;
+    border-width:0px;
+    border-color:gray;
+    PADDING-BOTTOM:1px;
+    PADDING-TOP:1px;   
+    padding-left : 3px; 
+    MARGIN-BOTTOM:-1px;
+    WIDTH:100%;
+    MARGIN-TOP:-1px;     
+    padding-right : 2px;   
+}
+.mvTD
+{
+    vertical-align:top;
+    font-size:8pt;
+    font-family:verdana;	
+    border-Top-style:none;
+    border-Left-style:none;
+    border-Right-style:solid;
+    border-Bottom-style:solid;
+    border-width:1px;	
+    border-color:silver;    
+}
+.mvTitle
+{
+    font-size:8pt;
+    color: darkSlateGray;
+    font-family:verdana;		
+    font-weight : normal;
+    border-style:solid;
+    border-width:0px;
+    border-color:gray;
+    MARGIN-BOTTOM:0px;
+    MARGIN-RIGHT:0px;
+    MARGIN-LEFT:0px;
+    MARGIN-TOP:0px;       
+    PADDING-BOTTOM:0px;
+    PADDING-RIGHT:0px;
+    PADDING-LEFT:0px;
+    PADDING-TOP:0px;
+    WIDTH:100%      
+}
+.mvHeader
+{
+    font-size:8pt;
+    color: white;
+    font-family:verdana;		
+    background-color:lightSlateGray;
+    border-style:solid;
+    border-width:1px;
+    border-color:silver;
+    MARGIN-BOTTOM:0px;
+    MARGIN-TOP:0px;
+    Text-Align : center;          
+}
+.mvContainer
+{
+	border-width:1px;
+	border-style:solid;
+	border-color:#cccccc;
+	padding:0;
+	margin:0	
+}
+.mvTable
+{
+	border-Width:1px;
+	border-Style:solid;
+	border-Color: silver;
+	margin:0;	
+}
+
+.reportHeader
+{
+	margin-top:-1;
+	margin-left:-1;
+	width:100%;	
+	border-collapse: collapse;
+	table-layout:fixed;
+}
+
+.TD.reportHeader
+{    
+	font-size:7pt;
+    color:white;
+    background-color:#3399CC;
+    font-family:verdana;	
+    font-weight:bold;
+    border-collapse: collapse;    
+}
+
+
+.reportBody
+{
+	margin-left:-1;
+	margin-top:-1;
+	width:100%;	
+	border-collapse: collapse;	
+	table-layout:fixed;
+}
+
+.TD.reportBody
+{    
+	font-size:7pt;
+	color:black;
+    font-family:verdana;	
+    border-collapse: collapse;    
+}
+
+.mvImgButton{
+	margin:1;
+	padding:0;
+	height:100%;
+	width:100%;
+	color:white;
+	text-Align:center;
+	vertical-Align:middle;
+	padding-Bottom:2px;
+	font-Weight:normal;
+	background-color:#999999;
+	cursor : pointer;
+}
+.searchLabel
+{
+    BORDER-STYLE: none;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 0px;
+    PADDING-TOP: 1px;
+    PADDING-BOTTOM: 1px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    MARGIN: 0px 0px;
+    WIDTH: 70px;
+    CURSOR: pointer;
+    COLOR: BLACK;
+    TEXT-DECORATION:UNDERLINE;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 12px;
+    TEXT-ALIGN: left
+}
+
+.searchLabel A {padding-right:10px;padding-left:2px;padding-top:3px;padding-bottom:3px;}
+.searchLabel A:link {background-color:white;color: black;}
+.searchLabel A:visited {background-color:white;color: black;}
+.searchLabel A:active {background-color:white;color: black;}
+.searchLabel A:hover {background-color:white;color: black;}
+
+
+
+
+.MAINBODY{
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:silver;
+}
+
+#oDiv p{
+	color:black;
+	font-family:Courier New;
+	font-size:8pt;
+	padding:0px;
+	margin:0px;
+	margin-left:0px;
+	margin-top:0px;
+	padding-top:0px;
+	padding-left:0px;
+	
+}

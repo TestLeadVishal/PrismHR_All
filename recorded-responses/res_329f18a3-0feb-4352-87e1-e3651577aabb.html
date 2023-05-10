@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html><head>
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" ><link rel="shortcut icon" href="images/favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;900&display=swap" rel="stylesheet"><link href="designBAISStyle.css" rel="STYLESHEET" type="text/css"/>
+<link href="designBAIS.css" rel="STYLESHEET" type="text/css"/>
+<link href="jq/jqalerts/jquery.alerts.css" rel="STYLESHEET" type="text/css"/>
+<link href="css/compatible_w3c.css" rel="STYLESHEET" type="text/css"/>
+<link rel="stylesheet" href="jq/themes/base/jquery.ui.all.css"/><script type="text/javascript" src="w3cmenuScript.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js" type="text/javascript"></script>
+<script src="Highcharts-9.3.0/code/highcharts.js"></script><script src="Highcharts-9.3.0/code/annotations.js"></script><script src="Highcharts-9.3.0/code/highcharts-more.js"></script><script src="Highcharts-9.3.0/code/modules/exporting.js"></script><script src="Highcharts-9.3.0/code/modules/export-data.js"></script><script src="Highcharts-9.3.0/code/modules/heatmap.js"></script><script src="Highcharts-9.3.0/code/modules/treemap.js"></script><script src="Highcharts-9.3.0/code/modules/drilldown.js"></script><script src="Highcharts-9.3.0/code/modules/no-data-to-display.js"></script><script src="Highcharts-9.3.0/code/modules/boost.js"></script><script src="Highcharts-9.3.0/code/themes/prism.js" type="text/javascript"></script><script type="text/JavaScript" src="ajxw3c126.js"></script>
+<script type="text/JavaScript" src="jq/jqalerts/jquery.alerts126.js"></script>
+<script> (function(apiKey){ (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[]; v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){ o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]); y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js'; z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo'); window.initAnalytics = function () { var elements = document.getElementsByTagName("td"); var searchText = "User:"; var foundTitle; for (var i = 0; i < elements.length; i++) { var title = elements[i].getAttribute("title"); if (title && title.indexOf(searchText) > -1) { foundTitle = title; break; } } if (foundTitle) { foundTitle = foundTitle.replace(/\r\n|\r|\n/g, '|'); var params = foundTitle.split('|'); var info = {}; for (var i = 0; i < params.length; i++) { var keyVal = params[i].split(': '); var key = keyVal[0]; var value = keyVal[1]; switch (key) { case 'User': info.id = value; var [userId] = value.split('###'); info.userId = userId; break; case 'User Type': info.type = value.split('(')[1].replace(/\)/g, ''); break; case 'Client ID': info.clientId = value; break; case 'Client Name': info.clientName = value; break; case 'Account': info.accountId = value; break; case 'Account Name': info.peoId = value; break; case 'System ID': info.peoName = value; break; } } pendo.initialize({ visitor: { id: info.id, userId: info.userId, type: info.type, clientId: info.clientId, clientName: info.clientName }, account: { id: info.accountId, peoName: info.peoName, peoId: info.peoId, } }); } } })('3e4e8b42-dfe2-457f-483f-40e03fad0830');</script><script src="https://kit.fontawesome.com/1f5f7cbb98.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+<!--
+function prepareDatePickers(){$("input[id*='datepicks']").each( function() {$(this).datepicker({ onClose: function() {  $(this).datepicker("destroy");   $(this).focus().select();   window.setTimeout(prepareDatePickers , 0);   }, dateFormat: 'mm-dd-yy',constrainInput: false, changeMonth: true, changeYear: true, yearRange:'-90:+90' });   $(this).click(function(){$(this).datepicker("show"); });   });   }$(function() { 
+ $( "#dbformlayer2" ).draggable();  
+ $( "#dbformlayer2" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer3" ).draggable();  
+ $( "#dbformlayer3" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer4" ).draggable();  
+ $( "#dbformlayer4" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer5" ).draggable();  
+ $( "#dbformlayer5" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer6" ).draggable();  
+ $( "#dbformlayer6" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer7" ).draggable();  
+ $( "#dbformlayer7" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer8" ).draggable();  
+ $( "#dbformlayer8" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer9" ).draggable();  
+ $( "#dbformlayer9" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer10" ).draggable();  
+ $( "#dbformlayer10" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer11" ).draggable();  
+ $( "#dbformlayer11" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer12" ).draggable();  
+ $( "#dbformlayer12" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer13" ).draggable();  
+ $( "#dbformlayer13" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer14" ).draggable();  
+ $( "#dbformlayer14" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer15" ).draggable();  
+ $( "#dbformlayer15" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer16" ).draggable();  
+ $( "#dbformlayer16" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer17" ).draggable();  
+ $( "#dbformlayer17" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer18" ).draggable();  
+ $( "#dbformlayer18" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer19" ).draggable();  
+ $( "#dbformlayer19" ).draggable({cancel: "td,span,input,textarea,select" });   
+ $( "#dbformlayer20" ).draggable();  
+ $( "#dbformlayer20" ).draggable({cancel: "td,span,input,textarea,select" });   
+  });  
+function ofrPressed(tbx,e){var tnm    = tbx.split("v")[0];var tst    = tbx.split("v")[1];var tstlvl = tst.split("x")[0];var tstcoords = tst.split("x")[1];var tstrow = tstcoords.split("z")[0];var tstcol = tstcoords.split("z")[1];var tdi = tnm + 'v' + tstlvl + 'x' + tstrow + 'z' + tstcol;var tdn = tnm + 'v' + tstlvl + 'x' + eval(tstrow + '+1') + 'z' + tstcol;var tup = tnm + 'v' + tstlvl + 'x' + eval(tstrow + '-1') + 'z' + tstcol;var tdl = tnm + 'v' + tstlvl + 'x' + tstrow + 'z' + tstcol;var tdr = tnm + 'v' + tstlvl + 'x' + tstrow + 'z' + tstcol;if (e.ctrlKey && e.keyCode == 13) {validateAndSubmit(tdi+"|Control");return;}if (e.shiftKey && e.keyCode == 9) {if (tstcol > 1)try{document.getElementById(tdl).focus();document.getElementById(tdl).select();}  catch{return;}}if (e.keyCode == 9) {if (tstrow > 0 && tstcol > 0)try{document.getElementById(tdr).focus();document.getElementById(tdr).select();return;}   catch{return;}}if (e.keyCode == 40 || e.keyCode == 13) {if (tstrow < 9999)try{document.getElementById(tdn).focus();document.getElementById(tdn).select();}catch{return;}}if (e.keyCode == 38) {if(tstrow > 1)document.getElementById(tup).focus();document.getElementById(tup).select();}}var strDateMask="m/d/yyyy";   
+function validateAndSubmit(e){
+execForm(e);   
+}
+-->
+</script><style type="text/css" ></style>
+</head>
+<body style="margin:0" onresize="validateAndSubmit(event);"><form id="dbmainform" action="_self"><div id="dbmasterdiv1" style="position:relative;margin:auto;width:4px;height:4px;">
+<div id="dbmenuside1" style="z-index:199;position:absolute;top:0px;left:0px;width:0px;display:none;"></div><div id="dbmenutop1" style="z-index:199;position:absolute;height:0px;top:0px;left:0px;width:0px;display:none;"></div><div id="db1formlayer" style="position:relative;z-index:1"></div>
+</div>
+<div id="dbmasterdiv2" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer2" style="position:relative;z-index:201"></div>
+</div>
+<div id="dbmasterdiv3" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer3" style="position:relative;z-index:401"></div>
+</div>
+<div id="dbmasterdiv4" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer4" style="position:relative;z-index:601"></div>
+</div>
+<div id="dbmasterdiv5" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer5" style="position:relative;z-index:801"></div>
+</div>
+<div id="dbmasterdiv6" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer6" style="position:relative;z-index:1001"></div>
+</div>
+<div id="dbmasterdiv7" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer7" style="position:relative;z-index:1201"></div>
+</div>
+<div id="dbmasterdiv8" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer8" style="position:relative;z-index:1401"></div>
+</div>
+<div id="dbmasterdiv9" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer9" style="position:relative;z-index:1601"></div>
+</div>
+<div id="dbmasterdiv10" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer10" style="position:relative;z-index:1801"></div>
+</div>
+<div id="dbmasterdiv11" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer11" style="position:relative;z-index:2001"></div>
+</div>
+<div id="dbmasterdiv12" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer12" style="position:relative;z-index:2201"></div>
+</div>
+<div id="dbmasterdiv13" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer13" style="position:relative;z-index:2401"></div>
+</div>
+<div id="dbmasterdiv14" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer14" style="position:relative;z-index:2601"></div>
+</div>
+<div id="dbmasterdiv15" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer15" style="position:relative;z-index:2801"></div>
+</div>
+<div id="dbmasterdiv16" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer16" style="position:relative;z-index:3001"></div>
+</div>
+<div id="dbmasterdiv17" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer17" style="position:relative;z-index:3201"></div>
+</div>
+<div id="dbmasterdiv18" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer18" style="position:relative;z-index:3401"></div>
+</div>
+<div id="dbmasterdiv19" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer19" style="position:relative;z-index:3601"></div>
+</div>
+<div id="dbmasterdiv20" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer20" style="position:relative;z-index:3801"></div>
+</div>
+<div id="dbmasterdiv21" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer21" style="position:relative;z-index:151"></div>
+</div>
+<div id="dbmasterdiv22" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer22" style="position:relative;z-index:351"></div>
+</div>
+<div id="dbmasterdiv23" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer23" style="position:relative;z-index:551"></div>
+</div>
+<div id="dbmasterdiv24" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer24" style="position:relative;z-index:751"></div>
+</div>
+<div id="dbmasterdiv25" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer25" style="position:relative;z-index:951"></div>
+</div>
+<div id="dbmasterdiv26" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer26" style="position:relative;z-index:1151"></div>
+</div>
+<div id="dbmasterdiv27" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer27" style="position:relative;z-index:1351"></div>
+</div>
+<div id="dbmasterdiv28" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer28" style="position:relative;z-index:1551"></div>
+</div>
+<div id="dbmasterdiv29" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer29" style="position:relative;z-index:1751"></div>
+</div>
+<div id="dbmasterdiv30" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer30" style="position:relative;z-index:1951"></div>
+</div>
+<div id="dbmasterdiv31" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer31" style="position:relative;z-index:2151"></div>
+</div>
+<div id="dbmasterdiv32" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer32" style="position:relative;z-index:2351"></div>
+</div>
+<div id="dbmasterdiv33" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer33" style="position:relative;z-index:2551"></div>
+</div>
+<div id="dbmasterdiv34" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer34" style="position:relative;z-index:2751"></div>
+</div>
+<div id="dbmasterdiv35" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer35" style="position:relative;z-index:2951"></div>
+</div>
+<div id="dbmasterdiv36" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer36" style="position:relative;z-index:3151"></div>
+</div>
+<div id="dbmasterdiv37" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer37" style="position:relative;z-index:3351"></div>
+</div>
+<div id="dbmasterdiv38" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer38" style="position:relative;z-index:3551"></div>
+</div>
+<div id="dbmasterdiv39" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer39" style="position:relative;z-index:3751"></div>
+</div>
+<div id="dbmasterdiv40" style="display:none;position:absolute;width:4px;height:4px;">
+<div id="dbformlayer40" style="position:relative;z-index:3951"></div>
+</div>
+<div>
+<input type="hidden" id="ScreenRoot" value="HRPY.WORK_LOGIN" />
+<img style="position:absolute;border-style:none;display:none;z-index:9999" alt="" id="ajxImageFrame" src="images/ajax.gif"></div>
+</form></body></html>

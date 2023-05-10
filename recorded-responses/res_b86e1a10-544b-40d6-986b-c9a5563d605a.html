@@ -1,0 +1,102 @@
+<div class="prebuilt-container">
+    <!-- Header-->
+    <div id='headerTop'>
+        <div class="card-group">
+            <div class="card panel-noborder rounded-0">
+                <div class="panel-heading header-panel">
+                    <div class="card-header text-left text-black bg-white mobile-view phr-card-header-height">
+                        <h4 id="title">{{ctrl.formHeader}}</h4>
+                        <h4 class="d-sm-block" tooltip="{{ctrl.runningTotalTooltipText}}" id="runningtotal">
+                            <span class="font-weight-normal small">{{ctrl.runningTotalText}}</span>
+                            <span class="text-phr-green"> {{ctrl.currentRunningTotal | currency}}</span>
+                        </h4>
+                    </div>
+                </div>
+                <div>
+                    <div class="card-body">
+                        <div class="markdown-field" btf-markdown="ctrl.header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------Effective Date ----------->
+    <!--<div>-->
+        <!--<span id="employeeEffectiveDate" ng-show="ctrl.employeeEffectiveDate"-->
+              <!--class="pull-left">Effective Date: {{ctrl.employeeEffectiveDate | date : 'MM/dd/yyyy'}}</span>-->
+
+    <!--</div>-->
+    <!--------------------------------------->
+
+    <!--<br/><br/>-->
+    <!-- Plans -->
+    <div class="row">
+        <div class="plans" ng-hide="ctrl.showNoPlans">
+            <ul class="plans-area list-inline">
+                <li ng-repeat="plan in ctrl.plans | orderBy:'name' track by $index" class="col-12 col-sm-10 col-md-10 col-lg-6 col-xl-4 list-inline-item tile-padding" style="margin-right:-5px;">
+                    <spend-tile plandata="{{plan}}" disabled="{{ctrl.waived}}"></spend-tile>
+                </li>
+            </ul>
+
+        </div>
+        <div class="no-plans ml-1" ng-show="ctrl.showNoPlans && !ctrl.waived">
+            <span>{{ctrl.noPlansText}}</span>
+        </div>
+    </div>
+
+    <table class="table" ng-show="ctrl.showFlexWarningLE || ctrl.showFlexWarn">
+        <tbody>
+            <tr>
+                <td width="2%" style="border: none">
+                    <i class="fas fa-exclamation-triangle fa-lg" style="color: #F5A623"></i>
+                </td>
+                <td width="98%" style="border: none">
+                    <span ng-show="ctrl.showFlexWarningLE">{{ctrl.flexWarnText}}</span><br ng-show="ctrl.showFlexWarningLE">
+                    <span ng-show="ctrl.showFlexWarn"> {{ctrl.flexWarn}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+    <!------------------Waive------------------->
+
+    <div class="row" ng-show="ctrl.waiveAllowed">
+        <div class="col-12">
+            <div class="card-group">
+                <div class="card waive-panel panel-noborder">
+                    <div class="panel-heading bg-phr-header ml-3 mr-3">
+                        <h5 class="card-header border-bottom-0 text-black panel-heading-padding">
+                            <span>{{ ctrl.waiveHeader }}</span>
+                        </h5>
+                    </div>
+                    <br>
+                    <div class="card-body waive-panel-body" style="padding: 0 0 0 10px;">
+                        <div class="row align-items-center ml-1">
+                            &nbsp;<input type="checkbox" class="waiveBigCheckbox" ng-model="ctrl.waived" ng-change="ctrl.waiveElection()"/>
+                            <b>&nbsp; {{ ctrl.waiveText }}</b>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-group footer-panel">
+                <div class="card panel-noborder">
+                    <div class="card-body">
+                        <div btf-markdown="ctrl.footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<if-loading></if-loading>
+
+</div>

@@ -1,0 +1,14 @@
+GET https://pendo-static-5175759064268800.storage.googleapis.com/guide-content/RDQs590of5P6blSpC6dKN7ZHi1E/HSM2_HaKJg6t_AjPP-tTaLKPw08/6FHb8MbwCTYZ2v_Hv3WCfshHxq0.dom.jsonp?sha256=VxSN843bJ1gu8DNudX598bZzikRVTaRXff6aQyfWLOc HTTP/2.0
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Windows"
+accept: */*
+x-client-data: CIi2yQEIprbJAQjEtskBCKmdygEIx/zKAQiUocsBCPCAzQEYwcvMAQ==
+sec-fetch-site: cross-site
+sec-fetch-mode: no-cors
+sec-fetch-dest: script
+referer: https://qaphr998.prismhr.com/
+accept-encoding: gzip, deflate, br
+accept-language: en-US,en;q=0.9
+

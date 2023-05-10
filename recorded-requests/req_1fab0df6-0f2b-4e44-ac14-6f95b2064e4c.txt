@@ -1,0 +1,20 @@
+POST https://qaphr998two.prismhr.com:443/qaphr998twov6/dbweb.asp?dbcgm=1&ajx=yes HTTP/1.1
+Host: qaphr998two.prismhr.com
+Connection: keep-alive
+Content-Length: 2651
+sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-platform: "Windows"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+Content-Type: application/x-javascript;
+Accept: */*
+Origin: https://qaphr998two.prismhr.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://qaphr998two.prismhr.com/qaphr998twov6/dbweb.asp?dbcgm=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: IDBrowser=183c17c9a265416181b9e2dc8f9f3ae93746f7d59fee195b8d055dfd77674cb2+mdG1Q661AS46U1IiUi2P4es+74QEbSKe0bcfTaZ4Jc=; ASPSESSIONIDCQABBTQT=ODNDGPPDCDLCJEHBFGBPLIKG; DesignBAIS=machine=KAWXLIBYIGQPWGBQKBSPWVMNSQVYWBPGTBKEZDVVHXRGBJW&ver=40&pooler=862
+
+<ajaxTOBA><field name="text33v1" value=""/><field name="text75v1" value="05502aaaaaaf"/><field name="select76v1" value="E"/><field name="select77v1" value=""/><field name="text78v1" value="Jim Laaaaaacaaaaaaaaaaf"/><field name="password79v1" value="**********"/><field name="text80v1" value="a@b.com"/><field name="text81v1" value=""/><field name="text83v1" value=""/><field name="checkbox84v1" value="true"/><field name="checkbox86v1" value="false"/><field name="checkbox87v1" value="false"/><field name="text92v1" value=""/><field name="text93v1" value=""/><field name="text94v1" value="05502aaaaaaf"/><field name="text97v1" value="0"/><field name="text98v1" value=""/><field name="datepickstext99v1" value=""/><field name="text100v1" value=""/><field name="checkbox101v1" value="false"/><field name="select102v1" value="D"/><field name="textarea113v1" value=""/><field name="ASSOC6zselect85v1z1z1" value=""/><field name="ASSOC6zselect85v1z2z1" value=""/><field name="ASSOC6zselect85v1z3z1" value=""/><field name="ASSOC6zselect85v1z4z1" value=""/><field name="ASSOC6zselect85v1z5z1" value=""/><field name="ASSOC6zselect85v1z6z1" value=""/><field name="ASSOC5ztext88v1z1z1" value=""/><field name="ASSOC5ztext88v1z2z1" value=""/><field name="ASSOC5ztext88v1z3z1" value=""/><field name="ASSOC5ztext88v1z4z1" value=""/><field name="ASSOC5ztext88v1z5z1" value=""/><field name="ASSOC5ztext88v1z6z1" value=""/><field name="ASSOC4zselect90v1z1z1" value=""/><field name="ASSOC4zselect90v1z2z1" value=""/><field name="ASSOC4zselect90v1z3z1" value=""/><field name="ASSOC4zselect90v1z4z1" value=""/><field name="ASSOC4zselect90v1z5z1" value=""/><field name="ASSOC4zselect90v1z6z1" value=""/><field name="ASSOC7zselect91v1z1z1" value=""/><field name="ASSOC7zselect91v1z2z1" value=""/><field name="ASSOC7zselect91v1z3z1" value=""/><field name="ASSOC7zselect91v1z4z1" value=""/><field name="ASSOC7zselect91v1z5z1" value=""/><field name="ASSOC7zselect91v1z6z1" value=""/><field name="ASSOC8ztext95v1z1z1" value=""/><field name="ASSOC8ztext95v1z2z1" value=""/><field name="ASSOC8ztext95v1z3z1" value=""/><field name="ASSOC8ztext95v1z4z1" value=""/><field name="ASSOC8ztext95v1z5z1" value=""/><field name="ASSOC8ztext95v1z6z1" value=""/><field name="ScreenRoot" value="HRP.USERS_MAINT"/><eventSource>select102v1</eventSource><eventType>change</eventType><keyCodes>||||select102v1</keyCodes><dimensions>1536|718|1536|718</dimensions><W3CRoot>HRP.USERS_MAINT</W3CRoot><clientClock>10:21:30</clientClock><clientDate>25.10.2022</clientDate><dbsuiID>1765246804631</dbsuiID><bac>172.16.160.105|UNIDATA|S:\DAVISON\ACCOUNTS\QAPHR998TWO\HRPY.DBRUN.QAPHR998TWO</bac></ajaxTOBA>

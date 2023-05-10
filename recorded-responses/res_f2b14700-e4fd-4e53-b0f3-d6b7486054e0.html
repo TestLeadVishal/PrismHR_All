@@ -1,0 +1,41 @@
+<div id='headerTop' class="row-fluid">
+    <div class="card panel-noborder rounded-0">
+        <div class="card-header header-panel phr-card-header-bg">
+                    <h4 class="float-left mr-3">{{ $ctrl.form | formDisplayNameFilter }}</h4>
+                    <button class="btn btn-link" ng-show="$ctrl.isCompleted" ng-click="$ctrl.edit()" type="button">{{ 'edit' | translation : 'employeeInfo' }}</button>
+                    <br class="d-block d-sm-none" />
+            </div>
+    </div>
+</div>
+
+<section class="onboarding-form-main-content">
+    <form action="" class="form" name="disabilityForm" novalidate>
+        <div class="row">
+            <div class="col-12">
+                <div btf-markdown="$ctrl.instructions"></div>
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="disabilityStatus">{{ 'inputLabel' | translation : 'disability' }}</label>
+                    <select ng-disabled="$ctrl.isCompleted" id="disabilityStatus" name="disabilityStatus"
+                            class="form-control" required ng-model="$ctrl.employeeData.eeDisabled" require
+                            ng-disabled="$ctrl.isCompleted">
+                        <option value="">{{ 'selectText' | translation: 'disability' }}</option>
+                        <option ng-repeat="disability in $ctrl.disabilityOptions" value="{{disability.id}}">{{disability.label}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="onboarding-form-buttons bottom-button-panel center-submit-button-mobile">
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="$ctrl.isFormProcessing || disabilityForm.$invalid || disabilityForm.disabilityStatus.$error.required">{{ $ctrl.nextButtonText }}</button>
+        </div>
+    </div>
+</section>

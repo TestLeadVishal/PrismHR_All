@@ -1,0 +1,305 @@
+body{
+    /*background-color: #ddd;*/
+}
+
+.container-fluid {
+    padding: 0!important; 
+}
+
+.main-page-container.col-12 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.view-container {
+    background-color:white;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.box-center{
+    top:50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%, 0);
+    position: absolute;
+}
+
+.box-container {
+    padding: 10px;
+}
+
+.box-container-sm {
+    padding: 5px;
+}
+
+.form-properties{
+    padding-left: 5%;
+}
+
+.required-error {
+    color:red;
+    font-size: smaller;
+}
+
+.alert{
+    padding: 5px;
+}
+
+fieldset {
+    margin: 8px;
+    border: 1px solid silver;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.summary-fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+/*applying changes to the legend element to intentionally change the behavior that bootstrap is doing */
+legend {
+    display: block;
+    width: auto !important;
+    padding: 0 1ex;
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+}
+
+
+/*Control ng-dialog css*/
+.ngdialog.ngdialog-theme-default.ngdialog-alert .ngdialog-content {
+    padding: 0;
+}
+
+.ngdialog.ngdialog-theme-default.ngdialog-alert .close {
+    outline: 0;
+}
+
+.ngdialog.ngdialog-theme-default.ng-documents-dialog-compact .ngdialog-content {
+    width: 50vw;
+    min-width: 600px;
+}
+.ngdialog.ngdialog-theme-plain.ng-documents-dialog-compact .ngdialog-content {
+    width: 50vw;
+    min-width: 600px;
+}
+/*FF issue with scollbar*/
+.ngdialog-overlay {
+    pointer-events: none;
+}
+
+/**
+document repo ui grid on row mouse over
+*/
+.ui-grid-row:hover .ui-grid-cell {
+    background-color: #dcdcdc;
+}
+.ui-grid{
+    min-width: 500px;
+    width: 100%;
+}
+
+body {
+
+}
+
+img{
+    max-width: 100%;
+}
+
+.filter-panel {
+    border-width: 1px;
+    border-color: #dddddd;
+    border-style: solid;
+    padding: 5px;
+}
+
+.filter-panel input {
+    border-radius: 0;
+}
+
+.filter-panel select {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+#indexedTable {
+    margin-top: 20px;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+    Allows a button to vertically overflow a parent with the styles display: flex and align-items: center
+    This will also display on the right-hand side.
+*/
+.card-header-btn-right {
+    position: absolute;
+    right: 1.25rem;
+}
+
+/*
+    Global overrides for ui-select as a result of the migration to bootstrap 4
+*/
+.ui-select-bootstrap > .ui-select-choices {
+    margin-top: 2px;
+}
+
+.ui-select-toggle {
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+}
+
+.ui-select-toggle[disabled] {
+    background-color: #e0e0e0;
+    background-image: none;
+    border: 0;
+    box-shadow: none;
+    cursor: not-allowed !important;
+    opacity: .65;
+}
+
+.ui-select-toggle > .caret {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px dashed;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.full-height-iframe {
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+}
+
+.w-5 {
+  width: 5% !important;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+/* Toastr messages styles */
+#toast-container > div.toast {
+    background-image: none !important;
+}
+
+#toast-container > div.toast:before {
+    position: fixed;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 18px;
+    line-height: 18px;
+    float: left;
+    color: #212529;
+    padding-right: 0.5em;
+    margin: auto 14px auto -32px;
+    font-weight: 900;
+}     
+
+#toast-container > div.toast.toast-error:before {
+    content: "\f071";
+}
+
+#toast-container > div.toast.toast-error {
+    background-color: #F8D7DA;
+    border-color: #CC0000;
+}
+
+#toast-container > div.toast.toast-error:before {
+    color: #CC0000;
+}
+
+#toast-container > div.toast.toast-success:before {
+    content: "\f058";
+}
+
+#toast-container > div.toast.toast-success {
+    background-color: #D4EDDA;
+    border-color: #28A745;
+}
+
+#toast-container > div.toast.toast-success:before {
+    color: #28A745;
+}
+
+#toast-container > div.toast.toast-info:before {
+    content: "\f005";
+}
+
+#toast-container > div.toast.toast-info {
+    background-color: #a9cdd8;
+    border-color: #2f96b4;
+}
+
+#toast-container > div.toast.toast-info:before {
+    color: #2f96b4;
+}
+
+#toast-container > div.toast.toast-warning:before {
+    content: "\f003";
+}
+
+#toast-container > div.toast.toast-warning {
+    background-color: #e4ceae;
+    border-color: #f89406;
+}
+
+#toast-container > div.toast.toast-warning:before {
+    color: #f89406;
+}
+
+#toast-container > div.toast {
+  border-left: 5px solid #212529;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-radius:  0;
+  opacity: 1;
+}
+
+#toast-container > div.toast > .toast-title, #toast-container > div.toast > .toast-message, #toast-container > div.toast > .toast-close-button {
+  color:  #212529;
+}
+
+#toast-container > div.toast > .toast-title, #toast-container > div.toast > .toast-message {
+  line-height: 18px;
+}
+
+#toast-container > div.toast > .toast-title {
+    margin-bottom: 14px;
+}
+
+#toast-container > div.toast > .toast-message {
+  margin-bottom: 10px;
+  padding-right: 24px;
+}
+
+#toast-container > div.toast > .toast-close-button {
+  font-size: 24px;
+  line-height: 24px;
+  right:  -2px;
+  top: -10px;
+}
+
+#toast-container.toast-top-center {
+  margin-top: 40px;
+}

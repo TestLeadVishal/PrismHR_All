@@ -1,0 +1,2456 @@
+//<script language="Javascript">
+//===================================================================
+//Copyright DesignBAIS @ 2003-2011
+//This computer program is protected by copyright law and international treaties. 
+//Unauthorized reproduction or distribution of this program, or any portion of it, 
+//may result in severe civil and criminal penalties, and will be prosecuted to 
+//the maximum extent possible under the law.
+//===================================================================
+
+
+//================================================
+//Globals
+//================================================
+var lastFocusID;
+var lastEvSrc = '';
+var lastEvType = '';
+var isAjaxBusy = false;
+var lastKey='|||';
+var pageWidth = 0;
+var pageHeight = 0;
+var viewportWidth =0;
+var viewportHeight = 0;
+var screenWidth =0;
+var screenHeight = 0;
+var scrollPosTop = 0;
+var dbTimer;
+var dumTimer;
+var htmlContent = '';
+var htmlKey = '';
+var htmlError = '';
+var htmlSubMode = '';
+var htmlResult = '';
+var uploadedFile;
+var dbkey;
+var uploadError;
+var isUnloadSent = false;
+var isiPad = navigator.userAgent.match(/iPad/i) != null;
+var mouseCoords='';
+var sendClicksType = 0;
+var jsquit = false;
+var suidTime = new Date();
+var nsuidTime = suidTime.getTime();
+var dbsuiID = nsuidTime+parseInt(100000000000 * Math.random());
+var bac = "";
+var iErrorDisplayMode = 2;
+
+
+function setBac(inbac){
+	bac=inbac;
+}
+
+
+
+
+//jquery - ui-draggable hotfix for IE9
+(function($){var a=$.ui.mouse.prototype._mouseMove;$.ui.mouse.prototype._mouseMove=function(b){a.apply(this,[b]);}}(jQuery));
+
+//================================================
+//Window Onload
+//================================================
+window.onload = function(){
+	buildAjax();
+	noEventCall();		
+}
+
+
+//================================================
+//Prevent back space on select fields
+//================================================
+$(document).unbind('keydown').bind('keydown', function (event) {
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' && 
+             (
+                 d.type.toUpperCase() === 'TEXT' ||
+                 d.type.toUpperCase() === 'PASSWORD' || 
+                 d.type.toUpperCase() === 'FILE' || 
+                 d.type.toUpperCase() === 'EMAIL' || 
+                 d.type.toUpperCase() === 'SEARCH' || 
+                 d.type.toUpperCase() === 'DATE' )
+             ) || 
+             d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
+
+    if (doPrevent) {
+        event.preventDefault();
+    }
+});
+
+
+//================================================
+//Document ready
+//================================================
+$(document).ready(function() { 
+	getDimensions();
+	attachFocusEvents();
+	firefoxHREFClick();	
+	window.onunload = notifyExit;  	
+	document.onclick = hidePredict;
+	prepareDraggables();
+	
+	
+	//Mouse coordinates
+	$(document).click(function(e){
+		var eobj  = getEvent(e);	
+		var evElm = eobj[1];
+		var evElmTag = $(evElm).get(0).tagName;
+		mouseCoords = e.pageX +','+ e.pageY+','+evElmTag+','+evElm.id;		   
+		 
+		if (sendClicksType==1) { //all (send id too if exists)			
+			genericEventCall(evElm.id, 'click');			
+		}
+		
+		if (sendClicksType==2) { //only html document (i.e. non-element clicks)
+			if(evElmTag.toLowerCase()=='html' ){
+				genericEventCall('html', 'click');
+			}
+		}
+		
+		if (sendClicksType==3) { //only those with IDs
+			if(evElmTag.toLowerCase()!='html' ){
+				if (evElm.id.length>0){			
+					genericEventCall(evElm.id, 'click');
+				}
+			}
+		}
+		
+	}); 
+		
+	
+});
+
+
+
+//================================================
+//Get dimensions on resize
+//================================================
+$(window).resize(function() { 
+	getDimensions();
+	centerFuzzy('dbmasterdiv');
+}); 
+
+
+//================================================
+//prepareDraggables
+//================================================
+function prepareDraggables(){
+	$("div[id^='dbmasterdiv']").each( function() {
+		if($(this).attr('id')!='dbmasterdiv1'){
+			$(this).draggable({containment:[0,0,viewportWidth,viewportHeight],cancel:'div[class^="nodrags"],input,textarea,button,select,option', handle: 'h2'});			
+		};
+	}); 
+	
+	$("div[id*='dbdroppp']").each( function() {		
+		$(this).droppable({drop: handleDropEvent});					
+	}); 
+	
+	$("div[id*='dbdraggg']").each( function() {		
+		$(this).draggable({containment:[0,0,viewportWidth,viewportHeight], cancel:'div[class="nodrags"],input,textarea,button,select,option', cursor:'move', revert: true});					
+		$(this).draggable({start: handleDragStartEvent });
+	}); 
+	
+	return true;		
+}
+
+
+//================================================
+//synchronizeScrollOnLoad
+//================================================
+function synchronizeScrollOnLoad(bSqueeze){
+
+	var compName = ""
+	$("div[id^='divX_'],div[id^='mvC_']").each( function() {
+		
+		var compName = this.id.split('_')[1];
+		var compPrefixH = '';
+		var compPrefixB = '';
+		
+		if (this.id.substring(0, 3)=='div'){
+			compPrefixH = "divX_";
+			compPrefixB = "divY_";
+		}else{
+			compPrefixH = "mvC_";
+			compPrefixB = "mvD_";
+		}
+		
+		
+		var xDiv = document.getElementById(compPrefixH + compName); 
+		var yDiv = document.getElementById(compPrefixB + compName);
+		var myxT = xDiv.children[0];
+		var myyT = yDiv.children[0];
+		var rlen = myxT.rows[0].cells.length;
+		var rowcount = myyT.rows.length;
+		
+		if (yDiv.style.width == myyT.style.width){
+			yDiv.style.width = (Math.round(yDiv.style.width.replace("px",""))+1)+"px"
+			xDiv.parentNode.style.width =yDiv.style.width ;
+		}
+		
+		
+		yDiv.style.height = (xDiv.parentNode.clientHeight - xDiv.offsetHeight) + "px";		
+		//is there is a scrollbar?	
+		if((yDiv.offsetWidth<myyT.clientWidth+10) && !bSqueeze){
+			
+			var delta = yDiv.offsetWidth - yDiv.clientWidth; //scrolbar width
+			
+			if (myyT.clientWidth>yDiv.clientWidth+25){
+				delta = 0;
+			}
+			
+			var oldWidth = (myyT.style.width.replace("px","")-delta);
+			myyT.style.width =  oldWidth + "px";
+			
+			var percentDecrease = delta/oldWidth;
+			
+			var i=0;
+			
+			if (myyT.rows.length>0){
+				for (var j=0; j<rlen ; j++){	
+					var origWidth = myyT.rows[i].cells[j].style.width.replace("px",""); 
+						
+					var newWidth = Math.round(origWidth * (1-percentDecrease)); 
+						
+					myyT.rows[i].cells[j].style.width = newWidth + "px" ;	
+						
+				}
+			}
+		}
+		
+		xDiv.style.width = (yDiv.clientWidth) + "px";			
+		myxT.style.width = ((myyT.offsetWidth)) + "px";
+		
+		if (myyT.rows.length>0){
+			for (var j=0; j<rlen ; j++){				
+					myxT.rows[0].cells[j].style.width = myyT.rows[0].cells[j].offsetWidth+"px"; //Math.round(myyT.rows[0].cells[j].offsetWidth)+"px";
+			}
+		}
+		
+		yDiv.style.height = (xDiv.parentNode.clientHeight - xDiv.offsetHeight) + "px";	
+		
+		xDiv.scrollLeft = yDiv.scrollLeft;    
+	
+		
+		
+	}); 			
+}
+
+
+//================================================
+//handleDragStartEvent
+//================================================
+function handleDragStartEvent( event, ui ) { 		
+	$(this).draggable( 'option', 'revert', true );		
+} 
+
+//================================================
+//handleDropEvent
+//================================================
+function handleDropEvent( event, ui ) {   
+	var thisDropBox = $(this).attr('id');
+	ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } ); 
+	ui.draggable.draggable( 'option', 'revert', false );
+	
+	//Are there any 'other' items in in this box
+	var cnt =0;
+	$("div[id*='dbdraggg']").each( function() {	
+		if ($(this).attr('initParent') == thisDropBox){
+			cnt = cnt+ 1;
+		}
+	});
+	
+	if (cnt>0){
+		ui.draggable.draggable( 'option', 'revert', true );
+		return;
+	}
+			
+	$(ui.draggable).attr('initParent', thisDropBox);
+	
+	
+} 
+
+//================================================
+//Add focus to all text fields when the document is ready
+//================================================
+function attachFocusEvents(){
+	$(':text,:checkbox,:radio,select,textarea,:password').focus(function () {  
+		lastFocusID = this.id;		
+    });  
+    
+    $('a').focus(function () {  
+		lastFocusID = "";		
+    });
+    
+    $(':button,button').focus(function () {  
+		lastFocusID = "";		
+    });    
+    
+    if(!$(':focus').attr('onkeydown')){
+		$(':focus').select();
+    }
+    
+    
+}
+
+//================================================
+//Notify backend on window unload
+//================================================
+function notifyExit(){
+	
+	//return in debug mode
+	if (document.location.href.indexOf("myDebug.htm") >0){
+		return true;
+	}
+	
+	if (isUnloadSent){
+		return true;
+	}
+	
+	isUnloadSent = true;		
+	
+	genericEventCall('body', 'unload');
+}
+  
+//================================================
+//Disable Form Submit
+//================================================
+function disableFormSubmit(){
+	//NOT USED
+	$('form').submit(function () { 	
+		genericEventCall(lastEvSrc, lastEvType);														
+		return false;     
+	});
+}
+
+
+
+//================================================
+//Window size
+//================================================
+function getDimensions(){
+	pageWidth = $(window.document).width();
+	pageHeight = $(document).height(); 
+	viewportWidth = $(window).width();
+	viewportHeight =  $(window).height();
+	screenWidth = screen.availWidth;
+	screenHeight = screen.availHeight;
+	scrollPosTop = $(window).scrollTop();
+	scrollPosLeft = $(window).scrollTop();  
+}
+
+//================================================
+//Center modal form horizontally
+//================================================
+function centerFuzzy(startsWith){	
+	
+	$("div[id^='"+startsWith+"']").each( function() {
+		if($(this).attr('id')!='dbmasterdiv1'){
+			$(this).center(true);
+		};
+	}); 	
+	return true;	
+}
+
+jQuery.fn.center = function (absolute) {	
+	return this.each(function () {
+		var t = jQuery(this);
+
+		t.css({
+			position:	absolute ? 'absolute' : 'fixed', 
+			left:		'50%', 
+			top:		'50%'
+		}).css({
+			marginLeft:	'-' + (t.outerWidth() / 2) + 'px', 
+			marginTop:	'-' + (t.outerHeight() / 2) + 'px'
+		});
+		
+	
+		var h1 = $(window).height();
+		var h2 = t.outerHeight();
+		var offsetadd = 0;
+		
+		if(h2>h1){			
+			offsetadd = (h2-h1)/2;			
+		}
+		
+		if (absolute) {
+			t.css({
+				marginTop:	parseInt(offsetadd) + parseInt(t.css('marginTop'), 10) + jQuery(window).scrollTop(), 
+				marginLeft:	parseInt(t.css('marginLeft'), 10) + jQuery(window).scrollLeft()
+			});
+		}
+	});
+};
+
+function popupShow(startsWith){
+	//reserved (fired after dsplaying the popup)
+}
+
+
+function popupHide(startsWith){
+	//reserved (fired after hiding the popup)
+}
+
+
+//================================================
+//firefoxHREFClick (firefox has problems with onclick event on A tags.  This fixes it)
+//================================================
+function firefoxHREFClick(){
+	try{
+		HTMLElement.prototype.click = function() {
+		var evt = this.ownerDocument.createEvent('MouseEvents');
+		evt.initMouseEvent('click', true, true, this.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+		this.dispatchEvent(evt);
+		} 
+	}catch (excpt){
+
+	}
+}
+
+//================================================
+//JSPELL
+//================================================
+var FieldNameBeingChecked="";
+$.getScript("/jspellhtml2k4/jspell.js", function(){});
+$(document).keydown(function(event) {	
+	if (event.which==118 && event.ctrlKey){
+		var eobj  = getEvent(event);	
+		var ev = eobj[0];
+		var evElm = eobj[1];		
+		FieldNameBeingChecked = evElm.id;
+		try{	
+			spellcheck();
+		}catch(excp){
+			jspellcheck();
+		}
+	}
+		
+});
+
+function getSpellCheckArray() {
+	var fieldsToCheck=new Array();
+	fieldsToCheck[fieldsToCheck.length]=  'document.getElementById("'+FieldNameBeingChecked+'")';
+	return fieldsToCheck;	
+}
+//================================================
+
+
+
+//================================================
+//Store last key pressed AND Raise event on ENTER key for textbox, checkbox, radio and combo
+//================================================
+$(document).keydown(function(event) {	
+			
+	lastKey = event.which+'|'+event.shiftKey+'|'+event.ctrlKey+'|'+event.altKey;         
+	      
+	if (lastEvSrc.length==0 || event.which==13 || event.which==33  || event.which==34 ){
+	  var eobj  = getEvent(event);	
+	  var ev = eobj[0];
+	  var evElm = eobj[1];
+	  lastEvType = ev.type;
+	  lastEvSrc = evElm.id;
+	}    
+	      
+	if (event.which==13  || event.which==33  || event.which==34){		      					
+		var t = "";
+		
+		try{
+			t = evElm.getAttribute('type').toLowerCase();		
+		}catch (excp){
+			t = evElm.tagName.toLowerCase();   
+		}
+		
+		if (t=='text' || t=='checkbox'  || t=='radio' || t=='select-one' || t =='select' || t =='password'){									
+			genericEventCall(lastEvSrc, lastEvType);														
+			stopEvent();
+			return false;
+		}				
+	}  
+      
+});
+
+
+
+
+//================================================
+//Ajax object
+//================================================
+var request;
+var disabledArray = new Array();
+
+function buildAjax(){
+	if( typeof XMLHttpRequest == "undefined" )
+		XMLHttpRequest = function() {
+		try { return new ActiveXObject("Msxml2.XMLHTTP.6.0") } catch(e) {}
+		try { return new ActiveXObject("Msxml2.XMLHTTP.3.0") } catch(e) {}
+		try { return new ActiveXObject("Msxml2.XMLHTTP") }     catch(e) {}
+		try { return new ActiveXObject("Microsoft.XMLHTTP") }  catch(e) {}
+		throw new Error( "This browser does not support XMLHttpRequest or XMLHTTP." )
+	};			 
+	request = new XMLHttpRequest(); 	
+}
+
+
+function validateAndSubmitSingle(e){
+	execForm(e, true);
+	return true;
+}
+
+//================================================
+//send form
+//================================================
+function execForm(e, bSingle){
+
+	if (isAjaxBusy == true){
+		return false;
+	}
+
+	//Event Source & Type
+	var evtSrc = '';
+	var evtType = '';
+	
+	if (window.event) {
+		var e = window.event;
+		evtSrc = e.srcElement.id;
+	}else{	
+		if (e != 'NOSOURCE') {
+			evtSrc = e.target.id;		
+		}
+	}
+	
+	if (evtSrc != '') {
+		evtType = e.type;
+	}else{	
+		evtSrc = lastEvSrc;
+		evtType = lastEvType;
+	}
+	
+	
+	var formXML = formToXML(evtSrc, evtType, bSingle);
+	
+	positionCenter();
+	
+	var myDelay=70;
+	
+	//if($.browser.mozilla){
+	//	myDelay = 150;
+	//}
+		
+	setTimeout(function(){execFormExec(formXML,evtSrc,evtType)}, myDelay);
+	
+	return true;	
+}
+
+
+//================================================
+//getField
+//================================================
+function getField(e, fieldToGetID){
+
+	if (isAjaxBusy == true){
+		return false;
+	}
+
+	//Event Source & Type
+	var evtSrc = '';
+	var evtType = '';
+	
+	if (window.event) {
+		var e = window.event;
+		evtSrc = e.srcElement.id;
+	}else{	
+		if (e != 'NOSOURCE') {
+			evtSrc = e.target.id;		
+		}
+	}
+	
+	if (evtSrc != '') {
+		evtType = e.type;
+	}else{	
+		evtSrc = lastEvSrc;
+		evtType = lastEvType;
+	}
+	
+	var fieldXML = fieldToXML(evtSrc, evtType, fieldToGetID);
+	positionCenter();
+	setTimeout(function(){execFormExec(fieldXML,evtSrc,evtType)}, 30);
+	return true;	
+}
+
+
+//================================================
+//Field to XML
+//================================================
+
+function fieldToXML(evtSrc,evtType, fieldToGetID){	
+	var sXML = '';
+	var elm = document.getElementById(fieldToGetID);
+	sXML = sXML + getElmVal(elm);
+	return sXML;
+}
+
+
+
+//================================================
+//Form to XML
+//================================================
+function formToXML(evtSrc,evtType, bSingle){
+	
+	var sXML = ''; 
+	var elm;
+	
+	if (bSingle) {
+		elm = document.getElementById(evtSrc);
+		sXML = getElmVal(elm);	
+		return sXML;
+	}
+	
+	var myForm = document.forms[0];
+	for (var i=0;i<myForm.elements.length;i++ ){
+		elm = myForm.elements[i];	
+		if(!elm.disabled){
+			sXML = sXML + getElmVal(elm);		
+		}
+	}
+	
+	return sXML;
+}
+
+
+
+//================================================
+//Get element value
+//================================================
+function getElmVal(elm){
+	//Text and TextArea and hidden
+	if (elm.type=="text" || elm.type=="textarea" || elm.type=="hidden"  || elm.type=="password"){
+		return '<field name='+ '"' + elm.id + '"' + ' value=' + '"' + xml_encode(elm.value) + '"/>';
+	}
+		
+	//Combo
+	if (elm.type=="select-one"){	
+		if (elm.selectedIndex > -1){
+			if (elm.options[elm.selectedIndex]){
+				var opt = elm.options[elm.selectedIndex];
+				return '<field name='+ '"' + elm.id + '"' + ' value=' + '"' + xml_encode(opt.value) + '"/>';
+			}
+		}
+	}
+		
+	//Radio
+	if (elm.type=="radio"){
+		if (elm.checked){
+			return '<field name='+ '"' + elm.id + '"' + ' value=' + '"' + xml_encode(elm.value) + '"/>';
+		}
+	}
+		
+	//CheckBox
+	if (elm.type=="checkbox"){
+		return  '<field name='+ '"' + elm.id + '"' + ' value=' + '"' + elm.checked + '"/>';			
+	}
+	
+	return '';
+}
+
+
+//================================================
+//Get element selected value
+//================================================
+function getElmSelectedVal(elm){
+	//Text and TextArea and hidden
+	if (elm.type=="text" || elm.type=="textarea" || elm.type=="hidden"  || elm.type=="password"){
+		return elm.value ;
+	}
+		
+	//Combo
+	if (elm.type=="select-one"){	
+	
+		if (elm.selectedIndex>-1){
+			var opt = elm.options[elm.selectedIndex];
+			return opt.value ;
+		}else{
+			return 0;
+		}
+	}
+		
+	//Radio
+	if (elm.type=="radio"){
+		if (elm.checked){
+			return 1;
+		}else{
+			return '';
+		}
+		
+	}
+		
+	//CheckBox
+	if (elm.type=="checkbox"){
+		if (elm.checked){
+			return 1;
+		}else{
+			return '';
+		}		
+	}
+	
+	return '';
+}
+
+
+//================================================
+//Call BA on load
+//================================================
+function noEventCall(){
+
+	if (isAjaxBusy == true){
+		return false;
+	}
+	
+	//return in debug mode
+	if (document.location.href.indexOf("myDebug.htm") >0){
+		return true;
+	}
+
+	//Event Source & Type
+	var evtSrc = 'bodyID';
+	var evtType = 'onload';
+	
+	
+	var formXML = formToXML(evtSrc, evtType);
+	positionCenter();
+	//disableElems();	
+	setTimeout(function(){execFormExec(formXML,evtSrc,evtType)}, 30);
+	return true;	
+}
+
+
+//================================================
+//Call BA Generic
+//================================================
+function genericEventCall(evtSrc, evtType, bSingle){
+	if (isAjaxBusy == true){
+		return false;
+	}
+	var formXML = formToXML(evtSrc, evtType, bSingle);
+	execFormExec(formXML,evtSrc,evtType);
+	return true;	
+}
+
+
+
+
+
+//================================================
+//Send xml and execute returm
+//================================================
+function execFormExec(formXML,evtSrc,evtType,bAscynch){
+
+
+	var W3CRoot = "NONE";
+	if (document.getElementById("ScreenRoot")){
+		W3CRoot = document.getElementById("ScreenRoot").value;	
+	}
+	
+
+	//Pack XML	
+	formXML = '<ajaxTOBA>'+ formXML  ;			// xml start
+	formXML = formXML + '<eventSource>'+evtSrc+'</eventSource>'+'<eventType>'+evtType+'</eventType>';	//Add the event detaisl
+	if (evtType == "click"){
+		formXML = formXML + '<clickPos>' + mouseCoords + '</clickPos>';		//Mouse click coordinates
+	}
+	formXML = formXML + '<keyCodes>' + lastKey + '|' + lastFocusID + '</keyCodes>';		//Add the last pressed key code
+	formXML = formXML + '<dimensions>' + pageWidth+'|'+pageHeight+'|'+viewportWidth+'|'+viewportHeight + '</dimensions>';		//Add page and viewPort dimensions
+	formXML = formXML + '<W3CRoot>' + W3CRoot + '</W3CRoot>';
+	formXML = formXML + '<clientClock>' + clock() + '</clientClock>';	
+	formXML = formXML + '<clientDate>' + clientDate() + '</clientDate>';
+	formXML = formXML + '<dbsuiID>' + dbsuiID + '</dbsuiID>';
+	formXML = formXML + '<bac>' + bac + '</bac>';
+	formXML = formXML + '</ajaxTOBA>';			// xml end 
+	
+	//Reset last key
+	lastKey = '|||';
+	
+	
+	
+	var myUrl=window.location.toString();	
+	//var nextURL = myUrl.replace(/&ajx=yes/, "")+"&ajx=yes";
+
+	nextURL = myUrl;
+	var myamp = InStr(nextURL,"&ajx=yes",1);
+	var myque = InStr(nextURL,"?ajx=yes",1);
+	var anyqu = InStr(nextURL,"?",1);
+
+	if (myamp>1 || myque>1){
+	    //do nothing 
+	}else{ //both missing
+	    if(anyqu>1){
+		nextURL = nextURL+"&ajx=yes";
+	    }else{
+		nextURL = nextURL+"?ajx=yes";
+	    }
+	  
+	}
+	
+	nextURL = nextURL.replace(/#/, "");
+	
+	
+	if (!bAscynch) {
+		ajaxReturn(nextURL, formXML, evtSrc,evtType)
+	}else{
+		makeAsynchCall(nextURL, formXML, evtSrc,evtType)
+	}
+	
+	
+	return true;	
+}
+
+function ajaxReturn(nextURL, formXML, evtSrc,evtType){
+
+	var baReturn = ajax(nextURL, formXML);
+
+	try{
+		document.getElementById("ajxImageFrame").style.display = "none";
+	}catch(excp){
+	
+	}
+	var evalReturn = runFunctions(baReturn, evtSrc,evtType);
+	
+	//add focus to all text fields on an ajax call (for dynamically loaded elements) 
+	attachFocusEvents();
+	
+	setTimeout(synchronizeScrollOnLoad, 1);
+	
+	try{
+		document.activeElement.select();
+	}catch(e){
+	
+	}
+	
+	
+}
+
+
+function ajaxReturnAsynch(baReturn,evtSrc,evtType){
+
+	try{
+		document.getElementById("ajxImageFrame").style.display = "none";
+	}catch(excp){
+	
+	}
+	var evalReturn = runFunctions(baReturn, evtSrc,evtType);
+	
+	//add focus to all text fields on an ajax call (for dynamically loaded elements) 
+	attachFocusEvents();
+	
+	setTimeout(synchronizeScrollOnLoad, 1);
+}
+
+
+//================================================
+//Send data 
+//================================================
+function ajax(url, data) {
+	
+	if (jsquit){
+		return false;
+	}
+	request.open("POST", url, false);
+	request.setRequestHeader("Content-Type", "application/x-javascript;");	
+	isAjaxBusy = true;
+	request.send(data);	
+	isAjaxBusy = false;	
+	return request.responseText;
+	
+}
+
+
+function makeAsynchCall(url, data,evtSrc,evtType){
+	var request = $.ajax({
+        url: url,
+        type: "post",
+        data: data,
+        success:function(results) {
+			ajaxReturnAsynch(results, evtSrc,evtType);
+		},  
+		error:function(XMLHttpRequest,textStatus, errorThrown) {     
+			ajaxReturnAsynch(textStatus, evtSrc,evtType);
+		}
+    });
+    
+}
+
+
+
+function adjustMVHeight(sContainerName, sHeaderTableName, sScrollingDivName){
+	try{
+		var p1  = document.getElementById(sContainerName).style.height.replace("px", "");
+		var p2  = document.getElementById(sHeaderTableName).scrollHeight;
+		var p3 = p1 - p2;
+		document.getElementById(sScrollingDivName).style.height = p3 + 'px';		
+	}catch(mvExcp){
+		//
+	}
+}
+
+function showAlert(inParams){
+	//safari crashes when alert is used here!!
+	//if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome')== -1) {
+	//	showDialog ("0;Alert;"+inParams);
+		
+	//}else {
+		alert(inParams);		
+	//}
+	
+	//setTimeout(function(){showAlertExec(inParams)}, 5000); 	
+}
+
+
+function showAlertExec(inParams){
+	alert(inParams);		
+}
+
+
+//================================================
+//showDialog; show message box 
+//================================================
+function showDialog(inParams){  
+	//inparams  = type;title;message  
+	//type can be: 0-OK,  1-OKCANCEL, 3-YESNOCANCEL, 4-YESNO, 1000-INPUT
+	//delimiter is ;
+	//note that the message can also have ; in it.
+		
+	var vPars = String(inParams).split(';');		
+	var vParsLen = vPars.length;
+	var i;
+	var messType = vPars[0];
+	var messTitle = vPars[1];
+	var messBody = "";
+	for (i=2;i<vParsLen;i=i+1)
+	{
+		messBody = messBody + ';' + vPars[i];
+	} 
+	messBody = messBody.substring(1); 
+		
+	//OK
+	if (messType==0) {
+		jAlert(messBody, messTitle, function(r) {dialogReturn(r);});
+	}
+		
+	//OK-CANCEL
+	if (messType==1) {
+		jDBokcancel(messBody, messTitle, function(r) {dialogReturn(r);});
+	}
+		
+	//YES-NO-CANCEL
+	if (messType==3) {
+		jDBconfirm(messBody, messTitle, function(r) {dialogReturn(r);});
+	}
+		
+	//YES-NO
+	if (messType==4) {
+		jDByesno(messBody, messTitle, function(r) {dialogReturn(r);});
+	}				
+				
+}
+
+function dialogReturn(userChoice){
+	genericEventCall(lastEvSrc, 'DIALOGRESPONSE_' + userChoice);						
+}
+	
+
+//================================================
+//Enable all elements 
+//================================================
+function enableElems(){
+	var i;
+	for(i=0;i<disabledArray.length;i++){
+		disabledArray[i].disabled = false;
+	}
+	disabledArray.length = 0;	
+}
+
+//================================================
+//Disable all elements 
+//================================================
+function disableElems(){
+	disabledArray.length = 0;
+	var objElems = document.getElementsByTagName("*") ; 
+	var i;
+	for(i=0;i<objElems.length;i++){
+		if(!objElems[i].disabled){
+			disabledArray[i] = objElems[i];
+			objElems[i].disabled = true;			
+		}
+	}
+}
+
+//================================================
+//iErrorDisplayMode
+//================================================
+function setErrorDisplayMode(iErrMode){
+	iErrorDisplayMode = iErrMode;
+	return true;
+}
+
+
+//================================================
+//eval functions
+//================================================
+function runFunctions(baXML,evtSrc,evtType){
+	var vCodes = String(baXML).split(";   ");
+	var i = 0;
+	var vCodesLen = vCodes.length;
+	for (i=0;i<vCodesLen;i=i+1)
+	{
+		try{
+			
+			if (!jsquit && vCodes[i].indexOf("window.location") >-1){
+				notifyExit();
+			}			
+			
+			eval(vCodes[i]);						
+			
+		}catch(e){
+			if (iErrorDisplayMode==0){
+				alert(e.description +'\n\nAt line:\n'+ vCodes[i]);
+				return false;
+			}else if(iErrorDisplayMode==1){
+				alert(e.description +'\n\nAt line:\n'+ vCodes[i]);
+			}else{
+				//continue
+			}				
+		}
+	}
+	//goDebug();
+	//eval(baXML);	
+	return true;		
+}
+
+//================================================
+//Debug redirect
+//================================================
+function goDebug(){
+	setTimeout(goDebugExec, 300);	
+}
+
+function goDebugExec(){
+	var myHTML= "<data>" + escape(document.getElementsByTagName("HTML")[0].innerHTML) + "</data>";
+	request.open("POST", "remDebug.asp", false);
+	request.setRequestHeader("Content-Type", "application/x-javascript;");	
+	isAjaxBusy = true;
+	request.send(myHTML);
+	isAjaxBusy = false;	
+	var resp = request.responseText;
+	if (resp=="OK"){
+		window.open("myDebug.htm");
+	}else{
+		alert(request.responseText);
+	}
+	return true;
+	
+}
+
+//================================================
+//XML Encoding
+//================================================
+function xml_encode(input)
+{	
+	if(input == undefined)	
+	{		
+		input ='';
+		return input;
+	}
+	input	=	trim(input.toString());
+	
+	var replace_with	=	'&amp;';
+	input 				= 	input.replace(/&/g,	replace_with);
+	
+	replace_with		=	'&lt;';
+	input 				= 	input.replace(/</g,	replace_with);
+	
+	replace_with		=	'&gt;';
+	input 				= 	input.replace(/>/g,	replace_with);
+	
+	replace_with		=	'&apos;';
+	input 				= 	input.replace(/'/g,	replace_with);
+		
+	replace_with		=	'&quot;';
+	input 				= 	input.replace(/"/g,	replace_with);
+	
+	return input;
+}	
+
+
+
+//================================================
+//Validation Functions
+//================================================
+
+function storeValue(obj){ 
+	if (    obj.id.indexOf('datepick')>-1     ) {
+		if (obj.value.length>0){
+			if (isDate(obj.id,true)){
+				if(obj.value!='\t'){
+					obj.setAttribute("lastVal", obj.value);	
+				}					
+			}			
+		}			
+		return true;
+	}
+	
+	if(obj.value!='\t'){
+		obj.setAttribute("lastVal", obj.value);	
+	}
+}
+
+
+
+function validate(valType, objid, message){
+
+	obj = document.getElementById(objid);
+	
+	var objval = '';
+	
+	objval = obj.value;	
+	
+	if (objval.length==0){
+		return true;
+	}
+	
+	///DATES/////////////////////
+	if (valType=='Date'){
+		if (isDate(objid)){
+			try{
+				document.getElementById(objid+'ERR').innerHTML = '';
+			}catch (e){};			
+			return true;	
+		}else{
+		
+			if (message){
+				try{
+					document.getElementById(objid+'ERR').innerHTML = message;
+				}catch (e){
+					
+					
+					if (obj.getAttribute("lastVal")==null){
+						obj.value = '';
+					}else{
+						obj.value = obj.getAttribute("lastVal");	
+					}
+					obj.focus();
+					obj.select();	
+					alert(message);					
+				}
+			}
+			return false;
+		
+		}
+	}
+	
+	
+	
+	///OTHER VALIDATIONS/////////////////////
+	if (eval('is'+valType+'(objval)')){
+		try{
+			document.getElementById(objid+'ERR').innerHTML = '';
+		}catch (e){
+			//alert(message);
+		}
+		return true;
+	}else{
+		if (message){
+			try{
+				document.getElementById(objid+'ERR').innerHTML = message;
+			}catch (e){
+			
+				
+				if (obj.getAttribute("lastVal")==null){
+					obj.value = '';
+				}else{
+					obj.value = obj.getAttribute("lastVal");	
+				}
+				
+				obj.focus();
+				obj.select();				
+				alert(message);			
+					
+			}
+		}
+		return false;
+	}
+}
+
+function setNumeric(objid, decimals, message){
+
+	obj = document.getElementById(objid);
+	var objval = '';
+	
+	objval = obj.value;		
+	objval = objval.replace(/,/gi,"");
+	
+	if (objval.length==0){
+		return true;
+	}
+	
+	
+	if (eval('is'+'Numeric'+'(objval)')){
+		try{
+			document.getElementById(objid+'ERR').innerHTML = '';
+		}catch (e){
+			//alert(message);
+		}
+		var num = new Number(objval);
+		var newval = num.toFixed(decimals);
+		
+		var p = String(newval).split(".");
+		var k = parseFloat(p[0]);
+		
+		/*newval = k.toLocaleString().replace(/[\.,][\d]+$/,'');
+		if (p.length==2){
+			newval = newval +'.'+p[1];
+		}*/
+		
+		try{
+			newval = CommaFormatted(newval);
+		}catch(e){
+			//
+		}
+		
+		testval = newval.replace(/,/gi,"");
+		
+		
+		if (isNaN(testval)){
+			if (message){
+				try{
+					document.getElementById(objid+'ERR').innerHTML = message;
+				}catch (e){
+					
+					
+					if (obj.getAttribute("lastVal")==null){
+						obj.value = '';
+					}else{
+						obj.value = obj.getAttribute("lastVal");	
+					}
+					obj.focus();
+					obj.select();
+					alert(message);
+					
+				}
+			}
+			return false;
+		}
+		
+		obj.value = newval;
+		return true;
+	}else{
+		if (message){
+			try{
+				document.getElementById(objid+'ERR').innerHTML = message;
+			}catch (e){
+				
+				
+				if (obj.getAttribute("lastVal")==null){
+					obj.value = '';
+				}else{
+					obj.value = obj.getAttribute("lastVal");	
+				}
+				obj.focus();
+				obj.select();
+				alert(message);
+				
+			}
+		}
+		return false;
+	}
+}
+
+function CommaFormatted(nStr)
+{
+	nStr += '';     
+	x = nStr.split('.');     x1 = x[0];     
+	x2 = x.length > 1 ? '.' + x[1] : '';     
+	var rgx = /(\d+)(\d{3})/;     
+	while (rgx.test(x1)) {         
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');   
+	}     
+	return x1 + x2; 
+}
+
+
+
+function isTime(timeStr) {
+	var timePat = /^(\d{1,2}):(\d{2})(:(\d{2}))?(\s?(AM|am|PM|pm))?$/;
+
+	var matchArray = timeStr.match(timePat);
+	if (matchArray == null) {
+	return false;
+	}
+	hour = matchArray[1];
+	minute = matchArray[2];
+	second = matchArray[4];
+	ampm = matchArray[6];
+
+	if (second=="") { second = null; }
+	if (ampm=="") { ampm = null }
+
+	if (hour < 0  || hour > 23) {
+	return false;
+	}
+	//if (hour <= 12 && ampm == null) {
+	//if (confirm("Please indicate which time format you are using.  OK = Standard Time, CANCEL = Military Time")) {
+	//alert("You must specify AM or PM.");
+	//return false;
+	//   }
+	//}
+	if  (hour > 12 && ampm != null) {
+	return false;
+	}
+	if (minute<0 || minute > 59) {
+	return false;
+	}
+	if (second != null && (second < 0 || second > 59)) {
+	return false;
+	}
+	return true;
+}
+
+
+function isEmail(str) {
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1){
+	   return false
+	}
+
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+	   return false
+	}
+
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+	    return false
+	}
+
+	 if (str.indexOf(at,(lat+1))!=-1){
+	    return false
+	 }
+
+	 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+	    return false
+	 }
+
+	 if (str.indexOf(dot,(lat+2))==-1){
+	    return false
+	 }
+		
+	 if (str.indexOf(" ")!=-1){
+	    return false
+	 }
+
+	 return true					
+}
+
+function isNumeric(strString)
+   //  check for valid numeric strings	
+   {
+   
+   strString = strString.replace(/,/gi,"");
+   
+   var strValidChars = "0123456789.-";
+   var strChar;
+   var blnResult = true;
+
+   if (strString.length == 0) return false;
+
+   //  test strString consists of valid characters listed above
+   for (i = 0; i < strString.length && blnResult == true; i++)
+      {
+      strChar = strString.charAt(i);
+      if (strValidChars.indexOf(strChar) == -1)
+         {
+         blnResult = false;
+         }
+      }
+   return blnResult;
+}
+
+function isInteger(s){
+	
+	var i;
+    for (i = 0; i < s.length; i++){   
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+
+
+//================================================
+//Grid Functions
+//================================================
+
+function validateEntry(valType, objid, message, e, decimals, hitServer, mandatory, mandatoryText, bSingle){
+
+	var eobj  = getEvent(e);
+	var ev = eobj[0];
+	var evElm = eobj[1];
+	
+	//Stop Datepicker click event calling ValidateEntry then call onchange???
+	if (evElm.id.length<1){
+		stopEvent(e);
+		fireEventOnChange(document.getElementById(objid));
+		return true;		
+	}
+	///////
+	
+	//Check if mandatory
+	if (mandatory){
+		oObj = document.getElementById(objid);
+		if (oObj.value == "" ){
+			stopEvent(ev);
+			oObj.focus();
+			oObj.select();
+			alert(mandatoryText);
+			setTimeout(function(){focusOnFailed(objid)}, 1);
+			return false;	
+		}
+	}
+	
+	//Validate if needed
+	if (valType !='' && valType !='setNumeric' ) {   	
+		if (validate(valType, objid, message)==false){			
+			stopEvent(ev);
+			setTimeout(function(){focusOnFailed(objid)}, 1);
+			return false;					
+		}
+	}
+	
+	if (valType =='setNumeric') {   	
+		if (setNumeric(objid, decimals, message)==false){			
+			stopEvent(ev);
+			setTimeout(function(){focusOnFailed(objid)}, 1);
+			return false;					
+		}
+	}
+	
+	
+	//Submit, because this is a change
+	if (hitServer){
+		execForm(ev, bSingle);	
+	}
+}
+
+
+function focusOnFailed(sObjID){
+	oObj = document.getElementById(sObjID);
+	try{
+		oObj.value = oObj.getAttribute("lastVal");
+	}catch (excp){
+	
+	}
+	oObj.focus();
+	oObj.select();	
+}
+
+
+function mvLastCellBlur(valType, objid, message, e, decimals, hitServer, mandatory, mandatoryText){
+	
+
+	var eobj  = getEvent(e);
+	var ev = eobj[0];
+	var evElm = eobj[1];
+
+	if($('<div>').append($('#'+objid).clone()).html().indexOf('checkKeyTAB')>0){
+		if (getElmSelectedVal(evElm) == ""){	
+			return false;
+		}
+	}
+
+	
+	//Change? 	TAB Press?
+	var elmChanged  = evElm.getAttribute("changed");
+	var elmTABpressed  = evElm.getAttribute("tabPressed");
+	
+	
+	//Defaults
+	if (elmChanged==null){
+		evElm.setAttribute ("changed", false);
+		elmChanged = false;
+	}
+	
+	if (elmTABpressed==null){
+		evElm.setAttribute ("tabPressed", false);
+		elmTABpressed = false;
+	}
+	
+	var elmChanged  = (elmChanged === 'true') ;
+	var elmTABpressed  = (elmTABpressed === 'true') ;
+	
+	
+	//If there is no change and not the last cell then don't fire
+	if (getNextMVfield(evElm, 40)!=null && elmChanged == false){		
+		return false;
+	}
+	
+	
+	//If there is a change and not the last cell then fire change
+	if (getNextMVfield(evElm, 40)!=null && elmChanged == true){
+		elmChanged= true;
+		elmTABpressed = false;
+	}
+	
+	
+	
+	//Reset source element attributes
+	evElm.setAttribute ("tabPressed", false);
+	evElm.setAttribute ("changed", false);
+	
+	var elmLastVal = evElm.getAttribute("lastVal");
+	
+	//Check if mandatory
+	if (mandatory){
+		if (evElm.value == "" && String(elmLastVal).length >0){
+			stopEvent(ev);
+			evElm.focus();
+			evElm.select();
+			alert(mandatoryText);
+			setTimeout(function(){focusOnFailed(evElm.id)}, 1);
+			return false;	
+		}
+	}
+	
+	//Validate if needed
+	if (valType !='' && valType !='setNumeric' ) {   
+		if (validate(valType, objid, message)==false){			
+			stopEvent(ev);			
+			setTimeout(function(){focusOnFailed(objid)}, 1);
+			return false;					
+		}
+	}
+	
+	if (valType =='setNumeric') {   	
+		if (setNumeric(objid, decimals, message)==false){			
+			stopEvent(ev);
+			setTimeout(function(){focusOnFailed(objid)}, 1);
+			return false;					
+		}
+	}
+	
+	
+	//Raise the event
+
+	if (elmChanged==false && elmTABpressed == false) {	
+		return true;
+	}
+				
+	if (elmChanged==false && elmTABpressed == true) {                
+		genericEventCall(evElm.id, "tabAddRow");		
+		return true;
+	}
+	
+	if (elmChanged==true && elmTABpressed==false) {
+		genericEventCall(evElm.id, "change");		
+		return true;
+	}
+	
+
+	if (elmChanged==true && elmTABpressed==true) {
+		genericEventCall(evElm.id, "tabAddRowChange");		
+		return true;
+	}
+		
+	return true;
+	
+}
+
+
+/// STORE TAB ///////////////////////////////// 
+function storeTAB(e){
+
+	var eobj  = getEvent(e);
+	
+	var ev = eobj[0];
+	var evElm = eobj[1];
+	
+	var myKeyCode = -1;
+	
+	try {
+		myKeyCode = e.keyCode;
+	}catch (excp){
+		myKeyCode = e.which;
+	}
+	
+	//UP-DOWN KEYS triggers up down events
+	if (myKeyCode==38 || myKeyCode==40){
+		mvKey(ev);
+		return false;
+	}
+		
+	if (ev.shiftKey != true &&  myKeyCode==9){
+		evElm.setAttribute ("tabPressed", true);
+		
+		var nextField = getNextMVfield(evElm, myKeyCode);
+	
+		if (nextField == null){
+			stopEvent(e);	
+			evElm.blur();			
+		}
+		return false;
+	}
+	
+}
+
+
+/// blankKey event when the first input cell in a row is tabbed away from without any entry (ie, blank). /////
+
+function checkKeyTAB(e){
+	
+	var eobj  = getEvent(e);
+	
+	var ev = eobj[0];
+	var evElm = eobj[1];
+	
+	var myKeyCode = -1;
+	
+	try {
+		myKeyCode = e.keyCode;
+	}catch (excp){
+		myKeyCode = e.which;
+	}
+	
+	//UP-DOWN KEYS triggers up down events
+	if (myKeyCode==38 || myKeyCode==40){
+		//exit if combo
+		if (evElm.type=='select-one'){
+			return false;
+		}
+		
+		mvKey(ev);
+		return false;
+	}
+	
+	if (e.shiftKey) {
+		return false;
+	}
+		
+	if (myKeyCode!=9){		
+		return false;
+	}
+	
+	
+	if (getElmSelectedVal(evElm) == ""){	
+
+		evElm.setAttribute ("tabPressed", false);
+		evElm.setAttribute ("changed", false);
+		stopEvent(e);
+		genericEventCall(evElm.id, "blankKey");
+		return false;
+	}
+	
+}
+
+
+/// STORE CHANGE ///////////////////////////////// 
+function storeChange(e){
+	var eobj  = getEvent(e);	
+	var ev = eobj[0];
+	var evElm = eobj[1];
+	
+	evElm.setAttribute ("changed", true);
+	return false;		
+}
+
+
+
+function mvKey(e){
+
+	var eobj  = getEvent(e);
+	
+	var ev = eobj[0];
+	var evElm = eobj[1];
+	
+	var myKeyCode = -1;
+	
+	try {
+		myKeyCode = e.keyCode;
+	}catch (excp){
+		myKeyCode = e.which;
+	}	
+	
+	if (!(myKeyCode==38 || myKeyCode==40)){
+		return false;
+	}
+	
+	
+	var nextField = getNextMVfield(evElm, myKeyCode);
+	
+	if (nextField != null){
+		nextField.focus();
+	}
+	
+}
+
+
+function getNextMVfield(evElm, iKeyCode){
+	//CONTACT1ztext8.1z10z2   GROUPzFIELDzROWzCOL  
+	
+	
+	var v = evElm.id.split('z');
+	var myRow = v[2];
+	var myCol = v[3];
+	
+	if (iKeyCode == 38){  //40=keyDown, 38=KeyUP
+		v[2] = parseInt(myRow)  - 1;		
+	}else{
+		v[2] = parseInt(myRow)  + 1;			
+	}
+	
+	var nextID = v.join('z');
+	var nextField;
+	
+	try{
+		nextField = document.getElementById(nextID);
+	}catch (excp){
+		nextField = null;	
+	}	
+	
+	if (nextField != null){
+		if (nextField.parentNode.parentNode.style.display=='none'){
+			nextField = null;
+		}		
+	}
+	
+	return nextField;
+}
+
+
+
+//================================================
+//Predictive Text
+//================================================
+
+var timerPred;
+function sendKeys(e){
+
+	clearTimeout(timerPred);
+	var eobj  = getEvent(e);	
+ 
+	//if (document.getElementById(lastEvSrc) == null){
+		var ev = eobj[0];
+		var evElm = eobj[1];
+		lastEvType = ev.type;
+		lastEvSrc = evElm.id;
+		lastFocusID = lastEvSrc;
+	//}
+	  
+	  
+
+	//Exit if TAB pressed (the blur event will catch it)
+	var myKeyCode = -1;
+	try {
+		myKeyCode = e.keyCode;
+	}catch (excp){
+		myKeyCode = e.which;
+	}
+	if (myKeyCode==9){
+		return false;
+	}
+	
+	//Exit on space character (because the word is being trimmed somewhere and the space between words are being lost)
+	if (myKeyCode==32 || myKeyCode==16 || myKeyCode==17 || myKeyCode==18){
+		return false;
+	}
+	
+	//Less delay with up/down arrow
+	if (myKeyCode==38 ||myKeyCode==40 ){
+		timerPred = setTimeout(function(){sendKeysExec()}, 150);			
+		return false;
+	}
+	
+	timerPred = setTimeout(function(){sendKeysExec()}, 300);	
+	
+	//sendKeysExec();
+	
+}
+
+function sendKeysExec(){
+	clearTimeout(timerPred);
+
+	var myVal = document.getElementById(lastEvSrc).value;
+	
+	if (isAjaxBusy == true){
+		//return false;
+	}
+	
+	var fieldXML = fieldToXML(lastEvSrc, lastEvType, lastEvSrc);
+	positionCenter();
+	
+	//work-around?
+	if (lastEvSrc!=lastFocusID){
+		if (lastFocusID != null && (lastFocusID.length>0)){
+			lastEvSrc = lastFocusID;
+		}else{
+			lastFocusID = lastEvSrc;
+		}
+	}
+	
+	
+	setTimeout(function(){execFormExec(fieldXML,lastEvSrc,lastEvType,true)}, 1);
+		
+	
+	return true;	
+	
+}
+
+var cancelBlur;
+var predictDIV;
+var predictText;
+
+function predictBlur(e){
+	var eobj  = getEvent(e);	
+ 	var ev = eobj[0];
+	var evElm = eobj[1];
+	lastEvType = ev.type;
+	lastEvSrc = evElm.id;
+	
+	if (cancelBlur) {	
+		stopEvent();
+		cancelBlur = false;
+		return true;
+	}
+	predictText = evElm.id;
+	genericEventCall(predictText,"blur",true)		
+}
+
+function predictDivMouse(e){
+	cancelBlur = true;
+	
+	var eobj  = getEvent(e);	
+ 	var ev = eobj[0];
+	var evElm = eobj[1];
+	predictDIV = evElm.parentElement;
+}
+
+function hidePredict(){
+	try{
+		if (predictDIV.style.display!="none"){
+			cancelBlur = false;
+			predictDIV.style.display = "none";
+			genericEventCall(predictText,"blur",true);
+		}
+	}catch(excp){
+	
+	}
+}
+
+
+//================================================
+//HTML Editor Callback
+//================================================
+function htmlComplete(){
+	setTimeout (htmlCompleteExec, 1)
+}
+
+function htmlCompleteExec(){
+	var vHTMLOk = "htmlCOMPLETE:" + htmlKey + ";" + htmlResult + ";" + htmlError + ";" + htmlContent;	
+	genericEventCall("htmlCOMPLETE", vHTMLOk);	
+	htmlContent = "";
+	htmlKey = "";
+	htmlError  = "";
+	htmlSubMode = "";
+	htmlResult = ""	;	
+}
+
+//================================================
+//HTML Editor Launch
+//================================================
+function openHTMLEditor(inputParams){
+	var htmlFeatures = "";
+		
+	var vhtmlParams = String(inputParams).split(';');		
+	var vParsLen = vhtmlParams.length;
+	var i;
+	htmlError = "";
+	htmlKey = vhtmlParams[0];
+	
+	var htmlMode = vhtmlParams[1];	//Fixed: HTMLEditor			
+	htmlSubMode = vhtmlParams[2]; //MODAL or blank
+	var htmlTitle = vhtmlParams[3];				
+	var htmlFeatures = vhtmlParams[4];
+	var htmlReadOnly = vhtmlParams[5];
+	var printButton = vhtmlParams[6];
+	var ckEditorPath = vhtmlParams[7];
+	htmlContent = vhtmlParams[8];
+	//alert(htmlContent);
+	//alert(escape(htmlContent));
+	var xmlToEditor = "<html><htmlKey>" + htmlKey + "</htmlKey><htmlSubMode>" + htmlSubMode + "</htmlSubMode><htmlReadOnly>" + htmlReadOnly + "</htmlReadOnly><printButton>" + printButton + "</printButton><htmlTitle>" + htmlTitle + "</htmlTitle><ckEditorPath>" + ckEditorPath + "</ckEditorPath><htmlContent>" +  escape(htmlContent) + "</htmlContent></html>";
+
+	
+	$.ajax({type: "POST", url: "htmlPrepare.asp", data: xmlToEditor, async: false, success: function(msg){return true;} });
+
+	if (htmlSubMode == "MODAL"){
+		//	disableItems								
+	}
+	
+	if (htmlFeatures == "MAX"){ 
+		var myTop = (screen.height - viewportHeight)/2;
+		var myLeft = (screen.width - viewportWidth)/2;
+		htmlFeatures= "top="+myTop+ ",left="+myLeft+",height=" + viewportHeight + ",width=" + viewportWidth ;		
+	}
+	window.open ("htmlEditor.asp", "_blank", htmlFeatures);
+	
+	
+}
+
+
+//================================================
+//File Upload
+//================================================
+/*function showUpload(defFileName){
+	window.open ("jupload.asp?upk="+defFileName+"&r="+Math.random(), "_blank", "top=200,left=300,height=160,width=500");
+}*/
+
+function showUpload(){
+	window.open ("jupload.asp?r="+Math.random(), "_blank", "top=200,left=300,height=160,width=500");
+}
+	
+function UploadComplete(){
+	setTimeout ("UploadCompleteExec()", 1);
+}
+	
+function UploadCompleteExec(){
+	var vUPLOADOk = "UPLOADCOMPLETE:" + uploadError + ";" + dbkey + ";" + uploadedFile;
+	genericEventCall("UPLOADCOMPLETE", vUPLOADOk);	
+	uploadedFile = "";
+	dbkey = "";
+	uploadError  = "";		
+}
+	
+
+
+//================================================
+//Helper Functions
+//================================================
+
+function getEvent(e){
+	
+	if (window.event) {
+		var e = window.event;
+		evtElm = e.srcElement;
+	}else{			
+		evtElm = e.target;				
+	}
+	return [e,evtElm];
+}
+
+
+function stopEvent(e) {
+	
+	
+	if(!e) var e = window.event;
+	
+	//e.cancelBubble is supported by IE - this will kill the bubbling process.
+	try{
+		e.cancelBubble = true;
+		e.returnValue = false;
+	}catch(excp){
+	
+	}
+
+	//e.stopPropagation works only in Firefox.	
+	if (e.stopPropagation) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+	return false;
+}
+
+function fireEventOnChange(node){
+	if ( document.createEvent ) {
+		var evt = document.createEvent('UIEvents');
+		evt.initEvent('change', true, false);
+		node.dispatchEvent(evt);	
+	} else if( document.createEventObject ) {
+		node.fireEvent('onchange') ;	
+	} else if (typeof node.onchange == 'function' ) {
+		node.onchange();	
+	}
+}
+
+//function stopProp(e) {
+//	if (e && e.stopPropagation) e.stopPropagation();
+//	else if (window.event && window.event.cancelBubble)
+//	window.event.cancelBubble = true;
+//}
+
+//function stopDef(e) {
+//	if (e &&e.preventDefault) e.preventDefault();
+//	else if (window.event && window.event.returnValue)
+//	window.event.returnValue = false;
+//} 
+
+
+function InStr(str,substr,start){
+	var oStr = new String(str);
+	return oStr.indexOf(substr,start);
+}
+
+
+function Mid(str, start, len)
+{
+    if (start < 0 || len < 0) return "";
+    var iEnd, iLen = String(str).length;
+    if (start + len > iLen){
+		iEnd = iLen;
+    }
+    else{
+		iEnd = start + len;
+	}
+    return String(str).substring(start,iEnd);
+}
+
+
+function isMandatory(strString){
+	if (trim(strString)==''){
+		return false;
+	}else{
+		return true;		
+	}
+}
+
+
+function stripCharsInBag(s, bag){
+	var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++){   
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+function daysInFebruary (year){
+	// February has 29 days in any year evenly divisible by four,
+    // EXCEPT for centurial years which are not also divisible by 400.
+    return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+}
+function DaysArray(n) {
+	for (var i = 1; i <= n; i++) {
+		this[i] = 31
+		if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+		if (i==2) {this[i] = 29}
+   } 
+   return this
+}
+
+
+
+function trim(fld) {
+	var result = "";
+	var c = 0;
+	for (i=0; i<fld.length; i++) {
+	if (fld.charAt(i) != " " || c > 0) {
+	result += fld.charAt(i);
+	if (fld.charAt(i) != " ") c = result.length;
+	}
+	}
+	return result.substr(0,c);
+} 
+
+function dbLower(sElm){
+	try{
+		document.getElementById(sElm).value = document.getElementById(sElm).value.toLowerCase();
+	}catch (excpt) {
+		document.getElementById(sElm).innerHTML = document.getElementById(sElm).innerHTML.toLowerCase();
+	}
+	return true;
+}
+
+function dbUpper(sElm){
+	try{
+		document.getElementById(sElm).value = document.getElementById(sElm).value.toUpperCase();
+	}catch (excpt) {
+		document.getElementById(sElm).innerHTML = document.getElementById(sElm).innerHTML.toUpperCase();
+	}
+	return true;
+}
+
+
+function checkLength(obj, maxlimit){
+	if (obj.value.length > maxlimit){
+		obj.value = obj.value.substring(0, maxlimit);		
+	}		
+}
+
+function positionCenter(obj) {
+	try{
+		obj = document.getElementById("ajxImageFrame");
+	
+		obj.style.display = "block";
+		var width = 200;
+		var height = 100;
+		var left = parseInt((GetWidth()/2) - (width/2));
+		var top = parseInt((GetHeight()/2) - (height/2));
+		obj.style.top = top+"px";
+		obj.style.left = left+"px";    
+	}catch(excpt){
+	
+	}
+}
+
+
+function GetWidth()
+{
+        var x = 0;
+        if (self.innerHeight)
+        {
+                x = self.innerWidth;
+        }
+        else if (document.documentElement && document.documentElement.clientHeight)
+        {
+                x = document.documentElement.clientWidth;
+        }
+        else if (document.body)
+        {
+                x = document.body.clientWidth;
+        }
+        return x;
+}
+ 
+function GetHeight()
+{
+        var y = 0;
+        if (self.innerHeight)
+        {
+                y = self.innerHeight;
+        }
+        else if (document.documentElement && document.documentElement.clientHeight)
+        {
+                y = document.documentElement.clientHeight;
+        }
+        else if (document.body)
+        {
+                y = document.body.clientHeight;
+        }
+        return y;
+}
+
+
+
+function AjxSetClass(elementID,sClass)
+{
+	try{
+		document.getElementById(elementID).className = sClass;
+	}catch(excp){
+	
+	}
+}
+
+function isDate(objid,bPreventChange){	
+
+	//strDateMask can be set globally
+    var dtStr = document.getElementById(objid).value;
+   
+    var d='';
+    var m='';
+    var y='';
+    
+    var bFound = false;
+    
+    //dformat
+    var dformat = "dmy"
+    try{
+        if (strDateMask=='m/d/yyyy'){
+            dformat = "mdy"; 
+        }  
+    }catch(e){};
+    
+    
+    var myDate = new Date();
+
+    //exit if null 
+    if (dtStr==null) {return true;}
+    if (dtStr.length==0) {return true;}
+    
+    //trim
+    dtStr = dtStr.replace(/^\s+|\s+$/g,"");
+    
+    
+    //T or t ?
+    if (dtStr=='T' || dtStr=='t'){
+        myDate = new Date();
+        bFound = true;
+    }
+    
+    //+
+    if (dtStr.indexOf("+") ==0 ){        
+       var dLen = dtStr.length;        
+       var daysToAdd = dtStr.substring(1);
+       if (String(daysToAdd).length==0){	
+		daysToAdd = "1";
+       }
+       myDate.setDate(myDate.getDate()+parseInt(daysToAdd));
+       bFound = true;
+    }
+    
+    //-
+    if (dtStr.indexOf("-")== 0 ){        
+       var dLen = dtStr.length;        
+       var daysToAdd = dtStr.substring(1)       
+       if (String(daysToAdd).length==0){	
+		daysToAdd = "1";
+       }
+       myDate.setDate(myDate.getDate()-parseInt(daysToAdd));
+       bFound = true;
+    }
+    
+    //NORMAL DATE
+    //determine limiter
+    try{
+		var dtCh= "";
+		if (dtStr.indexOf("/") > - 1 ){dtCh="/";}  
+		if (dtStr.indexOf(" ") > - 1 ){dtCh=" ";}  
+		if (dtStr.indexOf(".") > - 1 ){dtCh=".";}
+		if (dtStr.length>3 && dtStr.indexOf("-") > - 1 ){dtCh="-";}
+		    
+		if (dtCh != ''){
+    
+			bFound = true;
+			
+		    //remove multiple spaces
+		    dtStr = dtStr.replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+		    
+
+		    //determine date
+		    var vDate = dtStr.split(dtCh);
+		    try{
+		        d1=vDate[0];
+		        m1=vDate[1];
+		        y1=vDate[2];
+		        if (dformat=='mdy'){
+		            d1=vDate[1];
+		            m1=vDate[0];
+		        }  
+		    }catch(e){};
+		      
+		     m1 = getMonthNumber(m1);             
+		            
+			if (y1=='' || y1==null){y1=myDate.getFullYear()};
+			if (d1=='' || d1==null){d1=myDate.getDate()};
+			if (m1=='' || m1==null){m1=myDate.getMonth()+1};
+			
+			if (d1.toString().charAt(0)=="0" && d1.length>1) d1=d1.toString().substring(1)
+			if (m1.toString().charAt(0)=="0" && m1.length>1) m1=m1.toString().substring(1)
+			
+			
+			if (parseInt(parseFloat(y1))){
+			    y1 = parseInt(parseFloat(y1));
+		        if (y1<1700){
+		            if (y1>40){
+		                y1 = 1900 + y1;
+		            }else{
+		                y1 = 2000 + y1;
+		            }
+		        }
+		    }
+			
+			myDate = new Date(parseInt(parseFloat(y1)), m1-1, d1); 
+		    
+		    //compare the parsed value to calculated
+		    var orig = d1+'/'+m1+'/'+y1;
+		    var d2 = myDate.getDate();
+		    var m2 = myDate.getMonth()+1;
+		    var y2 = myDate.getFullYear();
+		    var calculated = d2+'/'+m2+'/'+y2;
+		    
+		    if (orig != calculated){
+		        return false;
+		    }
+		    
+		}
+	}catch(excp){
+		return false;
+	}
+	
+	if (!bFound){
+		return false;
+	}
+	
+	//At this point we've got myDate regardless of the input type
+    
+    
+    //Get date parts
+    d = myDate.getDate().toString();
+    m = (myDate.getMonth()+1).toString();
+    y = (myDate.getFullYear()).toString();                
+    
+    if (d.length==1) d= "0" + d;
+	if (m.length==1) m= "0" + m;
+    
+    
+    //Default format or wrt Mask
+    dtStr = d+'/'+m+'/'+y;    
+    if (dformat=='mdy'){
+        dtStr = m+'/'+d+'/'+y; 
+    }  
+    
+    if (!bPreventChange) { //CHECK ISDATE ONLY, don't make any change 
+		document.getElementById(objid).value = dtStr;
+    }
+    
+    return true;
+}
+
+
+function getMonthNumber(strMonth){
+
+	var month=new Array();
+	month[0]="January";
+	month[1]="February";
+	month[2]="March";
+	month[3]="April";
+	month[4]="May";
+	month[5]="June";
+	month[6]="July";
+	month[7]="August";
+	month[8]="September";
+	month[9]="October";
+	month[10]="November";
+	month[11]="December";
+	
+	if (strMonth.length>2){
+		strMonth = strMonth.toLowerCase();
+		strMonth = strMonth.substring(0,3);
+		for (var i=0;i<12;i++){
+			if (month[i].substring(0,3).toLowerCase()==strMonth){
+				return i+1;
+			}
+		}
+	}
+	return 	strMonth;
+}
+
+
+function dbTimerStart(msec){
+	try{
+		window.clearInterval(dbTimer);
+	}catch(excp){
+	
+	}
+	dbTimer = window.setInterval("genericEventCall('dbTimer','timer')", msec);
+}
+
+function dbTimerKill(){
+	window.clearTimeout(dbTimer);
+}
+
+function synchronizeScroll(tbod, thed){
+    document.getElementById(thed).scrollLeft = document.getElementById(tbod).scrollLeft;    
+}
+
+function AjxMouseOver(element,imgsrc)
+{
+	element.src=imgsrc;
+}
+
+
+function AjxMouseOut(element,imgsrc)
+{
+	element.src=imgsrc;
+}
+
+
+function clearLastFieldFocused(){
+	lastFocusID	 = "";
+}
+
+function addFrame(dbframeid, dbsrc, dbposition, dbtop, dbleft, dbwidth, dbheight, dbcontainer){
+	var iframe = document.createElement('iframe') ;
+	iframe.id = dbframeid;
+	iframe.src = dbsrc;  
+	iframe.style.position = dbposition;
+	iframe.style.top = dbtop;
+	iframe.style.left = dbleft;
+	iframe.style.width = dbwidth;
+	iframe.style.height = dbheight;
+	document.getElementById(dbcontainer).appendChild(iframe);  	
+}
+
+function removeFrame(dbframeid){
+	document.getElementById(dbframeid).style.display = 'none';
+	document.getElementById(dbframeid).parentElement.removeChild(document.getElementById(dbframeid));
+}
+
+function clock() {
+   var now = new Date();
+   var outStr = padLeft(now.getHours(),2)+':'+ padLeft(now.getMinutes(),2)+':'+ padLeft(now.getSeconds(),2);
+   return outStr.toString();
+}
+
+function clientDate() {
+	var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} 
+    var cliDate = dd+'.'+mm+'.'+yyyy;
+    return cliDate;
+}
+
+
+function padLeft(nr, n, str){
+    return Array(n-String(nr).length+1).join(str||'0')+nr;
+}
+
+var moverTimer;
+
+function msOver(evt, clsName){
+	clearTimeout(moverTimer);
+	var oID = evt.currentTarget.id;
+	moverTimer = setTimeout(function(){hitMe(oID)}, 500);
+	$("#"+oID).attr('class', clsName);
+}
+
+
+function msOut(evt, clsName){
+	clearTimeout(moverTimer);
+	var oID = evt.currentTarget.id;		
+	$("#"+oID).attr('class', clsName);
+	if ($("#"+oID).attr('active')== 'true'){
+		$("#"+oID).attr('active', 'false');
+		genericEventCall(oID, 'mousehitout');
+	}
+}
+
+function hitMe(oID){
+	$("#"+oID).attr('active', 'true');
+	genericEventCall(oID, 'mousehit');
+}
+
+//</script>
+
+
+
+
+

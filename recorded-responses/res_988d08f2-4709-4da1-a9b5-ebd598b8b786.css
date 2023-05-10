@@ -1,0 +1,1218 @@
+.doc-req-select-section .doc-req-select {
+  width: 70%;
+}
+
+.doc-req-section {
+    border-right: solid darkslategray 1px;
+}
+
+div .weo-bulk-arch,div .weo-bulk-wellness {
+  height: 730px;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+}
+
+.weo-bulk-arch .row,.weo-bulk-wellness .row {
+  margin: 0;
+  padding: 0;
+}
+
+.weo-bulk-arch .grid-container-row,.weo-bulk-wellness .grid-container-row {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 620px;
+}
+
+.weo-bulk-arch .button-container-row,
+.weo-bulk-wellness .button-container-row,
+.bulk-launch-review .button-container-row {
+  padding: 1em 1em 0 1em;
+  margin: 0;
+}
+
+.bulk-launch-review .isLoadingOverlay {
+    position: fixed;
+    z-index: 1001;
+    height: 80%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: .8;
+}
+
+.bulk-launch-review .isLoadingCenter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    z-index: 1010;
+    border-radius: 10px;
+}
+
+.weo-bulk-arch .button-container-row .btn,
+.weo-bulk-wellness .button-container-row .btn,
+.bulk-launch-review .button-container-row .btn {
+  float: right;
+}
+
+.weo-bulk-arch .ui-grid-header {
+  text-align: center;
+  font-size: smaller;
+}
+
+.weo-bulk-arch .ui-grid-filter-input {
+  font-size: smaller;
+  text-align: center;
+}
+
+.weo-bulk-arch .ui-grid-cell,.weo-bulk-wellness .ui-grid-cell {
+  font-size: smaller;
+}
+
+.weo-bulk-arch .ui-grid-cell-center, .life-event-maint .ui-grid-cell-center {
+  text-align: center;
+}
+
+.weo-bulk-wellness .ui-grid-header {
+  text-align: left;
+  font-size: smaller;
+}
+
+.weobulkarch-dlg .ngdialog-content {
+  border-radius: 5px;
+  width: 600px !important;
+}
+
+.weobulkarch-dlg .btn {
+  width: 4em;
+  float: right;
+}
+
+.weobulkarch-dlg .btn-primary {
+  margin-right: 1em;
+}
+
+.confirm-email-dlg  .ngdialog-content {
+  width: 600px !important;
+  min-height: 200px !important;
+  background-color: white !important;
+}
+
+.uw-questions-dlg .ngdialog-content {
+  border-radius: 5px;
+  width: 700px !important;
+}
+
+.uw-questions-dlg .grey-behind {
+  background-color: gainsboro !important;
+}
+
+.uw-questions-dlg .title-row {
+  margin: -1em !important;
+  padding-top: .5em !important;
+  background-color: gainsboro !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.uw-question-tile {
+  background-color: gainsboro;
+}
+
+.uw-question-tile .handle {
+  cursor: move;
+}
+
+.uw-question-list .uw-question-tile .dndDragging {
+  background-color: powderblue !important;
+}
+
+.uw-question-list .uw-question-display .dndDraggingSource {
+  opacity: 0.5%;
+}
+
+.uw-question-list .dndPlaceholder {
+  background-color: #ddd;
+  display: block;
+  min-height: 42px;
+}
+
+.uw-question-tile .fa-ellipsis-v {
+  margin-right: .15rem !important;
+}
+
+.uw-question-tile .tile-title {
+  font-weight: bold;
+}
+
+.uw-question-tile .hr {
+  border-top-width: 2px;
+}
+
+.phr-tile .underwritingButton {
+    color: #409eb3 !important;
+    font-weight: bold;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.phr-tile .underwritingButton:disabled {
+    color: #868686 !important;
+    cursor: default;
+}
+
+.phr-tile .underwritingButtonContainer {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.phr-tile .underwritingKnockoutMessage {
+    width: 103.4%;
+    border-color: #fde7ab;
+    background-color: #fde7ab;
+    color: #CC0000;
+}
+
+.phr-tile .underwritingIncompleteMessage {
+    width: 103.4%;
+    border-color: #F5C6CB;
+    background-color: #F8D7DA;
+    color: #CC0000;
+}
+
+.phr-tile .underwritingSelectableMessage {
+    width: 103.4%;
+    border-color: #d7ebc0;
+    background-color: #d7ebc0;
+    color: #005a2d;
+  }
+
+.no-select {
+  user-select: none;
+}
+
+.confirm-email-dlg label {
+  text-align: right !important;
+}
+
+.confirm-email-dlg form {
+  margin-top: 20px;
+}
+
+.confirm-email-dlg .button-row button {
+  margin: 10px 10px 10px 0;
+}
+
+.ui-grid-viewport {
+  overflow-anchor: none;
+}
+
+div.enrollment-dashboard .panel-heading {
+    border-radius: 0;
+}
+
+.phr-card-header-height {
+    height: 56px;
+}
+
+span.benefit-summary.comment-field {
+    display:inline-block;
+    min-height: 60px;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #337ab7;
+    color:#fff;
+    font-size: 18px;
+}
+
+h3.benefit-summary.total-field {
+    width: 100%;
+    text-align: center;
+    background-color: #EDEDED !important;
+    padding: 20px 10px;
+}
+
+.dual-year-total h3.benefit-summary.total-field {
+    text-align: left !important;
+    padding: .5em 0 0 3em !important;
+    margin-bottom: 0 !important;
+    color: #333 !important;
+    font-weight: 600;
+}
+
+h4.benefit-summary.total-field {
+    width: 100%;
+    padding: .25em 0 1em 5em;
+    background-color: #EDEDED !important;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+span.enrollment-summary.section-title {
+    font-size: 18px;
+    padding: 5px 20px 0 10px;
+}
+
+.summary-item {
+    margin-bottom: 1em;
+}
+
+.summary-no-border {
+    border: 0 !important;
+}
+
+enrollment-summary-directive .section-table, .cafe {
+    empty-cells: show;
+    table-layout: fixed;
+}
+
+th.enrollment-summary.table-header {
+    background-color: white!important;
+    color: black !important;
+    width:25%;
+}
+
+th.enrollment-summary.table-header-narrow-col{
+    color: black !important;
+}
+
+td.enrollment-summary.table-data.array-data {
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+
+td.enrollment-summary.table-data.cost-col {
+    font-weight: bold;
+}
+
+.summary-section-header {
+    padding: .5rem 1.25rem;
+    margin-bottom: 0;
+}
+
+.cost-col {
+    text-align: right;
+    width:10%;
+}
+
+.cafe .cost-col {
+    width:15%;
+}
+
+.effective-col {
+    width:15%;
+}
+
+.cafe .effective-col {
+    width:10% !important;
+}
+
+td.enrollment-summary.table-data.effective-col {
+    white-space:nowrap;
+}
+
+.summary-waived-spouse {
+  color: red !important;
+}
+.summary-empty-text {
+    font-weight: bold;
+}
+
+.summary-no-election-text {
+  border-color: #F5C6CB;
+  background-color: #F8D7DA;
+  color: #CC0000;
+}
+
+.summary-terms-text {
+  border-color: #F5C6CB;
+  background-color: #ceefff;
+  color: #509daa;
+}
+
+.summary-require-eoi-text {
+  border-color: #FFEEBA;
+  background-color: #FFF3CD;
+  color: #856404;
+}
+
+.summary-terms {
+  border: 1px solid #DADADA;
+}
+
+.seeLess { 
+    max-height: 40px;  
+    overflow: hidden;
+}
+
+.seeMore { 
+    height:auto; 
+}
+
+h1.ng-binding :not(.new-itemlib) {
+    color:#fff !important;
+    background-color: #337ab7 !important;
+    border-radius:50px;
+    padding: 20px 10px 20px 10px;
+    text-align: center;
+    font-size: 2em;
+}
+
+span.benefit-summary.comment-field.ng-binding{
+    display:none;
+}
+
+select .plan-compare .multi-select {
+    margin-left: 25px;
+}
+input .plan-compare-sample {
+    margin-left: 30px;
+}
+option.plan-compare.multi-select {
+    padding: 1px 5px;
+}
+
+.enrollment-dashboard {
+    margin: 0 !important;
+    background: white;
+    height: 88vh;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+.enrollment-dashboard::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.enrollment-dashboard .plans-view {
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.navFooter {
+    background-color: white;
+    bottom:0;
+    z-index: 200;
+}
+
+#runningtotal {
+    display: block;
+    float: right;
+    text-align: center;
+    margin: 0;
+    padding-right: 1em;
+}
+
+.navPadding {
+    padding-top:5px;
+    padding-bottom:8px;
+    margin-left:255px;
+}
+
+.backButtonPosition {
+    margin-right: 5px;
+}
+
+.navButtonStyle {
+    background-color: #214563;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.navButtonStyle:hover  {
+    color: #FFFFFF;
+}
+
+.navButtonStyle:focus {
+    background-color: #214563;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.nextButtonPosition {
+    padding-right: 15px;
+}
+
+.nextButtonPositionNew { /*bootstrap 4*/
+    order: 2;
+    margin-right: 5px;
+}
+
+.enrollment-button-nav {
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+}
+
+.submitting {
+    pointer-events: none;
+}
+
+.itemlib-banner {
+    color: #31708f;
+}
+
+.plan-details-list-group {
+    list-style: none;
+}
+
+hr.custom {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.compare-row {
+    margin: 10px 0px 10px 0px;
+}
+
+.animate-show.ng-hide-remove {
+    transition-delay: 1.0s;
+}
+
+.redirect-error {
+    color: red;
+}
+
+.confirm-continue {
+    padding: 1em .5em;
+}
+
+.confirm-continue-yes-no {
+    padding: 1em .5em;
+}
+
+.confirm-form {
+    padding-bottom: 5em;
+    margin: 10px 10px 20px 10px;
+}
+
+.confirm-form input {
+    vertical-align: center;
+}
+
+.confirm-form label {
+    vertical-align: center;
+}
+
+#sig-panel {
+    margin: .5em auto .5em auto;
+    padding: 0;
+    display: none;
+}
+
+#sig-panel.show-sig {
+    display: block;
+}
+
+.sig-field {
+    width: 40%;
+    margin: 1em auto 1em auto;
+}
+
+.confirm-sig-accepted {
+    color: #5cb85c;
+    display: none;
+}
+
+.confirm-sig-accepted.show-icon {
+    display: inline-block;
+}
+
+.confirm-sig-failed {
+    color: #c9302c;
+    display: none;
+}
+
+.confirm-sig-failed.show-icon {
+    display: inline-block;
+}
+
+#confirm-tip {
+    display: none;
+}
+
+#btn-confirm:hover #confirm-tip.show-tip {
+    display: block;
+    position: absolute;
+    border: black 1px solid;
+    border-radius: 5px;
+    background-color: #333333;
+    padding: .25em .5em .25em .5em;
+    margin-right: 3em;
+    right: 0;
+    z-index: 100;
+    top: -2.5em;
+}
+
+/*doc repo, update doc form*/
+documents-repository .tags-col {
+  height: 98vh;
+  border-right: 1px solid gray;
+  overflow: auto;
+  padding-right: 0;
+  padding-left: 5px;
+}
+
+documents-repository .tags-row {
+  margin-right: 0;
+  margin-left: -5px;
+}
+
+documents-repository .tags-title {
+  font-weight: bold;
+}
+
+div.modal-footer.doc-repo {
+  padding: 15px 0 0 0;
+  text-align: center;
+}
+
+div.modal-footer.doc-repo .btn {
+  color:#fff;
+  padding: 6px;
+}
+
+.newFileVersion-input {
+  display: none !important;
+}
+
+.print-no-show {
+    border: 2px solid #b1b0b0;
+    background-color: white;
+    margin: 2em;
+    padding: 5px 0;
+}
+
+.confirm-report {
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.confirm-action {
+    margin: 0 10px;
+}
+
+.row.vertical-divider {
+    overflow: hidden;
+}
+
+.row.vertical-divider>div[class^="col-"] {
+    text-align: center;
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 1px solid #F2F7F9;
+    border-right: 1px solid #F2F7F9;
+}
+
+.row.vertical-divider div[class^="col-"]:first-child {
+    border-left: none;
+}
+
+.row.vertical-divider div[class^="col-"]:last-child {
+    border-right: none;
+}
+
+.print-area {
+    clear: right;
+    border: 1px solid black;
+    padding: 1em 4em;
+}
+
+.confirm-report i:hover {
+    cursor: pointer;
+}
+
+.table-confirm-header {
+    padding: 5px;
+    margin-bottom: 2em;
+    empty-cells: show;
+}
+
+.confirm-header {
+    clear: left;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 2em;
+}
+
+h4.print-title {
+    padding: 0 1em;
+    color: #337ab7 !important;
+    font-weight: bold;
+}
+
+.tr-confirm-header-data td {
+    font-size: 1em;
+    padding: 0 1em .25em 1em;
+}
+
+.print-area span.enrollment-summary.section-title {
+    font-size: 1.10em;
+}
+
+.print-area .summary-nav-icon {
+    display: none;
+}
+
+.print-area .table-data {
+    padding: .2em .8em;
+    font-size: .75em;
+}
+
+.print-area .summary-item {
+    margin-bottom: 0;
+}
+
+.print-area .table-header, .print-area .table-header-narrow-col {
+    padding: .2em .8em;
+    font-size: .75em;
+    font-weight: normal;
+}
+
+.print-area .summary-empty-text {
+    font-size: .75em;
+}
+
+.print-area h3.benefit-summary.total-field {
+    text-align: center;
+    padding: .35em 0;
+    font-size: 1.20em;
+    margin: .25em 0;
+}
+
+.print-area .effective-col {
+    width: 20%;
+}
+
+.print-area .cost-col {
+    width: 10%;
+}
+
+.print-area .cafe th.enrollment-summary.table-header {
+    width: 20%;
+}
+
+.print-area .cafe .effective-col {
+    white-space: nowrap;
+}
+
+.print-area .cafe .cost-col {
+    width: 15%;
+}
+
+.compare-anchor {
+  cursor: pointer;
+  line-height: 1em;
+  padding: 0 15px;
+  vertical-align: middle;
+}
+
+.forms-available .default-item, .forms-selected .default-item {
+  font-weight: bold;
+}
+
+.add-life-event-header-div {
+    background-color: #214463;
+    border-color: #214463;
+    margin-bottom: 10px;
+}
+.add-life-event-header {
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+
+}
+.add-life-event-client-row {
+    margin: 10px 10px 10px 20px;
+}
+
+.add-life-event-row{
+    margin: 5px 10px 10px 20px;
+}
+
+.add-life-event-small-input {
+    width: 60px;
+}
+
+.add-life-event-client-tab{
+    margin: 10px 10px 10px 10px;
+    border: solid lightgrey 1px;
+}
+
+.add-life-event-bottom-border{
+    border-bottom: solid black 1px;
+}
+
+.add-life-event-text-center{
+    text-align: center;
+}
+
+.add-life-event-override{
+    margin-left: 20px;
+}
+
+.add-life-event-search-box{
+    margin: 5px;
+}
+
+.add-life-event-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    padding-left: 10px;
+}
+.add-life-event-input::-moz-placeholder { /* Firefox 19+ */
+    padding-left: 10px;
+}
+.add-life-event-input:-ms-input-placeholder { /* IE 10+ */
+    padding-left: 10px;
+}
+.add-life-event-input:-moz-placeholder { /* Firefox 18- */
+    padding-left: 10px;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.panel-heading-color {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding-top: 6px;
+    padding-bottom: 3px;
+    color: white;
+}
+
+.fa-2x.close.customclose {
+    color: white;
+    opacity: 0.7;
+}
+
+.fa-2x.close.customclose:hover {
+    opacity: 1;
+}
+
+.disabled-text {
+    color: #A9A9A9;
+}
+
+.phr-border-grey {
+    border-top: 1px solid #D8D8D8;
+}
+
+.phr-white-close {
+    color: white!important;
+    opacity:1!important;
+}
+
+.flow-title {
+    padding-left: 20px!important;
+    background-color: #EEEEEE;
+    color: #040E28;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.weo-bulk-wellness .ui-grid-header .ui-grid-header-cell-label {
+    word-wrap: break-word;
+    white-space: normal;
+    display: block;
+    padding-right: 15px;
+}
+
+.weo-bulk-wellness .ui-grid-header input[type="text"].ui-grid-filter-input {
+    padding: 0 2px;
+}
+
+.weo-bulk-wellness .ui-grid-header div.ui-grid-cell-contents {
+    padding-bottom: 50px;
+}
+
+.weo-bulk-wellness .ui-grid-header div[ui-grid-filter] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.bulkChangeBenGroup-dlg .ngdialog-content {
+    border-radius: 5px;
+    width: 660px !important;
+    background: #fff;
+    font-family: unset !important;
+    font-size: unset !important;
+    color: #212529 !important;
+  }
+
+.bulkChangeBenGroup-dlg .ngdialog-overlay{
+    background-color: #FFFFFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.bulkChangeBenGroup-dlg .btn {
+    float: right;
+}
+
+.bulkChangeBenGroup-dlg .btn-primary {
+    margin-right: 1em;
+}
+
+div .bulk-change-ben-group {
+  height: 800px;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+}
+
+.bulk-change-ben-group .row {
+  margin: 0;
+  padding: 0;
+}
+
+.bulk-change-ben-group .grid-container-row {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 620px;
+}
+
+.bulk-change-ben-group .button-container-row {
+  padding: 1em 1em 0 1em;
+  margin: 0;
+}
+
+.bulk-change-ben-group .button-container-row .btn {
+  float: right;
+}
+
+.bulk-change-ben-group .ui-grid-header {
+  text-align: left;
+  font-size: smaller;
+}
+
+.bulk-change-ben-group .ui-grid-filter-input {
+  font-size: smaller;
+  text-align: left;
+}
+
+.bulk-change-ben-group .ui-grid-cell {
+  font-size: smaller;
+}
+
+.bulk-change-ben-group .ui-grid-cell-center, .life-event-maint .ui-grid-cell-center {
+  text-align: left;
+}
+
+.address-container {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.address-container input {
+    position: absolute;
+    padding-top: 30px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.address-radioButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: #A6B1C2;
+    border-radius: 50%;
+    margin-top: 22px;
+}
+
+/* On mouse-over, add a grey background color */
+.address-container:hover input~.address-radioButton {
+    background-color: #A6B1C2;
+}
+
+/* When the radio button is checked, add a blue background */
+.address-container input:checked~.address-radioButton {
+    background-color: #028AAD;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.address-radioButton:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.address-container input:checked~.address-radioButton:after {
+    display: block;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* Style the indicator (dot/circle) */
+.address-container .address-radioButton:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}
+
+.doc-set-btn {
+    border-radius: 50px !important;
+}
+
+.doc-set-btn-pos {
+    float: right;
+}
+
+.doc-set-attach {
+    position: absolute;
+    text-decoration: underline !important;
+    color: #008aad !important;
+    font-style: italic;
+}
+
+.doc-set-page-content {
+    height: 300px;
+}
+
+form[name="formSetForm"] .row,
+form[name="documentSetForm"] .row {
+    margin-bottom: 15px;
+}
+
+form[name="formSetForm"] .alert,
+form[name="documentSetForm"] .alert {
+    margin-bottom: inherit;
+}
+
+.set-prev-btn {
+    margin-right: 15px;
+}
+
+.fileUpload {
+    border-radius: 50px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.doc-set-modal-body {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.doc-set-markdown {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.edit-form-set input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+.doc-set-modal-body input[type="checkbox"] {
+    height: inherit;
+    width: inherit;
+}
+
+.doc-set-modal-body .row {
+    margin: 0;
+    padding: 0;
+}
+
+.edit-form-set .lang-select {
+    margin-left: -4px;
+    margin-bottom: .5rem;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: .3px !important;
+    cursor: pointer;
+    border: none;
+    outline:0px;
+    background-color:white;
+    color: #008AAD;
+    background:none;
+    box-shadow: none;
+}
+
+.edit-form-set {
+    padding-bottom: 50px !important;
+}
+
+.edit-form-set div.tab-content {
+    min-height: 520px !important;
+}
+
+/* media-based overrides */
+
+@media only screen and (max-width: 768px) {
+    .td-confirm-logo img {
+        max-height: 30px;
+        max-width: 30px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .td-confirm-logo img {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .noOverflowX {
+        overflow-x: hidden!important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navFooter {
+        position:fixed !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-view {
+        padding: 30px !important;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .logout {
+        line-height: 3em;
+        cursor: pointer;
+        padding-left: 20px!important;
+        background-color: #E0E0E0;
+        border-bottom: 1px solid #979797;
+        height: 56px;
+    }
+}
+
+@media only screen and (max-width: 767.98px){
+    .enrollment-dashboard {
+        border:none;
+        /*padding: 0;*/
+    }
+
+    .mobile-summary-head {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    enrollment-summary-directive {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    enrollment-summary-directive .section-table {
+        table-layout: auto;
+    }
+
+    .summary-empty-section {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        font-size: 10px;
+    }
+
+    .section-title {
+        width:90%;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .summary-item {
+        padding-bottom: 5px;
+        margin-bottom: 15px !important;
+    }
+
+    .confirm-report {
+        width: 100%;
+        margin: 1em;
+    }
+
+    .logout {
+        line-height: 3em;
+        cursor: pointer;
+        padding-left: 20px!important;
+        background-color: #E0E0E0;
+        border-bottom: 1px solid #979797;
+        height: 84px;
+        padding-right: calc(10% - 15px);
+    }
+
+    .phr-menu-close-font-size {
+      font-size: 24px;
+    }
+
+    .navPadding {
+        margin-left: 0;
+    }
+
+}
+
+@media print {
+    .print-no-show {
+        display: none;
+    }
+
+    .print-area {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+}

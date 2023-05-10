@@ -1,0 +1,93 @@
+Highcharts.theme = {
+    colors: ['#05518C','#25C0B3','#4BA66E','#FFC600','#CE400D','#DF43A3','#9C0C65','#6417B1','#1E1581','#72B4D5','#06673D','#FBB8E1','#7E0000','#6D727D','#CBA8EF','#7369E2','#7BE8DF','#014C46','#C8CAD1','#401300'],
+
+      lang: { thousandsSep: ','},  tooltip:{valueDecimals:2,},chart: {
+        backgroundColor: '#ffffff',
+        plotBorderWidth: 0
+
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    exporting: {
+        enabled: false,
+/*
+        buttons: {
+            contextButton: {
+                menuItems: ['downloadPNG', 'downloadSVG']
+            }
+        }
+*/
+    },
+    title: {
+        style: {
+            color: '#333333',
+			font: '600 12.5px OpenSans, Verdana, sans-serif'
+        },
+        x: 5,
+        margin: 20
+    },
+
+    subtitle: {
+        style: {
+            color: '#333333',
+			font: '400 10px OpenSans, Verdana, sans-serif'
+        }
+    },
+
+    legend: {
+        backgroundColor: '#ffffff',
+        borderColor: '#dddddd',
+        borderWidth: 1,
+        itemMarginBottom: 7,
+        padding: 10,
+        itemStyle: {
+            color: '#333333',
+			font: '400 10px OpenSans, Verdana, sans-serif'
+        },
+        itemHoverStyle:{
+            color: 'gray'
+        }
+    },
+
+	xAxis:{
+		gridLineWidth: 0,
+		
+		title:{
+			style:{
+				color:"#333333",
+				font:"600 11.5px OpenSans, Verdana, sans-serif"
+				}
+		},
+		
+		labels:{
+			style:{
+				color:"#333333",
+				font:"400 10px OpenSans, Verdana, sans-serif"
+				}
+		}
+	},
+
+	yAxis:{
+		gridLineWidth: 1,
+		title:{
+			style:{
+				color:"#333333",
+				font:"600 11.5px OpenSans, Verdana, sans-serif"
+				}
+		},
+
+		labels:{
+			style:{
+				color:"#333333",
+				font:"400 10px OpenSans, Verdana, sans-serif"
+				}
+		}
+	}
+	
+
+};
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);

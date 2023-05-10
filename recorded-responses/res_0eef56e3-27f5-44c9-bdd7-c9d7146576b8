@@ -1,0 +1,55 @@
+angular.module('employeeimageServices', [])
+.service('$server', function($http) {
+  this.initData = function() {
+    return $http.get('../../cmd/userinfo');
+  }
+})
+.service('image', function($http) {
+  this.validate = function(file) {
+    var parts = file.name.split('.');
+    var ext = parts[parts.length - 1];
+    switch (ext.toLowerCase()) {
+      case 'jpg':
+      case 'gif':
+      case 'bmp':
+      case 'png':
+      case 'tif':
+        //etc
+        return true;
+    }
+    return false;
+  };
+
+  this.upload = function(file, employeeID) {
+    if (this.validate(file)) {
+      //Create a new XMLHttpRequest to the server to upload the file
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData();
+      formData.append('employee_id', employeeID);
+      formData.append('file',file);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          //alert(xhr.responseText);
+          window.parent.postMessage("UPLOADED","*");
+        }
+      }
+
+      //Post the file to the webserver
+      xhr.open("POST", "../../cmd/uploadimage");
+      //xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+      xhr.send(formData);
+    } else {
+      alert("File is not a supported image!");
+    }
+  };
+
+  this.delete = function(employeeID) {
+    return $http({
+      url:"../../cmd/deleteimage",
+      data: $.param({ employee_id: employeeID }),
+      method : 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    });
+  }
+});

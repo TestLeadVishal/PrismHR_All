@@ -1,0 +1,18 @@
+GET https://qaphr998two-ep.prismhr.com:443/ HTTP/1.1
+Host: qaphr998two-ep.prismhr.com
+Connection: keep-alive
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://qaphr998two-ep.prismhr.com/obbe/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: ESSauthToken=veBGdsfEusEalUA2OTMoX9hbvu2wwyi0mQ029208; peoId=qaphr998two; accountId=qaphr998two; sails.sid=s%3AckatnfhNAUN4ycjwTAgTYwHSmdKB7_nb.hEHEUs9zbMb94x4SuLrnkxonUf9qHMUG0j4qhdSdA%2B0; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMnBlcmZ0ZXN0MjExMDEyIiwiZnVsbE5hbWUiOiJKaW0gSiBBYnJzd2FhYWFmYWFhbSIsInR5cGUiOiJFIiwicGVvSWQiOiJxYXBocjk5OHR3byIsImNsaWVudElkIjoiODEyIiwiaWF0IjoxNjc1Nzg0MjgxfQ.A5owDIBYRBVjaMelruevPNHH88ZoRl-SjSWqYRYJjaWH59EvVb5KvVUwl4CmsVXiL4BVozACCi4wVUwfslyqTIB1n_6_AnxZByK1Ay_jpkXeQN1xGZWmsFqO-cJ7l-VmRse2Nb3TDibIH-AyK2CeZeT-BKdPqJH9qOEGvFw6ROpX-KosJ05kICtfyoONomBILdV-l41NGr9zwkfy7l-aq-UyQp7aK1Wj1p2pCf69T-8f-ctEfhemWyNnKgCKgte9K7BuT3z82XK0jzkHlXMtYxVFn5DplspWRQvEseP0dnBVwPAeQGXZYq0FNpUEA5vFqvqc0YY8wGsfUaJf7RqDrblCCV2cQQFv7EHVfBKTFiv6cKkaF8eLRjv-Cwi6779jI23aJ384AIVWqdtnj9LG8Db5GUGN3KT5e7xUVU--QAaSE1KLW1-dBksqB81uQ-s9OFuJ2tEj6dGYrHpAQ-zwUNS5cHEZXyqRfPm7jYV7hFMKKE5dXv81q4XeR7BHb4CHtiW4hNNAii-h2LiDCrFgv8tMsh3ntzxr7ReuqpyU9mR8THzROruVbztcifihbUOAJLvLRMkEVDEAjm07JqgeeQ7zZ98FvZMgpiMz4xMu_unGShsU307UK12FSvOE47nSveFl-_xcFvR1RiASF60Eeht0PqP43m3O_PkncQsotl4
+
