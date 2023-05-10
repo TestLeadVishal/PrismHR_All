@@ -1,0 +1,9 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Logout" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="6cd8d03f-c3a7-4513-9b54-ce7436e12c46" weightsEnabled="false">
+    <weighted-embedded-action uid="ed78da48-440f-4f75-bc75-90d5916ee5eb"/>
+    <weighted-embedded-action uid="ac90b69a-c66a-4538-bcc9-b74d0db189cb"/>
+    <weighted-embedded-action uid="01367015-6d90-4fdf-bf07-2e1a9395c497"/>
+    <weighted-embedded-action uid="490b4304-d781-43e5-9f38-065af99b2b80"/>
+</basic-logical-action-container>

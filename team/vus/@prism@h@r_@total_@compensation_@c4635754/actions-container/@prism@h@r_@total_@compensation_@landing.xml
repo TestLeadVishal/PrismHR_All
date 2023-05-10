@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Total_Compensation_Landing" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="8a2a7cee-38c1-46fe-91de-211f51ae8870" weightsEnabled="false">
+    <weighted-embedded-action uid="79af1893-9cd0-4195-8695-9fcdb3a78cdf"/>
+    <weighted-embedded-action uid="7251e590-7605-46b2-a216-4dcf767448f8"/>
+</basic-logical-action-container>

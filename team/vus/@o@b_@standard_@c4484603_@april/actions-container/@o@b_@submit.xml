@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Submit" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="94dd8ec5-4286-4c08-ac78-e6a02b4d3cf4" weightsEnabled="false">
+    <weighted-embedded-action uid="5c1e09b9-a9bf-443e-ab6b-1d9cd7c118e5"/>
+</basic-logical-action-container>

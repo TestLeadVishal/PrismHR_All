@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Onboarding Summary" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="c5c54754-ec17-479c-b8d6-8f1c9e1f1038" weightsEnabled="false">
+    <weighted-embedded-action uid="74183035-b78c-42f3-85fe-d03ecfdb239c"/>
+</basic-logical-action-container>

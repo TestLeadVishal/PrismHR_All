@@ -1,0 +1,63 @@
+<http-page executeResourcesDynamically="false" name="/apis/ep/logout"
+    playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@e@p_@standard_@c4484572_998/%resources%/recorded-artifacts/4bb2e577-247e-4753-b8e5-666b42fcabab.zip"
+    slaProfileEnabled="false" thinkTime="15000"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="4bb2e577-247e-4753-b8e5-666b42fcabab">
+    <embedded-action>3f072099-4412-4bf2-8a15-443f37ac3442</embedded-action>
+</http-page>
+<http-action actionType="1"
+    contentType="application/json; charset=utf-8"
+    eTag="W/&quot;13-Vq3yQpHLTX4I5yuOISF8ArFhyGA&quot;"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="POST" name="/apis/ep/logout" path="/apis/ep/logout"
+    postType="4"
+    recordedArtifactZipFileName="team/vus/@e@p_@standard_@c4484572_998/%resources%/recorded-artifacts/4bb2e577-247e-4753-b8e5-666b42fcabab.zip"
+    recordedResponseCode="200" responseSize="19"
+    serverUid="qaphr998-ep.prismhr.com" slaProfileEnabled="false"
+    uid="3f072099-4412-4bf2-8a15-443f37ac3442" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_3f072099-4412-4bf2-8a15-443f37ac3442</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_3f072099-4412-4bf2-8a15-443f37ac3442.txt</requestContentFileDescription>
+    <header name="Accept" value="application/json, text/plain, */*"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Content-Type" value="application/json"/>
+    <header name="Cookie" value="sails.sid=${sails_sid}"/>
+    <header name="Host" value="qaphr998-ep.prismhr.com"/>
+    <header name="newrelic" value="eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6ImFiYTYyNmUyZjA1MjkwYWEiLCJ0ciI6ImNkYjYxMzhjNWJiNDY3OWFmOGU1OWVkYWYwMTU5ZjQ4IiwidGkiOjE2ODMwMzE3MDQyNzMsInRrIjoiMTk2MzgxNSJ9fQ=="/>
+    <header name="Origin" value="https://qaphr998-ep.prismhr.com"/>
+    <header name="Referer" value="https://qaphr998-ep.prismhr.com/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="empty"/>
+    <header name="Sec-Fetch-Mode" value="cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="traceparent" value="00-cdb6138c5bb4679af8e59edaf0159f48-aba626e2f05290aa-01"/>
+    <header name="tracestate" value="1963815@nr=0-1-2203161-1386029388-aba626e2f05290aa----1683031704273"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <responseHeaders>HTTP/1.1 200 OK&#xd;
+Date: Tue, 02 May 2023 12:48:24 GMT&#xd;
+Content-Type: application/json; charset=utf-8&#xd;
+Content-Length: 19&#xd;
+Connection: keep-alive&#xd;
+RequestId: dbd2dee9430d6d9858c59c55a745a467&#xd;
+Cache-Control: private, no-cache, no-store, must-revalidate&#xd;
+Expires: -1&#xd;
+Pragma: no-cache&#xd;
+X-peoId: qaphr998&#xd;
+Access-Control-Expose-Headers: X-peoId&#xd;
+ETag: W/"13-Vq3yQpHLTX4I5yuOISF8ArFhyGA"&#xd;
+Vary: Accept-Encoding&#xd;
+Strict-Transport-Security: max-age=31536000; includeSubDomains&#xd;
+Access-Control-Allow-Origin: https://qaphr998-ep.prismhr.com&#xd;
+Access-Control-Allow-Methods: POST, PUT, PATCH, DELETE, GET, OPTIONS, HEAD&#xd;
+Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept&#xd;
+Access-Control-Allow-Credentials: true</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+    <textPostContent><![CDATA[{}]]></textPostContent>
+</http-action>

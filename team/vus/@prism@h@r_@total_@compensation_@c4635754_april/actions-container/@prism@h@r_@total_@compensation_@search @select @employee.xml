@@ -1,0 +1,10 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Total_Compensation_Search Select Employee"
+    pacingEnd="0" pacingMode="MODE_NO_PACING" pacingStart="0"
+    pacingValue="0" slaProfileEnabled="false"
+    uid="1c191fb7-fe5a-4bba-96e4-9b6ab7b5bd72" weightsEnabled="false">
+    <weighted-embedded-action uid="b5b653d6-024f-447e-a40c-9e861afbdcb4"/>
+    <weighted-embedded-action uid="c61fad9d-50e6-419d-80db-23669c0eaa0e"/>
+    <weighted-embedded-action uid="c216ae68-8549-41d7-ba53-267103e00269"/>
+    <weighted-embedded-action uid="6063828e-9bd7-4f93-9395-84cab85ab1af"/>
+</basic-logical-action-container>

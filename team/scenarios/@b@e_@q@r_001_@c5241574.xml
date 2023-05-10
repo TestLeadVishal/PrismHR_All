@@ -3,7 +3,8 @@
     uid="BE_QR_001_C5241574" virtualUsersStates="true">
     <description>This is the Quarterly Scenario for BE, TestRail Case 
 https://fwdavison.testrail.com/index.php?/cases/view/5241574
- BE QR Q4  2022 T3</description>
+BE_MR_ Jan2023 Test 2 ( time updates)
+BE MR_202301 C5241574 Test 3</description>
     <!--****** POPULATION POLICY ******-->
     <population-policy name="BE">
         <duration-policy-entry iterations="1" time="750" timeUnit="0" type="2"/>

@@ -1,0 +1,11 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Landing" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="251c18aa-27cd-481a-b891-bd465faca924" weightsEnabled="false">
+    <weighted-embedded-action uid="69dd77ae-93a5-4f4d-90cd-088b7e45155e"/>
+    <weighted-embedded-action uid="e7058fcf-f824-488c-a1be-995b43b612f9"/>
+    <weighted-embedded-action uid="743e2a35-2830-4912-8115-1780b457dca3"/>
+    <weighted-embedded-action uid="d7c1b354-e0af-4891-bf11-df943cff443c"/>
+    <weighted-embedded-action uid="3facac5e-f8d9-4b55-910b-37566dd25fee"/>
+    <weighted-embedded-action uid="68591d11-7ceb-4ae9-8bc3-59dbf20787f6"/>
+</basic-logical-action-container>

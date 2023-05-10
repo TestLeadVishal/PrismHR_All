@@ -1,0 +1,81 @@
+<http-page executeResourcesDynamically="false" name="/qaphr998two/"
+    playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@employee_@details_@c4484610/%resources%/recorded-artifacts/ffb26fb4-c38d-43d7-bbcd-ea64ebe5339e.zip"
+    slaProfileEnabled="false" thinkTime="5000"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="ffb26fb4-c38d-43d7-bbcd-ea64ebe5339e">
+    <embedded-action>8a8d7db7-6c46-4bf3-82fc-1875e2b4f158</embedded-action>
+</http-page>
+<http-action actionType="1" contentType="text/html; charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="POST" name="/qaphr998two/" path="/qaphr998two/"
+    postCharset="" postType="4"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@employee_@details_@c4484610/%resources%/recorded-artifacts/ffb26fb4-c38d-43d7-bbcd-ea64ebe5339e.zip"
+    recordedResponseCode="200" responseSize="76220"
+    serverUid="qaphr998two.prismhr.com" slaProfileEnabled="false"
+    uid="8a8d7db7-6c46-4bf3-82fc-1875e2b4f158" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_8a8d7db7-6c46-4bf3-82fc-1875e2b4f158.0.html</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_8a8d7db7-6c46-4bf3-82fc-1875e2b4f158.txt</requestContentFileDescription>
+    <variable-extractor assertionOnNoMatch="true"
+        defaultValue="&lt;NOT FOUND>" displayMode="1" endsWithSimple=""
+        extractFromVarNameAdv="" extractFromVarNameSimple=""
+        extractType="1" extractTypeAdv="1" extractTypeSimple="0"
+        matchNumber="1" matchNumberAdv="1" matchNumberSimple="1"
+        name="IDBrowser" regExp="IDBrowser=(.*?);"
+        regExpAdv="IDBrowser=(.*?);" setDefaultValue="true"
+        startsWithSimple="" template="$1$" templateAdv="$1$"
+        uid="33d46295-ef16-4aec-b679-ec7c659e4ff5" xpath=""/>
+    <variable-extractor assertionOnNoMatch="true"
+        defaultValue="&lt;NOT FOUND>" displayMode="1" endsWithSimple=""
+        extractFromVarNameAdv="" extractFromVarNameSimple=""
+        extractType="1" extractTypeAdv="1" extractTypeSimple="0"
+        matchNumber="1" matchNumberAdv="1" matchNumberSimple="1"
+        name="IDBrowser" regExp="IDBrowser=(.*?);"
+        regExpAdv="IDBrowser=(.*?);" setDefaultValue="true"
+        startsWithSimple="" template="$1$" templateAdv="$1$"
+        uid="a27cdaf5-39c5-4027-b587-0fa31e73c60c" xpath=""/>
+    <variable-extractor assertionOnNoMatch="true"
+        defaultValue="&lt;NOT FOUND>" displayMode="0"
+        endsWithSimple="');" extractFromVarNameAdv=""
+        extractFromVarNameSimple="" extractType="0" extractTypeAdv="0"
+        extractTypeSimple="0" matchNumber="1" matchNumberAdv="1"
+        matchNumberSimple="1" name="Design_Bais"
+        refererUid="16ad941c-be4b-4db5-a818-a1bacd13d5c8"
+        regExp="'designbaisState', '(.*?)'\);" regExpAdv=""
+        setDefaultValue="true" startsWithSimple="'designbaisState', '"
+        template="$1$" templateAdv="$1$"
+        uid="1f5793e6-219f-450c-a169-b2336d20429a" xpath="">
+        <variable-extractor-group extract="true" occurs="1" pattern="" type="4"/>
+    </variable-extractor>
+    <header name="Accept" value="*/*"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Content-Type" value="text/xml"/>
+    <header name="Cookie" value="IDBrowser=${IDBrowser}"/>
+    <header name="Host" value="qaphr998two.prismhr.com"/>
+    <header name="Origin" value="https://qaphr998two.prismhr.com"/>
+    <header name="Referer" value="https://qaphr998two.prismhr.com/qaphr998two/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="empty"/>
+    <header name="Sec-Fetch-Mode" value="cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <header name="X-Requested-With" value="XMLHttpRequest"/>
+    <responseHeaders>HTTP/1.1 200 OK&#xd;
+Cache-Control: private&#xd;
+Content-Type: text/html; charset=utf-8&#xd;
+Server: Microsoft-IIS/10.0&#xd;
+X-AspNet-Version: 4.0.30319&#xd;
+Set-Cookie: IDBrowser=b1be163d4568427d90425725ff1952ec3746f7d59fee195b8d055dfd77674cb26iDxiMicD+i6zJDSN0INyn/V4PQ2hiXebuGSxjroHKQ=; expires=Fri, 05-May-2023 16:20:27 GMT; path=/; HttpOnly&#xd;
+X-Powered-By: ASP.NET&#xd;
+Date: Thu, 27 Apr 2023 16:20:28 GMT&#xd;
+Content-Length: 76220</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+    <textPostContent><![CDATA[<AJAX><field  name="text33v1" value=""/><field  name="text86v1" value="2 Drama St"/><field  name="text87v1" value=""/><field  name="text88v1" value="01824"/><field  name="text89v1" value=""/><field  name="text93v1" value="220171730"/><field name="checkbox94v1" value="true"/><field  name="text95v1" value="333-444-5555"/><field  name="text96v1" value="555-666-7777"/><field  name="text97v1" value="adavies@prismhr.com"/><field  name="text98v1" value="mac@work.com"/><field name="checkbox99v1" value="true"/><field  name="text100v1" value="345678"/><field  name="datepickstext101v1" value="09/30/2017"/><field  name="text102v1" value="44 Act St"/><field  name="text103v1" value=""/><field  name="text104v1" value="01863"/><field  name="text105v1" value=""/><field  name="text106v1" value="NORTH CHELMSFORD"/><field  name="text107v1" value="MA"/><field  name="text108v1" value="W2 Address"/><field  name="text109v1" value=""/><field  name="text110v1" value="01886"/><field  name="text111v1" value="WESTFORD"/><field  name="text112v1" value="MA"/><field name="radio114v1" value="W"/><field name="checkbox116v1" value="false"/><field  name="textarea123v1" value=""/><field  name="dblastdb1formlayer" value=""/><field  name="ScreenRoot" value="EMPLOYEE.PER_MAINT.ADDRESS"/><eventSource>tdxspan37v1x1z4</eventSource><eventType>click</eventType><clickPos>815,96,TD,tdxspan37v1x1z4,740,96</clickPos><keyCodes>||||text86v1</keyCodes><dimensions>1536|749|1536|749</dimensions><designbaisState>${Design_Bais}</designbaisState><req>${regkey.dbsuiID}</req><tabStore>${Tstore}</tabStore><captchaKey>null</captchaKey><clientClock>11:20:27</clientClock><clientDate>27.04.2023</clientDate><mobile>false</mobile><lastMVCell></lastMVCell><scrollbarWidth>17</scrollbarWidth></AJAX>]]></textPostContent>
+</http-action>

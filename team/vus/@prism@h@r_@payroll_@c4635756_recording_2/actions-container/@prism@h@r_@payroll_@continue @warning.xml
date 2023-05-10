@@ -1,0 +1,21 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Continue Warning" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="3b2c74a8-6192-499a-9396-cf8169b5eee2" weightsEnabled="false">
+    <weighted-embedded-action uid="c249e3a7-ff37-4805-a6a8-51672ac2d953"/>
+    <weighted-embedded-action uid="bbc3fe64-a325-4fe0-877b-7ae1d43c3025"/>
+    <weighted-embedded-action uid="7bfe15d3-4371-4696-93ba-2323609c786f"/>
+    <weighted-embedded-action uid="ca2013b3-767f-4672-afb6-0825e5120c67"/>
+    <weighted-embedded-action uid="8048ccb7-cafe-49ba-be9a-49c8252f6fa7"/>
+    <weighted-embedded-action uid="d65171f3-8ce6-42bc-83c3-3ddfaf5126ef"/>
+    <weighted-embedded-action uid="bba8a7ef-b943-4be1-a527-6bcf2ddde7af"/>
+    <weighted-embedded-action uid="e7436079-593d-4b7f-9877-bfca0af89917"/>
+    <weighted-embedded-action uid="504f8c71-945f-4739-9f4b-109acaf7eea0"/>
+    <weighted-embedded-action uid="6783a3ae-6e7e-41af-bbf2-b93fbfcebfaa"/>
+    <weighted-embedded-action uid="846dc05b-de9c-4c90-aca3-706f249dd63f"/>
+    <weighted-embedded-action uid="c5697549-08ac-40d3-9faf-a2774e155b66"/>
+    <weighted-embedded-action uid="12008177-2290-47d9-bcca-98ca892b5af9"/>
+    <weighted-embedded-action uid="bd6d6804-038d-4df4-b96e-55354932e5df"/>
+    <weighted-embedded-action uid="787b3e41-26bf-47bd-aab2-55118cda1a87"/>
+    <weighted-embedded-action uid="25808d3d-0e90-4c18-82ef-53dc65a28a5d"/>
+</basic-logical-action-container>

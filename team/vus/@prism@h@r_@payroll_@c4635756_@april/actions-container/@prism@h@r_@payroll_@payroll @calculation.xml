@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Payroll Calculation" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="1c8294d5-e489-47c6-a071-fe11fd8d1324" weightsEnabled="false">
+    <weighted-embedded-action uid="81ff8233-40f1-409d-8775-282b68b7f135"/>
+</basic-logical-action-container>

@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Landing" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="0a85ad15-fd9c-4b1b-b08d-f91abceb1ff4" weightsEnabled="false">
+    <weighted-embedded-action uid="0856bccc-181c-4840-9f34-b67576169856"/>
+    <weighted-embedded-action uid="46a0df76-2d55-4085-9f5d-752254586f73"/>
+    <weighted-embedded-action uid="3cd3cf44-53f8-4102-b088-a359483b7ed2"/>
+</basic-logical-action-container>

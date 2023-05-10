@@ -1,0 +1,9 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Logout" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="e0f51208-8609-487a-90ca-e7c31a6b0e84" weightsEnabled="false">
+    <weighted-embedded-action uid="5732510e-55a8-4622-849c-0dbe9fd03020"/>
+    <weighted-embedded-action uid="5fc16ae8-2a3c-4225-b843-7712e96174eb"/>
+    <weighted-embedded-action uid="3d610438-3852-49ae-9354-99f1f0ef2396"/>
+    <weighted-embedded-action uid="2f18d8e3-109e-4293-a96a-8ef3312ebcd7"/>
+</basic-logical-action-container>

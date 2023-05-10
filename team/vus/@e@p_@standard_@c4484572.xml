@@ -1,0 +1,34 @@
+<virtual-user errorPolicy="GO_TO_NEXT_ITERATION"
+    failedAssertionPolicy="STOP_AND_START" slaProfileEnabled="false"
+    type="LEGACY" uid="EP_Standard_C4484572">
+    <description>This EP User Path is for the TestRail User Path Case https://fwdavison.testrail.com/index.php?/cases/view/4484572</description>
+    <init-container element-number="1" execution-type="0" pacingEnd="0"
+        pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+        slaProfileEnabled="false" weightsEnabled="false">
+        <description>Elements executed once when the Virtual User starts.</description>
+    </init-container>
+    <actions-container clearUserIterationDataMode="AUTO"
+        element-number="1" execution-type="0" pacingEnd="0"
+        pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+        slaProfileEnabled="false" weightsEnabled="false">
+        <description>Elements repeated until the Virtual User stops.</description>
+        <weighted-embedded-action uid="b13f272d-d6e9-4855-85e9-22f26fe161d8"/>
+        <weighted-embedded-action uid="9911bb99-efd7-4fd9-b9dd-3a1cd0eed1e7"/>
+        <weighted-embedded-action uid="19267013-9687-482e-8ffe-5cf838a792c8"/>
+        <weighted-embedded-action uid="31871c69-db39-4fb0-be65-386d93ffe401"/>
+        <weighted-embedded-action uid="f3a14026-d304-4280-adbb-5ca883a571c3"/>
+        <weighted-embedded-action uid="6176cb5e-ac4a-40d8-b9ce-f3ffaeff58ff"/>
+        <weighted-embedded-action uid="d6e1f711-5cf6-481c-9967-b85146c674f3"/>
+        <weighted-embedded-action uid="fc09fb64-5b3d-4557-ac1f-3bde42fc6552"/>
+        <weighted-embedded-action uid="bdcac682-3349-4ee1-8f5e-f070e999e1cc"/>
+        <weighted-embedded-action uid="5397a0f2-f94d-41d0-b63f-53d24873794e"/>
+    </actions-container>
+    <end-container element-number="1" execution-type="0" pacingEnd="0"
+        pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+        slaProfileEnabled="false" weightsEnabled="false">
+        <description>Elements executed before the Virtual User stops.</description>
+    </end-container>
+    <thinktime-policy thinkTimeMode="MODE_RANGE_THINK_TIME"
+        thinktimeFactorValue="100" thinktimePolicy="0"
+        thinktimeRangeValue="15" thinktimeValue="5000"/>
+</virtual-user>

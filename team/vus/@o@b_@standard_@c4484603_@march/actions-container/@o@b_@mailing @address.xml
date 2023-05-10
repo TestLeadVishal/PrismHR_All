@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Mailing Address" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="f7731b63-c1f5-40f8-a037-383ec9ca8b77" weightsEnabled="false">
+    <weighted-embedded-action uid="8354de63-1aa9-43a3-a50b-df8389960b8c"/>
+</basic-logical-action-container>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Time Sheet" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="6d037afa-08bc-4a32-a8c2-161d56a246e4" weightsEnabled="false">
+    <weighted-embedded-action uid="ff8804b3-ae28-4517-8618-40912f30f028"/>
+</basic-logical-action-container>

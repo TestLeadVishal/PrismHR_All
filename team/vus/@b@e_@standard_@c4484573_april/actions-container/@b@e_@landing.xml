@@ -1,0 +1,9 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Landing" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="2dff4fd6-cf5e-46c0-b904-3ed25beac410" weightsEnabled="false">
+    <weighted-embedded-action uid="db69ec53-afac-4f1c-ad83-7a0b4838a027"/>
+    <weighted-embedded-action uid="093a9430-737b-4cc5-94a7-ba2369080760"/>
+    <weighted-embedded-action uid="2e8338d5-47de-4c5c-9b32-473301309d32"/>
+    <weighted-embedded-action uid="a0ba0e95-33c9-419f-b94a-2b654174a289"/>
+</basic-logical-action-container>

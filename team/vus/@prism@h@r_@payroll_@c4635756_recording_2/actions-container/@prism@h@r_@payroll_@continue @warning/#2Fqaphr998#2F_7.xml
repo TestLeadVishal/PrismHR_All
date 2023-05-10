@@ -1,0 +1,58 @@
+<http-page executeResourcesDynamically="false" name="/qaphr998/_7"
+    playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@payroll_@c4635756_recording_2/%resources%/recorded-artifacts/e7436079-593d-4b7f-9877-bfca0af89917.zip"
+    slaProfileEnabled="false" thinkTime="813"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="e7436079-593d-4b7f-9877-bfca0af89917">
+    <embedded-action>a1409cf2-784b-4c63-b13a-ebc9749d3cf8</embedded-action>
+</http-page>
+<http-action actionType="1" contentType="text/html; charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="POST" name="/qaphr998/" path="/qaphr998/" postType="4"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@payroll_@c4635756_recording_2/%resources%/recorded-artifacts/e7436079-593d-4b7f-9877-bfca0af89917.zip"
+    recordedResponseCode="200" responseSize="8883"
+    serverUid="imported_qaphr998.prismhr.com" slaProfileEnabled="false"
+    uid="a1409cf2-784b-4c63-b13a-ebc9749d3cf8" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_a1409cf2-784b-4c63-b13a-ebc9749d3cf8.html</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_a1409cf2-784b-4c63-b13a-ebc9749d3cf8.txt</requestContentFileDescription>
+    <variable-extractor assertionOnNoMatch="true"
+        defaultValue="&lt;NOT FOUND>" displayMode="1" endsWithSimple=""
+        extractFromVarNameAdv="" extractFromVarNameSimple=""
+        extractType="1" extractTypeAdv="1" extractTypeSimple="0"
+        matchNumber="1" matchNumberAdv="1" matchNumberSimple="1"
+        name="IDBrowser" regExp="IDBrowser=(.*?);"
+        regExpAdv="IDBrowser=(.*?);" setDefaultValue="true"
+        startsWithSimple="" template="$1$" templateAdv="$1$"
+        uid="0eb6337a-d165-4364-b26b-841b0c61688f" xpath=""/>
+    <header name="Accept" value="*/*"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Content-Type" value="text/xml"/>
+    <header name="Cookie" value="DesignBAIS=machine=BRGJRUIQQZBQESBROORAVVEEUDTAPPBTAZWMPIOOHUNGCOS&amp;pooler=537&amp;ver=40; IDBrowser=${IDBrowser}"/>
+    <header name="Host" value="qaphr998.prismhr.com"/>
+    <header name="Origin" value="https://qaphr998.prismhr.com"/>
+    <header name="Referer" value="https://qaphr998.prismhr.com/qaphr998/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="empty"/>
+    <header name="Sec-Fetch-Mode" value="cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <header name="X-Requested-With" value="XMLHttpRequest"/>
+    <responseHeaders>HTTP/1.1 200 OK&#xd;
+Cache-Control: private&#xd;
+Content-Type: text/html; charset=utf-8&#xd;
+Server: Microsoft-IIS/10.0&#xd;
+X-AspNet-Version: 4.0.30319&#xd;
+Set-Cookie: IDBrowser=06501cba607349608bf6a132a7a101ee3746f7d59fee195b8d055dfd77674cb2P0Xe3S5XEYwv9Jm6BJtnayuqqmzqHAhSE3MrpgpXsSY=; expires=Tue, 07-Mar-2023 19:25:45 GMT; path=/; HttpOnly&#xd;
+X-Powered-By: ASP.NET&#xd;
+Date: Mon, 27 Feb 2023 19:25:45 GMT&#xd;
+Content-Length: 8883</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+    <textPostContent><![CDATA[<AJAX><field  name="tdxspan70v1x-1z3" value="1"/><field  name="" value=""/><field  name="textarea95v1" value=""/><field  name="dblastdb1formlayer" value=""/><field  name="dblastdbformlayer2" value=""/><field  name="ScreenRoot" value="HRPY.WORK_PAYROLL.PROGRESS"/><eventSource>dbTimer</eventSource><eventType>timer</eventType><keyCodes>||||</keyCodes><dimensions>1903|946|1903|877</dimensions><designbaisState>Fi3f2Gkk+MjOXIRDoGca+5EzQvvwRyD5oBkJumrLzHKQydFRNXah5Nqny14tqUkRCOdvb3JIhkPWslKXV8zZvg3b0hP/u7oQX96HRLTGO1BJtMQe5qMs5YEibfrCTYsXE0TEedG61fTs3tOoynr/k5797mzt0urvxqCgMA0YwT/Tz+Vo5uCxB7QpFzXi4uZQnieChKtnJ+WOKNCFsYmU0t2HYPm4kZ/pGdvo8ctrL1Vx4QoSHeJt6Bca7FD9aGo7lalynoKGLTvgnCTSAIwAs/pq2ixhDAk5pqTK1X+LRKNSjrqKgGoFkgvE1moHZboNHAPKDVhQkvq1FcyKlVT4Et3Jyo4mTa4+LBY1nDDjiUcBprqBCdH2bk3Q9X2YU5829rZmfV+h2c3TgJzFJY5KTcrtzH0+E8htAl0v8p7agFUcRpEcdsuwyq4hwZfQUAlU4yBDtfp/Jd1mD0xGlA9L2Qihm3VhwUj0MNRlW3NHNCY2i7wCns1LT4uVmXnIeJLZxFl9F8zlb6WN5LPPpxTNQs9a77axBqr9MaJeQz90dSJU26GQgQykwM/Un3HXW5LwFiujV4/iIeRZRVa4xkwdYMB/uQHGrM1vMPSHNzrDK8czwzIFZZ3JvuwGCAE8dYPi9zJXOq5BESmzfybjzxW4kSPFp0tLTsvgyKwjZyyucjcXiGgLdwUWqBT803LuN5zwoWDTFv1B3E4lxzZ+DmV2yRDveTfPCJtL/bpXypTPoXZxXaT56Vk1oN0V1Lav0Fjsv2eanDFfJGb73vMYPQIwNxMg0d3mklLGLNImdCe9l51A9U18+VzEi1QJEXW/2t1aM5AEy2/r/EvBWGd6obbwbv6Qpxd3XaFDyxlsA7EttNa68CAKxgPMXISas9XftU6JEKPFbZP8gLS1SgJI4LivWH4orshbvUHocmaa4TUkKgC12uXwTim90VCTWl8FTgpj5QQBwawrAlmJkbYi0MdSUd4JtShYEhgGYCsgD6IVLlBAf9L/50YbiAgAaWxYHFJWg5+JwMEnP4oXetPBxwcQyA9xDu3Om0H19cie0973QSGBBAN6MBm3TJlzxBxhfcRBO1vMI/ufmPmbsMD3SnMnGupeaZxnsNWkQBHuZOjg6H6M+wcPkICbOnAFAej4nW0PRGdP1FeTWW5ArC0ht/PzLUFMfCW7Tm7YSy/TwdNvOzwhBQ2yw6LcG8A0B+CUndZ0u0TyqDPqcifyInLF0UN+y8WURdAqsJxoWUEJ8Cp7EMe+ZOVeuoImAsWQf76eraZCFyqNVRUzMKN2ieJFDFXXEdF3cT3cvSIIRWFdPe8FftIJLy5TcaYZnce9f1NBsoH8gpks4HZ/hkcPsJSi+qvr3NATgUhBOHDSTos3oe29I6QY9tXG6osMYSRv9W7YI7xAFgMJgyCd7FbTbmm2YzsdFnHsUkvO6XcrH3SugaFZzYs4Ax/07GuHMuXczSiUSuX0Mv00biDi7/XC5PftSw0jgtlWoctyoJU73o8+whUFjpTtGBCdc3O5Hn2F2f9xmjiVnPTt93KC3OQx6fMGFbPNiEbtTXWW647lxLLV62mDOIKesCkf9hKLIUM8vLI1XuzBEo6zwajbXimeHfjFLh7TH0TlCbEFtvyT7/OpEb7t9hNwv47tF4bDkH/Ay7AWUHH2yBt29aG4Ng2tKxzaYDTiNrOOWLRwHl7QrJZaNdP+Y8U4mAWcGWa+U80WRLqls7ODlQa3yYLcboJaUWj1xn5xTbd/ii6Yyutvj4GFkME9WKbqQieLz2RaMpnT2+kaC3fRGHgwWfIKYtmfZIiZzSboz0scob2gmIDWNLMgjJOQpl8oBDOv3GQSKyaNIQ6qYtJZP9p644LtmG1Z1xvyCdLicg1zPTZWr4fBLv8amR9lhd8QPCyoYh0M2ASzsphaBJeXpUHaKn0ugJANmP4RdklVsRMkgRbxcMjaA/WNnmZADnjoiqMlulBhATsrkxxuRpD9pX1TsHTcn8D4IJMhYTlp6T97a85jonWNozE1lqe88XtW5yPoXNTPI5vz3HPXdteIfetvngXk6To2zcTyv4jkxbT+lb5dH81SNYgLg0Nhz1dSZmBl0ogpPZ4FOqfkOmrKM2LthD3I3OEnqL4Z2uco2EEjfYo/tVvbyI8741BdDzuVHhxwHAMPLMryhEHu8FYm40rhqwkrk4qUqGKTOHn9vY6mU8vNGtUK0YTLNPk7N9e26s1vFQHuQx4OQfJhWUz0zrVEw821zjmFLW6Eo+bRGXbIQSvfaqvKEY4djrhcuuKUKkinZl737THUJzjzuTUIIwFIjl5prAOiPOcsDKVu7dh7WAvEix5iTFcSoG2nNM3BniSalXly3AaoO1z3LRUV6D6ghot/6ulJvUmrdQdB6E6wyMPyE7TMb6mwOiA7UZJ4PXNjwD+/VV/iKDN9zZ+k2c3ZMCXKxpkrnqWLGN0UYW64GFiOQ2HwPWzoTNvPIrFyjkurszul9kLbdxVbLuFuzSXXvsOUgK3pYKJhtcGqv0QTKaBaWPblC+8AFbSaPFUz5JJrRvFzZ0E/TIQLhisAegjNL0dyq5XsRZfl95AhQg2UQUKgfo5DvnLHrIvzwtF427jb7Z4YzBz8ArbD/9RR2SVmYHLKmfBGj/57anWTbaGS/Ty0ktkgdnszgBvaUSxe7UvnvWvASUPfq+HvMg84BzScvgmqB1yHq+41WpO1eAZ5HtSgBSo42+fmKF/nbmUwpHkYLzV/LBx6OVkZn8jHGRRFDH/mzC92sQg2mesj6MdyX3XY4kpQYFIQTAPXQs4SjrPBqNteKZ4d+MUuHtMfROUJsQW2/JPv86kRvu32E3C/ju0XhsOQf8DLsBZQcfYQwXoI3u2SuDWqBBzTT3VyXuENt1L0FJz3+g/l33bR3nVk6+32tlHFCZ7pqkvBfrlRRwzl2GLvKd6vejXYFUwvR7e88IiVWHyMWxlrJu8OU4oIRGa1gc0GhRXCR+wIEfRprOuszivzlGHnRVlOTmScMbp7W71elyiAPGPh8HJ9AiD8ARnM8Lb4E1nQntPddqvxl062m3XSM1b3fYsbROf08HV8cItQXkvyDMFZIcUWdcFxtORUBPU7vxXcMYe3NXZSD8OLL50a5niNJin6MABT6BVCeNRIH75UBYWjQb1SGOCjKyFBspJ2WWZbgELi5IGBVeAjYAagr+e9liwAdPg/HSJ3uJ7ksluiqFRtCV8+1MXuAahSmOupqbhG/S3RpxZv2w6Q421tLjp8HzEZWIXKbQBWYXtZ6t4TJPO7xPiQc4GCsmdZZ5iznF9OkTs+7sEIJVt0whPwB3xgOHLiWlQdAN1I1vsNCSETYtBZyVAyDojg76E66+FhlKH4+Sa0CRoA83RFYkBA3Kh3I3kMcJr3nIkjbhYJK4NsCwxRjl4ZUhf4VL17z4TrFU/y6LE456+LuGjEAgODRVPLPWnn3goWQ5TcBpoKtycrq/sQaDDMse9QPzdtvvTl5rwRN0/NPNXJvUfosn2l65oUURHe/A2yBxzy8rkz0/Lu/uad7w3uZtZKJKr+V+OFs3+gO+tvSZvzzm6oBeCvhAAGqKZ7Qn5AVT9SODJYE+HQWjhMFNvw+e3ppLwQs6E/El0Sm2+MB4SPkXbIRA2+M4/aSYrPzIpKrLwu7xJ3nbajJh9I8zCuoezfETKzy6dbVLJKaFUwYDjDhBdOGN7RoAUy1/oz8bOGYtMTxFZ8y0H+dOukzSl2UvJMzcI3sRRQxv9f9S9aNcW99+CQJcpbzmBtTWVUuVFxNRs2rVtcOSs6HJDKCCbwx1NqDnkG+cP2QHfGz5sL/TK7ZBEEesnl1inJYqSdKX4x</designbaisState><req>0.8133321305015162</req><tabStore>3BgdUpKOvJpTZkvJXpWISUeV/6TTJ/k8phowpkWgJ3zm2JpVc8jGr7ywwfrXDZPp</tabStore><captchaKey>null</captchaKey><clientClock>13:25:45</clientClock><clientDate>27.02.2023</clientDate><mobile>false</mobile><lastMVCell>ASSOC1ztext118v1z1z7</lastMVCell><scrollbarWidth>17</scrollbarWidth></AJAX>]]></textPostContent>
+</http-action>

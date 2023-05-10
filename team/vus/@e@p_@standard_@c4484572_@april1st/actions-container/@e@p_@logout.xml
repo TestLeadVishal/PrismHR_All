@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Logout" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="9f8566a4-e7c0-440e-9833-e2a8b0615c12" weightsEnabled="false">
+    <weighted-embedded-action uid="6f76c853-a758-4f33-a9d6-764694c0e765"/>
+    <weighted-embedded-action uid="95b1fabd-08a6-4010-a38a-754e621214c2"/>
+    <weighted-embedded-action uid="cc2459fe-5556-4607-8d1f-fe1a99685b86"/>
+</basic-logical-action-container>

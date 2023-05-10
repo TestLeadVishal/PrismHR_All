@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Company_Details_Timesheet" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="5d8401d0-5301-439e-8230-fd4e65170738" weightsEnabled="false">
+    <weighted-embedded-action uid="dbca4fd6-58ff-4106-b9ac-72a87532d551"/>
+</basic-logical-action-container>

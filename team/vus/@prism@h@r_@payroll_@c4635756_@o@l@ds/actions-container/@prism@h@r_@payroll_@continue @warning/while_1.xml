@@ -1,0 +1,5 @@
+<while-action name="while_1" uid="b10ba06e-acf9-4915-8c4a-ce154e10bc2d">
+    <conditions match-type="1">
+        <condition operand1="" operand2="" operator="EQUALS"/>
+    </conditions>
+</while-action>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Veteran Status" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="3e707fb0-c695-446f-a53f-ea0a76476e82" weightsEnabled="false">
+    <weighted-embedded-action uid="fa4fd929-07da-4035-8ac8-8785a2f94ebb"/>
+</basic-logical-action-container>

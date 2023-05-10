@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Race/ Ethnicity" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="46919255-a7c9-468c-a5ff-4fc23bfc4fcb" weightsEnabled="false">
+    <weighted-embedded-action uid="e359ebee-ff90-4621-aef3-9a849bac6770"/>
+    <weighted-embedded-action uid="6381b638-39de-4d61-acdb-2d47f8e9e095"/>
+</basic-logical-action-container>

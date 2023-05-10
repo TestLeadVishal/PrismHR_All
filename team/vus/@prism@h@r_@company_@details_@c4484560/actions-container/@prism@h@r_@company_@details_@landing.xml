@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Company_Details_Landing" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="1941195b-504f-43c3-b32d-05db6a49d3f1" weightsEnabled="false">
+    <weighted-embedded-action uid="2edc3621-f7aa-41ed-be09-c499daad3458"/>
+    <weighted-embedded-action uid="fdf1790d-d046-4b23-aca2-03fa5ac90808"/>
+    <weighted-embedded-action uid="d35811d1-860b-40b5-8af3-d31f2a83f8af"/>
+</basic-logical-action-container>

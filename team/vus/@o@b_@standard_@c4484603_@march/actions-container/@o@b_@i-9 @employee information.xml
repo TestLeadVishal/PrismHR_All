@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_I-9 Employee information" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="a7048aa5-6351-4510-b4b6-b7a14d3b9805" weightsEnabled="false">
+    <weighted-embedded-action uid="560ed569-1f77-4941-8f70-d1589517e441"/>
+</basic-logical-action-container>

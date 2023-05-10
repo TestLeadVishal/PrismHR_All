@@ -1,0 +1,3 @@
+<loop-action loop="1000" name="loop" uid="2ede9e27-1cd9-433f-9818-092507a70af9">
+    <embedded-action>9a0168b8-dcc3-45e7-a5ea-640e70008edf</embedded-action>
+</loop-action>

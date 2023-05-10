@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Login" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="3b7503bb-d7d0-469f-a6bf-3d5807e258b0" weightsEnabled="false">
+    <weighted-embedded-action uid="32b18e4d-5e78-4fc7-80fb-88d0f405eed8"/>
+    <weighted-embedded-action uid="6b14d29d-0680-4f25-adae-2c1b17d7c8b1"/>
+    <weighted-embedded-action uid="207bd9b9-cb2c-4608-9dab-2e81a9f1ff46"/>
+</basic-logical-action-container>

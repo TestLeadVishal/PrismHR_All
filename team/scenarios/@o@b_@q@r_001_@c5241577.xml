@@ -3,7 +3,7 @@
     uid="OB_QR_001_C5241577" virtualUsersStates="true">
     <description>This is the Quarterly Scenario for OB, TestRail Case 
 https://fwdavison.testrail.com/index.php?/cases/view/5241577
- - OB MR Oct 2022 T3</description>
+OB MR_202302 C5241574 Test 3</description>
     <!--****** POPULATION POLICY ******-->
     <population-policy name="OB">
         <duration-policy-entry iterations="1" time="750" timeUnit="0" type="2"/>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_I-9 Next" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="c9257ab4-d225-447e-8fb7-665e9f6a4102" weightsEnabled="false">
+    <weighted-embedded-action uid="1ec5904d-a89e-492a-b5c6-2e327f100296"/>
+</basic-logical-action-container>

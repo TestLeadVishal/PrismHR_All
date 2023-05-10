@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Personal" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="ac3ec6f6-5f8f-418e-bb7e-8dcf043c7551" weightsEnabled="false">
+    <weighted-embedded-action uid="b8aeb881-0cbe-41ab-910d-4bc9d2b3d7bc"/>
+    <weighted-embedded-action uid="e7e9274a-fc5b-4c8a-b9af-676ff0e42967"/>
+    <weighted-embedded-action uid="9e8876dc-d763-4005-916c-ec5b36c543a4"/>
+</basic-logical-action-container>

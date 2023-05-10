@@ -1,0 +1,12 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Login" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="8d196e03-7430-4bb3-b5b7-64922f0c2792" weightsEnabled="false">
+    <weighted-embedded-action uid="66b589e2-38c1-43da-87b9-0c88ca9af0a9"/>
+    <weighted-embedded-action uid="45c8df64-191a-4e27-add7-6d8fb628319c"/>
+    <weighted-embedded-action uid="56f6d548-623d-4fd9-a620-757f84cef2da"/>
+    <weighted-embedded-action uid="619fb454-0bc1-41a1-91ef-08f1e65c459f"/>
+    <weighted-embedded-action uid="9d9a9e56-2a16-4e02-90ca-a45cdc754724"/>
+    <weighted-embedded-action uid="1f9b34fc-4b1d-4ece-a3b5-0c4e9164bb4e"/>
+    <weighted-embedded-action uid="87caec9b-651d-41bc-a010-5e7146cb6a0d"/>
+</basic-logical-action-container>

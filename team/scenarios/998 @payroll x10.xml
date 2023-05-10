@@ -3,7 +3,7 @@
     uid="998 Payroll x10" virtualUsersStates="true">
     <description>1 user runs payroll 10 times - run 2</description>
     <!--****** POPULATION POLICY ******-->
-    <population-policy name="PrismHR_payroll">
+    <population-policy name="PrismHR_Payroll">
         <duration-policy-entry iterations="1" time="120" timeUnit="0" type="1"/>
         <volume-policy-entry>
             <constant-volume-policy iterationNumber="10" userNumber="1"/>

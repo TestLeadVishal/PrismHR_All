@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Address" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="d7354775-c50b-477b-90c5-20df24d2d16c" weightsEnabled="false">
+    <weighted-embedded-action uid="6f80a23d-6e1f-4d91-9c23-f844f2f964b6"/>
+</basic-logical-action-container>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Direct Deposit" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="6e63d656-fdb8-48e4-a31e-296f51129c97" weightsEnabled="false">
+    <weighted-embedded-action uid="8285999b-2cf9-40b8-9275-863028064fb5"/>
+</basic-logical-action-container>

@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Direct Deposit Add Account" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="d1c6818d-c019-47d7-879c-7d94dd6d2d72" weightsEnabled="false">
+    <weighted-embedded-action uid="a2724b10-3e7b-4f41-ad29-5225b6656306"/>
+    <weighted-embedded-action uid="49b54397-8dfa-4565-a304-d49b3ee20def"/>
+    <weighted-embedded-action uid="5efe36f1-e850-4764-84ba-57e452ed3ef1"/>
+</basic-logical-action-container>

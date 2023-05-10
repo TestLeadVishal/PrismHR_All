@@ -1,7 +1,6 @@
 <basic-logical-action-container element-number="1" execution-type="0"
     name="OB_I-9 Preparer Certification" pacingEnd="0"
     pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
-    slaProfileEnabled="false" uid="ece685e4-3620-4780-a732-19c95db9c14b" weightsEnabled="false">
-    <weighted-embedded-action uid="503f6786-bd1d-4ba6-9620-48e2a8b4c08a"/>
-    <weighted-embedded-action uid="868cce22-08c3-4036-a25e-5255fcfa190e"/>
+    slaProfileEnabled="false" uid="6dc8d0db-ab54-41e7-9bdd-0c24d7df169d" weightsEnabled="false">
+    <weighted-embedded-action uid="e820f6a8-fda5-4a7a-8f24-ed47c77e3d94"/>
 </basic-logical-action-container>

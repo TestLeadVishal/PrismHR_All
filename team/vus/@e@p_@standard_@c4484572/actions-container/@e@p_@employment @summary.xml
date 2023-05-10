@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Employment Summary" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="31871c69-db39-4fb0-be65-386d93ffe401" weightsEnabled="false">
+    <weighted-embedded-action uid="03f4669a-2a13-4cd4-867f-200b17fc838f"/>
+</basic-logical-action-container>

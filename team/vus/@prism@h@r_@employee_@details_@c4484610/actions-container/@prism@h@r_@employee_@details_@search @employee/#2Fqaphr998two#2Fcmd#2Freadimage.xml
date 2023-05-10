@@ -1,0 +1,46 @@
+<http-page enabled="false" executeResourcesDynamically="false"
+    name="/qaphr998two/cmd/readimage" playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@employee_@details_@c4484610/%resources%/recorded-artifacts/21a73662-bba1-4789-b9e7-bc6e4a3e9448.zip"
+    slaProfileEnabled="false" thinkTime="173"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="21a73662-bba1-4789-b9e7-bc6e4a3e9448">
+    <embedded-action>e3e9b06d-7646-4a0e-9205-648aa3fca806</embedded-action>
+</http-page>
+<http-action actionType="1" contentType="text/html;charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="GET" name="/qaphr998two/cmd/readimage"
+    path="/qaphr998two/cmd/readimage" postType="6"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@employee_@details_@c4484610/%resources%/recorded-artifacts/21a73662-bba1-4789-b9e7-bc6e4a3e9448.zip"
+    recordedResponseCode="400" responseSize="2117"
+    serverUid="qaphr998twoee.prismhr.com" slaProfileEnabled="false"
+    uid="e3e9b06d-7646-4a0e-9205-648aa3fca806" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_e3e9b06d-7646-4a0e-9205-648aa3fca806.html</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_e3e9b06d-7646-4a0e-9205-648aa3fca806.txt</requestContentFileDescription>
+    <parameter encodeName="true" encodeValue="false" name="employee_id"
+        recordRawValue="[object%20Object]" separator="="
+        value="[object%20Object]" valueMode="USE_VALUE"/>
+    <header name="Accept" value="image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Cookie" value="JSESSIONID=${JSESSIONID}"/>
+    <header name="Host" value="qaphr998twoee.prismhr.com"/>
+    <header name="Referer" value="https://qaphr998twoee.prismhr.com/qaphr998two/ess/employeeimage/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="image"/>
+    <header name="Sec-Fetch-Mode" value="no-cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <responseHeaders>HTTP/1.1 400 &#xd;
+Content-Type: text/html;charset=utf-8&#xd;
+Content-Language: en&#xd;
+Content-Length: 2117&#xd;
+Date: Thu, 27 Apr 2023 16:19:43 GMT&#xd;
+X-Cnection: close</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+</http-action>

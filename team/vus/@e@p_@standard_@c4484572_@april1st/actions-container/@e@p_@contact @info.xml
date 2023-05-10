@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Contact Info" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="97f0f6a6-e353-43e1-9689-03a559940925" weightsEnabled="false">
+    <weighted-embedded-action uid="2640502c-0ba4-42e2-a3c3-9a83f649de17"/>
+</basic-logical-action-container>

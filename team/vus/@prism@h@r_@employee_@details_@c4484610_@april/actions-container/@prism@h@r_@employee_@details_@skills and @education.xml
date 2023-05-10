@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Skills and Education" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="6be2ac39-ef03-438a-8175-5e190516f608" weightsEnabled="false">
+    <weighted-embedded-action uid="67c287c8-42b7-425c-a683-02df82f77c6d"/>
+</basic-logical-action-container>

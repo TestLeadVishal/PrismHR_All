@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Other" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="054ea468-4a7f-46a3-949d-dc8d1977b4f3" weightsEnabled="false">
+    <weighted-embedded-action uid="d933e302-89ca-47a5-bc66-7d6309e535f6"/>
+</basic-logical-action-container>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Deposit" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="2c0735e4-41f8-40bd-a3af-f7c79f874a39" weightsEnabled="false">
+    <weighted-embedded-action uid="2357c9b9-fba1-4697-b3ed-4c4e6db48834"/>
+</basic-logical-action-container>

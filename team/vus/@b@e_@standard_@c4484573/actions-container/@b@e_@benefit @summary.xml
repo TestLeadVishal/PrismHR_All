@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Benefit Summary" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="35eaf912-cbc4-459c-836a-5077ae6c3010" weightsEnabled="false">
+    <weighted-embedded-action uid="273b7dc3-0e00-44d4-b1c9-3417c85f12f4"/>
+</basic-logical-action-container>

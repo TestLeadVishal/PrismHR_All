@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Total_Compensation_Login" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="9bf98cea-8aa3-453a-8181-c1dea5605dd4" weightsEnabled="false">
+    <weighted-embedded-action uid="5668e8cf-361a-4287-8bc2-6285172b657d"/>
+    <weighted-embedded-action uid="3b77a973-13fb-4cde-bf18-99833f2b7c0c"/>
+</basic-logical-action-container>

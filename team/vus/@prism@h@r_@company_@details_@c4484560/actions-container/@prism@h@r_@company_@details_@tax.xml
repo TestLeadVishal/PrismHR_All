@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Company_Details_Tax" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="24619610-2960-42cc-937b-cb91df82437c" weightsEnabled="false">
+    <weighted-embedded-action uid="3aab9727-bad4-4eee-9319-1e95d987e415"/>
+</basic-logical-action-container>

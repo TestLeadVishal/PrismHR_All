@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Click Client" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="65943a15-fd71-4cfd-8947-9753628a627a" weightsEnabled="false">
+    <weighted-embedded-action uid="87cfe618-1268-4764-a0cc-329c99390aab"/>
+</basic-logical-action-container>

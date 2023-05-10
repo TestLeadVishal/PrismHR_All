@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Disability" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="d4b6b977-5e7f-4d5d-a776-bac929970977" weightsEnabled="false">
+    <weighted-embedded-action uid="ebcbb9cd-16c6-4721-b1f7-c02175101321"/>
+</basic-logical-action-container>

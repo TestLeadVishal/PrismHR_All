@@ -1,0 +1,6 @@
+<wait-until-action enabled="false" name="wait_until"
+    uid="4ad9bb21-347c-4b9d-8fc3-fc7659461f0c" wait-timeout="1000">
+    <conditions match-type="1">
+        <condition operand1="" operand2="" operator="EQUALS"/>
+    </conditions>
+</wait-until-action>

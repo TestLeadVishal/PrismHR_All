@@ -1,0 +1,10 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Benefit Enrollment" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="4c2154ce-2a96-4cd7-b853-1572ed4d91c7" weightsEnabled="false">
+    <weighted-embedded-action uid="888bf8e7-cfff-4361-8754-b4818d635397"/>
+    <weighted-embedded-action uid="3de8ff39-83c5-4144-89ed-d1a8934fe33d"/>
+    <weighted-embedded-action uid="1caab196-d8de-42b3-9706-f2a795d43454"/>
+    <weighted-embedded-action uid="50e95f6d-9ffc-4819-a234-c50d26ccc67f"/>
+    <weighted-embedded-action uid="0d6a31c8-286f-4e12-b03a-de8806d32162"/>
+</basic-logical-action-container>

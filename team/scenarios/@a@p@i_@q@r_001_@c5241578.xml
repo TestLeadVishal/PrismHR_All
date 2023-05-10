@@ -3,7 +3,7 @@
     uid="API_QR_001_C5241578" virtualUsersStates="true">
     <description>This is the Quarterly Scenario for API, TestRail Case 
 https://fwdavison.testrail.com/index.php?/cases/view/5241578
-Q4 QR 2022 API  998TWO T3</description>
+C5241578 QR_202303 API  998TWO T3 V1 SM off</description>
     <!--****** POPULATION POLICY ******-->
     <population-policy name="API_Get_EMPID">
         <duration-policy-entry iterations="1" time="120" timeUnit="0" type="1"/>

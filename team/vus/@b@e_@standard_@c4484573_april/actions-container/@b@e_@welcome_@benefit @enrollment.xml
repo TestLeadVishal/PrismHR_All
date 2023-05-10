@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Welcome_Benefit Enrollment" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="dab72af8-6c68-4d17-b2e2-77c0293ea3ef" weightsEnabled="false">
+    <weighted-embedded-action uid="8354912f-818c-4c49-a38f-e4425b151e27"/>
+</basic-logical-action-container>

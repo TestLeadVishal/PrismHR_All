@@ -1,0 +1,9 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Total_Compensation_Payroll Total Compensation"
+    pacingEnd="0" pacingMode="MODE_NO_PACING" pacingStart="0"
+    pacingValue="0" slaProfileEnabled="false"
+    uid="efb864f2-d44f-4232-ae7c-ce0063bfb70e" weightsEnabled="false">
+    <weighted-embedded-action uid="77fac8f3-a3f6-4502-a274-96c4d9ef3af0"/>
+    <weighted-embedded-action uid="916eb0a7-2c88-4382-ab3b-426a625c17c9"/>
+    <weighted-embedded-action uid="ee09421d-09c4-4f11-b3ca-c45bd5f0f2d5"/>
+</basic-logical-action-container>

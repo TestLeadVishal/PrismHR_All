@@ -1,0 +1,9 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Login" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="ac9ce030-06ed-423d-8bbd-58fac6918c5e" weightsEnabled="false">
+    <weighted-embedded-action uid="faef7f8c-c0dc-423c-969a-fe6f2c1d15ff"/>
+    <weighted-embedded-action uid="fdb2f669-ef72-4194-9f1b-3ff8bc6d4dfe"/>
+    <weighted-embedded-action uid="1d2230f1-3a6a-4f24-8aba-87e296c24a5d"/>
+    <weighted-embedded-action uid="1dbad178-83e9-49ba-b49e-05698a7e5882"/>
+</basic-logical-action-container>

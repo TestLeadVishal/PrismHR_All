@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Confirm Enrollment" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="ba4bdc20-adad-4bbb-b296-cfe4bc5b81d2" weightsEnabled="false">
+    <weighted-embedded-action uid="4670d079-3f98-4b8a-8169-df564d44471b"/>
+</basic-logical-action-container>

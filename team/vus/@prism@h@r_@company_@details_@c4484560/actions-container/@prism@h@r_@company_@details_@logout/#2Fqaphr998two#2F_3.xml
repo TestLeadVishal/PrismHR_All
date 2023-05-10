@@ -1,0 +1,50 @@
+<http-page enabled="false" executeResourcesDynamically="false"
+    name="/qaphr998two/_3" playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@company_@details_@c4484560/%resources%/recorded-artifacts/cb44b32c-496b-4ecd-b2c2-2165e19255e9.zip"
+    slaProfileEnabled="false" thinkTime="308"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="cb44b32c-496b-4ecd-b2c2-2165e19255e9">
+    <embedded-action>f461c7e2-0551-4c60-9008-eda3fabb6ddb</embedded-action>
+</http-page>
+<http-action actionType="1" contentType="text/html; charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="POST" name="/qaphr998two/" path="/qaphr998two/" postType="4"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@company_@details_@c4484560/%resources%/recorded-artifacts/cb44b32c-496b-4ecd-b2c2-2165e19255e9.zip"
+    recordedResponseCode="200" responseSize="8384"
+    serverUid="qaphr998two.prismhr.com" slaProfileEnabled="false"
+    uid="f461c7e2-0551-4c60-9008-eda3fabb6ddb" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_f461c7e2-0551-4c60-9008-eda3fabb6ddb.html</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_f461c7e2-0551-4c60-9008-eda3fabb6ddb.txt</requestContentFileDescription>
+    <header name="Accept" value="*/*"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Content-Type" value="text/xml"/>
+    <header name="Cookie" value="IDBrowser=${IDBrowser}; dbnextkey=${dbnextkey}"/>
+    <header name="Host" value="qaphr998two.prismhr.com"/>
+    <header name="Origin" value="https://qaphr998two.prismhr.com"/>
+    <header name="Referer" value="https://qaphr998two.prismhr.com/qaphr998two/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="empty"/>
+    <header name="Sec-Fetch-Mode" value="cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <header name="X-Requested-With" value="XMLHttpRequest"/>
+    <responseHeaders>HTTP/1.1 200 OK&#xd;
+Cache-Control: private&#xd;
+Content-Type: text/html; charset=utf-8&#xd;
+Server: Microsoft-IIS/10.0&#xd;
+X-AspNet-Version: 4.0.30319&#xd;
+Set-Cookie: dbnextkey=; expires=Sat, 08-Apr-2023 03:16:32 GMT; path=/&#xd;
+Set-Cookie: IDBrowser=b1be163d4568427d90425725ff1952ec3746f7d59fee195b8d055dfd77674cb2Bmg90tMBZ0gvr4z4dDyqgC7T0yYUo9TdR2f9n1VJgD0=; expires=Sat, 06-May-2023 03:16:32 GMT; path=/; HttpOnly&#xd;
+X-Powered-By: ASP.NET&#xd;
+Date: Fri, 28 Apr 2023 03:16:31 GMT&#xd;
+Content-Length: 8384</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+    <textPostContent><![CDATA[<AJAX><field  name="ScreenRoot" value="HRPY.WORK_LOGIN"/><eventSource>bodyID</eventSource><eventType>onload</eventType><keyCodes>||||undefined</keyCodes><dimensions>1536|704|1536|704</dimensions><designbaisState>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</designbaisState><req>0.5989867650325227</req><tabStore>${Tstore}</tabStore><captchaKey>null</captchaKey><clientClock>22:16:32</clientClock><clientDate>27.04.2023</clientDate><mobile>false</mobile><lastMVCell></lastMVCell><scrollbarWidth>17</scrollbarWidth></AJAX>]]></textPostContent>
+</http-action>

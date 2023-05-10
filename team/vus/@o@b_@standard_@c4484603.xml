@@ -12,30 +12,30 @@
         pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
         slaProfileEnabled="false" weightsEnabled="false">
         <description>Elements repeated until the Virtual User stops.</description>
-        <weighted-embedded-action uid="87c6da52-d6fd-420d-acbe-ae10275911bf"/>
-        <weighted-embedded-action uid="a7529ec9-56bd-4cb4-939d-00a30b45727f"/>
-        <weighted-embedded-action uid="6c9b5e41-6a32-461d-946e-a9e59178d7ff"/>
-        <weighted-embedded-action uid="a27374e6-1a37-48cb-b253-5b1d6963b57a"/>
-        <weighted-embedded-action uid="1b08e6ed-acd5-4dab-bde9-523b6ce836cb"/>
-        <weighted-embedded-action uid="ece685e4-3620-4780-a732-19c95db9c14b"/>
-        <weighted-embedded-action uid="c7a94db5-8bf8-40ce-819e-acccc3ec0cba"/>
-        <weighted-embedded-action uid="a3a6cd7f-9ac3-474a-a950-f2b6c5b0632d"/>
-        <weighted-embedded-action uid="65346a91-b3c2-4aec-be55-40519ae9be5a"/>
-        <weighted-embedded-action uid="08be77e3-a198-4e12-9e55-4332326547a8"/>
-        <weighted-embedded-action uid="9b3492c1-5e91-46c0-9246-26e11abcc575"/>
-        <weighted-embedded-action uid="c9651040-e15b-42c6-a6fc-8062d739d872"/>
-        <weighted-embedded-action uid="e833c9b6-2009-4543-8b04-b41e96c58c4d"/>
-        <weighted-embedded-action uid="d15b3273-c3a4-49a6-be26-758d8dc96e55"/>
-        <weighted-embedded-action uid="11a1c5e9-7c91-4dcd-a699-bc5fad2d732e"/>
-        <weighted-embedded-action uid="69e2d56e-d508-486c-9544-0f496b789523"/>
-        <weighted-embedded-action uid="26d79afe-f23b-4375-8978-d93cc2585640"/>
-        <weighted-embedded-action uid="a73b077e-a437-44cc-88d6-8feb749f59b0"/>
-        <weighted-embedded-action uid="110be4e7-44b4-46fd-8b9b-08a8413d3b73"/>
-        <weighted-embedded-action uid="8de263d1-d257-44e7-a01e-7ed8229b8701"/>
-        <weighted-embedded-action uid="429a240d-3501-47db-bd1b-0fe11a923727"/>
-        <weighted-embedded-action uid="7ca63902-2047-49d4-948a-bd44ac3384d8"/>
-        <weighted-embedded-action uid="d4cd640f-9e30-49fc-8f38-0eba980eda64"/>
-        <weighted-embedded-action uid="05a9fba4-bb40-4517-b6df-0c403a2c6c55"/>
+        <weighted-embedded-action uid="615b8829-2cb4-4bfa-8dac-97cc21cd3e40"/>
+        <weighted-embedded-action uid="64abe0f3-617f-4ee5-bd48-832692850d2e"/>
+        <weighted-embedded-action uid="8a9daaa3-c8ce-4194-a127-4fe785367f65"/>
+        <weighted-embedded-action uid="09ab2996-cd34-44b8-837e-0f781a3f837b"/>
+        <weighted-embedded-action uid="028f400e-20e8-4872-9165-fadfe419b889"/>
+        <weighted-embedded-action uid="6dc8d0db-ab54-41e7-9bdd-0c24d7df169d"/>
+        <weighted-embedded-action uid="38ea340c-5963-43fb-bdb1-60f636d97bf2"/>
+        <weighted-embedded-action uid="b3e142c1-f495-4262-af1b-5d5caecaa8d3"/>
+        <weighted-embedded-action uid="a11891d9-7323-4954-9280-3c30367ff84c"/>
+        <weighted-embedded-action uid="187a95ad-e63a-40bb-861c-95cd5a99c3a9"/>
+        <weighted-embedded-action uid="5c5c075f-d198-4ca1-91f5-b841b8d6b377"/>
+        <weighted-embedded-action uid="bbfc2454-0782-4ef0-8639-ce41266d8cd6"/>
+        <weighted-embedded-action uid="6f3c4e2e-af0b-403e-9710-1641e115b9a6"/>
+        <weighted-embedded-action uid="ac08cc89-5d5d-47c1-baf6-dbb7f2cd643d"/>
+        <weighted-embedded-action uid="a87e6b63-f25a-4a0c-a509-5b6bd69eb7b2"/>
+        <weighted-embedded-action uid="d1c6818d-c019-47d7-879c-7d94dd6d2d72"/>
+        <weighted-embedded-action uid="9097f82d-7f1a-4031-a862-cb3a6f969ae1"/>
+        <weighted-embedded-action uid="d4b6b977-5e7f-4d5d-a776-bac929970977"/>
+        <weighted-embedded-action uid="0f1b7f9f-9f9b-4c00-a164-dfcf15328e93"/>
+        <weighted-embedded-action uid="7f0a4367-4428-489d-af14-03d8320bc47d"/>
+        <weighted-embedded-action uid="56fe69eb-9bc0-44b5-8b41-9af28040314f"/>
+        <weighted-embedded-action uid="ab50305c-7938-46cd-9db8-0dac61a75221"/>
+        <weighted-embedded-action uid="c1fcdb0b-30e6-4ec3-94c8-3348bb53ff4c"/>
+        <weighted-embedded-action uid="706855b2-c4c9-4bd1-bb0d-9aee20a7a2c8"/>
     </actions-container>
     <end-container element-number="1" execution-type="0" pacingEnd="0"
         pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"

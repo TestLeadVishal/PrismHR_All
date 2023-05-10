@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Resident Address" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="a666f539-1fee-4b8e-8b50-ff703455ec52" weightsEnabled="false">
+    <weighted-embedded-action uid="2ab42622-b514-4164-8547-bd9654af74a0"/>
+</basic-logical-action-container>

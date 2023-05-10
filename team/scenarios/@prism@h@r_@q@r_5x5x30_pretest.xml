@@ -3,7 +3,7 @@
     uid="PrismHR_QR_5x5x30_pretest" virtualUsersStates="true">
     <description>Pretest for the Quarterly Scenario for PrismHR, TestRail Case</description>
     <!--****** POPULATION POLICY ******-->
-    <population-policy name="PrismHR_companyDetails">
+    <population-policy name="PrismHR_Company_Details">
         <duration-policy-entry iterations="1" time="180" timeUnit="0" type="2"/>
         <volume-policy-entry>
             <rampup-volume-policy delayIncrement="30.0"
@@ -20,7 +20,7 @@
         </lg-hosts>
     </population-policy>
     <!--****** POPULATION POLICY ******-->
-    <population-policy name="PrismHR_employee_details">
+    <population-policy name="PrismHR_Employee_Details">
         <duration-policy-entry iterations="1" time="180" timeUnit="0" type="2"/>
         <volume-policy-entry>
             <rampup-volume-policy delayIncrement="30.0"
@@ -37,7 +37,7 @@
         </lg-hosts>
     </population-policy>
     <!--****** POPULATION POLICY ******-->
-    <population-policy name="PrismHR_QR_total_compentation">
+    <population-policy name="PrismHR_Total_Compentation">
         <duration-policy-entry iterations="1" time="180" timeUnit="0" type="2"/>
         <volume-policy-entry>
             <rampup-volume-policy delayIncrement="30.0"

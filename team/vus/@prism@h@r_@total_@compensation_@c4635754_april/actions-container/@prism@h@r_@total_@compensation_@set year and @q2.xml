@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Total_Compensation_Set year and Q2" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="28eeb376-7527-492f-b5e0-9a38b1dccd13" weightsEnabled="false">
+    <weighted-embedded-action uid="f77d5661-e0be-4e19-814b-79887703412d"/>
+</basic-logical-action-container>

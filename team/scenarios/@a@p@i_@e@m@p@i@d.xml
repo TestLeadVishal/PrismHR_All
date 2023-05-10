@@ -44,17 +44,6 @@
                 monitorName="throughput" monitoredHostName="NeoLoad"
                 scale="1.0" selected="false"/>
         </chart-description>
-        <chart-description autoRange="true"
-            chart-description-type="chart-description-type"
-            domainMarkerVisible="true" granularityLevel="0"
-            historyState="XMIN" includeInReport="false"
-            rangeMarkerVisible="true" title="Load Generators CPU usage" typeName="CLASSIC">
-            <monitor-curve-description color="0,255,0"
-                connectionName="NeoLoad" dashed="false"
-                monitorName="lgcpu.887357-1RDPT002.davison.local:7100"
-                monitoredHostName="LG 887357-1RDPT002.davison.local:7100"
-                scale="1.0" selected="false"/>
-        </chart-description>
     </charts-model-description>
     <!--****** END DASHBOARDS  ******-->
     <!--****** START DATA FILTERS  ******-->

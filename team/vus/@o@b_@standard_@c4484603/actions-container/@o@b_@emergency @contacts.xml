@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Emergency Contacts" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="ac08cc89-5d5d-47c1-baf6-dbb7f2cd643d" weightsEnabled="false">
+    <weighted-embedded-action uid="3e45d653-c479-4db8-a108-d6098da98b3b"/>
+</basic-logical-action-container>

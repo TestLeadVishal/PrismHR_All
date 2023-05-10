@@ -1,0 +1,39 @@
+<lg-host browserBasedSupport="false" citrixSupport="false"
+    hostname="10.149.80.142:7100" loadWeight="1" sapSupport="false"
+    standalone="true" supportWANEmulation="false"
+    uid="030a27e4-254e-4de1-a11f-d5f9b73a149d" version="9.0.1;build=20220923-87">
+    <!--****** LG NETWORK INTERFACES ******-->
+    <lg-networkiface description="Software Loopback Interface 1"
+        enabled="false" isLoopBack="true" name="lo">
+        <!--****** LG ADDRESSES ******-->
+        <lg-address enabled="false" hostname="127.0.0.1">
+            <ip value="127.0.0.1"/>
+        </lg-address>
+        <lg-address enabled="false" hostname="0:0:0:0:0:0:0:1">
+            <ip value="0:0:0:0:0:0:0:1"/>
+        </lg-address>
+        <!--****** END LG ADDRESSES ******-->
+    </lg-networkiface>
+    <lg-networkiface description="vmxnet3 Ethernet Adapter"
+        enabled="false" isLoopBack="false" name="eth1">
+        <!--****** LG ADDRESSES ******-->
+        <lg-address enabled="false" hostname="1245974-1dpt002.davison.local">
+            <ip value="172.17.4.235"/>
+        </lg-address>
+        <lg-address enabled="false" hostname="fe80:0:0:0:9bca:38bd:5e10:64e%eth1">
+            <ip value="fe80:0:0:0:9bca:38bd:5e10:64e%eth1"/>
+        </lg-address>
+        <!--****** END LG ADDRESSES ******-->
+    </lg-networkiface>
+    <lg-networkiface description="vmxnet3 Ethernet Adapter #2"
+        enabled="false" isLoopBack="false" name="eth0">
+        <!--****** LG ADDRESSES ******-->
+        <lg-address enabled="false" hostname="1245974-1dpt002.davison.local">
+            <ip value="10.149.80.142"/>
+        </lg-address>
+        <lg-address enabled="false" hostname="fe80:0:0:0:4635:793d:4894:5d4d%eth0">
+            <ip value="fe80:0:0:0:4635:793d:4894:5d4d%eth0"/>
+        </lg-address>
+        <!--****** END LG ADDRESSES ******-->
+    </lg-networkiface>
+</lg-host>

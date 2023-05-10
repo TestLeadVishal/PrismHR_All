@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Continue Security Notification" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="0eb808d2-db04-4ece-b36b-4d87865b5c9e" weightsEnabled="false">
+    <weighted-embedded-action uid="604376c1-199d-4158-becb-2f16b0ad6481"/>
+    <weighted-embedded-action uid="fcf82ba3-a303-4537-ae0c-e0d82f5446c0"/>
+</basic-logical-action-container>

@@ -1,7 +1,7 @@
 <basic-logical-action-container element-number="1" execution-type="0"
     name="FINISH" pacingEnd="0" pacingMode="MODE_NO_PACING"
     pacingStart="0" pacingValue="0" slaProfileEnabled="false"
-    uid="bd9c6d7b-732f-438e-8d01-a3f87dccdfa0" weightsEnabled="false">
+    uid="ea12284c-438c-4e35-bc35-f89e02e38cea" weightsEnabled="false">
     <description>This Action is REQUIRED at the END of EVERY user path</description>
-    <weighted-embedded-action uid="89ba0aad-e856-47ed-b2ce-894e16cf1b6f"/>
+    <weighted-embedded-action uid="8f8335cb-1b93-421f-8f90-739b518fe80d"/>
 </basic-logical-action-container>

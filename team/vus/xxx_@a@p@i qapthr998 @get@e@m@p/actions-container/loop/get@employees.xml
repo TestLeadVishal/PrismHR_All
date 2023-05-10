@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="getEmployees" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="7373bac2-9ff0-4071-9001-deb9603cb383" weightsEnabled="false">
+    <weighted-embedded-action uid="eb54f9c0-17c5-40ea-a9c2-b742b6828e59"/>
+</basic-logical-action-container>

@@ -1,0 +1,10 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Logout" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="8d76c875-5429-4b79-99e5-12ef1f095524" weightsEnabled="false">
+    <weighted-embedded-action uid="90eca62b-425b-4468-8b71-1aab2d9ad006"/>
+    <weighted-embedded-action uid="4f023f53-00db-4a2b-90c9-c75facb42a47"/>
+    <weighted-embedded-action uid="28742010-ea0e-42eb-96ce-1e8167ff7e56"/>
+    <weighted-embedded-action uid="f034c147-5c5e-49f1-bb0e-d29ed6041258"/>
+    <weighted-embedded-action uid="79964c80-5888-49b5-a3f2-f57606fb98d1"/>
+</basic-logical-action-container>

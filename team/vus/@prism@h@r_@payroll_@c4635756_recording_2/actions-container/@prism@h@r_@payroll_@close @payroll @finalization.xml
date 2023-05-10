@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Close Payroll Finalization" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="a72a1ac1-604f-426e-9236-5bdb8ab934ad" weightsEnabled="false">
+    <weighted-embedded-action uid="c6e448fc-95ce-4221-a23a-8b94e9e5bb6e"/>
+</basic-logical-action-container>

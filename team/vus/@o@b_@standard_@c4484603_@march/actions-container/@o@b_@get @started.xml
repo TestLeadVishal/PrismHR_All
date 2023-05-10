@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Get Started" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="6438db72-f835-406a-8f0b-31b16e9074ab" weightsEnabled="false">
+    <weighted-embedded-action uid="7fe8164b-2884-42c3-8be2-34f7d13f1041"/>
+</basic-logical-action-container>

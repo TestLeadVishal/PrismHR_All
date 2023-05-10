@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="OB_Personal Information" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="89ae74c4-bddf-40b0-90b0-b1183d6d7e4e" weightsEnabled="false">
+    <weighted-embedded-action uid="d10610fb-13cc-4ceb-8c68-278928cca894"/>
+</basic-logical-action-container>

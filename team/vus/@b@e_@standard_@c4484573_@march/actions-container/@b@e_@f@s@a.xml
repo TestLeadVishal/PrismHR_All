@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_FSA" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="2a207431-6524-47d9-9341-376eb836f2d7" weightsEnabled="false">
+    <weighted-embedded-action uid="3a037f20-496d-4e31-9960-1158e600e223"/>
+    <weighted-embedded-action uid="12968e66-77bb-4277-82d4-a0b3ad41220c"/>
+</basic-logical-action-container>

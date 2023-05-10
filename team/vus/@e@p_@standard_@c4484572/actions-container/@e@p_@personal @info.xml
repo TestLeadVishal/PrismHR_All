@@ -1,0 +1,7 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Personal Info" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="f3a14026-d304-4280-adbb-5ca883a571c3" weightsEnabled="false">
+    <weighted-embedded-action uid="f8e29d5c-3e05-47ee-bd2c-21434e063de6"/>
+    <weighted-embedded-action uid="1a096374-80b8-4f75-9245-3f48f0bea095"/>
+</basic-logical-action-container>

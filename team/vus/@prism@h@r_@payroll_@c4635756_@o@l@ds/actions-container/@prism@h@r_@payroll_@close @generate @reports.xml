@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Payroll_Close Generate Reports" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="baa87570-38bf-4548-ad62-78659c811329" weightsEnabled="false">
+    <weighted-embedded-action uid="3544154d-33c0-4dee-8c98-85752da85300"/>
+</basic-logical-action-container>

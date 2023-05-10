@@ -1,0 +1,67 @@
+<http-page executeResourcesDynamically="false"
+    name="/guide-content/RDQs590of5P6blSpC6dKN7ZHi1E/HSM2_HaKJg6t_AjPP-tTaLKPw08/6FHb8MbwCTYZ2v_Hv3WCfshH"
+    playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@payroll_@c4635756_recording_1/%resources%/recorded-artifacts/68591d11-7ceb-4ae9-8bc3-59dbf20787f6.zip"
+    slaProfileEnabled="false" thinkTime="708"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="68591d11-7ceb-4ae9-8bc3-59dbf20787f6">
+    <embedded-action>aafcab50-67ed-43db-8be8-c91ef1853220</embedded-action>
+</http-page>
+<http-action actionType="1"
+    contentType="application/javascript; charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="GET"
+    name="/guide-content/RDQs590of5P6blSpC6dKN7ZHi1E/HSM2_HaKJg6t_AjPP-tTaLKPw08/6FHb8MbwCTYZ2v_Hv3WCfshHxq0.dom.jsonp"
+    path="/guide-content/RDQs590of5P6blSpC6dKN7ZHi1E/HSM2_HaKJg6t_AjPP-tTaLKPw08/6FHb8MbwCTYZ2v_Hv3WCfshHxq0.dom.jsonp"
+    postType="6"
+    recordedArtifactZipFileName="team/vus/@prism@h@r_@payroll_@c4635756_recording_1/%resources%/recorded-artifacts/68591d11-7ceb-4ae9-8bc3-59dbf20787f6.zip"
+    recordedResponseCode="200" responseSize="19324"
+    serverUid="imported_pendo-static-5175759064268800.storage.googleapis.com"
+    slaProfileEnabled="false" uid="aafcab50-67ed-43db-8be8-c91ef1853220" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_aafcab50-67ed-43db-8be8-c91ef1853220</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_aafcab50-67ed-43db-8be8-c91ef1853220.txt</requestContentFileDescription>
+    <parameter encodeName="true" encodeValue="true" name="sha256"
+        recordRawValue="VxSN843bJ1gu8DNudX598bZzikRVTaRXff6aQyfWLOc"
+        separator="="
+        value="VxSN843bJ1gu8DNudX598bZzikRVTaRXff6aQyfWLOc" valueMode="USE_VALUE"/>
+    <header name="sec-fetch-mode" value="no-cors"/>
+    <header name="referer" value="https://qaphr998.prismhr.com/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-fetch-site" value="cross-site"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="accept-language" value="en-US,en;q=0.9"/>
+    <header name="x-client-data" value="CIi2yQEIprbJAQjEtskBCKmdygEIx/zKAQiUocsBCPCAzQEYwcvMAQ=="/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="accept-encoding" value="gzip, deflate, br"/>
+    <header name="sec-fetch-dest" value="script"/>
+    <header name="accept" value="*/*"/>
+    <header name="user-agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <responseHeaders>HTTP/2.0 200&#xd;
+x-guploader-uploadid: ADPycds-q8U3vOUHCVV-vzugx1eqeCwVOZjMZtn_kq13i3ugh2LeZMlr7VNw5q_z_8A3fo36QIguI4UtEE6M6YGZP0fS82hRFnRa&#xd;
+x-goog-generation: 1666280554919214&#xd;
+x-goog-metageneration: 1&#xd;
+x-goog-stored-content-encoding: gzip&#xd;
+x-goog-stored-content-length: 2771&#xd;
+content-encoding: gzip&#xd;
+x-goog-hash: crc32c=BPBCDg==&#xd;
+x-goog-hash: md5=akgEF7EbzTYl/LOrzIbKew==&#xd;
+x-goog-storage-class: STANDARD&#xd;
+accept-ranges: bytes&#xd;
+content-length: 2771&#xd;
+access-control-allow-origin: *&#xd;
+access-control-expose-headers: *&#xd;
+server: UploadServer&#xd;
+date: Mon, 27 Feb 2023 18:32:23 GMT&#xd;
+expires: Mon, 27 Feb 2023 19:32:23 GMT&#xd;
+cache-control: public, max-age=3600&#xd;
+age: 3031&#xd;
+last-modified: Thu, 20 Oct 2022 15:42:34 GMT&#xd;
+etag: "6a480417b11bcd3625fcb3abcc86ca7b"&#xd;
+content-type: application/javascript; charset=utf-8&#xd;
+vary: Accept-Encoding&#xd;
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+</http-action>

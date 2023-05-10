@@ -1,5 +1,5 @@
 <population uid="EP_1">
-    <split cache="2" factor="100.0" virtualUserUid="EP_Standard_C4484572_a3">
+    <split cache="2" factor="100.0" virtualUserUid="EP_Standard_C4484572_998">
         <browser-profile acceptEncoding="GZIP,DEFLATE,BROTLI"
             connections="6" cookies="true" http2="true" name="browser.recorded"/>
         <wan-emulation-profile

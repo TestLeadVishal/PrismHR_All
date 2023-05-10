@@ -1,0 +1,13 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="PrismHR_Employee_Details_Search Employee" pacingEnd="0"
+    pacingMode="MODE_NO_PACING" pacingStart="0" pacingValue="0"
+    slaProfileEnabled="false" uid="2eb8f66a-6320-43fe-8c1e-ea6aee5deae0" weightsEnabled="false">
+    <weighted-embedded-action uid="c2e1ca35-3173-4ed5-a199-a1980fca8bdb"/>
+    <weighted-embedded-action uid="ce166bd4-f4c1-4850-9f38-51c879ac75a7"/>
+    <weighted-embedded-action uid="4ba4f77c-b60f-4631-849d-9aebdf5a68f4"/>
+    <weighted-embedded-action uid="213e4755-9c3c-4f0f-ab62-008c1c79c007"/>
+    <weighted-embedded-action uid="6cd8ee8f-3c8b-4035-adc7-7b3a26b351d2"/>
+    <weighted-embedded-action uid="c1889029-a22c-4662-af49-35a070aad7c4"/>
+    <weighted-embedded-action uid="21a73662-bba1-4789-b9e7-bc6e4a3e9448"/>
+    <weighted-embedded-action uid="1eb1453b-2c27-443e-8b9e-667a624fbcbf"/>
+</basic-logical-action-container>

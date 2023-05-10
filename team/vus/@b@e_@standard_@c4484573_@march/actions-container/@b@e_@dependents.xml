@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Dependents" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="9a7dbcc5-8236-4f75-93d4-8493783ccbea" weightsEnabled="false">
+    <weighted-embedded-action uid="411cdb74-e857-40c1-b060-94a21f128338"/>
+</basic-logical-action-container>

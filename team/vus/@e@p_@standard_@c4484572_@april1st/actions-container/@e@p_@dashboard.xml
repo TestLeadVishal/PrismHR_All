@@ -1,0 +1,8 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="EP_Dashboard" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="5bad58da-6f7c-4068-a123-616f26fd07ec" weightsEnabled="false">
+    <weighted-embedded-action uid="6a3c31e9-0d46-4a57-a9d9-76b0010da98f"/>
+    <weighted-embedded-action uid="5f8b7b77-fc84-418c-b99c-bae93d9cdbec"/>
+    <weighted-embedded-action uid="b0761414-c649-42cf-bd61-09ec05644742"/>
+</basic-logical-action-container>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_Medical" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="5ecc8224-933b-4aff-909f-f880036107ee" weightsEnabled="false">
+    <weighted-embedded-action uid="05d6a882-db4e-4068-a1de-66c74cd2b412"/>
+</basic-logical-action-container>

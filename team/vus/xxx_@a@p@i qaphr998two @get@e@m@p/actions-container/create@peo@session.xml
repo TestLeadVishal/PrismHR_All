@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="createPeoSession" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="66299182-514e-484b-817d-db21c525c932" weightsEnabled="false">
+    <weighted-embedded-action uid="b89197c6-60ac-4795-b54f-0b0f1b99b055"/>
+</basic-logical-action-container>

@@ -1,0 +1,6 @@
+<basic-logical-action-container element-number="1" execution-type="0"
+    name="BE_HSA" pacingEnd="0" pacingMode="MODE_NO_PACING"
+    pacingStart="0" pacingValue="0" slaProfileEnabled="false"
+    uid="2a818012-4c3d-4ad0-ae6c-23156e374bba" weightsEnabled="false">
+    <weighted-embedded-action uid="1ea78997-065e-409e-9b1c-5e17ea4cb054"/>
+</basic-logical-action-container>

@@ -1,0 +1,60 @@
+<http-page enabled="false" executeResourcesDynamically="false"
+    name="/wave1/apis/ep/clients/104/employees/Y19926/pto/types"
+    playRequestsSequentially="false"
+    recordedArtifactZipFileName="team/vus/@b@e_@standard_@c4484573_april/%resources%/recorded-artifacts/8acc2866-3e4d-4a9a-abd1-a060440457ef.zip"
+    slaProfileEnabled="false" thinkTime="0"
+    thinkTimeMode="MODE_SIMPLE_THINK_TIME" thinkTimeRangeEnd=""
+    thinkTimeRangeStart="" uid="8acc2866-3e4d-4a9a-abd1-a060440457ef">
+    <embedded-action>0387a699-5b6d-45d1-be4e-6c19d6d7fe33</embedded-action>
+</http-page>
+<http-action actionType="1" contentType="text/html; charset=utf-8"
+    extractorInjectPathPolicy="2" extractorPathPolicy="1"
+    followRedirects="false" generatedByClient="false"
+    linkExtractorSeveralMatchOccurrence="1"
+    linkExtractorSeveralMatchPolicy="1" linkExtractorType="6"
+    method="GET"
+    name="/wave1/apis/ep/clients/104/employees/Y19926/pto/types"
+    path="/wave1/apis/ep/clients/104/employees/${Employee_ID}/pto/types"
+    postType="6"
+    recordedArtifactZipFileName="team/vus/@b@e_@standard_@c4484573_april/%resources%/recorded-artifacts/8acc2866-3e4d-4a9a-abd1-a060440457ef.zip"
+    recordedResponseCode="500" responseSize="12"
+    serverUid="qaphr998two-ep.prismhr.com" slaProfileEnabled="false"
+    uid="0387a699-5b6d-45d1-be4e-6c19d6d7fe33" useKeepAlive="false">
+    <responsePageFileDescription>recorded-responses/res_3c6aa137-247c-49b8-ac2b-4e6093e38bee.html</responsePageFileDescription>
+    <requestContentFileDescription>recorded-requests/req_3c6aa137-247c-49b8-ac2b-4e6093e38bee.txt</requestContentFileDescription>
+    <header name="Accept" value="application/json, text/plain, */*"/>
+    <header name="Accept-Encoding" value="gzip, deflate, br"/>
+    <header name="Accept-Language" value="en-US,en;q=0.9"/>
+    <header name="Connection" value="keep-alive"/>
+    <header name="Cookie" value="sails.sid=${sails_sid}"/>
+    <header name="Host" value="qaphr998two-ep.prismhr.com"/>
+    <header name="newrelic" value="eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjIyMDMxNjEiLCJhcCI6IjEzODYwMjkzODgiLCJpZCI6IjQ4ZDU0NDI0ZjNiMzExZTMiLCJ0ciI6IjhmMjVmMGQ2NTFlZjQxMjNiNTZlMTcxZmVlZjg4NWZiIiwidGkiOjE2ODEyOTY3NDI5MjMsInRrIjoiMTk2MzgxNSJ9fQ=="/>
+    <header name="Referer" value="https://qaphr998two-ep.prismhr.com/"/>
+    <header name="sec-ch-ua" value="&quot;Not_A Brand&quot;;v=&quot;99&quot;, &quot;Google Chrome&quot;;v=&quot;109&quot;, &quot;Chromium&quot;;v=&quot;109&quot;"/>
+    <header name="sec-ch-ua-mobile" value="?0"/>
+    <header name="sec-ch-ua-platform" value="&quot;Windows&quot;"/>
+    <header name="Sec-Fetch-Dest" value="empty"/>
+    <header name="Sec-Fetch-Mode" value="cors"/>
+    <header name="Sec-Fetch-Site" value="same-origin"/>
+    <header name="traceparent" value="00-8f25f0d651ef4123b56e171feef885fb-48d54424f3b311e3-01"/>
+    <header name="tracestate" value="1963815@nr=0-1-2203161-1386029388-48d54424f3b311e3----1681296742923"/>
+    <header name="User-Agent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"/>
+    <responseHeaders>HTTP/1.1 500 Internal Server Error&#xd;
+Date: Wed, 12 Apr 2023 10:52:22 GMT&#xd;
+Content-Type: text/html; charset=utf-8&#xd;
+Transfer-Encoding: chunked&#xd;
+Connection: keep-alive&#xd;
+RequestId: 39b7e02ee2ffb4ba4876b43094ae1b55&#xd;
+Cache-Control: private, no-cache, no-store, must-revalidate&#xd;
+Expires: -1&#xd;
+Pragma: no-cache&#xd;
+X-peoId: qaphr998two&#xd;
+Access-Control-Expose-Headers: X-peoId&#xd;
+Vary: Accept-Encoding&#xd;
+Set-Cookie: sails.sid=s%3AlWZcIP9EHi0SvN97406wrhuBwk6YH1s1.o3tsfxs1%2B0H509fo0x%2F89X3jmXxvX9ImKeOqR7g5VKY; Path=/; secure; SameSite=none; HttpOnly; Secure&#xd;
+Strict-Transport-Security: max-age=31536000; includeSubDomains&#xd;
+Access-Control-Allow-Methods: POST, PUT, PATCH, DELETE, GET, OPTIONS, HEAD&#xd;
+Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept&#xd;
+Access-Control-Allow-Credentials: true</responseHeaders>
+    <record-html-infos extractorRegExp="false" htmlType="0"/>
+</http-action>
